@@ -2,594 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>The Guild – Welcome</title>
+  <title>The Guild – Welcome Hall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      /* THEME A: Green & Black (default) */
-      --bg: #020403;
-      --bg-alt: #050807;
-      --card: #070b0a;
-      --accent: #00ff6a;
-      --accent-soft: rgba(0, 255, 106, 0.12);
-      --text-main: #f5f5f5;
-      --text-muted: #a0a0a0;
-      --border-subtle: #1b1f1d;
-      --danger: #ff4b4b;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --radius-sm: 8px;
-      --shadow-soft: 0 0 40px rgba(0, 0, 0, 0.7);
-    }
-
-    body.theme-bw {
-      /* THEME B: Black & White */
-      --bg: #050505;
-      --bg-alt: #0b0b0b;
-      --card: #0f0f0f;
-      --accent: #ffffff;
-      --accent-soft: rgba(255, 255, 255, 0.08);
-      --text-main: #f5f5f5;
-      --text-muted: #b0b0b0;
-      --border-subtle: #262626;
-      --danger: #ff4b4b;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(0, 255, 106, 0.12), transparent 55%),
-        radial-gradient(circle at bottom, #000, #000 60%);
-      background-color: var(--bg);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .frame {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 18px 18px 40px;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .crest {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      border: 1px solid var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: radial-gradient(circle at top, var(--accent-soft), transparent 70%);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-title {
-      font-size: 1.1rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .brand-sub {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .theme-toggle {
-      display: flex;
-      gap: 6px;
-    }
-
-    .theme-btn {
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(0, 0, 0, 0.4);
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      cursor: pointer;
-    }
-
-    .theme-btn.active {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-soft);
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
-      gap: 18px;
-    }
-
-    @media (max-width: 840px) {
-      main {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .panel {
-      background: linear-gradient(145deg, var(--card), var(--bg-alt));
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 18px 18px 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, var(--accent-soft), transparent 60%);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .panel-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(0, 0, 0, 0.5);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .pill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
-    }
-
-    .hero-title {
-      font-size: 1.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .hero-sub {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      max-width: 460px;
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-
-    .hero-highlight {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: var(--radius-md);
-      background: var(--accent-soft);
-      border: 1px solid rgba(0, 0, 0, 0.6);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .copy {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--text-main);
-      margin-bottom: 12px;
-    }
-
-    .copy strong {
-      font-weight: 600;
-    }
-
-    .copy small {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0.7;
-      margin: 12px 0;
-    }
-
-    .list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 10px;
-      font-size: 0.9rem;
-      color: var(--text-main);
-    }
-
-    .list li {
-      margin-bottom: 6px;
-    }
-
-    .list li::before {
-      content: "•";
-      color: var(--accent);
-      margin-right: 6px;
-    }
-
-    .video-shell {
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
+      font-family: system-ui, sans-serif;
       background: #000;
-      overflow: hidden;
-      margin-top: 10px;
-      position: relative;
-    }
-
-    .video-shell video {
-      width: 100%;
-      display: block;
-      background: #000;
-    }
-
-    .video-caption {
-      padding: 8px 10px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border-subtle);
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    .badge {
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-    }
-
-    .badge.accent {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-soft);
-    }
-
-    .maze-block {
-      margin-top: 10px;
-      padding: 10px 10px 9px;
-      border-radius: var(--radius-md);
-      border: 1px dashed var(--border-subtle);
-      background: rgba(0, 0, 0, 0.5);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .btn-primary {
-      margin-top: 14px;
-      padding: 11px 18px;
-      border-radius: 999px;
-      border: none;
-      background: var(--accent);
-      color: #000;
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-primary span {
-      font-size: 1.1rem;
-    }
-
-    .btn-primary:active {
-      transform: translateY(1px);
-      filter: brightness(0.95);
-    }
-
-    .pill-warning {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 75, 75, 0.6);
-      background: rgba(0, 0, 0, 0.7);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--danger);
-      margin-bottom: 8px;
-    }
-
-    .pill-warning-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--danger);
-      box-shadow: 0 0 8px var(--danger);
-    }
-
-    .footer-legal {
-      margin-top: 18px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
+      color: #f5f5f5;
+      padding: 40px 20px;
       text-align: center;
-      padding: 0 12px 10px;
     }
-
-    .footer-legal strong {
-      color: var(--danger);
+    h1 {
+      font-size: 2rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    p {
+      max-width: 600px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+      color: #b5b5b5;
+    }
+    .nav {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    a {
+      padding: 12px;
+      border-radius: 10px;
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      color: #00ff6a;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    a:hover {
+      background: #00ff6a;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div class="frame">
-    <header>
-      <div class="brand">
-        <div class="crest">G</div>
-        <div class="brand-text">
-          <div class="brand-title">The Guild</div>
-          <div class="brand-sub">Million Dollar Move</div>
-        </div>
-      </div>
-      <div class="theme-toggle">
-        <button class="theme-btn active" data-theme="green">Green / Black</button>
-        <button class="theme-btn" data-theme="bw">Black / White</button>
-      </div>
-    </header>
 
-    <main>
-      <!-- LEFT: Story, Movement, Family, Maze -->
-      <section class="panel">
-        <div class="panel-inner">
-          <div class="pill">
-            <span class="pill-dot"></span>
-            Welcome • Public Guild Hall
-          </div>
+  <h1>Welcome to The Guild</h1>
+  <p>
+    This is the public hall of the Guild — where you learn what the movement is,
+    what the Million Dollar Move means, and what will be expected of you before you enter.
+  </p>
 
-          <div class="hero-title">Welcome to the Guild</div>
-          <div class="hero-sub">
-            This is the front hall of the Guild — where you learn what the movement is, what the Million Dollar Move means, and what it will demand from you.
-          </div>
-
-          <div class="hero-highlight">
-            The Million Dollar Move • $1 → $10
-          </div>
-
-          <p class="copy">
-            The <strong>Million Dollar Move</strong> is simple:
-            when a <strong>$1 options contract becomes $10</strong>, your money has multiplied
-            <strong>10×</strong>. That kind of move does <strong>not</strong> exist buying stock the normal way.
-            <br /><br />
-            Inside the Guild, we focus on understanding this move clearly — not with complicated jargon,
-            but with simple logic, timing, and discipline.
-          </p>
-
-          <div class="divider"></div>
-
-          <div class="section-title">What you will learn inside</div>
-          <ul class="list">
-            <li>How the option chain works in simple, human language.</li>
-            <li>Why $1 → $10 is the core concept — and how your money multiplies.</li>
-            <li>Why this opportunity doesn’t exist in regular stock buying.</li>
-            <li>How to stay calm when it feels unfamiliar and overwhelming.</li>
-          </ul>
-
-          <p class="copy">
-            Nobody will ever sit you down and teach you this directly. That’s why the Guild exists.
-            We are starting a powerful movement — and you are standing at the door.
-          </p>
-
-          <div class="divider"></div>
-
-          <div class="section-title">The Guild is a family</div>
-          <p class="copy">
-            The Guild is not just a chat or a course. It is a <strong>family</strong>.
-            We lift each other up. If one of us falls, we all reach down and pull them back up.
-            <br /><br />
-            Throughout this learning process, you may stumble. You may feel lost. That is normal.
-            We are all here together — and I will be with you the whole way.
-          </p>
-
-          <div class="badge-row">
-            <div class="badge accent">No guessing</div>
-            <div class="badge">Step-by-step trades</div>
-            <div class="badge">Position sizing guidance</div>
-            <div class="badge">Emotional discipline</div>
-          </div>
-
-          <p class="copy">
-            I will teach you <strong>how much to invest at a time</strong> and
-            <strong>which trades to take</strong> so you don’t have to guess.
-            It is important that you understand this: <strong>I will be here the whole way with you.</strong>
-          </p>
-
-          <div class="divider"></div>
-
-          <div class="section-title">The Maze</div>
-          <div class="maze-block">
-            Imagine a massive maze outside your town. People enter and never return. The whole town is afraid of it.
-            <br /><br />
-            I have been inside that maze. I have fought through it. I have almost completed it.
-            I carry the battle scars to prove it.
-            <br /><br />
-            The rule of the maze is simple: <strong>only one person can enter at a time.</strong>
-            <br /><br />
-            Before you enter, you get to talk to someone who has already survived it — someone who can tell you
-            where to turn, what dangers to avoid, who you will fight, and how to swing your weapon.
-            <br /><br />
-            You will still walk the maze alone. But you will walk it with my voice guiding you the entire way.
-          </div>
-
-          <button class="btn-primary" id="enterGateBtn">
-            Enter Guild Gate – $20 Contribution <span>→</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- RIGHT: Video intro, $20, device lock, referrals, disclosure -->
-      <section class="panel">
-        <div class="panel-inner">
-          <div class="section-title">The Million Dollar Video</div>
-          <p class="copy">
-            Inside the Guild, you will watch the <strong>Million Dollar Video</strong> — a breakdown of how the option chain works and why the $1 → $10 move is so powerful, explained in the simplest terms possible.
-          </p>
-
-          <div class="video-shell">
-            <!-- Placeholder teaser: you can later swap this for a short public teaser or image -->
-            <video controls preload="metadata">
-              <source src="million-dollar-move.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div class="video-caption">
-              Full breakdown is part of the Guild. You can always rewind, pause, and study at your own pace.
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="section-title">Your $20 contribution</div>
-          <p class="copy">
-            To enter the Guild, there is a <strong>$20 contribution</strong>.
-            This is your commitment to the revolution we are building.
-            <br /><br />
-            Your contribution keeps the Guild running — funding our database, private chat, and the systems we need to grow.
-            It also allows me to track who is truly inside the Guild so I can guide you personally.
-          </p>
-
-          <p class="copy">
-            Right now, access is <strong>locked to the device you use to pay</strong>.
-            That is intentional. It prevents people from passing access around and keeps the Guild protected.
-            As our funding grows, we will expand into a full database and multi-device login system.
-          </p>
-
-          <div class="divider"></div>
-
-          <div class="section-title">Referrals and responsibility</div>
-          <p class="copy">
-            You can share the payment link or QR code with people you know and love so they can join on their own device.
-            If they include your name and email when they pay, you can track who you brought into the Guild.
-          </p>
-
-          <p class="copy">
-            The payment itself is the only key. Access cannot be transferred or shared. Each person must enter with their own contribution and their own device.
-          </p>
-
-          <div class="divider"></div>
-
-          <div class="pill-warning">
-            <span class="pill-warning-dot"></span>
-            Educational Only • Not Financial Advice
-          </div>
-          <p class="copy">
-            <strong>I am not a financial adviser.</strong> This is not financial advice.
-            Everything taught inside the Guild is for <strong>educational purposes only</strong>.
-            You are responsible for your own decisions.
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <div class="footer-legal">
-      Entering the Guild means you accept the risk, the discipline, and the responsibility that comes with this path.
-      <br />
-      <strong>Do not enter lightly.</strong>
-    </div>
+  <div class="nav">
+    <a href="million-dollar-move.html">The Million Dollar Move</a>
+    <a href="guild-family.html">The Guild Family</a>
+    <a href="the-maze.html">The Maze</a>
+    <a href="contribution.html">Your Contribution</a>
   </div>
 
-  <script>
-    // THEME TOGGLE
-    const themeButtons = document.querySelectorAll(".theme-btn");
-
-    function setTheme(mode) {
-      if (mode === "bw") {
-        document.body.classList.add("theme-bw");
-      } else {
-        document.body.classList.remove("theme-bw");
-      }
-      themeButtons.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.theme === (mode === "bw" ? "bw" : "green"));
-      });
-      try {
-        localStorage.setItem("guild_theme", mode);
-      } catch (e) {}
-    }
-
-    themeButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const mode = btn.dataset.theme === "bw" ? "bw" : "green";
-        setTheme(mode);
-      });
-    });
-
-    // Load saved theme
-    try {
-      const saved = localStorage.getItem("guild_theme");
-      if (saved === "bw") setTheme("bw");
-    } catch (e) {}
-
-    // Gate button → payment wall
-    document.getElementById("enterGateBtn").addEventListener("click", () => {
-      window.location.href = "guild-entry.html";
-    });
-  </script>
 </body>
 </html>
