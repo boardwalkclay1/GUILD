@@ -1,1 +1,197 @@
-guild-style.css
+/* GLOBAL */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #000;
+  color: #f5f5f5;
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* LIGHT THEME */
+body.theme-light {
+  background: #f5f5f5;
+  color: #000;
+}
+
+body.theme-light a {
+  color: #008f3a;
+}
+
+/* PAGE TRANSITIONS */
+body.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+body.fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* FADED BACKGROUND LOGO */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("guild-logo.png") center/60% no-repeat;
+  opacity: 0.06;
+  z-index: -1;
+  filter: grayscale(100%);
+}
+
+/* FLOATING NAVIGATION BAR */
+.guild-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 58px;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #111;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  z-index: 999;
+}
+
+.crest-small {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #00ff6a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #00ff6a;
+}
+
+.nav-links a {
+  margin: 0 8px;
+  color: #00ff6a;
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.theme-toggle-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  color: #00ff6a;
+  cursor: pointer;
+}
+
+/* ANIMATED CREST */
+.crest-hero {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin-top: 90px;
+  margin-bottom: 20px;
+  color: #00ff6a;
+  animation: crestPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes crestPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* NAVIGATION BUTTONS */
+.nav {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-btn {
+  padding: 14px;
+  border-radius: 12px;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  color: #00ff6a;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+/* DESCRIPTION UNDER BUTTON */
+.nav-btn .desc {
+  display: block;
+  font-size: 0.75rem;
+  color: #b5b5b5;
+  margin-top: 6px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* CANDLESTICK HOVER LIFT */
+.nav-btn:hover {
+  transform: translateY(-6px);
+  background: #00ff6a;
+  color: #000;
+}
+
+/* THUNDERBOLT LOADING SCREEN */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+
+#loading-screen.fade-out {
+  opacity: 0;
+}
+
+#loading-screen .bolt {
+  font-size: 4rem;
+  color: #00ff6a;
+  animation: pulse 1s infinite alternate;
+}
+
+#loading-screen p {
+  margin-top: 10px;
+  color: #b5b5b5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); opacity: 0.4; }
+  to { transform: scale(1.2); opacity: 1; }
+}
