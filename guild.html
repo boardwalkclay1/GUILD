@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Guild – Inner Hall</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="guild-style.css" />
+</head>
+
+<body class="fade-in guild-bg">
+
+  <!-- Thunderbolt Loading Screen -->
+  <div id="loading-screen">
+    <div class="bolt">⚡</div>
+    <p>Entering the Inner Hall...</p>
+  </div>
+
+  <!-- Floating Navigation Bar -->
+  <nav class="guild-nav">
+    <div class="crest-small">G</div>
+    <div class="nav-links">
+      <a href="guild.html" class="page-link">Home</a>
+      <a href="million-dollar-move.html" class="page-link">Move Logic</a>
+      <a href="the-maze.html" class="page-link">Maze</a>
+      <a href="index.html" class="page-link">Hall</a>
+    </div>
+    <button id="themeToggle" class="theme-toggle-btn">Theme</button>
+  </nav>
+
+  <!-- Animated Crest -->
+  <div class="crest-hero">G</div>
+
+  <div class="content">
+
+    <h1 class="guild-welcome">Welcome to the Guild</h1>
+
+    <p class="intro">
+      You have crossed the threshold.  
+      Your contribution has been verified, and your device is now recognized as a <strong>Guild Member</strong>.  
+      From this moment forward, you are part of a lifestyle — not a course, not a program, but a movement.
+    </p>
+
+    <p class="intro">
+      Inside these walls, discipline is everything.  
+      Preparation is everything.  
+      The Guild is built on unity, clarity, and the relentless pursuit of mastery.  
+      If you follow the rules, stay disciplined, and move with intention, you will grow here.
+    </p>
+
+    <div class="divider"></div>
+
+    <h2 class="section-title">Your Guild Navigation</h2>
+
+    <p class="body-text">
+      Every section below is a pillar of your training.  
+      Read the descriptions carefully — each one explains exactly what you will learn and why it matters.
+    </p>
+
+    <div class="nav">
+
+      <a href="trade-alive.html" class="nav-btn page-link">
+        Trade Alive
+        <span class="desc">
+          A live, breathing explanation of how contracts move in real time.  
+          This is where you learn to see the market the way the Guild sees it.
+        </span>
+      </a>
+
+      <a href="golden-formula.html" class="nav-btn page-link">
+        The Golden Formula
+        <span class="desc">
+          The core logic behind the Million Dollar Move — the math, the timing,  
+          and the reason contracts multiply the way they do.
+        </span>
+      </a>
+
+      <a href="guild-discipline.html" class="nav-btn page-link">
+        Guild Discipline – The Golden Rules
+        <span class="desc">
+          The rules you must follow with absolute precision.  
+          Discipline and preparation are the most important things we have.  
+          Break these rules, and the market will break you.
+        </span>
+      </a>
+
+      <a href="brokers.html" class="nav-btn page-link">
+        Brokers
+        <span class="desc">
+          Learn which platforms to use, how to set them up,  
+          and how to prepare your tools like a true Guild member.
+        </span>
+      </a>
+
+      <a href="options-chain.html" class="nav-btn page-link">
+        Options Chain
+        <span class="desc">
+          Understand where contract prices come from, how to read the chain,  
+          and how to find the best entries — one of the true secrets of options trading.
+        </span>
+      </a>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 class="section-title">The Guild Lifestyle</h2>
+
+    <p class="body-text">
+      The Guild is not something you “join” — it is something you become.  
+      A Guild member moves with intention.  
+      A Guild member prepares before they act.  
+      A Guild member follows the rules with precision.  
+      A Guild member supports the family and never walks alone.
+    </p>
+
+    <p class="body-text">
+      If you stay disciplined, stay focused, and follow the Golden Rules,  
+      you will grow here — not just as a trader, but as a person.
+    </p>
+
+  </div>
+
+  <script>
+    // Thunderbolt loading animation
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loading-screen");
+      loader.classList.add("fade-out");
+      setTimeout(() => loader.style.display = "none", 600);
+    });
+
+    // Page transitions
+    document.querySelectorAll(".page-link").forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+          window.location.href = link.href;
+        }, 300);
+      });
+    });
+
+    // Theme toggle
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("theme-light");
+      localStorage.setItem("guildTheme", document.body.classList.contains("theme-light") ? "light" : "dark");
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("guildTheme");
+    if (savedTheme === "light") {
+      document.body.classList.add("theme-light");
+    }
+  </script>
+
+</body>
+</html>
