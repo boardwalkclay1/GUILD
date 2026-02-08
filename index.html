@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>The Guild – Million Dollar Move</title>
+  <title>The Guild – Welcome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
@@ -213,33 +213,6 @@
       margin-bottom: 12px;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .hero-stat {
-      padding: 10px 10px 9px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
-      background: rgba(0, 0, 0, 0.4);
-      font-size: 0.8rem;
-    }
-
-    .hero-stat-label {
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      font-size: 0.7rem;
-      margin-bottom: 4px;
-    }
-
-    .hero-stat-value {
-      font-size: 0.95rem;
-    }
-
     .section-title {
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -295,6 +268,7 @@
       background: #000;
       overflow: hidden;
       margin-top: 10px;
+      position: relative;
     }
 
     .video-shell video {
@@ -344,16 +318,30 @@
       line-height: 1.6;
     }
 
-    .footer-legal {
-      margin-top: 18px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-align: center;
-      padding: 0 12px 10px;
+    .btn-primary {
+      margin-top: 14px;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .footer-legal strong {
-      color: var(--danger);
+    .btn-primary span {
+      font-size: 1.1rem;
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px);
+      filter: brightness(0.95);
     }
 
     .pill-warning {
@@ -378,6 +366,18 @@
       background: var(--danger);
       box-shadow: 0 0 8px var(--danger);
     }
+
+    .footer-legal {
+      margin-top: 18px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 0 12px 10px;
+    }
+
+    .footer-legal strong {
+      color: var(--danger);
+    }
   </style>
 </head>
 <body>
@@ -397,18 +397,17 @@
     </header>
 
     <main>
-      <!-- LEFT: Welcome, Million Dollar Move, Maze, Family -->
+      <!-- LEFT: Story, Movement, Family, Maze -->
       <section class="panel">
         <div class="panel-inner">
           <div class="pill">
             <span class="pill-dot"></span>
-            Inner Circle • Verified Device
+            Welcome • Public Guild Hall
           </div>
 
           <div class="hero-title">Welcome to the Guild</div>
           <div class="hero-sub">
-            You made your contribution. This device is now marked as a verified member of the Guild.
-            From here, we learn the Million Dollar Move together — with clarity, discipline, and family.
+            This is the front hall of the Guild — where you learn what the movement is, what the Million Dollar Move means, and what it will demand from you.
           </div>
 
           <div class="hero-highlight">
@@ -436,7 +435,7 @@
 
           <p class="copy">
             Nobody will ever sit you down and teach you this directly. That’s why the Guild exists.
-            We are starting a movement — and you are early.
+            We are starting a powerful movement — and you are standing at the door.
           </p>
 
           <div class="divider"></div>
@@ -479,69 +478,59 @@
             <br /><br />
             You will still walk the maze alone. But you will walk it with my voice guiding you the entire way.
           </div>
+
+          <button class="btn-primary" id="enterGateBtn">
+            Enter Guild Gate – $20 Contribution <span>→</span>
+          </button>
         </div>
       </section>
 
-      <!-- RIGHT: Video, Movement, Contribution, Reminder -->
+      <!-- RIGHT: Video intro, $20, device lock, referrals, disclosure -->
       <section class="panel">
         <div class="panel-inner">
           <div class="section-title">The Million Dollar Video</div>
           <p class="copy">
-            This video explains the Million Dollar Move in the simplest terms possible.
-            Watch it fully. Rewind if you need to. This is the foundation of everything we will build together.
+            Inside the Guild, you will watch the <strong>Million Dollar Video</strong> — a breakdown of how the option chain works and why the $1 → $10 move is so powerful, explained in the simplest terms possible.
           </p>
 
           <div class="video-shell">
-            <!-- Replace src with your GitHub-hosted video file path -->
+            <!-- Placeholder teaser: you can later swap this for a short public teaser or image -->
             <video controls preload="metadata">
               <source src="million-dollar-move.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div class="video-caption">
-              The Million Dollar Move • $1 → $10 • Educational breakdown only.
+              Full breakdown is part of the Guild. You can always rewind, pause, and study at your own pace.
             </div>
           </div>
 
           <div class="divider"></div>
 
-          <div class="section-title">What this video covers</div>
-          <ul class="list">
-            <li>How the option chain works at a basic, logical level.</li>
-            <li>Why a $1 contract moving to $10 is the core idea.</li>
-            <li>Why this kind of multiplication doesn’t happen with normal stock buying.</li>
-            <li>How to not get overwhelmed when it feels unfamiliar.</li>
-          </ul>
-
+          <div class="section-title">Your $20 contribution</div>
           <p class="copy">
-            This is not about hype. This is about understanding a simple, powerful mechanic —
-            and learning how to respect it.
-          </p>
-
-          <div class="divider"></div>
-
-          <div class="section-title">Your contribution to the movement</div>
-          <p class="copy">
-            Your <strong>$20 contribution</strong> is your commitment to the revolution we are building.
-            It keeps the Guild running — funding our database, private chat, and the systems we need to grow.
+            To enter the Guild, there is a <strong>$20 contribution</strong>.
+            This is your commitment to the revolution we are building.
             <br /><br />
+            Your contribution keeps the Guild running — funding our database, private chat, and the systems we need to grow.
             It also allows me to track who is truly inside the Guild so I can guide you personally.
           </p>
 
           <p class="copy">
-            Right now, access is <strong>locked to the device you used to pay</strong>.
+            Right now, access is <strong>locked to the device you use to pay</strong>.
             That is intentional. It prevents people from passing access around and keeps the Guild protected.
             As our funding grows, we will expand into a full database and multi-device login system.
           </p>
 
           <div class="divider"></div>
 
-          <div class="section-title">The promise</div>
+          <div class="section-title">Referrals and responsibility</div>
           <p class="copy">
-            If you listen precisely to what I say, stay disciplined, and follow the process,
-            I believe this can change your life forever.
-            <br /><br />
-            This is a powerful movement. It is important that you tell the people you know and love about it —
-            not to hype them, but to give them a chance to learn what nobody else will teach them directly.
+            You can share the payment link or QR code with people you know and love so they can join on their own device.
+            If they include your name and email when they pay, you can track who you brought into the Guild.
+          </p>
+
+          <p class="copy">
+            The payment itself is the only key. Access cannot be transferred or shared. Each person must enter with their own contribution and their own device.
           </p>
 
           <div class="divider"></div>
@@ -560,8 +549,9 @@
     </main>
 
     <div class="footer-legal">
-      This device has been granted Guild access based on your contribution. Do not share or attempt to transfer access.
-      Your discipline is part of the oath.
+      Entering the Guild means you accept the risk, the discipline, and the responsibility that comes with this path.
+      <br />
+      <strong>Do not enter lightly.</strong>
     </div>
   </div>
 
@@ -596,20 +586,10 @@
       if (saved === "bw") setTheme("bw");
     } catch (e) {}
 
-    // Guard: only allow if device is marked as Guild member
-    function isGuildMember() {
-      try {
-        const raw = localStorage.getItem("guild_member");
-        return !!raw;
-      } catch (e) {
-        return false;
-      }
-    }
-
-    if (!isGuildMember()) {
-      // If someone hits this page without paying on this device, send them back to entry
+    // Gate button → payment wall
+    document.getElementById("enterGateBtn").addEventListener("click", () => {
       window.location.href = "guild-entry.html";
-    }
+    });
   </script>
 </body>
 </html>
