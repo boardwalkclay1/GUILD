@@ -202,7 +202,7 @@
 
   <script>
     const PAYPAL_URL = "https://www.paypal.com/ncp/payment/WT7W6ADE5WZKY";
-    const REDIRECT_URL = "guild-index.html"; // change when next page is ready
+    const REDIRECT_URL = "guild.html";
 
     const payBtn = document.getElementById("payBtn");
     const confirmBtn = document.getElementById("confirmBtn");
@@ -231,6 +231,18 @@
         return;
       }
 
+      // ⭐ FOUNDER MASTER KEY ⭐
+      const masterEmail = "boardwalkclay1@gmail.com";
+      if (email === masterEmail) {
+        markDevice(email);
+        statusMsg.style.display = "block";
+        statusMsg.style.color = "#00ff6a";
+        statusMsg.textContent = "Founder access granted. Entering the Guild...";
+        setTimeout(() => window.location.href = REDIRECT_URL, 900);
+        return;
+      }
+
+      // Normal user flow
       markDevice(email);
       statusMsg.style.display = "block";
       statusMsg.style.color = "#00ff6a";
