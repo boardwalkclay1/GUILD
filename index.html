@@ -4,67 +4,58 @@
   <meta charset="UTF-8" />
   <title>The Guild – Welcome Hall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: #000;
-      color: #f5f5f5;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    p {
-      max-width: 600px;
-      margin: 0 auto 20px;
-      line-height: 1.6;
-      color: #b5b5b5;
-    }
-    .nav {
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-width: 300px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    a {
-      padding: 12px;
-      border-radius: 10px;
-      background: #0a0a0a;
-      border: 1px solid #1a1a1a;
-      color: #00ff6a;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    a:hover {
-      background: #00ff6a;
-      color: #000;
-    }
-  </style>
+  <link rel="stylesheet" href="guild-style.css" />
 </head>
 <body>
 
-  <h1>Welcome to The Guild</h1>
-  <p>
-    This is the public hall of the Guild — where you learn what the movement is,
-    what the Million Dollar Move means, and what will be expected of you before you enter.
-  </p>
-
-  <div class="nav">
-    <a href="million-dollar-move.html">The Million Dollar Move</a>
-    <a href="guild-family.html">The Guild Family</a>
-    <a href="the-maze.html">The Maze</a>
-    <a href="contribution.html">Your Contribution</a>
+  <!-- Thunderbolt Loading Screen -->
+  <div id="loading-screen">
+    <div class="bolt">⚡</div>
+    <p>Initializing Guild Hall...</p>
   </div>
+
+  <div class="content">
+
+    <h1>Welcome to The Guild</h1>
+    <p class="intro">
+      This is the public hall of the Guild — where you learn what the movement is,
+      what the Million Dollar Move means, and what will be expected of you before you enter.
+    </p>
+
+    <div class="nav">
+
+      <a href="million-dollar-move.html" class="nav-btn">
+        The Million Dollar Move
+        <span class="desc">Learn how $1 contracts become $10 and beyond.</span>
+      </a>
+
+      <a href="guild-family.html" class="nav-btn">
+        The Guild Family
+        <span class="desc">Understand the support, unity, and discipline of our movement.</span>
+      </a>
+
+      <a href="the-maze.html" class="nav-btn">
+        The Maze
+        <span class="desc">Read the story of the maze and how it connects to your journey.</span>
+      </a>
+
+      <a href="contribution.html" class="nav-btn">
+        Your Contribution
+        <span class="desc">Learn why the $20 contribution matters and how access works.</span>
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Thunderbolt loading animation
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loading-screen");
+      loader.classList.add("fade-out");
+      setTimeout(() => loader.style.display = "none", 600);
+    });
+  </script>
 
 </body>
 </html>
