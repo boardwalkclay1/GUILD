@@ -1,0 +1,15 @@
+{
+  "name": "The Guild",
+  "short_name": "Guild",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ff6a",
+  "icons": [
+    {
+      "src": "guild-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
