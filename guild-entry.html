@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Entry – Contribution Gate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #020403;
+      --card: #0a0f0d;
+      --accent: #00ff6a;
+      --accent-soft: rgba(0,255,106,0.12);
+      --text-main: #f5f5f5;
+      --text-muted: #9a9a9a;
+      --border: #1a1f1d;
+      --radius: 14px;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: radial-gradient(circle at top, rgba(0,255,106,0.12), transparent 60%), #000;
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 460px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 22px 30px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.7);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .sub {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      letter-spacing: 0.1em;
+    }
+
+    .copy {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .copy strong {
+      color: var(--accent);
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: #050505;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .btn-ghost {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    .qr-box {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px dashed var(--border);
+      text-align: center;
+    }
+
+    .qr-box img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .qr-box p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .legal {
+      margin-top: 20px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .legal strong {
+      color: #ff4b4b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="shell">
+    <div class="title">Guild Entry</div>
+    <div class="sub">Contribution Gate • $20</div>
+
+    <p class="copy">
+      Your <strong>$20 contribution</strong> is the only key into the Guild.  
+      Once you pay, <strong>this device</strong> becomes your permanent access point.  
+      Access cannot be transferred or shared.
+    </p>
+
+    <p class="copy">
+      Your contribution keeps the Guild alive — funding our database, chat, and the systems we need to grow.
+    </p>
+
+    <div class="field">
+      <label for="email">Your Email</label>
+      <input id="email" type="email" placeholder="you@example.com" />
+    </div>
+
+    <button class="btn-primary" id="payBtn">
+      Pay $20 – Enter the Guild
+    </button>
+
+    <button class="btn-ghost" id="confirmBtn">
+      I paid on this device
+    </button>
+
+    <div class="status" id="statusMsg"></div>
+
+    <div class="qr-box">
+      <img src="guild-entry-qr.png" alt="Guild QR Code" />
+      <p>
+        This QR code is for <strong>payment only</strong>.  
+        It does not unlock the Guild.  
+        Each person must pay on their own device.  
+        If someone you refer pays, tell them to include your name and email.
+      </p>
+      <button class="btn-ghost" id="downloadQrBtn">Download QR Code</button>
+    </div>
+
+    <div class="legal">
+      <strong>Disclosure:</strong> I am not a financial adviser.  
+      This is not financial advice.  
+      All Guild teachings are educational only.
+    </div>
+  </div>
+
+  <script>
+    const PAYPAL_URL = "https://www.paypal.com/ncp/payment/WT7W6ADE5WZKY";
+    const REDIRECT_URL = "guild-index.html"; // change when next page is ready
+
+    const payBtn = document.getElementById("payBtn");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const statusMsg = document.getElementById("statusMsg");
+    const downloadQrBtn = document.getElementById("downloadQrBtn");
+    const emailInput = document.getElementById("email");
+
+    function markDevice(email) {
+      const data = {
+        email: email,
+        joinedAt: new Date().toISOString()
+      };
+      localStorage.setItem("guild_member", JSON.stringify(data));
+    }
+
+    payBtn.addEventListener("click", () => {
+      window.open(PAYPAL_URL, "_blank", "noopener");
+    });
+
+    confirmBtn.addEventListener("click", () => {
+      const email = emailInput.value.trim();
+      if (!email) {
+        statusMsg.style.display = "block";
+        statusMsg.style.color = "#ff4b4b";
+        statusMsg.textContent = "Enter your email before confirming.";
+        return;
+      }
+
+      markDevice(email);
+      statusMsg.style.display = "block";
+      statusMsg.style.color = "#00ff6a";
+      statusMsg.textContent = "Device verified. Entering the Guild...";
+      setTimeout(() => window.location.href = REDIRECT_URL, 900);
+    });
+
+    downloadQrBtn.addEventListener("click", () => {
+      const link = document.createElement("a");
+      link.href = "guild-entry-qr.png";
+      link.download = "guild-entry-qr.png";
+      link.click();
+    });
+  </script>
+
+</body>
+</html>
