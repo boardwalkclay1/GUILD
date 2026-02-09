@@ -122,11 +122,9 @@
       localStorage.setItem("guildTheme", document.body.classList.contains("theme-light") ? "light" : "dark");
     });
 
-    // Load saved theme
-    const savedTheme = localStorage.getItem("guildTheme");
-    if (savedTheme === "light") {
-      document.body.classList.add("theme-light");
-    }
+    // FORCE GOLD THEME ON EVERY LOAD
+    localStorage.setItem("guildTheme", "dark");
+    document.body.classList.remove("theme-light");
   </script>
 
 </body>
