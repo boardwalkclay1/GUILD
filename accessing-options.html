@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Accessing Options – Guild Setup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      font-family: system-ui, sans-serif;
+      color: #D4AF37;
+      padding: 40px 20px;
+      line-height: 1.7;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -3;
+      filter: grayscale(40%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.35;
+      z-index: -2;
+      pointer-events: none;
+      animation: fogMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove {
+      0% { transform: translateY(0px); opacity: 0.25; }
+      100% { transform: translateY(25px); opacity: 0.45; }
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 30px 0 10px;
+      font-size: 1rem;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 0 auto 16px;
+      text-align: left;
+    }
+
+    .divider {
+      width: 80%;
+      max-width: 500px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 30px auto;
+      opacity: 0.7;
+    }
+
+    .card {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 18px 18px 20px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid #8B6B2C;
+      text-align: left;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.95rem;
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .sim-label {
+      display: block;
+      margin: 10px 0 4px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #8B6B2C;
+      background: #050505;
+      color: #D4AF37;
+      font-size: 0.9rem;
+    }
+
+    button.sim-btn {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      background: #D4AF37;
+      color: #000;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .sim-result {
+      margin-top: 14px;
+      font-size: 0.9rem;
+    }
+
+    .disclaimer {
+      margin-top: 18px;
+      font-size: 0.8rem;
+      opacity: 0.85;
+    }
+
+    a.back {
+      display: block;
+      margin-top: 40px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    a.back:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <h1>Accessing Options</h1>
+
+    <p>
+      Some people already have options trading turned on in their account.  
+      Some people don’t.  
+      This page shows you what that process usually looks like, how to find the setting,  
+      and gives you a simulator so you can practice the flow before you see it in real life.
+    </p>
+
+    <div class="divider"></div>
+
+    <h2>If You Already See Options</h2>
+
+    <div class="card">
+      <h3>Robinhood</h3>
+      <p>
+        If you already see an <strong>“Options”</strong> tab or the ability to choose <strong>“Options”</strong> when you tap a stock:
+      </p>
+      <p>
+        • Open Robinhood  
+        • Tap any stock  
+        • Look for a button or tab labeled <strong>“Trade Options”</strong> or <strong>“Options”</strong>  
+      </p>
+      <p class="hint">
+        If you see that, your options access is already active.  
+        This is the screen you’ll use to reach the options chain and contracts.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Chase (J.P. Morgan Investing)</h3>
+      <p>
+        If you use Chase with an investing account and already see options:
+      </p>
+      <p>
+        • Open the Chase app  
+        • Go to your <strong>J.P. Morgan Investing</strong> or brokerage section  
+        • Tap a stock and look for an <strong>“Options”</strong> or <strong>“Options trading”</strong> choice  
+      </p>
+      <p class="hint">
+        If that’s visible, options are already enabled on that account.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>If You Don’t See Options Yet</h2>
+
+    <div class="card">
+      <h3>Finding the Options Setting</h3>
+      <p>
+        If you don’t see options, you usually have to go into your <strong>settings</strong> or <strong>profile</strong> and enable it.
+      </p>
+      <p>
+        On most brokers, the path looks something like:
+      </p>
+      <p>
+        • Open the app  
+        • Go to your <strong>Account</strong>, <strong>Profile</strong>, or <strong>Settings</strong>  
+        • Look for something like <strong>“Trading Settings”</strong>, <strong>“Options Trading”</strong>, or <strong>“Investment Profile”</strong>  
+        • Tap it and look for a way to <strong>request options approval</strong>
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Turning Options On</h3>
+      <p>
+        When you request options access, the broker will usually ask you a series of questions about:
+      </p>
+      <p>
+        • Your experience  
+        • Your goals  
+        • Your risk tolerance  
+        • Your income and net worth  
+      </p>
+      <p class="hint">
+        These questions are used by the broker to decide what level of options access to give you.  
+        Answer honestly and carefully — if your answers don’t match the risk of options trading,  
+        they may limit or deny access.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>The Question Flow (Simulator)</h2>
+
+    <p>
+      Below is a simulator that shows you the kind of questions you might see.  
+      This is not connected to any broker — it’s just here so you can get familiar with the flow  
+      and see how someone focused on aggressive options trading might answer.
+    </p>
+
+    <div class="card">
+      <h3>Options Approval Simulator</h3>
+
+      <label class="sim-label" for="goal">Investment Objective</label>
+      <select id="goal">
+        <option value="">Select...</option>
+        <option value="preserve">Capital preservation</option>
+        <option value="income">Income</option>
+        <option value="growth">Growth</option>
+        <option value="speculation">Speculation / High growth</option>
+      </select>
+
+      <label class="sim-label" for="risk">Risk Tolerance</label>
+      <select id="risk">
+        <option value="">Select...</option>
+        <option value="low">Low</option>
+        <option value="moderate">Moderate</option>
+        <option value="high">High</option>
+      </select>
+
+      <label class="sim-label" for="experience">Options Experience</label>
+      <select id="experience">
+        <option value="">Select...</option>
+        <option value="none">None</option>
+        <option value="limited">Limited</option>
+        <option value="good">Good</option>
+        <option value="extensive">Extensive</option>
+      </select>
+
+      <button class="sim-btn" id="checkSim">Check Example Answers</button>
+
+      <div class="sim-result" id="simResult"></div>
+
+      <p class="disclaimer">
+        This simulator is for educational purposes only.  
+        It is not financial advice and does not guarantee approval with any broker.  
+        Always answer broker questionnaires truthfully based on your real situation.
+      </p>
+    </div>
+
+    <p>
+      Visually, this is very close to how the real approval pages feel:  
+      a series of dropdowns or multiple‑choice questions about your goals, risk, and experience.  
+      Getting comfortable with this flow now makes the real thing feel familiar when you see it.
+    </p>
+
+    <a class="back" href="guild.html">← Back to Inner Hall</a>
+  </div>
+
+  <script>
+    const checkSim = document.getElementById("checkSim");
+    const simResult = document.getElementById("simResult");
+
+    checkSim.addEventListener("click", () => {
+      const goal = document.getElementById("goal").value;
+      const risk = document.getElementById("risk").value;
+      const experience = document.getElementById("experience").value;
+
+      if (!goal || !risk || !experience) {
+        simResult.style.color = "#ffb347";
+        simResult.textContent = "Fill out all three fields to see the example interpretation.";
+        return;
+      }
+
+      let msg = "Here’s how a broker might view these answers:\n\n";
+
+      if (goal === "speculation" && risk === "high") {
+        msg += "• Your objective and risk tolerance line up with high‑risk, speculative strategies like options.\n";
+      } else {
+        msg += "• Your objective and risk tolerance are not fully aligned with aggressive options trading.\n";
+      }
+
+      if (experience === "good" || experience === "extensive") {
+        msg += "• Your stated experience suggests you understand complex products.\n";
+      } else if (experience === "limited") {
+        msg += "• You show some experience, but they may still limit certain strategies.\n";
+      } else {
+        msg += "• With no experience selected, they may be more cautious about granting access.\n";
+      }
+
+      msg += "\nThis is only an educational example. Real approvals depend on the broker’s own rules.";
+
+      simResult.style.whiteSpace = "pre-line";
+      simResult.style.color = "#D4AF37";
+      simResult.textContent = msg;
+    });
+  </script>
+
+</body>
+</html>
