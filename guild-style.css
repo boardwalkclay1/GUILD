@@ -14,17 +14,17 @@ body {
 /* GOLD THEME (REPLACES LIGHT THEME) */
 body.theme-light {
   background: #000;
-  color: #C6A667;
+  color: #D4AF37; /* STRONG GUILD GOLD */
 }
 
 body.theme-light .nav-btn {
-  background: #1a1a1a;
-  border-color: #C6A667;
-  color: #C6A667;
+  background: #0d0d0d;
+  border-color: #D4AF37;
+  color: #D4AF37;
 }
 
 body.theme-light .nav-btn:hover {
-  background: #C6A667;
+  background: #D4AF37;
   color: #000;
 }
 
@@ -89,8 +89,8 @@ body::before {
 }
 
 body.theme-light .crest-small {
-  border-color: #C6A667;
-  color: #C6A667;
+  border-color: #D4AF37;
+  color: #D4AF37;
 }
 
 .nav-links a {
@@ -103,7 +103,7 @@ body.theme-light .crest-small {
 }
 
 body.theme-light .nav-links a {
-  color: #C6A667;
+  color: #D4AF37;
 }
 
 .theme-toggle-btn {
@@ -116,8 +116,8 @@ body.theme-light .nav-links a {
 }
 
 body.theme-light .theme-toggle-btn {
-  color: #C6A667;
-  border-color: #C6A667;
+  color: #D4AF37;
+  border-color: #D4AF37;
 }
 
 /* ANIMATED CREST */
@@ -132,7 +132,7 @@ body.theme-light .theme-toggle-btn {
 }
 
 body.theme-light .crest-hero {
-  color: #C6A667;
+  color: #D4AF37;
 }
 
 @keyframes crestPulse {
@@ -175,9 +175,8 @@ body.theme-light .crest-hero {
   font-weight: 400;
 }
 
-/* GOLD THEME BUTTONS */
 body.theme-light .nav-btn .desc {
-  color: #C6A667;
+  color: #D4AF37;
 }
 
 /* CANDLESTICK HOVER LIFT */
@@ -188,7 +187,7 @@ body.theme-light .nav-btn .desc {
 }
 
 body.theme-light .nav-btn:hover {
-  background: #C6A667;
+  background: #D4AF37;
   color: #000;
 }
 
@@ -216,7 +215,7 @@ body.theme-light .nav-btn:hover {
 }
 
 body.theme-light #loading-screen .bolt {
-  color: #C6A667;
+  color: #D4AF37;
 }
 
 #loading-screen p {
@@ -228,7 +227,7 @@ body.theme-light #loading-screen .bolt {
 }
 
 body.theme-light #loading-screen p {
-  color: #C6A667;
+  color: #D4AF37;
 }
 
 @keyframes pulse {
