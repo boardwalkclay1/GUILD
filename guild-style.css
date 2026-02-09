@@ -11,12 +11,13 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* GOLD THEME (REPLACES LIGHT THEME) */
+/* STRONG GOLD THEME (REPLACES LIGHT THEME) */
 body.theme-light {
   background: #000;
   color: #D4AF37; /* STRONG GUILD GOLD */
 }
 
+/* GOLD THEME BUTTONS */
 body.theme-light .nav-btn {
   background: #0d0d0d;
   border-color: #D4AF37;
@@ -26,6 +27,37 @@ body.theme-light .nav-btn {
 body.theme-light .nav-btn:hover {
   background: #D4AF37;
   color: #000;
+}
+
+/* GOLD THEME TEXT */
+body.theme-light .nav-btn .desc {
+  color: #D4AF37;
+}
+
+body.theme-light .nav-links a {
+  color: #D4AF37;
+}
+
+body.theme-light .crest-small {
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+body.theme-light .crest-hero {
+  color: #D4AF37;
+}
+
+body.theme-light .theme-toggle-btn {
+  color: #D4AF37;
+  border-color: #D4AF37;
+}
+
+body.theme-light #loading-screen .bolt {
+  color: #D4AF37;
+}
+
+body.theme-light #loading-screen p {
+  color: #D4AF37;
 }
 
 /* PAGE TRANSITIONS */
@@ -47,13 +79,13 @@ body.fade-out {
   to { opacity: 0; }
 }
 
-/* FADED BACKGROUND LOGO */
+/* BACKGROUND LOGO (APPLIES TO BOTH THEMES) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("guild-logo.png") center/60% no-repeat;
-  opacity: 0.06;
+  background: url("guild-background.png") center/cover no-repeat; /* STRONG BACKGROUND PIC */
+  opacity: 0.12; /* STRONGER VISIBILITY */
   z-index: -1;
   filter: grayscale(100%);
 }
@@ -88,11 +120,6 @@ body::before {
   color: #00ff6a;
 }
 
-body.theme-light .crest-small {
-  border-color: #D4AF37;
-  color: #D4AF37;
-}
-
 .nav-links a {
   margin: 0 8px;
   color: #00ff6a;
@@ -100,10 +127,6 @@ body.theme-light .crest-small {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-}
-
-body.theme-light .nav-links a {
-  color: #D4AF37;
 }
 
 .theme-toggle-btn {
@@ -115,11 +138,6 @@ body.theme-light .nav-links a {
   cursor: pointer;
 }
 
-body.theme-light .theme-toggle-btn {
-  color: #D4AF37;
-  border-color: #D4AF37;
-}
-
 /* ANIMATED CREST */
 .crest-hero {
   font-size: 5rem;
@@ -129,10 +147,6 @@ body.theme-light .theme-toggle-btn {
   margin-bottom: 20px;
   color: #00ff6a;
   animation: crestPulse 2.5s infinite ease-in-out;
-}
-
-body.theme-light .crest-hero {
-  color: #D4AF37;
 }
 
 @keyframes crestPulse {
@@ -175,17 +189,14 @@ body.theme-light .crest-hero {
   font-weight: 400;
 }
 
-body.theme-light .nav-btn .desc {
-  color: #D4AF37;
-}
-
-/* CANDLESTICK HOVER LIFT */
+/* GREEN THEME HOVER */
 .nav-btn:hover {
   transform: translateY(-6px);
   background: #00ff6a;
   color: #000;
 }
 
+/* GOLD THEME HOVER */
 body.theme-light .nav-btn:hover {
   background: #D4AF37;
   color: #000;
@@ -214,20 +225,12 @@ body.theme-light .nav-btn:hover {
   animation: pulse 1s infinite alternate;
 }
 
-body.theme-light #loading-screen .bolt {
-  color: #D4AF37;
-}
-
 #loading-screen p {
   margin-top: 10px;
   color: #b5b5b5;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 0.8rem;
-}
-
-body.theme-light #loading-screen p {
-  color: #D4AF37;
 }
 
 @keyframes pulse {
