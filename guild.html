@@ -20,7 +20,7 @@
       inset: 0;
       background: url("guild-background-gold.png") center/cover no-repeat;
       opacity: 0.18;
-      z-index: -2;
+      z-index: -3;
       filter: grayscale(40%);
     }
 
@@ -31,7 +31,7 @@
       inset: 0;
       background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
       opacity: 0.35;
-      z-index: -1;
+      z-index: -2;
       pointer-events: none;
       animation: fogMove 12s ease-in-out infinite alternate;
     }
@@ -39,6 +39,40 @@
     @keyframes fogMove {
       0% { transform: translateY(0px); opacity: 0.25; }
       100% { transform: translateY(25px); opacity: 0.45; }
+    }
+
+    /* GOLD PILLARS */
+    .pillar {
+      position: fixed;
+      top: 0;
+      width: 150px;
+      height: 100vh;
+      background: url("guild-pillar.png") center/contain no-repeat;
+      opacity: 0.55;
+      z-index: -1;
+      filter: drop-shadow(0 0 12px rgba(212,175,55,0.35));
+      animation: pillarFloat 6s ease-in-out infinite alternate;
+    }
+
+    .pillar-left {
+      left: 0;
+    }
+
+    .pillar-right {
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    @keyframes pillarFloat {
+      0% { transform: translateY(0); opacity: 0.45; }
+      100% { transform: translateY(12px); opacity: 0.65; }
+    }
+
+    /* MOBILE: hide pillars */
+    @media (max-width: 900px) {
+      .pillar {
+        display: none;
+      }
     }
 
     .guild-welcome {
@@ -73,6 +107,10 @@
 </head>
 
 <body class="fade-in guild-bg">
+
+  <!-- GOLD PILLARS -->
+  <div class="pillar pillar-left"></div>
+  <div class="pillar pillar-right"></div>
 
   <!-- Thunderbolt Loading Screen -->
   <div id="loading-screen">
