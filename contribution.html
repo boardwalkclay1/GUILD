@@ -4,37 +4,53 @@
   <meta charset="UTF-8" />
   <title>Your Contribution</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Guild Stylesheet -->
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <!-- FORCE GOLD BACKGROUND -->
   <style>
     body {
-      margin: 0;
       background: #000;
-      color: #f5f5f5;
-      font-family: system-ui, sans-serif;
-      padding: 40px 20px;
-      line-height: 1.65;
-      text-align: center;
     }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
+    }
+
     h1 {
       text-transform: uppercase;
       letter-spacing: 0.15em;
       margin-bottom: 20px;
       font-size: 1.8rem;
+      color: #D4AF37;
+      text-align: center;
     }
+
     p {
       max-width: 650px;
       margin: 0 auto 20px;
-      color: #b5b5b5;
+      color: #D4AF37;
       font-size: 1rem;
+      text-align: left;
     }
+
     strong {
-      color: #00ff6a;
+      color: #D4AF37;
     }
+
     a.btn {
       display: block;
       margin: 30px auto 0;
       max-width: 300px;
       padding: 12px;
-      background: #00ff6a;
+      background: #D4AF37;
       color: #000;
       text-decoration: none;
       text-align: center;
@@ -42,21 +58,26 @@
       border-radius: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      transition: 0.25s ease;
     }
+
     a.btn:hover {
-      background: #00cc55;
+      background: #8B6B2C;
+      color: #fff;
     }
+
     .divider {
       width: 80%;
       max-width: 500px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, #00ff6a, transparent);
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
       margin: 30px auto;
-      opacity: 0.6;
+      opacity: 0.7;
     }
   </style>
 </head>
-<body>
+
+<body class="fade-in">
 
   <h1>Your Contribution</h1>
 
@@ -126,6 +147,29 @@
   <div class="divider"></div>
 
   <a class="btn" href="guild-entry.html">Enter Guild Gate →</a>
+
+  <!-- GOLD COIN BURST SCRIPT -->
+  <script>
+    document.addEventListener("click", (e) => {
+      for (let i = 0; i < 12; i++) {
+        const coin = document.createElement("div");
+        coin.className = "coin";
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 80 + Math.random() * 40;
+
+        coin.style.left = e.clientX + "px";
+        coin.style.top = e.clientY + "px";
+
+        coin.style.setProperty("--dx", Math.cos(angle) * distance + "px");
+        coin.style.setProperty("--dy", Math.sin(angle) * distance + "px");
+
+        document.body.appendChild(coin);
+
+        setTimeout(() => coin.remove(), 900);
+      }
+    });
+  </script>
 
 </body>
 </html>
