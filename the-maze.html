@@ -4,66 +4,84 @@
   <meta charset="UTF-8" />
   <title>The Maze – Guild Lore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Guild Stylesheet -->
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <!-- FORCE GOLD BACKGROUND ON THIS PAGE -->
   <style>
     body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
       background: #000;
-      color: #f5f5f5;
-      padding: 40px 20px;
-      line-height: 1.65;
     }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
+    }
+
     h1 {
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       margin-bottom: 20px;
       font-size: 1.8rem;
+      color: #D4AF37;
     }
+
     p {
       max-width: 700px;
       margin: 0 auto 20px;
-      color: #b5b5b5;
+      color: #D4AF37;
       font-size: 1rem;
+      text-align: left;
     }
+
     strong {
-      color: #00ff6a;
+      color: #D4AF37;
     }
+
     a {
       display: block;
       text-align: center;
       margin-top: 30px;
-      color: #00ff6a;
+      color: #D4AF37;
       text-decoration: none;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
+
     a:hover {
       color: #fff;
     }
   </style>
 </head>
-<body>
+
+<body class="fade-in">
 
   <h1>The Maze</h1>
 
   <p>
-    On the edge of your town sits a massive stone maze — ancient, silent, and feared.  
-    People whisper about it. They warn each other to stay away.  
+    On the edge of your town sits a massive stone maze — ancient, silent, and feared.
+    People whisper about it. They warn each other to stay away.
     Not because the maze is impossible, but because most who enter walk in blind, alone, and unprepared.
   </p>
 
   <p>
-    That maze is the <strong>options market</strong>.  
+    That maze is the <strong>options market</strong>.
     And the treasure hidden deep inside it is the <strong>Million Dollar Move</strong>.
   </p>
 
   <p>
-    Most people never reach it.  
-    They panic at the first twist.  
-    They get overwhelmed by numbers they don’t understand.  
-    They follow the wrong voices.  
+    Most people never reach it.
+    They panic at the first twist.
+    They get overwhelmed by numbers they don’t understand.
+    They follow the wrong voices.
     They take a wrong turn and never recover.
   </p>
 
@@ -74,10 +92,10 @@
   </p>
 
   <p>
-    I’ve walked every corridor.  
-    I’ve taken wrong turns.  
-    I’ve fought battles I wasn’t ready for.  
-    I’ve been hit, humbled, and rebuilt.  
+    I’ve walked every corridor.
+    I’ve taken wrong turns.
+    I’ve fought battles I wasn’t ready for.
+    I’ve been hit, humbled, and rebuilt.
     I’ve almost completed the entire maze — and I carry the scars to prove it.
   </p>
 
@@ -88,7 +106,7 @@
   </p>
 
   <p>
-    That moment — that transformation — is the treasure everyone is searching for.  
+    That moment — that transformation — is the treasure everyone is searching for.
     But most people never reach it because they don’t know how to navigate the maze.
   </p>
 
@@ -99,8 +117,8 @@
   </p>
 
   <p>
-    No one can carry you.  
-    No one can walk it for you.  
+    No one can carry you.
+    No one can walk it for you.
     No one can take the steps on your behalf.
   </p>
 
@@ -125,7 +143,7 @@
   </p>
 
   <p>
-    I can’t walk the maze for you.  
+    I can’t walk the maze for you.
     But I can guide you through it — turn by turn, step by step, move by move.
   </p>
 
@@ -134,30 +152,53 @@
   </p>
 
   <p>
-    This is a shortcut.  
-    This is your cheat code.  
-    Your once in a life time opportunity!
+    This is a shortcut.
+    This is your cheat code.
+    Your once in a lifetime opportunity.
   </p>
 
   <p>
-    It’s a <strong>map</strong>.  
-    A <strong>voice</strong>.  
-    A <strong>family</strong> walking the same path.  
+    It’s a <strong>map</strong>.
+    A <strong>voice</strong>.
+    A <strong>family</strong> walking the same path.
     A guide who has already taken the hits so you don’t have to.
   </p>
 
   <p>
-    When you finally reach the center —  
-    when you see that $1 contract turn into $10 —  
+    When you finally reach the center —
+    when you see that $1 contract turn into $10 —
     you’ll understand why the maze was worth it.
   </p>
 
   <p>
-    Not because it was easy,  
+    Not because it was easy,
     but because you didn’t walk it alone.
   </p>
 
   <a href="index.html">← Back to Hall</a>
+
+  <!-- GOLD COIN BURST SCRIPT -->
+  <script>
+    document.addEventListener("click", (e) => {
+      for (let i = 0; i < 12; i++) {
+        const coin = document.createElement("div");
+        coin.className = "coin";
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 80 + Math.random() * 40;
+
+        coin.style.left = e.clientX + "px";
+        coin.style.top = e.clientY + "px";
+
+        coin.style.setProperty("--dx", Math.cos(angle) * distance + "px");
+        coin.style.setProperty("--dy", Math.sin(angle) * distance + "px");
+
+        document.body.appendChild(coin);
+
+        setTimeout(() => coin.remove(), 900);
+      }
+    });
+  </script>
 
 </body>
 </html>
