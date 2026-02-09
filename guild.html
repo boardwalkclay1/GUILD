@@ -5,6 +5,71 @@
   <title>The Guild – Inner Hall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="guild-style.css" />
+
+  <style>
+    /* FORCE GOLD BACKGROUND */
+    body {
+      background: #000;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -2;
+      filter: grayscale(40%);
+    }
+
+    /* GOLD FOG LAYER */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+      animation: fogMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove {
+      0% { transform: translateY(0px); opacity: 0.25; }
+      100% { transform: translateY(25px); opacity: 0.45; }
+    }
+
+    .guild-welcome {
+      color: #D4AF37;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .section-title {
+      color: #D4AF37;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 40px;
+    }
+
+    .body-text {
+      max-width: 750px;
+      margin: 0 auto 20px;
+      color: #D4AF37;
+      text-align: left;
+    }
+
+    .divider {
+      width: 80%;
+      max-width: 500px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 40px auto;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 
 <body class="fade-in guild-bg">
@@ -58,44 +123,49 @@
 
     <div class="nav">
 
-      <a href="trade-alive.html" class="nav-btn page-link">
+      <!-- TRADE ALIVE -->
+      <a href="https://github.com/Clayvonte/Trade-Alive" class="nav-btn page-link" target="_blank">
         Trade Alive
         <span class="desc">
           A live, breathing explanation of how contracts move in real time.  
-          This is where you learn to see the market the way the Guild sees it.
+          This is where you learn to see the market the way the Guild sees it — alive, moving, and full of opportunity.
         </span>
       </a>
 
-      <a href="golden-formula.html" class="nav-btn page-link">
+      <!-- GOLDEN FORMULA -->
+      <a href="https://github.com/Clayvonte/Golden-Formula" class="nav-btn page-link" target="_blank">
         The Golden Formula
         <span class="desc">
-          The core logic behind the Million Dollar Move — the math, the timing,  
-          and the reason contracts multiply the way they do.
+          The first tool of its kind in the world.  
+          Upload a screenshot of any stock, and it will tell you exactly what <strong>I</strong> would do in that moment.  
+          Entry, exit, timing — the logic of the Million Dollar Move, automated.
         </span>
       </a>
 
+      <!-- GUILD DISCIPLINE -->
       <a href="guild-discipline.html" class="nav-btn page-link">
         Guild Discipline – The Golden Rules
         <span class="desc">
           The rules you must follow with absolute precision.  
-          Discipline and preparation are the most important things we have.  
-          Break these rules, and the market will break you.
+          Discipline and preparation are the foundation of the Guild lifestyle.
         </span>
       </a>
 
+      <!-- BROKERS -->
       <a href="brokers.html" class="nav-btn page-link">
         Brokers
         <span class="desc">
-          Learn which platforms to use, how to set them up,  
-          and how to prepare your tools like a true Guild member.
+          The platforms you will use to execute your trades.  
+          Learn which ones give you speed, leverage, and same‑day access.
         </span>
       </a>
 
+      <!-- OPTIONS CHAIN -->
       <a href="options-chain.html" class="nav-btn page-link">
         Options Chain
         <span class="desc">
-          Understand where contract prices come from, how to read the chain,  
-          and how to find the best entries — one of the true secrets of options trading.
+          The screen you will use for the rest of your life.  
+          Learn how to read contract prices and find the best entries.
         </span>
       </a>
 
@@ -131,6 +201,7 @@
     // Page transitions
     document.querySelectorAll(".page-link").forEach(link => {
       link.addEventListener("click", e => {
+        if (link.target === "_blank") return;
         e.preventDefault();
         document.body.classList.add("fade-out");
         setTimeout(() => {
