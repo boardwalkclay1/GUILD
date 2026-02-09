@@ -4,20 +4,28 @@
   <meta charset="UTF-8" />
   <title>The Million Dollar Move</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Guild Stylesheet -->
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <!-- FORCE GOLD BACKGROUND -->
   <style>
     body {
-      margin: 0;
       background: #000;
-      color: #f5f5f5;
+      text-align: center;
       font-family: system-ui, sans-serif;
       padding: 40px 20px;
       line-height: 1.65;
-      text-align: center; /* Keep headings centered */
     }
 
-    /* Align paragraphs and example text left for readability */
-    p, .example-box p {
-      text-align: left;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
     }
 
     h1 {
@@ -26,6 +34,7 @@
       letter-spacing: 0.15em;
       margin-bottom: 20px;
       font-size: 1.8rem;
+      color: #D4AF37;
     }
 
     h2 {
@@ -33,15 +42,20 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-size: 1.1rem;
-      color: #00ff6a;
+      color: #D4AF37;
       text-align: center;
     }
 
     p {
       max-width: 700px;
       margin: 0 auto 20px;
-      color: #b5b5b5;
+      color: #D4AF37;
       font-size: 1rem;
+      text-align: left;
+    }
+
+    strong {
+      color: #D4AF37;
     }
 
     .example-box {
@@ -49,29 +63,25 @@
       margin: 20px auto;
       padding: 18px;
       border-radius: 12px;
-      background: #0a0a0a;
-      border: 1px solid #1a1a1a;
-      text-align: left; /* Ensures example text is aligned */
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #8B6B2C;
+      text-align: left;
     }
 
     .example-box h3 {
       margin-top: 0;
-      color: #00ff6a;
+      color: #D4AF37;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       font-size: 1rem;
       text-align: left;
     }
 
-    strong {
-      color: #00ff6a;
-    }
-
     a {
       display: block;
       text-align: center;
       margin-top: 30px;
-      color: #00ff6a;
+      color: #D4AF37;
       text-decoration: none;
       font-weight: 600;
       letter-spacing: 0.1em;
@@ -83,7 +93,8 @@
     }
   </style>
 </head>
-<body>
+
+<body class="fade-in">
 
   <h1>The Million Dollar Move</h1>
 
@@ -228,6 +239,29 @@
   </p>
 
   <a href="index.html">← Back to Hall</a>
+
+  <!-- GOLD COIN BURST SCRIPT -->
+  <script>
+    document.addEventListener("click", (e) => {
+      for (let i = 0; i < 12; i++) {
+        const coin = document.createElement("div");
+        coin.className = "coin";
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 80 + Math.random() * 40;
+
+        coin.style.left = e.clientX + "px";
+        coin.style.top = e.clientY + "px";
+
+        coin.style.setProperty("--dx", Math.cos(angle) * distance + "px");
+        coin.style.setProperty("--dy", Math.sin(angle) * distance + "px");
+
+        document.body.appendChild(coin);
+
+        setTimeout(() => coin.remove(), 900);
+      }
+    });
+  </script>
 
 </body>
 </html>
