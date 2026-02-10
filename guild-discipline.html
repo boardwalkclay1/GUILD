@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Discipline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <style>
+    body {
+      background: #000;
+      font-family: system-ui, sans-serif;
+      padding: 40px 20px;
+      line-height: 1.65;
+      color: #D4AF37;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+      animation: fogMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove {
+      0% { transform: translateY(0px); opacity: 0.25; }
+      100% { transform: translateY(25px); opacity: 0.45; }
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    p {
+      max-width: 750px;
+      margin: 0 auto 20px;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .divider {
+      width: 80%;
+      max-width: 500px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 40px auto;
+      opacity: 0.7;
+    }
+
+    .disclaimer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    a.back {
+      display: block;
+      margin-top: 40px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    a.back:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <h1>Guild Discipline</h1>
+
+  <p>
+    Guild Discipline is the foundation of everything you will ever do inside the market.  
+    Before you even think about entering a trade, you must master your physical discipline,  
+    your emotional discipline, and your daily habits.
+  </p>
+
+  <p>
+    These rules are not optional.  
+    They are not suggestions.  
+    They are the lifestyle required to build real wealth.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Wake Up On Time</h2>
+
+  <p>
+    You cannot trade if you cannot wake up.  
+    You must be awake, alert, and focused by <strong>9:00 AM every single day</strong>.  
+    No exceptions. No excuses.
+  </p>
+
+  <p>
+    The market rewards the prepared — not the tired.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Prepare the Night Before</h2>
+
+  <p>
+    Your morning should never be chaos.  
+    You should never be rushing.  
+    You should never be scrambling to get ready.
+  </p>
+
+  <p>
+    The night before, you must:
+  </p>
+
+  <p>
+    • Study your stocks  
+    • Review your watchlist  
+    • Clean your space  
+    • Charge your devices  
+    • Set your alarms  
+    • Handle your chores  
+  </p>
+
+  <p>
+    When the morning comes, you should be stepping into clarity — not confusion.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>No Partying, No Drinking</h2>
+
+  <p>
+    You cannot go out drinking, partying, or staying up late and expect to wake up and make a good trade.  
+    The market does not care about your hangover.
+  </p>
+
+  <p>
+    Discipline means sacrifice.  
+    Wealth requires focus.  
+    You cannot live like everyone else and expect results nobody else has.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Eyes on the Market</h2>
+
+  <p>
+    You must be watching the market every day.  
+    Not trading every day — watching every day.
+  </p>
+
+  <p>
+    The Guild is a community of disciplined traders.  
+    We move with intention.  
+    We prepare with precision.  
+    We walk the path to real wealth together.
+  </p>
+
+  <div class="divider"></div>
+
+  <p class="disclaimer">
+    These discipline rules are still under construction.  
+    More will be added as the Guild grows.
+  </p>
+
+  <a class="back" href="guild.html">← Back to Inner Hall</a>
+
+</body>
+</html>
