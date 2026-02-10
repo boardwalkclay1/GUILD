@@ -1,212 +1,140 @@
-/* GLOBAL (GOLD DEFAULT THEME) */
-body {
+/* ================================
+   GUILD GLOBAL CINEMATIC STYLES
+   Controlled by guild-engine.js
+   ================================ */
+
+/* RESET */
+* {
   margin: 0;
-  padding-top: 70px;
-  font-family: system-ui, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BASE */
+body {
   background: #000;
-  color: #D4AF37; /* GOLD DEFAULT */
-  text-align: center;
-  min-height: 100vh;
+  color: #D4AF37;
+  font-family: system-ui, sans-serif;
   overflow-x: hidden;
-  transition: background 0.4s ease, color 0.4s ease;
   position: relative;
 }
 
-/* BACKGROUND IMAGE */
+/* BACKGROUND IMAGE (JS can change opacity, blur, etc.) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background: url("guild-background-gold.png") center/cover no-repeat;
-  opacity: 0.18;
-  z-index: -1;
-  filter: grayscale(40%);
+  opacity: var(--bg-opacity, 0.18);
+  filter: grayscale(40%) blur(var(--bg-blur, 0px));
+  z-index: -3;
 }
 
-/* GREEN THEME (TOGGLE) */
-body.theme-light {
-  background: #000;
-  color: #00ff6a;
-}
-
-body.theme-light .nav-btn {
-  background: #0a0a0a;
-  border-color: #00ff6a;
-  color: #00ff6a;
-}
-
-body.theme-light .nav-btn:hover {
-  background: #00ff6a;
-  color: #000;
-}
-
-body.theme-light .nav-btn .desc,
-body.theme-light .nav-links a,
-body.theme-light .crest-small,
-body.theme-light .crest-hero,
-body.theme-light .theme-toggle-btn,
-body.theme-light #loading-screen .bolt,
-body.theme-light #loading-screen p {
-  color: #00ff6a;
-  border-color: #00ff6a;
-}
-
-/* FLOATING NAVIGATION BAR */
-.guild-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 58px;
-  background: rgba(0,0,0,0.75);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid #111;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 18px;
-  z-index: 999;
-}
-
-.crest-small {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid #D4AF37;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #D4AF37;
-}
-
-.nav-links a {
-  margin: 0 8px;
-  color: #D4AF37;
-  text-decoration: none;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.theme-toggle-btn {
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: #0a0a0a;
-  border: 1px solid #1a1a1a;
-  color: #D4AF37;
-  cursor: pointer;
-}
-
-/* ANIMATED CREST */
-.crest-hero {
-  font-size: 5rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  color: #D4AF37;
-  animation: crestPulse 2.5s infinite ease-in-out;
-}
-
-@keyframes crestPulse {
-  0% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.15); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.7; }
-}
-
-/* NAVIGATION BUTTONS */
-.nav {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  max-width: 340px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.nav-btn {
-  padding: 14px;
-  border-radius: 12px;
-  background: #0a0a0a;
-  border: 1px solid #1a1a1a;
-  color: #D4AF37;
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.nav-btn .desc {
-  display: block;
-  font-size: 0.75rem;
-  color: #D4AF37;
-  margin-top: 6px;
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 400;
-}
-
-.nav-btn:hover {
-  transform: translateY(-6px);
-  background: #D4AF37;
-  color: #000;
-}
-
-/* LOADING SCREEN */
-#loading-screen {
+/* FOG LAYERS (JS controls speed, opacity, direction) */
+.fog-layer {
   position: fixed;
   inset: 0;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  background: url("fog.png") repeat;
+  opacity: var(--fog-opacity, 0.25);
+  pointer-events: none;
+  z-index: -2;
+  animation: fogMove var(--fog-speed, 30s) linear infinite;
+}
+
+@keyframes fogMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-600px); }
+}
+
+/* PILLARS (JS injects them) */
+.pillar {
+  position: fixed;
+  top: 0;
+  width: 160px;
+  height: 100vh;
+  background: url("guild-pillar.png") center/contain no-repeat;
+  opacity: var(--pillar-opacity, 0.55);
+  filter: drop-shadow(0 0 12px rgba(212,175,55,0.35));
+  animation: pillarFloat 6s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+.pillar-left { left: 0; }
+.pillar-right { right: 0; transform: scaleX(-1); }
+
+@keyframes pillarFloat {
+  0% { transform: translateY(0); opacity: 0.45; }
+  100% { transform: translateY(12px); opacity: 0.65; }
+}
+
+/* GOLD SCROLL (JS controls open/close animation) */
+.gold-scroll {
+  position: fixed;
+  top: -400px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 700px;
+  background: rgba(0,0,0,0.85);
+  border: 2px solid #D4AF37;
+  border-radius: 12px;
+  padding: 25px;
+  opacity: 0;
+  transition: all 1.2s ease;
+  z-index: 10;
+  box-shadow: 0 0 25px rgba(212,175,55,0.4);
+}
+
+.gold-scroll.open {
+  top: 40px;
+  opacity: 1;
+}
+
+.scroll-title {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  color: #D4AF37;
+}
+
+/* LIGHTNING FLASH */
+.lightning-flash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,200,0.4), transparent 70%);
+  opacity: 0;
+  animation: flash 0.4s ease-out forwards;
+  z-index: -1;
+}
+
+@keyframes flash {
+  0% { opacity: 0; }
+  20% { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+
+/* PAGE FADE */
+.fade-out {
+  opacity: 0;
   transition: opacity 0.6s ease;
 }
 
-#loading-screen.fade-out {
-  opacity: 0;
-}
-
-#loading-screen .bolt {
-  font-size: 4rem;
+/* NAV BUTTONS */
+.nav-btn {
+  display: block;
+  background: rgba(0,0,0,0.75);
+  border: 1px solid #D4AF37;
+  padding: 18px;
+  border-radius: 12px;
+  margin: 15px auto;
+  max-width: 600px;
+  text-decoration: none;
   color: #D4AF37;
-  animation: pulse 1s infinite alternate;
+  text-align: center;
+  transition: 0.3s ease;
 }
 
-#loading-screen p {
-  margin-top: 10px;
-  color: #D4AF37;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
-
-@keyframes pulse {
-  from { transform: scale(1); opacity: 0.4; }
-  to { transform: scale(1.2); opacity: 1; }
-}
-
-/* GOLD COIN BURST ON CLICK */
-.coin {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: radial-gradient(circle, #D4AF37 0%, #8B6B2C 60%, #5E461A 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: coinBurst 0.8s ease-out forwards;
-}
-
-@keyframes coinBurst {
-  0% { transform: translate(0,0) scale(1); opacity: 1; }
-  100% { 
-    transform: translate(var(--dx), var(--dy)) scale(0.2);
-    opacity: 0;
-  }
+.nav-btn:hover {
+  background: rgba(212,175,55,0.2);
+  transform: translateY(-3px);
 }
