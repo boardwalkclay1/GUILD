@@ -112,14 +112,64 @@
       100% { opacity: 0; }
     }
 
-    /* NAV BUTTONS */
+    /* SIDE PILLAR BUTTONS */
+    .side-btn {
+      width: 280px;
+      min-height: 300px;
+      padding: 25px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.75);
+      border: 3px solid #D4AF37;
+      color: #D4AF37;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: 0.3s ease;
+      box-shadow: 0 0 20px rgba(212,175,55,0.3);
+    }
+
+    .side-btn:hover {
+      background: rgba(212,175,55,0.15);
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 0 35px rgba(212,175,55,0.5);
+    }
+
+    .side-btn .desc {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    .left-side { left: 0; }
+    .right-side { right: 0; }
+
+    /* CENTER NAV */
+    .center-nav {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+      margin-top: 40px;
+    }
+
     .nav-btn {
       display: block;
       background: rgba(0,0,0,0.75);
       border: 1px solid #D4AF37;
       padding: 18px;
       border-radius: 12px;
-      margin: 15px auto;
+      margin: 10px auto;
       max-width: 600px;
       text-decoration: none;
       color: #D4AF37;
@@ -182,70 +232,73 @@
     }, 6000 + Math.random() * 4000);
   </script>
 
+  <!-- SIDE BUTTONS -->
+  <a href="guild-discipline.html" class="side-btn left-side">
+    Guild Discipline
+    <span class="desc">Your physical and emotional foundation.</span>
+  </a>
+
+  <a href="golden-rules.html" class="side-btn right-side">
+    Golden Rules
+    <span class="desc">The laws that guide your trades.</span>
+  </a>
+
   <div class="content">
 
     <div class="divider"></div>
 
-    <!-- FULLY WIRED GUILD NAVIGATION -->
-    <a href="inside-the-guild.html" class="nav-btn">
-      Inside the Guild
-      <span class="desc">What awaits you inside — the teachings, tools, secrets, and systems I built myself.</span>
-    </a>
+    <!-- TOP FOUR ROOMS -->
+    <div class="center-nav">
 
-    <a href="guild-discipline.html" class="nav-btn">
-      Hall of Discipline
-      <span class="desc">The physical and emotional discipline required before you ever enter the market.</span>
-    </a>
+      <a href="brokers.html" class="nav-btn">
+        Brokers
+        <span class="desc">Choose the platform you will trade on.</span>
+      </a>
 
-    <a href="golden-rules.html" class="nav-btn">
-      Chamber of Golden Rules
-      <span class="desc">The rules that guide your trades and remove fear from the market.</span>
-    </a>
+      <a href="the-maze.html" class="nav-btn">
+        The Maze
+        <span class="desc">Understand my journey and why I guide you.</span>
+      </a>
 
-    <a href="mon-fri.html" class="nav-btn">
-      Weekly Decay Room
-      <span class="desc">Understand why Friday is our Million Dollar Window.</span>
-    </a>
+      <a href="accessing-options.html" class="nav-btn">
+        Options Access Chamber
+        <span class="desc">Enable options trading on your broker.</span>
+      </a>
 
-    <a href="accessing-options.html" class="nav-btn">
-      Options Access Chamber
-      <span class="desc">Learn how to enable options trading on your broker.</span>
-    </a>
+      <a href="guild-family.html" class="nav-btn">
+        The Guild Family
+        <span class="desc">Our unity. Our movement. Our lifestyle.</span>
+      </a>
 
-    <a href="brokers.html" class="nav-btn">
-      Broker Selection Room
-      <span class="desc">The platforms you will use to execute your trades.</span>
-    </a>
+      <div class="divider"></div>
 
-    <a href="options-chain.html" class="nav-btn">
-      The Options Chain Observatory
-      <span class="desc">The screen you will use for the rest of your life.</span>
-    </a>
+      <!-- REMAINING ROOMS -->
+      <a href="inside-the-guild.html" class="nav-btn">
+        Inside the Guild
+        <span class="desc">What awaits you inside the movement.</span>
+      </a>
 
-    <a href="https://boardwalkclay1.github.io/Trade_Alive/" class="nav-btn" target="_blank">
-      The Engine Room – Trade Alive
-      <span class="desc">Watch contracts move in real time.</span>
-    </a>
+      <a href="mon-fri.html" class="nav-btn">
+        Weekly Decay Room
+        <span class="desc">Why Friday is our Million Dollar Window.</span>
+      </a>
 
-    <a href="https://boardwalkclay1.github.io/formula1/" class="nav-btn" target="_blank">
-      The Formula Chamber
-      <span class="desc">Upload any stock screenshot and see exactly what I would do.</span>
-    </a>
+      <a href="options-chain.html" class="nav-btn">
+        Options Chain Observatory
+        <span class="desc">The screen you will use for life.</span>
+      </a>
 
-    <a href="guild-family.html" class="nav-btn">
-      The Guild Family
-      <span class="desc">Our community, our unity, our movement.</span>
-    </a>
+      <a href="https://boardwalkclay1.github.io/Trade_Alive/" class="nav-btn" target="_blank">
+        Trade Alive Engine Room
+        <span class="desc">Watch contracts move in real time.</span>
+      </a>
 
-    <a href="the-maze.html" class="nav-btn">
-      The Maze
-      <span class="desc">Understand my journey and why I guide you the way I do.</span>
-    </a>
+      <a href="https://boardwalkclay1.github.io/formula1/" class="nav-btn" target="_blank">
+        Formula Chamber
+        <span class="desc">Upload a chart and see what I would do.</span>
+      </a>
 
-    <a href="contribution.html" class="nav-btn">
-      Contribution Chamber
-      <span class="desc">Why the $20 contribution matters and how access works.</span>
-    </a>
+    </div>
 
     <div class="divider"></div>
 
