@@ -5,127 +5,212 @@
   <title>The Guild – Welcome Hall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Manifest -->
-  <link rel="manifest" href="manifest.json" />
-
-  <!-- iOS PWA Support -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="guild-style.css" />
 
   <style>
-    /* FORCE BACKGROUND IMAGE HERE TOO */
+    /* ============================
+       HARD‑CODED CINEMATIC LAYERS
+       ============================ */
+
     body {
       background: #000;
+      color: #D4AF37;
+      font-family: system-ui, sans-serif;
+      overflow-x: hidden;
+      position: relative;
     }
 
+    /* BACKGROUND */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background: url("guild-background-gold.png") center/cover no-repeat;
       opacity: 0.18;
-      z-index: -1;
       filter: grayscale(40%);
+      z-index: -3;
     }
+
+    /* FOG */
+    .fog-layer {
+      position: fixed;
+      inset: 0;
+      background: url("fog.png") repeat;
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: -2;
+      animation: fogMove 30s linear infinite;
+    }
+
+    @keyframes fogMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(-600px); }
+    }
+
+    /* PILLARS */
+    .pillar {
+      position: fixed;
+      top: 0;
+      width: 160px;
+      height: 100vh;
+      background: url("guild-pillar.png") center/contain no-repeat;
+      opacity: 0.55;
+      z-index: -1;
+      animation: pillarFloat 6s ease-in-out infinite alternate;
+    }
+
+    .pillar-left { left: 0; }
+    .pillar-right { right: 0; transform: scaleX(-1); }
+
+    @keyframes pillarFloat {
+      0% { transform: translateY(0); opacity: 0.45; }
+      100% { transform: translateY(12px); opacity: 0.65; }
+    }
+
+    /* GOLD SCROLL */
+    .gold-scroll {
+      position: fixed;
+      top: -400px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 700px;
+      background: rgba(0,0,0,0.85);
+      border: 2px solid #D4AF37;
+      border-radius: 12px;
+      padding: 25px;
+      opacity: 0;
+      transition: all 1.2s ease;
+      z-index: 10;
+      box-shadow: 0 0 25px rgba(212,175,55,0.4);
+    }
+
+    .gold-scroll.open {
+      top: 40px;
+      opacity: 1;
+    }
+
+    .scroll-title {
+      text-align: center;
+      font-size: 2rem;
+      letter-spacing: 0.15em;
+      color: #D4AF37;
+    }
+
+    /* LIGHTNING */
+    .lightning-flash {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,255,200,0.4), transparent 70%);
+      opacity: 0;
+      animation: flash 0.4s ease-out forwards;
+      z-index: -1;
+    }
+
+    @keyframes flash {
+      0% { opacity: 0; }
+      20% { opacity: 0.5; }
+      100% { opacity: 0; }
+    }
+
+    /* NAV BUTTONS */
+    .nav-btn {
+      display: block;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid #D4AF37;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 15px auto;
+      max-width: 600px;
+      text-decoration: none;
+      color: #D4AF37;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: rgba(212,175,55,0.2);
+      transform: translateY(-3px);
+    }
+
+    .desc {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    .divider {
+      width: 80%;
+      max-width: 500px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 40px auto;
+      opacity: 0.7;
+    }
+
   </style>
 </head>
 
-<body class="fade-in">
+<body>
 
-  <!-- Thunderbolt Loading Screen -->
-  <div id="loading-screen">
-    <div class="bolt">⚡</div>
-    <p>Initializing Guild Hall...</p>
-  </div>
+  <!-- FOG -->
+  <div class="fog-layer"></div>
 
-  <!-- Floating Navigation Bar -->
-  <nav class="guild-nav">
-    <div class="crest-small">G</div>
-    <div class="nav-links">
-      <a href="index.html" class="page-link">Hall</a>
-      <a href="million-dollar-move.html" class="page-link">Million Dollar Move</a>
-      <a href="the-maze.html" class="page-link">Maze</a>
-      <a href="contribution.html" class="page-link">Contribution</a>
-    </div>
-    <button id="themeToggle" class="theme-toggle-btn">Theme</button>
-  </nav>
+  <!-- PILLARS -->
+  <div class="pillar pillar-left"></div>
+  <div class="pillar pillar-right"></div>
 
-  <!-- Animated Crest -->
-  <div class="crest-hero">G</div>
-
-  <div class="content">
-
-    <h1>Welcome to The Guild</h1>
-    <p class="intro">
-      This is the public hall of the Guild — where you learn what the movement is,
-      what the Million Dollar Move means, and what will be expected of you before you enter.
-    </p>
-
-    <div class="nav">
-
-      <a href="million-dollar-move.html" class="nav-btn page-link">
-        The Million Dollar Move
-        <span class="desc">
-          The logic behind how $1 contracts multiply into $10, $100, and more — the foundation of the Guild.
-        </span>
-      </a>
-
-      <a href="the-maze.html" class="nav-btn page-link">
-        The Maze
-        <span class="desc">
-          A story that helps you understand my position in the Guild and why I guide you the way I do.
-        </span>
-      </a>
-
-      <a href="contribution.html" class="nav-btn page-link">
-        Your Contribution
-        <span class="desc">
-          Why the $20 contribution matters, how access works, and what it means to join the Guild.
-        </span>
-      </a>
-
-    </div>
-
+  <!-- GOLD SCROLL -->
+  <div class="gold-scroll" id="scroll">
+    <h1 class="scroll-title">Welcome to The Guild</h1>
   </div>
 
   <script>
-    // Register service worker
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js");
-    }
-
-    // Thunderbolt loading animation
+    // Scroll reveal
     window.addEventListener("load", () => {
-      const loader = document.getElementById("loading-screen");
-      loader.classList.add("fade-out");
-      setTimeout(() => loader.style.display = "none", 600);
+      setTimeout(() => {
+        document.getElementById("scroll").classList.add("open");
+      }, 300);
     });
 
-    // Page transitions
-    document.querySelectorAll(".page-link").forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        document.body.classList.add("fade-out");
-        setTimeout(() => {
-          window.location.href = link.href;
-        }, 300);
-      });
-    });
-
-    // Theme toggle
-    const themeToggle = document.getElementById("themeToggle");
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("theme-light");
-      localStorage.setItem("guildTheme", document.body.classList.contains("theme-light") ? "light" : "dark");
-    });
-
-    // FORCE GOLD THEME ON EVERY LOAD
-    localStorage.setItem("guildTheme", "dark");
-    document.body.classList.remove("theme-light");
+    // Lightning
+    setInterval(() => {
+      const flash = document.createElement("div");
+      flash.className = "lightning-flash";
+      document.body.appendChild(flash);
+      setTimeout(() => flash.remove(), 400);
+    }, 6000 + Math.random() * 4000);
   </script>
+
+  <div class="content">
+
+    <div class="divider"></div>
+
+    <!-- PUBLIC HALL NAVIGATION -->
+    <a href="million-dollar-move.html" class="nav-btn">
+      The Million Dollar Move
+      <span class="desc">Learn the logic behind how $1 contracts multiply into $10, $100, and more.</span>
+    </a>
+
+    <a href="the-maze.html" class="nav-btn">
+      The Maze
+      <span class="desc">Understand my journey and why I guide you the way I do.</span>
+    </a>
+
+    <a href="contribution.html" class="nav-btn">
+      Your Contribution
+      <span class="desc">Why the $20 contribution matters and how access works.</span>
+    </a>
+
+    <a href="guild.html" class="nav-btn">
+      Enter the Inner Hall
+      <span class="desc">Step inside the Guild and begin your real journey.</span>
+    </a>
+
+    <div class="divider"></div>
+
+  </div>
 
 </body>
 </html>
