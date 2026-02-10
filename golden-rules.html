@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Golden Rules</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <style>
+    body {
+      background: #000;
+      font-family: system-ui, sans-serif;
+      padding: 40px 20px;
+      line-height: 1.65;
+      color: #D4AF37;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+      animation: fogMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove {
+      0% { transform: translateY(0px); opacity: 0.25; }
+      100% { transform: translateY(25px); opacity: 0.45; }
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    p {
+      max-width: 750px;
+      margin: 0 auto 20px;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .rule-link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 14px;
+      background: #D4AF37;
+      color: #000;
+      border-radius: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .rule-link:hover {
+      background: #8B6B2C;
+      color: #fff;
+    }
+
+    .divider {
+      width: 80%;
+      max-width: 500px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 40px auto;
+      opacity: 0.7;
+    }
+
+    .disclaimer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    a.back {
+      display: block;
+      margin-top: 40px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    a.back:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <h1>The Golden Rules</h1>
+
+  <p>
+    These are the rules you follow inside the market.  
+    These rules remove fear.  
+    These rules create confidence.  
+    These rules produce good trades.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>1. Not Guessing, Not Gambling</h2>
+
+  <p>
+    Never guess.  
+    Never gamble.  
+    Every trade must be based on logic, structure, and confirmation — not hope.
+  </p>
+
+  <a class="rule-link" href="not-guessing.html">View Full Rule</a>
+
+  <div class="divider"></div>
+
+  <h2>2. Moving Averages</h2>
+
+  <p>
+    Moving averages show you the direction of the market.  
+    When they cross, they form the <strong>Golden Cross</strong> — one of the strongest signals in trading.
+  </p>
+
+  <a class="rule-link" href="moving-averages.html">Learn More</a>
+
+  <div class="divider"></div>
+
+  <h2>3. Even Numbers</h2>
+
+  <p>
+    Traders love even numbers.  
+    The world of traders moves together — and when everyone is waiting for the same even number,  
+    the stock often reacts there.
+  </p>
+
+  <p>
+    We love even numbers because the market loves even numbers.
+  </p>
+
+  <a class="rule-link" href="even-numbers.html">Learn More</a>
+
+  <div class="divider"></div>
+
+  <h2>4. Chart Patterns</h2>
+
+  <p>
+    Knowing chart patterns is one of the most valuable skills you can have.  
+    A rounding bottom, a double bottom, a double top, a flag, a trend break —  
+    these patterns tell you exactly what the stock is preparing to do.
+  </p>
+
+  <a class="rule-link" href="chart-patterns.html">View Patterns</a>
+
+  <div class="divider"></div>
+
+  <h2>5. Support & Resistance</h2>
+
+  <p>
+    Support and resistance are the backbone of price movement.  
+    These levels show you where the stock is likely to bounce, reverse, or break.
+  </p>
+
+  <p>
+    Mastering these levels is one of the most important skills in trading.
+  </p>
+
+  <a class="rule-link" href="support-resistance.html">Learn More</a>
+
+  <div class="divider"></div>
+
+  <h2>6. Look Left</h2>
+
+  <p>
+    The history of the stock is always recorded.  
+    To know where the price is going, you must look left —  
+    back into the past to see where support and resistance were hit the most.
+  </p>
+
+  <p>
+    The answers are always to the left.  
+    Not anywhere else.
+  </p>
+
+  <a class="rule-link" href="look-left.html">Learn More</a>
+
+  <div class="divider"></div>
+
+  <p class="disclaimer">
+    These Golden Rules are still under construction.  
+    More will be added as the Guild grows.
+  </p>
+
+  <a class="back" href="guild.html">← Back to Inner Hall</a>
+
+</body>
+</html>
