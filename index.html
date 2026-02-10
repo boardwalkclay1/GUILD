@@ -120,7 +120,7 @@
       border: 1px solid #D4AF37;
       padding: 18px;
       border-radius: 12px;
-      margin: 15px auto;
+      margin: 20px auto;
       max-width: 600px;
       text-decoration: none;
       color: #D4AF37;
@@ -135,9 +135,10 @@
 
     .desc {
       display: block;
-      margin-top: 8px;
-      font-size: 0.85rem;
+      margin-top: 10px;
+      font-size: 0.95rem;
       opacity: 0.85;
+      line-height: 1.5;
     }
 
     .divider {
@@ -145,7 +146,7 @@
       max-width: 500px;
       height: 1px;
       background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-      margin: 40px auto;
+      margin: 50px auto;
       opacity: 0.7;
     }
 
@@ -190,27 +191,56 @@
     <!-- PUBLIC HALL NAVIGATION -->
     <a href="million-dollar-move.html" class="nav-btn">
       The Million Dollar Move
-      <span class="desc">Learn the logic behind how $1 contracts multiply into $10, $100, and more.</span>
+      <span class="desc">
+        Learn the foundation of the Guild — how cheap contracts multiply into life‑changing moves.
+        This is the core logic behind everything we do inside the Inner Hall.
+      </span>
     </a>
 
     <a href="the-maze.html" class="nav-btn">
       The Maze
-      <span class="desc">Understand my journey and why I guide you the way I do.</span>
+      <span class="desc">
+        A story that reveals my journey, my failures, my breakthroughs, and why I built the Guild.
+        This is where you understand the mindset behind the movement.
+      </span>
     </a>
 
     <a href="contribution.html" class="nav-btn">
       Your Contribution
-      <span class="desc">Why the $20 contribution matters and how access works.</span>
+      <span class="desc">
+        Learn why the $20 contribution exists, how access works, and why this is not a subscription —
+        it is a commitment to discipline, clarity, and the Guild lifestyle.
+      </span>
     </a>
 
-    <a href="guild.html" class="nav-btn">
+    <a href="guild.html" id="enterHall" class="nav-btn">
       Enter the Inner Hall
-      <span class="desc">Step inside the Guild and begin your real journey.</span>
+      <span class="desc">
+        Step inside the Guild — but only if your contribution has been verified.
+        This is where the real teachings begin.
+      </span>
     </a>
 
     <div class="divider"></div>
 
   </div>
+
+  <!-- PAYMENT VERIFICATION -->
+  <script>
+    document.getElementById("enterHall").addEventListener("click", e => {
+      e.preventDefault();
+
+      const paid = localStorage.getItem("guildPaid");
+
+      if (paid === "true") {
+        document.body.classList.add("fade-out");
+        setTimeout(() => window.location.href = "guild.html", 300);
+      } else {
+        document.body.classList.add("fade-out");
+        setTimeout(() => window.location.href = "contribution.html", 300);
+      }
+    });
+  </script>
 
 </body>
 </html>
