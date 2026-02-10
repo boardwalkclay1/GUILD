@@ -112,6 +112,34 @@
       100% { opacity: 0; }
     }
 
+    /* TOP NAVIGATION BAR */
+    .top-nav {
+      width: 100%;
+      padding: 18px 0;
+      background: rgba(0,0,0,0.75);
+      border-bottom: 2px solid #D4AF37;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      position: relative;
+      z-index: 5;
+      box-shadow: 0 0 20px rgba(212,175,55,0.3);
+    }
+
+    .top-nav a {
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: 0.3s ease;
+    }
+
+    .top-nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 12px #D4AF37;
+    }
+
     /* SIDE PILLAR BUTTONS */
     .side-btn {
       width: 280px;
@@ -216,14 +244,12 @@
   </div>
 
   <script>
-    // Scroll reveal
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("scroll").classList.add("open");
       }, 300);
     });
 
-    // Lightning
     setInterval(() => {
       const flash = document.createElement("div");
       flash.className = "lightning-flash";
@@ -232,47 +258,32 @@
     }, 6000 + Math.random() * 4000);
   </script>
 
+  <!-- TOP NAVIGATION BAR -->
+  <div class="top-nav">
+    <a href="brokers.html">Brokers</a>
+    <a href="the-maze.html">The Maze</a>
+    <a href="accessing-options.html">Options Access</a>
+    <a href="guild-family.html">Guild Family</a>
+  </div>
+
   <!-- SIDE BUTTONS -->
   <a href="guild-discipline.html" class="side-btn left-side">
     Guild Discipline
-    <span class="desc">Your physical and emotional foundation.</span>
+    <span class="desc">Your foundation.</span>
   </a>
 
   <a href="golden-rules.html" class="side-btn right-side">
     Golden Rules
-    <span class="desc">The laws that guide your trades.</span>
+    <span class="desc">The laws of the Guild.</span>
   </a>
 
   <div class="content">
 
     <div class="divider"></div>
 
-    <!-- TOP FOUR ROOMS -->
+    <!-- CENTER ROOMS -->
     <div class="center-nav">
 
-      <a href="brokers.html" class="nav-btn">
-        Brokers
-        <span class="desc">Choose the platform you will trade on.</span>
-      </a>
-
-      <a href="the-maze.html" class="nav-btn">
-        The Maze
-        <span class="desc">Understand my journey and why I guide you.</span>
-      </a>
-
-      <a href="accessing-options.html" class="nav-btn">
-        Options Access Chamber
-        <span class="desc">Enable options trading on your broker.</span>
-      </a>
-
-      <a href="guild-family.html" class="nav-btn">
-        The Guild Family
-        <span class="desc">Our unity. Our movement. Our lifestyle.</span>
-      </a>
-
-      <div class="divider"></div>
-
-      <!-- REMAINING ROOMS -->
       <a href="inside-the-guild.html" class="nav-btn">
         Inside the Guild
         <span class="desc">What awaits you inside the movement.</span>
