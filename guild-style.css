@@ -1,6 +1,5 @@
 /* ================================
    GUILD GLOBAL CINEMATIC STYLES
-   Controlled by guild-engine.js
    ================================ */
 
 /* RESET */
@@ -17,9 +16,10 @@ body {
   font-family: system-ui, sans-serif;
   overflow-x: hidden;
   position: relative;
+  padding-top: 110px; /* GLOBAL FIX: keeps all content below fixed nav */
 }
 
-/* BACKGROUND IMAGE (JS can change opacity, blur, etc.) */
+/* BACKGROUND IMAGE */
 body::before {
   content: "";
   position: fixed;
@@ -30,7 +30,7 @@ body::before {
   z-index: -3;
 }
 
-/* FOG LAYERS (JS controls speed, opacity, direction) */
+/* FOG */
 .fog-layer {
   position: fixed;
   inset: 0;
@@ -46,7 +46,7 @@ body::before {
   to { transform: translateX(-600px); }
 }
 
-/* PILLARS (JS injects them) */
+/* PILLARS */
 .pillar {
   position: fixed;
   top: 0;
@@ -67,7 +67,7 @@ body::before {
   100% { transform: translateY(12px); opacity: 0.65; }
 }
 
-/* GOLD SCROLL (JS controls open/close animation) */
+/* GOLD SCROLL */
 .gold-scroll {
   position: fixed;
   top: -400px;
@@ -81,7 +81,7 @@ body::before {
   padding: 25px;
   opacity: 0;
   transition: all 1.2s ease;
-  z-index: 10;
+  z-index: 100; /* BELOW NAV, ABOVE EVERYTHING ELSE */
   box-shadow: 0 0 25px rgba(212,175,55,0.4);
 }
 
@@ -97,7 +97,7 @@ body::before {
   color: #D4AF37;
 }
 
-/* LIGHTNING FLASH */
+/* LIGHTNING */
 .lightning-flash {
   position: fixed;
   inset: 0;
@@ -117,6 +117,70 @@ body::before {
 .fade-out {
   opacity: 0;
   transition: opacity 0.6s ease;
+}
+
+/* FIXED TOP NAV (GLOBAL) */
+.top-nav {
+  width: 100%;
+  padding: 18px 0;
+  background: rgba(0,0,0,0.85);
+  border-bottom: 2px solid #D4AF37;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999; /* ALWAYS ON TOP */
+  box-shadow: 0 0 20px rgba(212,175,55,0.3);
+}
+
+.top-nav a {
+  color: #D4AF37;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: 0.3s ease;
+}
+
+.top-nav a:hover {
+  color: #fff;
+  text-shadow: 0 0 12px #D4AF37;
+}
+
+/* SIDE BUTTONS (GLOBAL FIX) */
+.side-btn {
+  width: 280px;
+  min-height: 300px;
+  padding: 25px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.75);
+  border: 3px solid #D4AF37;
+  color: #D4AF37;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 180px; /* FIXED: below nav bar */
+  transform: none;
+  transition: 0.3s ease;
+  z-index: 50;
+  box-shadow: 0 0 20px rgba(212,175,55,0.3);
+}
+
+.left-side { left: 0; }
+.right-side { right: 0; }
+
+.side-btn:hover {
+  background: rgba(212,175,55,0.15);
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(212,175,55,0.5);
 }
 
 /* NAV BUTTONS */
