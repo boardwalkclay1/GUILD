@@ -8,20 +8,15 @@
   <link rel="stylesheet" href="guild-style.css" />
 
   <style>
-    /* ============================
-       CINEMATIC LAYERS (CLEANED)
-       ============================ */
-
     body {
       background: #000;
       color: #D4AF37;
       font-family: system-ui, sans-serif;
       overflow-x: hidden;
       position: relative;
-      padding-top: 110px; /* Prevents scroll from covering nav */
+      padding-top: 110px;
     }
 
-    /* BACKGROUND */
     body::before {
       content: "";
       position: fixed;
@@ -32,7 +27,6 @@
       z-index: -3;
     }
 
-    /* FOG */
     .fog-layer {
       position: fixed;
       inset: 0;
@@ -48,7 +42,6 @@
       to { transform: translateX(-600px); }
     }
 
-    /* PILLARS */
     .pillar {
       position: fixed;
       top: 0;
@@ -68,7 +61,6 @@
       100% { transform: translateY(12px); opacity: 0.65; }
     }
 
-    /* GOLD SCROLL */
     .gold-scroll {
       position: fixed;
       top: -400px;
@@ -82,7 +74,7 @@
       padding: 25px;
       opacity: 0;
       transition: all 1.2s ease;
-      z-index: 100; /* BELOW NAV, ABOVE EVERYTHING ELSE */
+      z-index: 100;
       box-shadow: 0 0 25px rgba(212,175,55,0.4);
     }
 
@@ -98,7 +90,6 @@
       color: #D4AF37;
     }
 
-    /* LIGHTNING */
     .lightning-flash {
       position: fixed;
       inset: 0;
@@ -114,7 +105,6 @@
       100% { opacity: 0; }
     }
 
-    /* FIXED TOP NAVIGATION */
     .top-nav {
       width: 100%;
       padding: 18px 0;
@@ -126,7 +116,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 9999; /* ALWAYS ON TOP */
+      z-index: 9999;
       box-shadow: 0 0 20px rgba(212,175,55,0.3);
     }
 
@@ -144,7 +134,6 @@
       text-shadow: 0 0 12px #D4AF37;
     }
 
-    /* NAV BUTTONS */
     .nav-btn {
       display: block;
       background: rgba(0,0,0,0.75);
@@ -208,60 +197,58 @@
     }, 6000 + Math.random() * 4000);
   </script>
 
-  <!-- FIXED TOP NAV -->
+  <!-- UPDATED TOP NAV -->
   <div class="top-nav">
     <a href="million-dollar-move.html">Million Dollar Move</a>
     <a href="the-maze.html">The Maze</a>
-    <a href="contribution.html">Contribution</a>
-    <a href="guild.html">Inner Hall</a>
+    <a href="inside-the-guild.html">Enter the Inner Hall</a>
   </div>
 
   <div class="content">
 
     <div class="divider"></div>
 
+    <a href="inside-the-guild.html" class="nav-btn">
+      Enter the Inner Hall
+      <span class="desc">
+        Step into the place where lives change.  
+        The Inner Hall holds the knowledge, the discipline, and the secrets that turn ordinary people into generational providers.
+      </span>
+    </a>
+
     <a href="million-dollar-move.html" class="nav-btn">
       The Million Dollar Move
       <span class="desc">
-        The foundation of the Guild — the logic behind how cheap contracts multiply into powerful moves.
+        The logic behind how small contracts turn into massive moves.  
+        Every day you delay learning this, you leave life‑changing money on the table.
       </span>
     </a>
 
     <a href="the-maze.html" class="nav-btn">
       The Maze
       <span class="desc">
-        A story of discipline, failure, clarity, and mastery.  
-        Understand why the Guild was built the way it was.
-      </span>
-    </a>
-
-    <a href="guild.html" id="enterHall" class="nav-btn">
-      Enter the Inner Hall
-      <span class="desc">
-        Step inside — but only if your contribution has been verified.
+        The story of discipline, clarity, and transformation.  
+        Understand why the Guild exists — and why the world doesn’t want you to know what’s inside.
       </span>
     </a>
 
     <div class="divider"></div>
 
+    <div class="nav-btn" style="cursor: default;">
+      <span class="desc">
+        Inside the Guild, you will learn the secrets that the wealthy already use every day.  
+        The information in the Inner Hall has the power to change your life, your children’s lives,  
+        and your family’s future for generations.  
+        People are becoming millionaires in the stock market every single day —  
+        not because they’re smarter, but because they know what you don’t.  
+        Every day you wait, you miss out on opportunities that could have changed everything.  
+        The Guild exists so you never miss again.
+      </span>
+    </div>
+
+    <div class="divider"></div>
+
   </div>
-
-  <!-- PAYMENT VERIFICATION -->
-  <script>
-    document.getElementById("enterHall").addEventListener("click", e => {
-      e.preventDefault();
-
-      const paid = localStorage.getItem("guildPaid");
-
-      if (paid === "true") {
-        document.body.classList.add("fade-out");
-        setTimeout(() => window.location.href = "guild.html", 300);
-      } else {
-        document.body.classList.add("fade-out");
-        setTimeout(() => window.location.href = "contribution.html", 300);
-      }
-    });
-  </script>
 
 </body>
 </html>
