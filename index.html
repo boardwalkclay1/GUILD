@@ -29,19 +29,34 @@
     /* FLOATING IMAGES */
     .float-img {
       position: fixed;
-      width: 180px;
-      opacity: 0.12;
-      animation: float 12s ease-in-out infinite alternate;
+      width: 200px;
+      opacity: 0.15;
+      animation: float 10s ease-in-out infinite alternate;
       z-index: -1;
       filter: drop-shadow(0 0 12px #D4AF37);
     }
 
-    .float-left { left: 40px; top: 20%; }
-    .float-right { right: 40px; top: 55%; }
+    .float-left { left: 30px; top: 18%; }
+    .float-right { right: 30px; top: 60%; }
 
     @keyframes float {
       0% { transform: translateY(0px) rotate(0deg); }
-      100% { transform: translateY(-40px) rotate(4deg); }
+      100% { transform: translateY(-50px) rotate(6deg); }
+    }
+
+    /* FLOATING RUNES */
+    .rune {
+      position: fixed;
+      font-size: 2.2rem;
+      opacity: 0.08;
+      animation: drift 14s linear infinite;
+      color: #D4AF37;
+      z-index: -1;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-800px); }
     }
 
     /* FOG */
@@ -105,7 +120,7 @@
 
     .scroll-title {
       text-align: center;
-      font-size: 2rem;
+      font-size: 2.2rem;
       letter-spacing: 0.15em;
       color: #D4AF37;
     }
@@ -171,21 +186,21 @@
     /* SIDE TEXT */
     .side-text {
       position: fixed;
-      width: 260px;
-      font-size: 0.95rem;
+      width: 280px;
+      font-size: 1rem;
       line-height: 1.55;
-      opacity: 0.85;
+      opacity: 0.9;
       color: #D4AF37;
       text-shadow: 0 0 8px rgba(212,175,55,0.4);
       animation: fadeIn 2s ease forwards;
     }
 
-    .side-left { left: 20px; top: 180px; }
-    .side-right { right: 20px; top: 180px; }
+    .side-left { left: 20px; top: 160px; }
+    .side-right { right: 20px; top: 160px; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 0.85; transform: translateY(0); }
+      to { opacity: 0.9; transform: translateY(0); }
     }
 
     .divider {
@@ -205,6 +220,11 @@
   <img src="guild-seal.png" class="float-img float-left" />
   <img src="guild-seal.png" class="float-img float-right" />
 
+  <!-- FLOATING RUNES -->
+  <div class="rune" style="left: 10%; top: 90%;">✦</div>
+  <div class="rune" style="left: 80%; top: 95%;">✧</div>
+  <div class="rune" style="left: 50%; top: 100%;">✦</div>
+
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
@@ -214,13 +234,16 @@
     ⚔️ <strong>The Guild is a lifestyle.</strong><br><br>
     A discipline forged in pressure.  
     A system built to break your bad habits and rebuild you into someone your family can depend on.  
-    Every day you delay learning this, you leave life‑changing money on the table.
+    Every day you delay learning this, you leave life‑changing money on the table.  
+    The world is moving fast — and the people who understand the markets are getting ahead faster than ever.
   </div>
 
   <div class="side-text side-right">
     💰 <strong>People are becoming millionaires every day.</strong><br><br>
     Not because they’re smarter — but because they know what you don’t.  
-    The Guild gives you access to secrets, tools, and systems that can change your life forever.
+    The Guild gives you access to secrets, tools, and systems that can change your life forever.  
+    You’re missing out on opportunities that could rewrite your entire future —  
+    and the future of everyone who depends on you.
   </div>
 
   <!-- GOLD SCROLL -->
