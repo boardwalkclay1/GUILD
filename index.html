@@ -5,8 +5,6 @@
   <title>The Guild – Welcome Hall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="guild-style.css" />
-
   <style>
     body {
       background: #000;
@@ -17,6 +15,7 @@
       padding-top: 110px;
     }
 
+    /* BACKGROUND */
     body::before {
       content: "";
       position: fixed;
@@ -27,6 +26,25 @@
       z-index: -3;
     }
 
+    /* FLOATING IMAGES */
+    .float-img {
+      position: fixed;
+      width: 180px;
+      opacity: 0.12;
+      animation: float 12s ease-in-out infinite alternate;
+      z-index: -1;
+      filter: drop-shadow(0 0 12px #D4AF37);
+    }
+
+    .float-left { left: 40px; top: 20%; }
+    .float-right { right: 40px; top: 55%; }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-40px) rotate(4deg); }
+    }
+
+    /* FOG */
     .fog-layer {
       position: fixed;
       inset: 0;
@@ -42,6 +60,7 @@
       to { transform: translateX(-600px); }
     }
 
+    /* PILLARS */
     .pillar {
       position: fixed;
       top: 0;
@@ -61,6 +80,7 @@
       100% { transform: translateY(12px); opacity: 0.65; }
     }
 
+    /* GOLD SCROLL */
     .gold-scroll {
       position: fixed;
       top: -400px;
@@ -90,21 +110,7 @@
       color: #D4AF37;
     }
 
-    .lightning-flash {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle, rgba(255,255,200,0.4), transparent 70%);
-      opacity: 0;
-      animation: flash 0.4s ease-out forwards;
-      z-index: -1;
-    }
-
-    @keyframes flash {
-      0% { opacity: 0; }
-      20% { opacity: 0.5; }
-      100% { opacity: 0; }
-    }
-
+    /* TOP NAV */
     .top-nav {
       width: 100%;
       padding: 18px 0;
@@ -134,6 +140,7 @@
       text-shadow: 0 0 12px #D4AF37;
     }
 
+    /* MAIN BUTTONS */
     .nav-btn {
       display: block;
       background: rgba(0,0,0,0.75);
@@ -161,6 +168,26 @@
       line-height: 1.55;
     }
 
+    /* SIDE TEXT */
+    .side-text {
+      position: fixed;
+      width: 260px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      opacity: 0.85;
+      color: #D4AF37;
+      text-shadow: 0 0 8px rgba(212,175,55,0.4);
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .side-left { left: 20px; top: 180px; }
+    .side-right { right: 20px; top: 180px; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 0.85; transform: translateY(0); }
+    }
+
     .divider {
       width: 80%;
       max-width: 550px;
@@ -174,10 +201,29 @@
 
 <body>
 
+  <!-- FLOATING IMAGES -->
+  <img src="guild-seal.png" class="float-img float-left" />
+  <img src="guild-seal.png" class="float-img float-right" />
+
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
+  <!-- SIDE DESCRIPTIONS -->
+  <div class="side-text side-left">
+    ⚔️ <strong>The Guild is a lifestyle.</strong><br><br>
+    A discipline forged in pressure.  
+    A system built to break your bad habits and rebuild you into someone your family can depend on.  
+    Every day you delay learning this, you leave life‑changing money on the table.
+  </div>
+
+  <div class="side-text side-right">
+    💰 <strong>People are becoming millionaires every day.</strong><br><br>
+    Not because they’re smarter — but because they know what you don’t.  
+    The Guild gives you access to secrets, tools, and systems that can change your life forever.
+  </div>
+
+  <!-- GOLD SCROLL -->
   <div class="gold-scroll" id="scroll">
     <h1 class="scroll-title">Welcome to The Guild</h1>
   </div>
@@ -188,16 +234,9 @@
         document.getElementById("scroll").classList.add("open");
       }, 300);
     });
-
-    setInterval(() => {
-      const flash = document.createElement("div");
-      flash.className = "lightning-flash";
-      document.body.appendChild(flash);
-      setTimeout(() => flash.remove(), 400);
-    }, 6000 + Math.random() * 4000);
   </script>
 
-  <!-- UPDATED TOP NAV -->
+  <!-- TOP NAV -->
   <div class="top-nav">
     <a href="million-dollar-move.html">Million Dollar Move</a>
     <a href="the-maze.html">The Maze</a>
@@ -211,23 +250,22 @@
     <a href="inside-the-guild.html" class="nav-btn">
       Enter the Inner Hall
       <span class="desc">
-        Step into the place where lives change.  
-        The Inner Hall holds the knowledge, the discipline, and the secrets that turn ordinary people into generational providers.
+        Inside lies the knowledge, discipline, and secrets that can change your life and your family’s future forever.
       </span>
     </a>
 
     <a href="million-dollar-move.html" class="nav-btn">
       The Million Dollar Move
       <span class="desc">
-        The logic behind how small contracts turn into massive moves.  
-        Every day you delay learning this, you leave life‑changing money on the table.
+        Learn the logic behind how small contracts turn into massive moves.  
+        Every day you wait, you miss out on opportunities that could have changed everything.
       </span>
     </a>
 
     <a href="the-maze.html" class="nav-btn">
       The Maze
       <span class="desc">
-        The story of discipline, clarity, and transformation.  
+        A story of discipline, clarity, and transformation.  
         Understand why the Guild exists — and why the world doesn’t want you to know what’s inside.
       </span>
     </a>
@@ -236,13 +274,19 @@
 
     <div class="nav-btn" style="cursor: default;">
       <span class="desc">
-        Inside the Guild, you will learn the secrets that the wealthy already use every day.  
-        The information in the Inner Hall has the power to change your life, your children’s lives,  
-        and your family’s future for generations.  
-        People are becoming millionaires in the stock market every single day —  
-        not because they’re smarter, but because they know what you don’t.  
-        Every day you wait, you miss out on opportunities that could have changed everything.  
-        The Guild exists so you never miss again.
+        🔥 <strong>The Golden Formula App</strong> is coming soon —  
+        drop a screenshot of any chart and the app will break down everything you need to know to make your next move.  
+        No guessing. No confusion. Just clarity.<br><br>
+
+        🤖 And the <strong>Guild Trading Bot</strong> is on the way —  
+        a fully automated system built from scratch, coded by me, designed to execute the same disciplined logic the Guild teaches.<br><br>
+
+        You will access all of this directly from the Guild app.  
+        I’m building everything myself — every line of code, every tool, every system —  
+        because I want you to have the power to take care of your family for generations.<br><br>
+
+        This is more than trading.  
+        This is your chance to rewrite your entire life.
       </span>
     </div>
 
