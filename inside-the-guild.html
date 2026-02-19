@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inside the Guild</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #D4AF37;
+      font-family: system-ui, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* GOLD FOG BACKGROUND */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.22;
+      z-index: -2;
+      filter: grayscale(40%);
+    }
+
+    /* DARK OVERLAY */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.3), rgba(0,0,0,0.9));
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 120px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: #D4AF37;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: #8B6B2C;
+      margin-bottom: 40px;
+      letter-spacing: 0.12em;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: #D4AF37;
+      text-transform: uppercase;
+    }
+
+    p {
+      color: #D4AF37;
+      margin-bottom: 14px;
+    }
+
+    .link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border: 1px solid #8B6B2C;
+      border-radius: 10px;
+      color: #D4AF37;
+      text-decoration: none;
+      transition: 0.25s ease;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+    }
+
+    .link:hover {
+      border-color: #D4AF37;
+      background: rgba(212,175,55,0.1);
+    }
+
+    .section {
+      margin-bottom: 50px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(139,107,44,0.3);
+    }
+
+    .qr-shrine {
+      margin-top: 60px;
+      padding: 20px;
+      border: 1px dashed #8B6B2C;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.65);
+      text-align: center;
+    }
+
+    .qr-shrine img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .logout {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: #8B6B2C;
+      cursor: pointer;
+      text-decoration: underline;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="title">Inside the Guild</div>
+    <div class="subtitle">A lifestyle. A discipline. A brotherhood.</div>
+
+    <p>
+      Welcome to the inner chambers of the Guild — the place where discipline, preparation, and mastery come together.
+      This page explains every room, every tool, and every path available to you now that you’ve entered.
+    </p>
+
+    <p>
+      The Guild is not a course. It is not a program.  
+      It is a <strong>lifestyle</strong> — a system of rules, rituals, and clarity designed to sharpen your mind and elevate your trading discipline.
+    </p>
+
+    <!-- SECTION: GUILD DISCIPLINE -->
+    <div class="section">
+      <h2>Guild Discipline</h2>
+      <p>
+        These are the rules that keep you sharp.  
+        Break them, and you break your consistency.  
+        Follow them, and you become unstoppable.
+      </p>
+      <a class="link" href="guild-discipline.html">Enter Guild Discipline</a>
+    </div>
+
+    <!-- SECTION: GOLDEN RULES -->
+    <div class="section">
+      <h2>Golden Rules</h2>
+      <p>
+        The Golden Rules are the foundation of the Guild.  
+        These principles guide every decision, every trade, and every mindset shift.
+      </p>
+      <a class="link" href="golden-rules.html">View the Golden Rules</a>
+    </div>
+
+    <!-- SECTION: TRADE ALIVE -->
+    <div class="section">
+      <h2>Trade Alive</h2>
+      <p>
+        Real‑time logic.  
+        Real breakdowns.  
+        Real Guild thinking.  
+        This room shows you how to think like a disciplined trader.
+      </p>
+      <a class="link" href="trade-alive.html">Enter Trade Alive</a>
+    </div>
+
+    <!-- SECTION: GOLDEN FORMULA -->
+    <div class="section">
+      <h2>The Golden Formula</h2>
+      <p>
+        The method behind the Guild’s consistency.  
+        This is the formula that keeps you grounded and prevents emotional trading.
+      </p>
+      <a class="link" href="golden-formula.html">Learn the Golden Formula</a>
+    </div>
+
+    <!-- SECTION: OPTIONS CHAIN -->
+    <div class="section">
+      <h2>Options Chain</h2>
+      <p>
+        Learn how to read the chain with clarity and confidence.  
+        This room breaks down the chain in a way that finally makes sense.
+      </p>
+      <a class="link" href="options-chain.html">Study the Options Chain</a>
+    </div>
+
+    <!-- SECTION: GUILD FAMILY -->
+    <div class="section">
+      <h2>Guild Family</h2>
+      <p>
+        Your community.  
+        Your circle.  
+        Your support system.  
+        This is where the Guild connects and grows together.
+      </p>
+      <a class="link" href="guild-family.html">Meet the Guild Family</a>
+    </div>
+
+    <!-- SECTION: GUILD MAP -->
+    <div class="section">
+      <h2>Guild Map</h2>
+      <p>
+        Explore the Guild’s rooms, chambers, and hidden paths.  
+        The map shows you how everything connects.
+      </p>
+      <a class="link" href="guild-map.html">Open the Guild Map</a>
+    </div>
+
+    <!-- SECTION: THE MAZE -->
+    <div class="section">
+      <h2>The Maze</h2>
+      <p>
+        Your story.  
+        Your transformation.  
+        The Maze is where you confront your habits and rebuild your discipline.
+      </p>
+      <a class="link" href="the-maze.html">Enter the Maze</a>
+    </div>
+
+    <!-- QR SHRINE -->
+    <div class="qr-shrine">
+      <img src="guild-entry-qr.png" alt="Guild QR Code" />
+      <p>
+        Scan to contribute to the Guild Treasury.  
+        Contributions help fund upgrades, tools, and new rooms.
+      </p>
+    </div>
+
+    <div class="logout" onclick="logout()">Log out of this device</div>
+
+  </div>
+
+  <script>
+    // ACCESS CONTROL
+    const data = localStorage.getItem("guild_member");
+    if (!data) {
+      window.location.href = "guild-entry.html";
+    }
+
+    function logout() {
+      localStorage.removeItem("guild_member");
+      window.location.href = "guild-entry.html";
+    }
+  </script>
+
+</body>
+</html>
