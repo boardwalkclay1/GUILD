@@ -12,7 +12,7 @@
       font-family: system-ui, sans-serif;
       overflow-x: hidden;
       position: relative;
-      padding-top: 110px;
+      padding-top: 130px; /* More space for nav */
     }
 
     /* BACKGROUND */
@@ -29,34 +29,36 @@
     /* FLOATING IMAGES */
     .float-img {
       position: fixed;
-      width: 200px;
-      opacity: 0.15;
+      width: 180px;
+      opacity: 0.12;
       animation: float 10s ease-in-out infinite alternate;
       z-index: -1;
       filter: drop-shadow(0 0 12px #D4AF37);
+      pointer-events: none;
     }
 
-    .float-left { left: 30px; top: 18%; }
-    .float-right { right: 30px; top: 60%; }
+    .float-left { left: 40px; top: 25%; }
+    .float-right { right: 40px; top: 55%; }
 
     @keyframes float {
       0% { transform: translateY(0px) rotate(0deg); }
-      100% { transform: translateY(-50px) rotate(6deg); }
+      100% { transform: translateY(-40px) rotate(4deg); }
     }
 
     /* FLOATING RUNES */
     .rune {
       position: fixed;
-      font-size: 2.2rem;
-      opacity: 0.08;
+      font-size: 2rem;
+      opacity: 0.07;
       animation: drift 14s linear infinite;
       color: #D4AF37;
       z-index: -1;
+      pointer-events: none;
     }
 
     @keyframes drift {
       from { transform: translateY(0); }
-      to { transform: translateY(-800px); }
+      to { transform: translateY(-900px); }
     }
 
     /* FOG */
@@ -64,7 +66,7 @@
       position: fixed;
       inset: 0;
       background: url("fog.png") repeat;
-      opacity: 0.25;
+      opacity: 0.22;
       pointer-events: none;
       z-index: -2;
       animation: fogMove 30s linear infinite;
@@ -79,12 +81,13 @@
     .pillar {
       position: fixed;
       top: 0;
-      width: 160px;
+      width: 150px;
       height: 100vh;
       background: url("guild-pillar.png") center/contain no-repeat;
-      opacity: 0.55;
+      opacity: 0.5;
       z-index: -1;
       animation: pillarFloat 6s ease-in-out infinite alternate;
+      pointer-events: none;
     }
 
     .pillar-left { left: 0; }
@@ -98,7 +101,7 @@
     /* GOLD SCROLL */
     .gold-scroll {
       position: fixed;
-      top: -400px;
+      top: -380px;
       left: 50%;
       transform: translateX(-50%);
       width: 80%;
@@ -114,7 +117,7 @@
     }
 
     .gold-scroll.open {
-      top: 40px;
+      top: 50px;
       opacity: 1;
     }
 
@@ -155,7 +158,36 @@
       text-shadow: 0 0 12px #D4AF37;
     }
 
-    /* MAIN BUTTONS */
+    /* SIDE TEXT */
+    .side-text {
+      position: fixed;
+      width: 260px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      opacity: 0.88;
+      color: #D4AF37;
+      text-shadow: 0 0 8px rgba(212,175,55,0.4);
+      animation: fadeIn 2s ease forwards;
+      pointer-events: none;
+    }
+
+    .side-left { left: 25px; top: 200px; }
+    .side-right { right: 25px; top: 200px; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 0.88; transform: translateY(0); }
+    }
+
+    /* MAIN CONTENT */
+    .content {
+      max-width: 700px;
+      margin: 0 auto;
+      margin-top: 420px; /* Ensures no overlap with side text */
+      position: relative;
+      z-index: 10;
+    }
+
     .nav-btn {
       display: block;
       background: rgba(0,0,0,0.75);
@@ -181,26 +213,6 @@
       font-size: 1rem;
       opacity: 0.85;
       line-height: 1.55;
-    }
-
-    /* SIDE TEXT */
-    .side-text {
-      position: fixed;
-      width: 280px;
-      font-size: 1rem;
-      line-height: 1.55;
-      opacity: 0.9;
-      color: #D4AF37;
-      text-shadow: 0 0 8px rgba(212,175,55,0.4);
-      animation: fadeIn 2s ease forwards;
-    }
-
-    .side-left { left: 20px; top: 160px; }
-    .side-right { right: 20px; top: 160px; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 0.9; transform: translateY(0); }
     }
 
     .divider {
@@ -234,16 +246,13 @@
     ⚔️ <strong>The Guild is a lifestyle.</strong><br><br>
     A discipline forged in pressure.  
     A system built to break your bad habits and rebuild you into someone your family can depend on.  
-    Every day you delay learning this, you leave life‑changing money on the table.  
-    The world is moving fast — and the people who understand the markets are getting ahead faster than ever.
+    Every day you delay learning this, you leave life‑changing money on the table.
   </div>
 
   <div class="side-text side-right">
     💰 <strong>People are becoming millionaires every day.</strong><br><br>
     Not because they’re smarter — but because they know what you don’t.  
-    The Guild gives you access to secrets, tools, and systems that can change your life forever.  
-    You’re missing out on opportunities that could rewrite your entire future —  
-    and the future of everyone who depends on you.
+    The Guild gives you access to secrets, tools, and systems that can change your life forever.
   </div>
 
   <!-- GOLD SCROLL -->
@@ -259,7 +268,7 @@
     });
   </script>
 
-  <!-- TOP NAV (FIXED) -->
+  <!-- TOP NAV -->
   <div class="top-nav">
     <a href="million-dollar-move.html">Million Dollar Move</a>
     <a href="the-maze.html">The Maze</a>
@@ -270,7 +279,6 @@
 
     <div class="divider"></div>
 
-    <!-- FIXED BUTTON -->
     <a href="guild-entry.html" class="nav-btn">
       Enter the Inner Hall
       <span class="desc">
@@ -300,18 +308,14 @@
     <div class="nav-btn" style="cursor: default;">
       <span class="desc">
         🔥 <strong>The Golden Formula App</strong> is coming soon —  
-        drop a screenshot of any chart and the app will break down everything you need to know to make your next move.  
-        No guessing. No confusion. Just clarity.<br><br>
+        drop a screenshot of any chart and the app will break down everything you need to know to make your next move.<br><br>
 
-        🤖 And the <strong>Guild Trading Bot</strong> is on the way —  
+        🤖 <strong>The Guild Trading Bot</strong> is also coming —  
         a fully automated system built from scratch, coded by me, designed to execute the same disciplined logic the Guild teaches.<br><br>
 
         You will access all of this directly from the Guild app.  
         I’m building everything myself — every line of code, every tool, every system —  
-        because I want you to have the power to take care of your family for generations.<br><br>
-
-        This is more than trading.  
-        This is your chance to rewrite your entire life.
+        because I want you to have the power to take care of your family for generations.
       </span>
     </div>
 
