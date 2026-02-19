@@ -2,285 +2,337 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Guild Entry – Contribution Gate</title>
+  <title>The Guild – Welcome Hall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- FORCE GOLD BACKGROUND -->
   <style>
     body {
       background: #000;
-      font-family: system-ui, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
       color: #D4AF37;
+      font-family: system-ui, sans-serif;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 110px;
     }
 
+    /* BACKGROUND */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background: url("guild-background-gold.png") center/cover no-repeat;
       opacity: 0.18;
-      z-index: -1;
       filter: grayscale(40%);
+      z-index: -3;
     }
 
-    :root {
-      --gold: #D4AF37;
-      --gold-dark: #8B6B2C;
-      --gold-deep: #5E461A;
-      --card: rgba(0,0,0,0.75);
-      --border: #8B6B2C;
-      --radius: 14px;
+    /* FLOATING IMAGES */
+    .float-img {
+      position: fixed;
+      width: 200px;
+      opacity: 0.15;
+      animation: float 10s ease-in-out infinite alternate;
+      z-index: -1;
+      filter: drop-shadow(0 0 12px #D4AF37);
     }
 
-    .shell {
-      width: 100%;
-      max-width: 460px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px 22px 30px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.7);
+    .float-left { left: 30px; top: 18%; }
+    .float-right { right: 30px; top: 60%; }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-50px) rotate(6deg); }
     }
 
-    .title {
-      text-align: center;
-      font-size: 1.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      color: var(--gold);
+    /* FLOATING RUNES */
+    .rune {
+      position: fixed;
+      font-size: 2.2rem;
+      opacity: 0.08;
+      animation: drift 14s linear infinite;
+      color: #D4AF37;
+      z-index: -1;
     }
 
-    .sub {
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--gold-dark);
-      margin-bottom: 18px;
-      letter-spacing: 0.1em;
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-800px); }
     }
 
-    .copy {
-      font-size: 0.9rem;
-      line-height: 1.55;
-      margin-bottom: 16px;
-      color: var(--gold);
+    /* FOG */
+    .fog-layer {
+      position: fixed;
+      inset: 0;
+      background: url("fog.png") repeat;
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: -2;
+      animation: fogMove 30s linear infinite;
     }
 
-    .copy strong {
-      color: var(--gold);
+    @keyframes fogMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(-600px); }
     }
 
-    .field label {
-      display: block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--gold-dark);
-      margin-bottom: 6px;
-    }
-
-    .field input {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: #050505;
-      color: var(--gold);
-      font-size: 0.9rem;
-      margin-bottom: 16px;
-    }
-
-    .btn-primary {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: var(--radius);
-      border: none;
-      background: var(--gold);
-      color: #000;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      cursor: pointer;
-      margin-bottom: 10px;
-      transition: 0.25s ease;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-dark);
-      color: #fff;
-    }
-
-    .btn-ghost {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--gold-dark);
-      font-size: 0.8rem;
-      cursor: pointer;
-      margin-top: 6px;
-      transition: 0.25s ease;
-    }
-
-    .btn-ghost:hover {
-      color: var(--gold);
-      border-color: var(--gold);
-    }
-
-    .qr-box {
-      margin-top: 20px;
-      padding: 14px;
-      border-radius: var(--radius);
-      border: 1px dashed var(--border);
-      text-align: center;
-    }
-
-    .qr-box img {
+    /* PILLARS */
+    .pillar {
+      position: fixed;
+      top: 0;
       width: 160px;
-      height: 160px;
-      object-fit: contain;
-      margin-bottom: 10px;
+      height: 100vh;
+      background: url("guild-pillar.png") center/contain no-repeat;
+      opacity: 0.55;
+      z-index: -1;
+      animation: pillarFloat 6s ease-in-out infinite alternate;
     }
 
-    .qr-box p {
-      font-size: 0.8rem;
-      color: var(--gold-dark);
-      line-height: 1.45;
+    .pillar-left { left: 0; }
+    .pillar-right { right: 0; transform: scaleX(-1); }
+
+    @keyframes pillarFloat {
+      0% { transform: translateY(0); opacity: 0.45; }
+      100% { transform: translateY(12px); opacity: 0.65; }
     }
 
-    .status {
-      margin-top: 10px;
-      font-size: 0.85rem;
-      display: none;
-      color: var(--gold);
+    /* GOLD SCROLL */
+    .gold-scroll {
+      position: fixed;
+      top: -400px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 700px;
+      background: rgba(0,0,0,0.85);
+      border: 2px solid #D4AF37;
+      border-radius: 12px;
+      padding: 25px;
+      opacity: 0;
+      transition: all 1.2s ease;
+      z-index: 100;
+      box-shadow: 0 0 25px rgba(212,175,55,0.4);
     }
 
-    .legal {
-      margin-top: 20px;
-      font-size: 0.75rem;
-      color: var(--gold-dark);
-      line-height: 1.4;
+    .gold-scroll.open {
+      top: 40px;
+      opacity: 1;
+    }
+
+    .scroll-title {
       text-align: center;
+      font-size: 2.2rem;
+      letter-spacing: 0.15em;
+      color: #D4AF37;
     }
 
-    .legal strong {
-      color: #ff4b4b;
+    /* TOP NAV */
+    .top-nav {
+      width: 100%;
+      padding: 18px 0;
+      background: rgba(0,0,0,0.85);
+      border-bottom: 2px solid #D4AF37;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      box-shadow: 0 0 20px rgba(212,175,55,0.3);
+    }
+
+    .top-nav a {
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: 0.3s ease;
+    }
+
+    .top-nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 12px #D4AF37;
+    }
+
+    /* MAIN BUTTONS */
+    .nav-btn {
+      display: block;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid #D4AF37;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 25px auto;
+      max-width: 650px;
+      text-decoration: none;
+      color: #D4AF37;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: rgba(212,175,55,0.2);
+      transform: translateY(-3px);
+    }
+
+    .desc {
+      display: block;
+      margin-top: 12px;
+      font-size: 1rem;
+      opacity: 0.85;
+      line-height: 1.55;
+    }
+
+    /* SIDE TEXT */
+    .side-text {
+      position: fixed;
+      width: 280px;
+      font-size: 1rem;
+      line-height: 1.55;
+      opacity: 0.9;
+      color: #D4AF37;
+      text-shadow: 0 0 8px rgba(212,175,55,0.4);
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .side-left { left: 20px; top: 160px; }
+    .side-right { right: 20px; top: 160px; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 0.9; transform: translateY(0); }
+    }
+
+    .divider {
+      width: 80%;
+      max-width: 550px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 55px auto;
+      opacity: 0.7;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="shell">
-    <div class="title">Guild Entry</div>
-    <div class="sub">Contribution Gate • $20</div>
+  <!-- FLOATING IMAGES -->
+  <img src="guild-seal.png" class="float-img float-left" />
+  <img src="guild-seal.png" class="float-img float-right" />
 
-    <p class="copy">
-      Your <strong>$20 contribution</strong> is the only key into the Guild.  
-      Once you pay, <strong>this device</strong> becomes your permanent access point.  
-      Access cannot be transferred or shared.
-    </p>
+  <!-- FLOATING RUNES -->
+  <div class="rune" style="left: 10%; top: 90%;">✦</div>
+  <div class="rune" style="left: 80%; top: 95%;">✧</div>
+  <div class="rune" style="left: 50%; top: 100%;">✦</div>
 
-    <p class="copy">
-      Your contribution keeps the Guild alive — funding our database, chat, and the systems we need to grow.
-    </p>
+  <div class="fog-layer"></div>
+  <div class="pillar pillar-left"></div>
+  <div class="pillar pillar-right"></div>
 
-    <div class="field">
-      <label for="email">Your Email</label>
-      <input id="email" type="email" placeholder="you@example.com" />
-    </div>
+  <!-- SIDE DESCRIPTIONS -->
+  <div class="side-text side-left">
+    ⚔️ <strong>The Guild is a lifestyle.</strong><br><br>
+    A discipline forged in pressure.  
+    A system built to break your bad habits and rebuild you into someone your family can depend on.  
+    Every day you delay learning this, you leave life‑changing money on the table.  
+    The world is moving fast — and the people who understand the markets are getting ahead faster than ever.
+  </div>
 
-    <button class="btn-primary" id="payBtn">
-      Pay $20 – Enter the Guild
-    </button>
+  <div class="side-text side-right">
+    💰 <strong>People are becoming millionaires every day.</strong><br><br>
+    Not because they’re smarter — but because they know what you don’t.  
+    The Guild gives you access to secrets, tools, and systems that can change your life forever.  
+    You’re missing out on opportunities that could rewrite your entire future —  
+    and the future of everyone who depends on you.
+  </div>
 
-    <button class="btn-ghost" id="confirmBtn">
-      I paid on this device
-    </button>
-
-    <div class="status" id="statusMsg"></div>
-
-    <!-- ⭐ QR CODE IS NOW LOCKED IN ⭐ -->
-    <div class="qr-box">
-      <img src="guild-entry-qr.png" alt="Guild QR Code" />
-      <p>
-        This QR code is for <strong>payment only</strong>.  
-        It does not unlock the Guild.  
-        Each person must pay on their own device.
-      </p>
-      <button class="btn-ghost" id="downloadQrBtn">Download QR Code</button>
-    </div>
-
-    <div class="legal">
-      <strong>Disclosure:</strong> I am not a financial adviser.  
-      This is not financial advice.  
-      All Guild teachings are educational only.
-    </div>
+  <!-- GOLD SCROLL -->
+  <div class="gold-scroll" id="scroll">
+    <h1 class="scroll-title">Welcome to The Guild</h1>
   </div>
 
   <script>
-    const PAYPAL_URL = "https://www.paypal.com/ncp/payment/WT7W6ADE5WZKY";
-    const REDIRECT_URL = "guild.html";
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("scroll").classList.add("open");
+      }, 300);
+    });
+  </script>
 
-    const payBtn = document.getElementById("payBtn");
-    const confirmBtn = document.getElementById("confirmBtn");
-    const statusMsg = document.getElementById("statusMsg");
-    const downloadQrBtn = document.getElementById("downloadQrBtn");
-    const emailInput = document.getElementById("email");
+  <!-- TOP NAV (FIXED) -->
+  <div class="top-nav">
+    <a href="million-dollar-move.html">Million Dollar Move</a>
+    <a href="the-maze.html">The Maze</a>
+    <a href="#" id="enterHallTop">Enter the Inner Hall</a>
+  </div>
 
-    function markDevice(email) {
-      const data = {
-        email: email,
-        joinedAt: new Date().toISOString()
-      };
-      localStorage.setItem("guild_member", JSON.stringify(data));
+  <div class="content">
+
+    <div class="divider"></div>
+
+    <!-- FIXED BUTTON -->
+    <a href="#" id="enterHallBtn" class="nav-btn">
+      Enter the Inner Hall
+      <span class="desc">
+        Step into the place where lives change.  
+        The Inner Hall holds the knowledge, discipline, and secrets that turn ordinary people into generational providers.
+      </span>
+    </a>
+
+    <a href="million-dollar-move.html" class="nav-btn">
+      The Million Dollar Move
+      <span class="desc">
+        Learn the logic behind how small contracts turn into massive moves.  
+        Every day you wait, you miss out on opportunities that could have changed everything.
+      </span>
+    </a>
+
+    <a href="the-maze.html" class="nav-btn">
+      The Maze
+      <span class="desc">
+        A story of discipline, clarity, and transformation.  
+        Understand why the Guild exists — and why the world doesn’t want you to know what’s inside.
+      </span>
+    </a>
+
+    <div class="divider"></div>
+
+    <div class="nav-btn" style="cursor: default;">
+      <span class="desc">
+        🔥 <strong>The Golden Formula App</strong> is coming soon —  
+        drop a screenshot of any chart and the app will break down everything you need to know to make your next move.  
+        No guessing. No confusion. Just clarity.<br><br>
+
+        🤖 And the <strong>Guild Trading Bot</strong> is on the way —  
+        a fully automated system built from scratch, coded by me, designed to execute the same disciplined logic the Guild teaches.<br><br>
+
+        You will access all of this directly from the Guild app.  
+        I’m building everything myself — every line of code, every tool, every system —  
+        because I want you to have the power to take care of your family for generations.<br><br>
+
+        This is more than trading.  
+        This is your chance to rewrite your entire life.
+      </span>
+    </div>
+
+    <div class="divider"></div>
+
+  </div>
+
+  <!-- ⭐ LOCK SYSTEM ADDED HERE ⭐ -->
+  <script>
+    function enterGuild() {
+      const member = localStorage.getItem("guild_member");
+
+      if (member) {
+        window.location.href = "guild.html";   // Already paid → go inside
+      } else {
+        window.location.href = "guild-entry.html"; // Not paid → go to paywall
+      }
     }
 
-    payBtn.addEventListener("click", () => {
-      window.open(PAYPAL_URL, "_blank", "noopener");
-    });
-
-    confirmBtn.addEventListener("click", () => {
-      const email = emailInput.value.trim();
-      if (!email) {
-        statusMsg.style.display = "block";
-        statusMsg.style.color = "#ff4b4b";
-        statusMsg.textContent = "Enter your email before confirming.";
-        return;
-      }
-
-      // ⭐ FOUNDER MASTER KEY ⭐
-      const masterEmail = "boardwalkclay1@gmail.com";
-      if (email === masterEmail) {
-        markDevice(email);
-        statusMsg.style.display = "block";
-        statusMsg.style.color = "#D4AF37";
-        statusMsg.textContent = "Founder access granted. Entering the Guild...";
-        setTimeout(() => window.location.href = REDIRECT_URL, 900);
-        return;
-      }
-
-      // Normal user flow
-      markDevice(email);
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#D4AF37";
-      statusMsg.textContent = "Device verified. Entering the Guild...";
-      setTimeout(() => window.location.href = REDIRECT_URL, 900);
-    });
-
-    downloadQrBtn.addEventListener("click", () => {
-      const link = document.createElement("a");
-      link.href = "guild-entry-qr.png";
-      link.download = "guild-entry-qr.png";
-      link.click();
-    });
+    document.getElementById("enterHallBtn").addEventListener("click", enterGuild);
+    document.getElementById("enterHallTop").addEventListener("click", enterGuild);
   </script>
 
 </body>
