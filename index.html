@@ -12,7 +12,7 @@
       font-family: system-ui, sans-serif;
       overflow-x: hidden;
       position: relative;
-      padding-top: 130px; /* More space for nav */
+      padding-top: 120px;
     }
 
     /* BACKGROUND */
@@ -29,7 +29,7 @@
     /* FLOATING IMAGES */
     .float-img {
       position: fixed;
-      width: 180px;
+      width: 160px;
       opacity: 0.12;
       animation: float 10s ease-in-out infinite alternate;
       z-index: -1;
@@ -41,11 +41,11 @@
     .float-right { right: 40px; top: 55%; }
 
     @keyframes float {
-      0% { transform: translateY(0px) rotate(0deg); }
+      0% { transform: translateY(0) rotate(0deg); }
       100% { transform: translateY(-40px) rotate(4deg); }
     }
 
-    /* FLOATING RUNES */
+    /* RUNES */
     .rune {
       position: fixed;
       font-size: 2rem;
@@ -81,7 +81,7 @@
     .pillar {
       position: fixed;
       top: 0;
-      width: 150px;
+      width: 140px;
       height: 100vh;
       background: url("guild-pillar.png") center/contain no-repeat;
       opacity: 0.5;
@@ -104,7 +104,7 @@
       top: -380px;
       left: 50%;
       transform: translateX(-50%);
-      width: 80%;
+      width: 90%;
       max-width: 700px;
       background: rgba(0,0,0,0.85);
       border: 2px solid #D4AF37;
@@ -117,13 +117,13 @@
     }
 
     .gold-scroll.open {
-      top: 50px;
+      top: 60px;
       opacity: 1;
     }
 
     .scroll-title {
       text-align: center;
-      font-size: 2.2rem;
+      font-size: 2rem;
       letter-spacing: 0.15em;
       color: #D4AF37;
     }
@@ -161,7 +161,7 @@
     /* SIDE TEXT */
     .side-text {
       position: fixed;
-      width: 260px;
+      width: 250px;
       font-size: 0.95rem;
       line-height: 1.55;
       opacity: 0.88;
@@ -183,9 +183,10 @@
     .content {
       max-width: 700px;
       margin: 0 auto;
-      margin-top: 420px; /* Ensures no overlap with side text */
+      margin-top: 480px;
       position: relative;
       z-index: 10;
+      padding-bottom: 80px;
     }
 
     .nav-btn {
@@ -223,6 +224,14 @@
       margin: 55px auto;
       opacity: 0.7;
     }
+
+    /* MOBILE FIXES */
+    @media (max-width: 900px) {
+      .side-text { display: none; }
+      .float-img { display: none; }
+      .pillar { display: none; }
+      .content { margin-top: 260px; }
+    }
   </style>
 </head>
 
@@ -232,7 +241,7 @@
   <img src="guild-seal.png" class="float-img float-left" />
   <img src="guild-seal.png" class="float-img float-right" />
 
-  <!-- FLOATING RUNES -->
+  <!-- RUNES -->
   <div class="rune" style="left: 10%; top: 90%;">✦</div>
   <div class="rune" style="left: 80%; top: 95%;">✧</div>
   <div class="rune" style="left: 50%; top: 100%;">✦</div>
@@ -241,18 +250,16 @@
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
-  <!-- SIDE DESCRIPTIONS -->
+  <!-- SIDE TEXT -->
   <div class="side-text side-left">
     ⚔️ <strong>The Guild is a lifestyle.</strong><br><br>
     A discipline forged in pressure.  
-    A system built to break your bad habits and rebuild you into someone your family can depend on.  
-    Every day you delay learning this, you leave life‑changing money on the table.
+    A system built to break your bad habits and rebuild you into someone your family can depend on.
   </div>
 
   <div class="side-text side-right">
     💰 <strong>People are becoming millionaires every day.</strong><br><br>
-    Not because they’re smarter — but because they know what you don’t.  
-    The Guild gives you access to secrets, tools, and systems that can change your life forever.
+    Not because they’re smarter — but because they know what you don’t.
   </div>
 
   <!-- GOLD SCROLL -->
@@ -282,24 +289,21 @@
     <a href="guild-entry.html" class="nav-btn">
       Enter the Inner Hall
       <span class="desc">
-        Step into the place where lives change.  
-        The Inner Hall holds the knowledge, discipline, and secrets that turn ordinary people into generational providers.
+        Step into the place where lives change.
       </span>
     </a>
 
     <a href="million-dollar-move.html" class="nav-btn">
       The Million Dollar Move
       <span class="desc">
-        Learn the logic behind how small contracts turn into massive moves.  
-        Every day you wait, you miss out on opportunities that could have changed everything.
+        Learn the logic behind how small contracts turn into massive moves.
       </span>
     </a>
 
     <a href="the-maze.html" class="nav-btn">
       The Maze
       <span class="desc">
-        A story of discipline, clarity, and transformation.  
-        Understand why the Guild exists — and why the world doesn’t want you to know what’s inside.
+        A story of discipline, clarity, and transformation.
       </span>
     </a>
 
@@ -307,15 +311,9 @@
 
     <div class="nav-btn" style="cursor: default;">
       <span class="desc">
-        🔥 <strong>The Golden Formula App</strong> is coming soon —  
-        drop a screenshot of any chart and the app will break down everything you need to know to make your next move.<br><br>
-
-        🤖 <strong>The Guild Trading Bot</strong> is also coming —  
-        a fully automated system built from scratch, coded by me, designed to execute the same disciplined logic the Guild teaches.<br><br>
-
-        You will access all of this directly from the Guild app.  
-        I’m building everything myself — every line of code, every tool, every system —  
-        because I want you to have the power to take care of your family for generations.
+        🔥 <strong>The Golden Formula App</strong> is coming soon.<br><br>
+        🤖 <strong>The Guild Trading Bot</strong> is also coming.<br><br>
+        You will access all of this directly from the Guild app.
       </span>
     </div>
 
