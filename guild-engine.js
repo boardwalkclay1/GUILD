@@ -72,4 +72,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // 7. Admin Access Control (added)
+  window.GuildAuth = {
+    admins: [
+      "boardwalkclay1@gmail.com",
+      "Missporter90@gmail.com"
+    ],
+    isAdmin(email) {
+      return this.admins.includes(email);
+    }
+  };
+
 });
