@@ -63,12 +63,125 @@
     border-radius: 12px;
     margin-top: 30px;
   }
+
+  /* Options chain styling */
+  .chain-wrapper {
+    margin-top: 30px;
+  }
+
+  .chain-header {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+
+  table.chain-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+
+  table.chain-table th,
+  table.chain-table td {
+    border: 1px solid rgba(212,175,55,0.4);
+    padding: 8px;
+    text-align: center;
+  }
+
+  table.chain-table th {
+    background: rgba(212,175,55,0.1);
+    font-weight: 700;
+  }
+
+  tr.chain-row {
+    cursor: pointer;
+  }
+
+  tr.chain-row:hover {
+    background: rgba(212,175,55,0.15);
+  }
+
+  /* Modals */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+
+  .modal-box {
+    background: #050505;
+    border: 2px solid #D4AF37;
+    border-radius: 14px;
+    padding: 20px;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .modal-box h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .modal-box label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+  }
+
+  .modal-box input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(212,175,55,0.6);
+    background: #000;
+    color: #D4AF37;
+  }
+
+  .modal-note {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+
+  .modal-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .modal-actions .btn {
+    width: 50%;
+    margin-top: 0;
+  }
+
+  .hint {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    opacity: 0.85;
+  }
+
+  .order-log {
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
+
+  .order-log-entry {
+    margin-top: 6px;
+  }
 </style>
 </head>
 
 <body>
 
 <h1>Options Contract Practice</h1>
+
+<!-- ORIGINAL DECISION FLOW -->
 
 <div id="step1" class="step-box">
   <h2>Step 1 — Choose Direction</h2>
@@ -115,6 +228,26 @@
 </div>
 
 <div id="summary" class="summary hidden"></div>
+
+<!-- OPTIONS CHAIN PRACTICE MODULE -->
+
+<div class="step-box chain-wrapper">
+  <h2>Practice Options Chain</h2>
+  <p class="chain-header">
+    Below is a practice options chain. Click a row to open an order ticket.<br>
+    To BUY, you must enter the <strong>ASK</strong> price exactly. This is how real fills work.
+  </p>
+
+  <div id="chainContainer"></div>
+
+  <p class="hint">
+    • <strong>Bid</strong> = what buyers are offering.  
+    • <strong>Ask</strong> = what sellers are demanding.  
+    • You only get filled instantly if you pay the ask.
+  </p>
+
+  <div id="orderLog" class="order-log"></div>
+</div>
 
 <script>
 let trade = {
@@ -180,6 +313,160 @@ function showSummary() {
     <button class="btn" onclick="location.reload()">Practice Again</button>
   `;
 }
+
+/* -------- OPTIONS CHAIN + ORDER MODULE -------- */
+
+const chainData = [
+  // Simple static sample chain – you can wire this to live/sim data later
+  { id: 1, type: 'Call', strike: 100, bid: 1.20, ask: 1.30, last: 1.25 },
+  { id: 2, type: 'Call', strike: 105, bid: 0.80, ask: 0.90, last: 0.85 },
+  { id: 3, type: 'Call', strike: 110, bid: 0.45, ask: 0.55, last: 0.50 },
+  { id: 4, type: 'Put',  strike: 100, bid: 1.10, ask: 1.20, last: 1.15 },
+  { id: 5, type: 'Put',  strike: 95,  bid: 0.75, ask: 0.85, last: 0.80 },
+  { id: 6, type: 'Put',  strike: 90,  bid: 0.40, ask: 0.50, last: 0.45 }
+];
+
+function renderOptionsChain() {
+  const container = document.getElementById("chainContainer");
+  container.innerHTML = `
+    <table class="chain-table">
+      <thead>
+        <tr>
+          <th>Strike</th>
+          <th>Type</th>
+          <th>Bid</th>
+          <th>Ask</th>
+          <th>Last</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${chainData.map(c => `
+          <tr class="chain-row" data-id="${c.id}">
+            <td>${c.strike}</td>
+            <td>${c.type}</td>
+            <td>${c.bid.toFixed(2)}</td>
+            <td>${c.ask.toFixed(2)}</td>
+            <td>${c.last.toFixed(2)}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+
+  container.querySelectorAll(".chain-row").forEach(row => {
+    row.addEventListener("click", () => {
+      const id = parseInt(row.getAttribute("data-id"));
+      const contract = chainData.find(c => c.id === id);
+      openOrderTicket(contract);
+    });
+  });
+}
+
+function openOrderTicket(contract) {
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+
+  overlay.innerHTML = `
+    <div class="modal-box">
+      <h2>Order Ticket</h2>
+      <p>You selected the <strong>${contract.type.toUpperCase()}</strong> at strike <strong>${contract.strike}</strong>.</p>
+      <p class="modal-note">
+        To simulate a real market order fill, you must enter the <strong>ASK</strong> price exactly.
+      </p>
+
+      <label>Ask Price (Required)</label>
+      <input id="priceInput" type="number" step="0.01" placeholder="${contract.ask.toFixed(2)}">
+
+      <label>Contracts</label>
+      <input id="qtyInput" type="number" min="1" placeholder="1">
+
+      <p class="modal-note">
+        1 contract controls 100 shares. Total cost = price × 100 × contracts.
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn" id="cancelBtn">Cancel</button>
+        <button class="btn" id="reviewBtn">Review Order</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  overlay.querySelector("#cancelBtn").onclick = () => overlay.remove();
+
+  overlay.querySelector("#reviewBtn").onclick = () => {
+    const price = parseFloat(overlay.querySelector("#priceInput").value);
+    const qty = parseInt(overlay.querySelector("#qtyInput").value);
+
+    if (isNaN(price)) {
+      alert("Enter a price. To buy, it must match the ask.");
+      return;
+    }
+
+    if (price !== contract.ask) {
+      alert("To buy instantly, you must enter the ASK price exactly: " + contract.ask.toFixed(2));
+      return;
+    }
+
+    if (!qty || qty < 1) {
+      alert("Enter a valid contract quantity (at least 1).");
+      return;
+    }
+
+    overlay.remove();
+    confirmOrder({ contract, price, qty });
+  };
+}
+
+function confirmOrder(order) {
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+
+  const totalCost = order.price * order.qty * 100;
+
+  overlay.innerHTML = `
+    <div class="modal-box">
+      <h2>Confirm Order</h2>
+      <p><strong>Contract:</strong> ${order.contract.type.toUpperCase()} ${order.contract.strike}</p>
+      <p><strong>Price:</strong> $${order.price.toFixed(2)}</p>
+      <p><strong>Quantity:</strong> ${order.qty} contract(s)</p>
+      <p><strong>Estimated Cost:</strong> $${totalCost.toFixed(2)}</p>
+
+      <p class="modal-note">
+        This is a <strong>practice</strong> order. In a real broker, this is the final screen before you send the order.
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn" id="cancelBtn">Back</button>
+        <button class="btn" id="executeBtn">Confirm Order</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  overlay.querySelector("#cancelBtn").onclick = () => overlay.remove();
+
+  overlay.querySelector("#executeBtn").onclick = () => {
+    overlay.remove();
+    logExecutedOrder(order);
+  };
+}
+
+function logExecutedOrder(order) {
+  const log = document.getElementById("orderLog");
+  const totalCost = order.price * order.qty * 100;
+  const entry = document.createElement("div");
+  entry.className = "order-log-entry";
+  entry.innerHTML = `
+    <strong>Filled:</strong> ${order.contract.type.toUpperCase()} ${order.contract.strike} @ $${order.price.toFixed(2)} × ${order.qty} (Cost: $${totalCost.toFixed(2)})
+  `;
+  log.appendChild(entry);
+}
+
+// init chain
+renderOptionsChain();
 </script>
 
 </body>
