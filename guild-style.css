@@ -1,6 +1,6 @@
-/* ================================
-   GUILD GLOBAL CINEMATIC STYLES
-   ================================ */
+/* ============================================
+   GUILD GLOBAL CINEMATIC STYLES — FULL REBUILD
+   ============================================ */
 
 /* RESET */
 * {
@@ -9,14 +9,24 @@
   box-sizing: border-box;
 }
 
+/* ROOT VARIABLES */
+:root {
+  --gold: #D4AF37;
+  --bg-opacity: 0.18;
+  --bg-blur: 0px;
+  --fog-opacity: 0.25;
+  --fog-speed: 30s;
+  --pillar-opacity: 0.55;
+}
+
 /* BASE */
 body {
   background: #000;
-  color: #D4AF37;
+  color: var(--gold);
   font-family: system-ui, sans-serif;
   overflow-x: hidden;
   position: relative;
-  padding-top: 110px; /* GLOBAL FIX: keeps all content below fixed nav */
+  padding-top: 110px;
 }
 
 /* BACKGROUND IMAGE */
@@ -25,8 +35,8 @@ body::before {
   position: fixed;
   inset: 0;
   background: url("guild-background-gold.png") center/cover no-repeat;
-  opacity: var(--bg-opacity, 0.18);
-  filter: grayscale(40%) blur(var(--bg-blur, 0px));
+  opacity: var(--bg-opacity);
+  filter: grayscale(40%) blur(var(--bg-blur));
   z-index: -3;
 }
 
@@ -35,10 +45,10 @@ body::before {
   position: fixed;
   inset: 0;
   background: url("fog.png") repeat;
-  opacity: var(--fog-opacity, 0.25);
+  opacity: var(--fog-opacity);
   pointer-events: none;
   z-index: -2;
-  animation: fogMove var(--fog-speed, 30s) linear infinite;
+  animation: fogMove var(--fog-speed) linear infinite;
 }
 
 @keyframes fogMove {
@@ -53,7 +63,7 @@ body::before {
   width: 160px;
   height: 100vh;
   background: url("guild-pillar.png") center/contain no-repeat;
-  opacity: var(--pillar-opacity, 0.55);
+  opacity: var(--pillar-opacity);
   filter: drop-shadow(0 0 12px rgba(212,175,55,0.35));
   animation: pillarFloat 6s ease-in-out infinite alternate;
   z-index: -1;
@@ -76,12 +86,12 @@ body::before {
   width: 80%;
   max-width: 700px;
   background: rgba(0,0,0,0.85);
-  border: 2px solid #D4AF37;
+  border: 2px solid var(--gold);
   border-radius: 12px;
   padding: 25px;
   opacity: 0;
   transition: all 1.2s ease;
-  z-index: 100; /* BELOW NAV, ABOVE EVERYTHING ELSE */
+  z-index: 100;
   box-shadow: 0 0 25px rgba(212,175,55,0.4);
 }
 
@@ -94,7 +104,7 @@ body::before {
   text-align: center;
   font-size: 2rem;
   letter-spacing: 0.15em;
-  color: #D4AF37;
+  color: var(--gold);
 }
 
 /* LIGHTNING */
@@ -119,24 +129,24 @@ body::before {
   transition: opacity 0.6s ease;
 }
 
-/* FIXED TOP NAV (GLOBAL) */
+/* TOP NAV */
 .top-nav {
   width: 100%;
   padding: 18px 0;
   background: rgba(0,0,0,0.85);
-  border-bottom: 2px solid #D4AF37;
+  border-bottom: 2px solid var(--gold);
   display: flex;
   justify-content: center;
   gap: 40px;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999; /* ALWAYS ON TOP */
+  z-index: 9999;
   box-shadow: 0 0 20px rgba(212,175,55,0.3);
 }
 
 .top-nav a {
-  color: #D4AF37;
+  color: var(--gold);
   text-decoration: none;
   font-weight: 700;
   text-transform: uppercase;
@@ -146,18 +156,18 @@ body::before {
 
 .top-nav a:hover {
   color: #fff;
-  text-shadow: 0 0 12px #D4AF37;
+  text-shadow: 0 0 12px var(--gold);
 }
 
-/* SIDE BUTTONS (GLOBAL FIX) */
+/* SIDE BUTTONS */
 .side-btn {
   width: 280px;
   min-height: 300px;
   padding: 25px;
   border-radius: 14px;
   background: rgba(0,0,0,0.75);
-  border: 3px solid #D4AF37;
-  color: #D4AF37;
+  border: 3px solid var(--gold);
+  color: var(--gold);
   text-align: center;
   font-size: 1.2rem;
   font-weight: 800;
@@ -167,8 +177,7 @@ body::before {
   flex-direction: column;
   justify-content: center;
   position: fixed;
-  top: 180px; /* FIXED: below nav bar */
-  transform: none;
+  top: 180px;
   transition: 0.3s ease;
   z-index: 50;
   box-shadow: 0 0 20px rgba(212,175,55,0.3);
@@ -187,13 +196,13 @@ body::before {
 .nav-btn {
   display: block;
   background: rgba(0,0,0,0.75);
-  border: 1px solid #D4AF37;
+  border: 1px solid var(--gold);
   padding: 18px;
   border-radius: 12px;
   margin: 15px auto;
   max-width: 600px;
   text-decoration: none;
-  color: #D4AF37;
+  color: var(--gold);
   text-align: center;
   transition: 0.3s ease;
 }
@@ -201,4 +210,85 @@ body::before {
 .nav-btn:hover {
   background: rgba(212,175,55,0.2);
   transform: translateY(-3px);
+}
+
+/* MOBILE RESPONSIVE SYSTEM */
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 80px;
+  }
+
+  .pillar {
+    width: 80px;
+    opacity: 0.25;
+  }
+
+  .gold-scroll {
+    width: 92%;
+    top: -260px;
+    padding: 18px;
+  }
+
+  .gold-scroll.open {
+    top: 20px;
+  }
+
+  .scroll-title {
+    font-size: 1.4rem;
+  }
+
+  .top-nav {
+    gap: 18px;
+    padding: 12px 0;
+    flex-wrap: wrap;
+  }
+
+  .top-nav a {
+    font-size: 0.8rem;
+  }
+
+  .side-btn {
+    position: relative;
+    width: 90%;
+    max-width: none;
+    min-height: auto;
+    margin: 15px auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    padding: 18px;
+    border-width: 2px;
+  }
+
+  .nav-btn {
+    max-width: 90%;
+    padding: 14px;
+    margin: 12px auto;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .pillar {
+    display: none;
+  }
+
+  .gold-scroll {
+    width: 95%;
+  }
+
+  .top-nav {
+    gap: 12px;
+  }
+
+  .top-nav a {
+    font-size: 0.75rem;
+  }
+
+  .nav-btn {
+    font-size: 0.9rem;
+  }
 }
