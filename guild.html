@@ -1,305 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>The Guild – Inner Hall</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="guild-style.css" />
+/* ================================
+   MOBILE RESPONSIVE FIXES
+   ================================ */
+@media (max-width: 768px) {
 
-  <style>
-    body {
-      background: #000;
-      color: #D4AF37;
-      font-family: system-ui, sans-serif;
-      overflow-x: hidden;
-      position: relative;
-      padding-top: 110px;
-    }
+  body {
+    padding-top: 90px;
+  }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: url("guild-background-gold.png") center/cover no-repeat;
-      opacity: 0.18;
-      filter: grayscale(40%);
-      z-index: -3;
-    }
+  /* Pillars shrink + fade */
+  .pillar {
+    width: 80px;
+    opacity: 0.35;
+  }
 
-    .fog-layer {
-      position: fixed;
-      inset: 0;
-      background: url("fog.png") repeat;
-      opacity: 0.25;
-      pointer-events: none;
-      z-index: -2;
-      animation: fogMove 30s linear infinite;
-    }
+  /* Fog softens for readability */
+  .fog-layer {
+    opacity: 0.18;
+  }
 
-    @keyframes fogMove {
-      from { transform: translateX(0); }
-      to { transform: translateX(-600px); }
-    }
+  /* Scroll adapts */
+  .gold-scroll {
+    width: 92%;
+    top: -300px;
+    padding: 18px;
+  }
 
-    .pillar {
-      position: fixed;
-      top: 0;
-      width: 160px;
-      height: 100vh;
-      background: url("guild-pillar.png") center/contain no-repeat;
-      opacity: 0.55;
-      z-index: -1;
-      animation: pillarFloat 6s ease-in-out infinite alternate;
-    }
+  .gold-scroll.open {
+    top: 20px;
+  }
 
-    .pillar-left { left: 0; }
-    .pillar-right { right: 0; transform: scaleX(-1); }
+  .scroll-title {
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+  }
 
-    @keyframes pillarFloat {
-      0% { transform: translateY(0); opacity: 0.45; }
-      100% { transform: translateY(12px); opacity: 0.65; }
-    }
+  /* Top nav becomes tighter */
+  .top-nav {
+    gap: 18px;
+    padding: 14px 0;
+    flex-wrap: wrap;
+  }
 
-    .gold-scroll {
-      position: fixed;
-      top: -400px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      max-width: 700px;
-      background: rgba(0,0,0,0.85);
-      border: 2px solid #D4AF37;
-      border-radius: 12px;
-      padding: 25px;
-      opacity: 0;
-      transition: all 1.2s ease;
-      z-index: 100;
-      box-shadow: 0 0 25px rgba(212,175,55,0.4);
-    }
+  .top-nav a {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+  }
 
-    .gold-scroll.open {
-      top: 40px;
-      opacity: 1;
-    }
+  /* Side buttons become inline buttons */
+  .side-btn {
+    position: relative;
+    width: 90%;
+    max-width: none;
+    min-height: auto;
+    margin: 10px auto;
+    top: auto;
+    transform: none;
+    border-width: 2px;
+    padding: 18px;
+  }
 
-    .scroll-title {
-      text-align: center;
-      font-size: 2rem;
-      letter-spacing: 0.15em;
-      color: #D4AF37;
-    }
+  .left-side,
+  .right-side {
+    left: auto;
+    right: auto;
+  }
 
-    .lightning-flash {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle, rgba(255,255,200,0.4), transparent 70%);
-      opacity: 0;
-      animation: flash 0.4s ease-out forwards;
-      z-index: -1;
-    }
+  /* Center nav spacing */
+  .center-nav {
+    width: 92%;
+    margin-top: 20px;
+    gap: 14px;
+  }
 
-    @keyframes flash {
-      0% { opacity: 0; }
-      20% { opacity: 0.5; }
-      100% { opacity: 0; }
-    }
+  .nav-btn {
+    padding: 14px;
+    font-size: 1rem;
+  }
 
-    .top-nav {
-      width: 100%;
-      padding: 18px 0;
-      background: rgba(0,0,0,0.85);
-      border-bottom: 2px solid #D4AF37;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9999;
-      box-shadow: 0 0 20px rgba(212,175,55,0.3);
-    }
+  /* Divider spacing */
+  .divider {
+    margin: 30px auto;
+  }
+}
 
-    .top-nav a {
-      color: #D4AF37;
-      text-decoration: none;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      transition: 0.3s ease;
-    }
+/* Ultra-small screens */
+@media (max-width: 480px) {
 
-    .top-nav a:hover {
-      color: #fff;
-      text-shadow: 0 0 12px #D4AF37;
-    }
+  .pillar {
+    display: none;
+  }
 
-    .side-btn {
-      width: 280px;
-      min-height: 300px;
-      padding: 25px;
-      border-radius: 14px;
-      background: rgba(0,0,0,0.75);
-      border: 3px solid #D4AF37;
-      color: #D4AF37;
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: 0.3s ease;
-      z-index: 50;
-      box-shadow: 0 0 20px rgba(212,175,55,0.3);
-    }
+  .gold-scroll {
+    width: 95%;
+  }
 
-    .side-btn:hover {
-      background: rgba(212,175,55,0.15);
-      transform: translateY(-50%) scale(1.05);
-      box-shadow: 0 0 35px rgba(212,175,55,0.5);
-    }
+  .top-nav {
+    gap: 12px;
+  }
 
-    .left-side { left: 0; }
-    .right-side { right: 0; }
+  .top-nav a {
+    font-size: 0.75rem;
+  }
 
-    .desc {
-      margin-top: 12px;
-      font-size: 0.9rem;
-      opacity: 0.85;
-    }
-
-    .center-nav {
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      position: relative;
-      z-index: 2;
-      margin-top: 40px;
-    }
-
-    .nav-btn {
-      display: block;
-      background: rgba(0,0,0,0.75);
-      border: 1px solid #D4AF37;
-      padding: 18px;
-      border-radius: 12px;
-      margin: 10px auto;
-      max-width: 600px;
-      text-decoration: none;
-      color: #D4AF37;
-      text-align: center;
-      transition: 0.3s ease;
-    }
-
-    .nav-btn:hover {
-      background: rgba(212,175,55,0.2);
-      transform: translateY(-3px);
-    }
-
-    .divider {
-      width: 80%;
-      max-width: 500px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-      margin: 40px auto;
-      opacity: 0.7;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="fog-layer"></div>
-  <div class="pillar pillar-left"></div>
-  <div class="pillar pillar-right"></div>
-
-  <div class="gold-scroll" id="scroll">
-    <h1 class="scroll-title">The Inner Hall</h1>
-  </div>
-
-  <script>
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("scroll").classList.add("open");
-      }, 300);
-    });
-
-    setInterval(() => {
-      const flash = document.createElement("div");
-      flash.className = "lightning-flash";
-      document.body.appendChild(flash);
-      setTimeout(() => flash.remove(), 400);
-    }, 6000 + Math.random() * 4000);
-  </script>
-
-  <div class="top-nav">
-    <a href="brokers.html">Brokers</a>
-    <a href="the-maze.html">The Maze</a>
-    <a href="accessing-options.html">Options Access</a>
-    <a href="guild-family.html">Guild Family</a>
-  </div>
-
-  <a href="guild-discipline.html" class="side-btn left-side">
-    Guild Discipline
-    <span class="desc">Your foundation.</span>
-  </a>
-
-  <a href="golden-rules.html" class="side-btn right-side">
-    Golden Rules
-    <span class="desc">The laws of the Guild.</span>
-  </a>
-
-  <div class="content">
-
-    <div class="divider"></div>
-
-    <div class="center-nav">
-
-      <a href="inside-the-guild.html" class="nav-btn">
-        Inside the Guild
-        <span class="desc">What awaits you inside the movement.</span>
-      </a>
-
-      <a href="mon-fri.html" class="nav-btn">
-        Weekly Decay Room
-        <span class="desc">Why Friday is our Million Dollar Window.</span>
-      </a>
-
-      <a href="options-chain.html" class="nav-btn">
-        Options Chain Observatory
-        <span class="desc">The screen you will use for life.</span>
-      </a>
-
-      <a href="https://boardwalkclay1.github.io/Trade_Alive/" class="nav-btn" target="_blank">
-        Trade Alive Engine Room
-        <span class="desc">Watch contracts move in real time.</span>
-      </a>
-
-      <a href="https://boardwalkclay1.github.io/formula1/" class="nav-btn" target="_blank">
-        Formula Chamber
-        <span class="desc">Upload a chart and see what I would do.</span>
-      </a>
-
-    </div>
-
-    <div class="divider"></div>
-
-  </div>
-
-  <!-- ⭐ LOCK SYSTEM ADDED HERE ⭐ -->
-  <script>
-    const member = localStorage.getItem("guild_member");
-
-    if (!member) {
-      window.location.href = "guild-entry.html"; // Not paid → redirect
-    }
-  </script>
-
-</body>
-</html>
+  .nav-btn {
+    font-size: 0.9rem;
+  }
+}
