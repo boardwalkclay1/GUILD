@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>The Guild – Welcome Hall</title>
+  <title>The Guild</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- MEDIEVAL FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
   <!-- GLOBAL CINEMATIC CSS -->
   <link rel="stylesheet" href="guild-style.css">
@@ -12,7 +15,6 @@
   <script src="guild-engine.js" defer></script>
 </head>
 
-<!-- CORRECT BACKGROUND IMAGE -->
 <body data-bg="Arcadium.jpg">
 
   <!-- FLOATING IMAGES -->
@@ -24,21 +26,24 @@
   <div class="rune" style="left: 80%; top: 95%;">✧</div>
   <div class="rune" style="left: 50%; top: 100%;">✦</div>
 
-  <!-- FOG + PILLARS (ENGINE ALSO ADDS THESE) -->
+  <!-- FOG + PILLARS -->
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
-  <!-- SIDE TEXT -->
+  <!-- SIDE TEXT LEFT -->
   <div class="side-text side-left">
-    ⚔️ <strong>The Guild is a lifestyle.</strong><br><br>
-    A discipline forged in pressure.  
-    A system built to break your bad habits and rebuild you into someone your family can depend on.
+    ⚔️ <strong>The Guild is a Way of Life.</strong><br><br>
+    Forged in pressure.  
+    Sharpened in discipline.  
+    Built to break your old habits and rebuild you into someone your family can depend on.
   </div>
 
+  <!-- SIDE TEXT RIGHT -->
   <div class="side-text side-right">
-    💰 <strong>People are becoming millionaires every day.</strong><br><br>
-    Not because they’re smarter — but because they know what you don’t.
+    💰 <strong>Fortunes rise every dawn.</strong><br><br>
+    Not because others are wiser—  
+    but because they walk with knowledge you have not yet been shown.
   </div>
 
   <!-- GOLD SCROLL -->
@@ -57,7 +62,7 @@
   <!-- TOP NAV -->
   <div class="top-nav">
     <a onclick="go('million-dollar-move.html')">Million Dollar Move</a>
-    <a onclick="go('the-maze.html')">The Maze</a>
+    <a onclick="go('colosseum.html')">The Colosseum</a>
     <a onclick="go('guild-entry.html')">Enter the Inner Hall</a>
   </div>
 
@@ -66,34 +71,67 @@
 
     <div class="divider"></div>
 
-    <a onclick="go('guild-entry.html')" class="nav-btn">
-      Enter the Inner Hall
+    <!-- SECTION 1 -->
+    <div class="nav-btn" style="cursor: default;">
       <span class="desc">
-        Step into the place where lives change.
+        <strong>⚔️ The Guild is a Brotherhood of the Market.</strong><br><br>
+        In these halls, you will learn the truths of the Arena—  
+        the place where traders rise, fall, and are reborn.<br><br>
+        You will learn the hidden corner of the market  
+        where real money is made — the place that will change your life.
       </span>
-    </a>
+    </div>
 
-    <a onclick="go('million-dollar-move.html')" class="nav-btn">
-      The Million Dollar Move
-      <span class="desc">
-        Learn the logic behind how small contracts turn into massive moves.
-      </span>
-    </a>
+    <div class="divider"></div>
 
-    <a onclick="go('the-maze.html')" class="nav-btn">
-      The Maze
+    <!-- SECTION 2 -->
+    <a onclick="go('golden-simulator.html')" class="nav-btn">
+      The Golden Formula Engine
       <span class="desc">
-        A story of discipline, clarity, and transformation.
+        🜂 <strong>A one‑of‑a‑kind engine found only within The Guild.</strong><br><br>
+        Take a screenshot of any chart.<br>
+        The engine reveals the logic, the reasoning, and the path —  
+        as if the guidance came directly from the Guildmaster himself.
       </span>
     </a>
 
     <div class="divider"></div>
 
+    <!-- SECTION 3 -->
+    <a onclick="go('guild-entry.html')" class="nav-btn">
+      Enter the Inner Hall
+      <span class="desc">
+        Behind these walls, your family awaits you.  
+        The Guild is not a group — it is a blood‑bond of discipline and clarity.
+      </span>
+    </a>
+
+    <!-- SECTION 4 -->
+    <a onclick="go('million-dollar-move.html')" class="nav-btn">
+      The Million Dollar Move
+      <span class="desc">
+        Learn how small contracts become massive moves.  
+        Simple explanations. Real logic. Life‑changing clarity.
+      </span>
+    </a>
+
+    <!-- SECTION 5 -->
+    <a onclick="go('colosseum.html')" class="nav-btn">
+      The Colosseum
+      <span class="desc">
+        Step into the story of discipline, scars, and transformation.  
+        A tale that mirrors your journey in the market.
+      </span>
+    </a>
+
+    <div class="divider"></div>
+
+    <!-- SECTION 6 -->
     <div class="nav-btn" style="cursor: default;">
       <span class="desc">
         🔥 <strong>The Golden Formula App</strong> is coming soon.<br><br>
-        🤖 <strong>The Guild Trading Bot</strong> is also coming.<br><br>
-        You will access all of this directly from the Guild app.
+        🤖 <strong>The Guild Trading Bot</strong> will follow.<br><br>
+        All of it will live inside the Guild ecosystem.
       </span>
     </div>
 
