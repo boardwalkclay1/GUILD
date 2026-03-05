@@ -5,40 +5,19 @@
   <title>Inside the Guild</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- GLOBAL CINEMATIC CSS -->
+  <link rel="stylesheet" href="guild-style.css">
+
+  <!-- GUILD ENGINE -->
+  <script src="guild-engine.js" defer></script>
+
   <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #D4AF37;
-      font-family: system-ui, sans-serif;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    /* GOLD FOG BACKGROUND */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: url("guild-background-gold.png") center/cover no-repeat;
-      opacity: 0.22;
-      z-index: -2;
-      filter: grayscale(40%);
-    }
-
-    /* DARK OVERLAY */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.3), rgba(0,0,0,0.9));
-      z-index: -1;
-    }
-
+    /* PAGE-SPECIFIC TYPOGRAPHY ONLY */
     .container {
       max-width: 900px;
       margin: 0 auto;
       padding: 40px 20px 120px;
+      color: #D4AF37;
     }
 
     .title {
@@ -47,7 +26,6 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin-bottom: 10px;
-      color: #D4AF37;
     }
 
     .subtitle {
@@ -62,13 +40,13 @@
       margin-top: 40px;
       font-size: 1.4rem;
       letter-spacing: 0.1em;
-      color: #D4AF37;
       text-transform: uppercase;
+      color: #D4AF37;
     }
 
     p {
-      color: #D4AF37;
       margin-bottom: 14px;
+      color: #D4AF37;
     }
 
     .link {
@@ -122,7 +100,13 @@
   </style>
 </head>
 
-<body>
+<!-- CORRECT BACKGROUND IMAGE -->
+<body data-bg="gladiator-forum.jpg">
+
+  <!-- CINEMATIC LAYERS (ENGINE ALSO ADDS THESE) -->
+  <div class="fog-layer"></div>
+  <div class="pillar pillar-left"></div>
+  <div class="pillar pillar-right"></div>
 
   <div class="container">
 
@@ -142,96 +126,63 @@
     <!-- SECTION: GUILD DISCIPLINE -->
     <div class="section">
       <h2>Guild Discipline</h2>
-      <p>
-        These are the rules that keep you sharp.  
-        Break them, and you break your consistency.  
-        Follow them, and you become unstoppable.
-      </p>
-      <a class="link" href="guild-discipline.html">Enter Guild Discipline</a>
+      <p>These are the rules that keep you sharp.</p>
+      <a class="link" onclick="go('guild-discipline.html')">Enter Guild Discipline</a>
     </div>
 
     <!-- SECTION: GOLDEN RULES -->
     <div class="section">
       <h2>Golden Rules</h2>
-      <p>
-        The Golden Rules are the foundation of the Guild.  
-        These principles guide every decision, every trade, and every mindset shift.
-      </p>
-      <a class="link" href="golden-rules.html">View the Golden Rules</a>
+      <p>The foundation of the Guild.</p>
+      <a class="link" onclick="go('golden-rules.html')">View the Golden Rules</a>
     </div>
 
     <!-- SECTION: TRADE ALIVE -->
     <div class="section">
       <h2>Trade Alive</h2>
-      <p>
-        Real‑time logic.  
-        Real breakdowns.  
-        Real Guild thinking.  
-        This room shows you how to think like a disciplined trader.
-      </p>
-      <a class="link" href="trade-alive.html">Enter Trade Alive</a>
+      <p>Real‑time logic. Real breakdowns. Real Guild thinking.</p>
+      <a class="link" onclick="go('trade-alive.html')">Enter Trade Alive</a>
     </div>
 
     <!-- SECTION: GOLDEN FORMULA -->
     <div class="section">
       <h2>The Golden Formula</h2>
-      <p>
-        The method behind the Guild’s consistency.  
-        This is the formula that keeps you grounded and prevents emotional trading.
-      </p>
-      <a class="link" href="golden-formula.html">Learn the Golden Formula</a>
+      <p>The method behind the Guild’s consistency.</p>
+      <a class="link" onclick="go('golden-formula.html')">Learn the Golden Formula</a>
     </div>
 
     <!-- SECTION: OPTIONS CHAIN -->
     <div class="section">
       <h2>Options Chain</h2>
-      <p>
-        Learn how to read the chain with clarity and confidence.  
-        This room breaks down the chain in a way that finally makes sense.
-      </p>
-      <a class="link" href="options-chain.html">Study the Options Chain</a>
+      <p>Learn how to read the chain with clarity.</p>
+      <a class="link" onclick="go('options-chain.html')">Study the Options Chain</a>
     </div>
 
     <!-- SECTION: GUILD FAMILY -->
     <div class="section">
       <h2>Guild Family</h2>
-      <p>
-        Your community.  
-        Your circle.  
-        Your support system.  
-        This is where the Guild connects and grows together.
-      </p>
-      <a class="link" href="guild-family.html">Meet the Guild Family</a>
+      <p>Your community. Your circle. Your support system.</p>
+      <a class="link" onclick="go('guild-family.html')">Meet the Guild Family</a>
     </div>
 
     <!-- SECTION: GUILD MAP -->
     <div class="section">
       <h2>Guild Map</h2>
-      <p>
-        Explore the Guild’s rooms, chambers, and hidden paths.  
-        The map shows you how everything connects.
-      </p>
-      <a class="link" href="guild-map.html">Open the Guild Map</a>
+      <p>Explore the Guild’s rooms and hidden paths.</p>
+      <a class="link" onclick="go('guild-map.html')">Open the Guild Map</a>
     </div>
 
     <!-- SECTION: THE MAZE -->
     <div class="section">
       <h2>The Maze</h2>
-      <p>
-        Your story.  
-        Your transformation.  
-        The Maze is where you confront your habits and rebuild your discipline.
-      </p>
-      <a class="link" href="the-maze.html">Enter the Maze</a>
+      <p>Your transformation begins here.</p>
+      <a class="link" onclick="go('the-maze.html')">Enter the Maze</a>
     </div>
 
     <!-- QR SHRINE -->
     <div class="qr-shrine">
-      <img src="guild-entry-qr.png" alt="Guild QR Code" />
-      <p>
-        Scan to contribute to the Guild Treasury.  
-        Contributions help fund upgrades, tools, and new rooms.
-      </p>
+      <img src="image/guild-entry-qr.png" alt="Guild QR Code" />
+      <p>Scan to contribute to the Guild Treasury.</p>
     </div>
 
     <div class="logout" onclick="logout()">Log out of this device</div>
@@ -247,7 +198,7 @@
 
     function logout() {
       localStorage.removeItem("guild_member");
-      window.location.href = "guild-entry.html";
+      go('guild-entry.html');
     }
   </script>
 
