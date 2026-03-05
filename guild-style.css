@@ -12,11 +12,12 @@
 /* ROOT VARIABLES */
 :root {
   --gold: #D4AF37;
-  --bg-opacity: 0.18;
+  --bg-opacity: 0.22;
   --bg-blur: 0px;
   --fog-opacity: 0.25;
   --fog-speed: 30s;
   --pillar-opacity: 0.55;
+  --page-bg-url: url("image/guild-background-gold.png");
 }
 
 /* BASE */
@@ -27,14 +28,15 @@ body {
   overflow-x: hidden;
   position: relative;
   padding-top: 110px;
+  transition: opacity 0.6s ease;
 }
 
-/* BACKGROUND IMAGE */
+/* BACKGROUND IMAGE (per page via --page-bg-url) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("guild-background-gold.png") center/cover no-repeat;
+  background: var(--page-bg-url) center/cover no-repeat;
   opacity: var(--bg-opacity);
   filter: grayscale(40%) blur(var(--bg-blur));
   z-index: -3;
@@ -44,7 +46,7 @@ body::before {
 .fog-layer {
   position: fixed;
   inset: 0;
-  background: url("fog.png") repeat;
+  background: url("image/fog.png") repeat;
   opacity: var(--fog-opacity);
   pointer-events: none;
   z-index: -2;
@@ -62,7 +64,7 @@ body::before {
   top: 0;
   width: 160px;
   height: 100vh;
-  background: url("guild-pillar.png") center/contain no-repeat;
+  background: url("image/guild-pillar.png") center/contain no-repeat;
   opacity: var(--pillar-opacity);
   filter: drop-shadow(0 0 12px rgba(212,175,55,0.35));
   animation: pillarFloat 6s ease-in-out infinite alternate;
@@ -126,7 +128,43 @@ body::before {
 /* PAGE FADE */
 .fade-out {
   opacity: 0;
-  transition: opacity 0.6s ease;
+}
+
+/* COLOSSEUM FAST-WALK TRANSITION */
+.colosseum-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  background: radial-gradient(circle at center,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,0.7) 40%,
+    rgba(0,0,0,1) 100%
+  );
+  animation: colosseumRun 0.65s ease-out forwards;
+  transform-origin: center;
+}
+
+@keyframes colosseumRun {
+  0% {
+    opacity: 0;
+    transform: scale(1) translateZ(0);
+    filter: blur(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.1) translateZ(50px);
+    filter: blur(2px);
+  }
+  60% {
+    transform: scale(1.45) translateZ(200px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2) translateZ(400px);
+    filter: blur(12px);
+  }
 }
 
 /* TOP NAV */
@@ -214,7 +252,6 @@ body::before {
 
 /* MOBILE RESPONSIVE SYSTEM */
 @media (max-width: 768px) {
-
   body {
     padding-top: 80px;
   }
@@ -271,7 +308,6 @@ body::before {
 }
 
 @media (max-width: 480px) {
-
   .pillar {
     display: none;
   }
@@ -287,108 +323,6 @@ body::before {
   .top-nav a {
     font-size: 0.75rem;
   }
-   /* -----------------------------------------
-   GUILD PRACTICE – CINEMATIC STYLE
------------------------------------------- */
-
-body {
-  margin: 0;
-  padding: 0;
-  background: #000;
-  color: #e6c37f;
-  font-family: 'Cinzel', serif;
-  overflow-x: hidden;
-}
-
-h1 {
-  text-align: center;
-  margin-top: 25px;
-  font-size: 34px;
-  letter-spacing: 2px;
-}
-
-h2 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-/* Step Box Wrapper */
-.step-box {
-  width: 92%;
-  max-width: 700px;
-  margin: 20px auto;
-  background: rgba(20,20,20,0.85);
-  border: 1px solid #e6c37f;
-  border-radius: 16px;
-  padding: 20px;
-}
-
-/* Chain Header */
-.chain-header {
-  text-align: center;
-  opacity: 0.85;
-  margin-bottom: 20px;
-}
-
-/* Options Chain Grid */
-#chainContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.contract {
-  background: rgba(40,40,40,0.9);
-  border: 1px solid #e6c37f;
-  border-radius: 12px;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.contract:hover {
-  background: rgba(60,60,60,0.9);
-  transform: scale(1.03);
-}
-
-/* Hint Text */
-.hint {
-  text-align: center;
-  font-size: 14px;
-  opacity: 0.7;
-  margin-top: 10px;
-}
-
-/* Order Log */
-.order-log {
-  margin-top: 25px;
-  padding: 15px;
-  background: rgba(15,15,15,0.8);
-  border: 1px solid #e6c37f;
-  border-radius: 12px;
-  max-height: 300px;
-  overflow-y: auto;
-  font-size: 14px;
-}
-
-/* Mobile Fixes */
-@media (max-width: 600px) {
-  #chainContainer {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-}
-
 
   .nav-btn {
     font-size: 0.9rem;
