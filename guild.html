@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <title>The Guild – Inner Hall</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- GLOBAL CINEMATIC CSS -->
 <link rel="stylesheet" href="guild-style.css">
+
+<!-- GUILD ENGINE -->
+<script src="guild-engine.js" defer></script>
 
 <style>
 /* --- MOBILE SAFE LAYOUT FIXES --- */
@@ -12,11 +17,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Cinzel', serif;
-  background: #000;
   color: #e6c37f;
   overflow-x: hidden;
 }
 
+/* Top Nav */
 .top-nav {
   display: flex;
   flex-wrap: wrap;
@@ -36,6 +41,7 @@ body {
   white-space: nowrap;
 }
 
+/* Content */
 .content {
   width: 92%;
   max-width: 600px;
@@ -88,7 +94,7 @@ body {
   letter-spacing: 2px;
 }
 
-/* Fog + Pillars (unchanged) */
+/* Fog + Pillars (engine also injects) */
 .fog-layer, .pillar {
   position: fixed;
   pointer-events: none;
@@ -96,7 +102,8 @@ body {
 </style>
 </head>
 
-<body>
+<!-- CORRECT BACKGROUND IMAGE -->
+<body data-bg="Porta-Imperii.jpg">
 
 <!-- Cinematic Layers -->
 <div class="fog-layer"></div>
@@ -110,69 +117,67 @@ body {
 
 <!-- Top Navigation -->
 <div class="top-nav">
-  <a href="million-dollar-move.html">Million Dollar Move</a>
-  <a href="the-maze.html">The Maze</a>
-  <a href="guild-practice.html">Practice Room</a>
-  <a href="#" id="enterHallTop">Enter</a>
+  <a onclick="go('million-dollar-move.html')">Million Dollar Move</a>
+  <a onclick="go('the-maze.html')">The Maze</a>
+  <a onclick="go('guild-practice.html')">Practice Room</a>
+  <a onclick="go('guild-entry.html')">Enter</a>
 </div>
 
 <div class="content">
 
   <div class="divider"></div>
 
-  <!-- NEW: ACCESSING OPTIONS WORLD -->
-  <a href="accessing-options.html" class="nav-btn">
+  <!-- Accessing Options -->
+  <a onclick="go('accessing-options.html')" class="nav-btn">
     Accessing Options
     <span class="desc">Learn how to unlock options on Chase, Webull, Robinhood, and TD Ameritrade.</span>
   </a>
 
   <!-- Inside the Guild -->
-  <a href="inside-the-guild.html" class="nav-btn">
+  <a onclick="go('inside-the-guild.html')" class="nav-btn">
     Inside the Guild
     <span class="desc">What awaits you inside the movement.</span>
   </a>
 
   <!-- Weekly Decay -->
-  <a href="mon-fri.html" class="nav-btn">
+  <a onclick="go('mon-fri.html')" class="nav-btn">
     Weekly Decay Room
     <span class="desc">Why Friday is our Million Dollar Window.</span>
   </a>
 
   <!-- Options Chain -->
-  <a href="options-chain.html" class="nav-btn">
+  <a onclick="go('options-chain.html')" class="nav-btn">
     Options Chain Observatory
     <span class="desc">The screen you will use for life.</span>
   </a>
 
-  <!-- PRACTICE STATION (NEW SECTION) -->
   <div class="divider"></div>
 
   <h2 style="text-align:center; font-size:26px; margin-bottom:10px;">Practice Station</h2>
 
-  <a href="guild-practice.html" class="nav-btn">
+  <a onclick="go('guild-practice.html')" class="nav-btn">
     Options Practice Room
     <span class="desc">Learn how to enter and exit contracts step-by-step.</span>
   </a>
 
-  <a href="options-approval-module.html" class="nav-btn">
+  <a onclick="go('options-approval-module.html')" class="nav-btn">
     Options Approval Module
     <span class="desc">A guided simulation of the real options approval form.</span>
   </a>
 
-  <a href="broker-access-simulator.html" class="nav-btn">
+  <a onclick="go('broker-access-simulator.html')" class="nav-btn">
     Broker Access Simulator
     <span class="desc">Practice unlocking options on any broker.</span>
   </a>
 
   <div class="divider"></div>
 
-  <!-- Trade Alive -->
+  <!-- External Links -->
   <a href="https://boardwalkclay1.github.io/Trade_Alive/" class="nav-btn" target="_blank">
     Trade Alive Engine Room
     <span class="desc">Watch contracts move in real time.</span>
   </a>
 
-  <!-- Formula Chamber -->
   <a href="https://boardwalkclay1.github.io/formula1/" class="nav-btn" target="_blank">
     Formula Chamber
     <span class="desc">Upload a chart and see what I would do.</span>
@@ -181,7 +186,7 @@ body {
   <div class="divider"></div>
 
   <!-- Enter -->
-  <a href="#" id="enterHallBtn" class="nav-btn">
+  <a onclick="go('guild-entry.html')" class="nav-btn">
     Enter the Inner Hall
     <span class="desc">Your discipline begins here.</span>
   </a>
@@ -190,42 +195,12 @@ body {
 
 </div>
 
-<!-- PAYWALL + ADMIN SYSTEM -->
 <script>
-  const ADMINS = [
-    "boardwalkclay1@gmail.com",
-    "Missporter90@gmail.com"
-  ];
-
-  function isAdmin(email) {
-    return ADMINS.includes(email);
-  }
-
-  function enterGuild() {
-    const email = localStorage.getItem("guild_email");
-    const member = localStorage.getItem("guild_member");
-
-    if (email && isAdmin(email)) {
-      window.location.href = "guild.html";
-      return;
-    }
-
-    if (member === "paid") {
-      window.location.href = "guild.html";
-      return;
-    }
-
-    window.location.href = "guild-entry.html";
-  }
-
-  document.getElementById("enterHallBtn").addEventListener("click", enterGuild);
-  document.getElementById("enterHallTop").addEventListener("click", enterGuild);
-
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      document.getElementById("scroll").classList.add("open");
-    }, 300);
-  });
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("scroll").classList.add("open");
+  }, 300);
+});
 </script>
 
 </body>
