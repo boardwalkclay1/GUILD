@@ -5,247 +5,26 @@
   <title>The Guild – Welcome Hall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <style>
-    body {
-      background: #000;
-      color: #D4AF37;
-      font-family: system-ui, sans-serif;
-      overflow-x: hidden;
-      position: relative;
-      padding-top: 120px;
-    }
+  <!-- GLOBAL CINEMATIC CSS -->
+  <link rel="stylesheet" href="guild-style.css">
 
-    /* BACKGROUND */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: url("guild-background-gold.png") center/cover no-repeat;
-      opacity: 0.18;
-      filter: grayscale(40%);
-      z-index: -3;
-    }
-
-    /* FLOATING IMAGES */
-    .float-img {
-      position: fixed;
-      width: 160px;
-      opacity: 0.12;
-      animation: float 10s ease-in-out infinite alternate;
-      z-index: -1;
-      filter: drop-shadow(0 0 12px #D4AF37);
-      pointer-events: none;
-    }
-
-    .float-left { left: 40px; top: 25%; }
-    .float-right { right: 40px; top: 55%; }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(-40px) rotate(4deg); }
-    }
-
-    /* RUNES */
-    .rune {
-      position: fixed;
-      font-size: 2rem;
-      opacity: 0.07;
-      animation: drift 14s linear infinite;
-      color: #D4AF37;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    @keyframes drift {
-      from { transform: translateY(0); }
-      to { transform: translateY(-900px); }
-    }
-
-    /* FOG */
-    .fog-layer {
-      position: fixed;
-      inset: 0;
-      background: url("fog.png") repeat;
-      opacity: 0.22;
-      pointer-events: none;
-      z-index: -2;
-      animation: fogMove 30s linear infinite;
-    }
-
-    @keyframes fogMove {
-      from { transform: translateX(0); }
-      to { transform: translateX(-600px); }
-    }
-
-    /* PILLARS */
-    .pillar {
-      position: fixed;
-      top: 0;
-      width: 140px;
-      height: 100vh;
-      background: url("guild-pillar.png") center/contain no-repeat;
-      opacity: 0.5;
-      z-index: -1;
-      animation: pillarFloat 6s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-
-    .pillar-left { left: 0; }
-    .pillar-right { right: 0; transform: scaleX(-1); }
-
-    @keyframes pillarFloat {
-      0% { transform: translateY(0); opacity: 0.45; }
-      100% { transform: translateY(12px); opacity: 0.65; }
-    }
-
-    /* GOLD SCROLL */
-    .gold-scroll {
-      position: fixed;
-      top: -380px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 700px;
-      background: rgba(0,0,0,0.85);
-      border: 2px solid #D4AF37;
-      border-radius: 12px;
-      padding: 25px;
-      opacity: 0;
-      transition: all 1.2s ease;
-      z-index: 100;
-      box-shadow: 0 0 25px rgba(212,175,55,0.4);
-    }
-
-    .gold-scroll.open {
-      top: 60px;
-      opacity: 1;
-    }
-
-    .scroll-title {
-      text-align: center;
-      font-size: 2rem;
-      letter-spacing: 0.15em;
-      color: #D4AF37;
-    }
-
-    /* TOP NAV */
-    .top-nav {
-      width: 100%;
-      padding: 18px 0;
-      background: rgba(0,0,0,0.85);
-      border-bottom: 2px solid #D4AF37;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9999;
-      box-shadow: 0 0 20px rgba(212,175,55,0.3);
-    }
-
-    .top-nav a {
-      color: #D4AF37;
-      text-decoration: none;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      transition: 0.3s ease;
-    }
-
-    .top-nav a:hover {
-      color: #fff;
-      text-shadow: 0 0 12px #D4AF37;
-    }
-
-    /* SIDE TEXT */
-    .side-text {
-      position: fixed;
-      width: 250px;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      opacity: 0.88;
-      color: #D4AF37;
-      text-shadow: 0 0 8px rgba(212,175,55,0.4);
-      animation: fadeIn 2s ease forwards;
-      pointer-events: none;
-    }
-
-    .side-left { left: 25px; top: 200px; }
-    .side-right { right: 25px; top: 200px; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 0.88; transform: translateY(0); }
-    }
-
-    /* MAIN CONTENT */
-    .content {
-      max-width: 700px;
-      margin: 0 auto;
-      margin-top: 480px;
-      position: relative;
-      z-index: 10;
-      padding-bottom: 80px;
-    }
-
-    .nav-btn {
-      display: block;
-      background: rgba(0,0,0,0.75);
-      border: 1px solid #D4AF37;
-      padding: 18px;
-      border-radius: 12px;
-      margin: 25px auto;
-      max-width: 650px;
-      text-decoration: none;
-      color: #D4AF37;
-      text-align: center;
-      transition: 0.3s ease;
-    }
-
-    .nav-btn:hover {
-      background: rgba(212,175,55,0.2);
-      transform: translateY(-3px);
-    }
-
-    .desc {
-      display: block;
-      margin-top: 12px;
-      font-size: 1rem;
-      opacity: 0.85;
-      line-height: 1.55;
-    }
-
-    .divider {
-      width: 80%;
-      max-width: 550px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-      margin: 55px auto;
-      opacity: 0.7;
-    }
-
-    /* MOBILE FIXES */
-    @media (max-width: 900px) {
-      .side-text { display: none; }
-      .float-img { display: none; }
-      .pillar { display: none; }
-      .content { margin-top: 260px; }
-    }
-  </style>
+  <!-- GUILD ENGINE -->
+  <script src="guild-engine.js" defer></script>
 </head>
 
-<body>
+<!-- CORRECT BACKGROUND IMAGE -->
+<body data-bg="Arcadium.jpg">
 
   <!-- FLOATING IMAGES -->
-  <img src="guild-seal.png" class="float-img float-left" />
-  <img src="guild-seal.png" class="float-img float-right" />
+  <img src="image/guild-seal.png" class="float-img float-left" />
+  <img src="image/guild-seal.png" class="float-img float-right" />
 
   <!-- RUNES -->
   <div class="rune" style="left: 10%; top: 90%;">✦</div>
   <div class="rune" style="left: 80%; top: 95%;">✧</div>
   <div class="rune" style="left: 50%; top: 100%;">✦</div>
 
+  <!-- FOG + PILLARS (ENGINE ALSO ADDS THESE) -->
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
@@ -277,30 +56,31 @@
 
   <!-- TOP NAV -->
   <div class="top-nav">
-    <a href="million-dollar-move.html">Million Dollar Move</a>
-    <a href="the-maze.html">The Maze</a>
-    <a href="guild-entry.html">Enter the Inner Hall</a>
+    <a onclick="go('million-dollar-move.html')">Million Dollar Move</a>
+    <a onclick="go('the-maze.html')">The Maze</a>
+    <a onclick="go('guild-entry.html')">Enter the Inner Hall</a>
   </div>
 
+  <!-- MAIN CONTENT -->
   <div class="content">
 
     <div class="divider"></div>
 
-    <a href="guild-entry.html" class="nav-btn">
+    <a onclick="go('guild-entry.html')" class="nav-btn">
       Enter the Inner Hall
       <span class="desc">
         Step into the place where lives change.
       </span>
     </a>
 
-    <a href="million-dollar-move.html" class="nav-btn">
+    <a onclick="go('million-dollar-move.html')" class="nav-btn">
       The Million Dollar Move
       <span class="desc">
         Learn the logic behind how small contracts turn into massive moves.
       </span>
     </a>
 
-    <a href="the-maze.html" class="nav-btn">
+    <a onclick="go('the-maze.html')" class="nav-btn">
       The Maze
       <span class="desc">
         A story of discipline, clarity, and transformation.
