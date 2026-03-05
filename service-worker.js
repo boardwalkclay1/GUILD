@@ -5,7 +5,18 @@ self.addEventListener("install", event => {
         "index.html",
         "guild-style.css",
         "guild-logo.png",
-        "manifest.json"
+        "manifest.json",
+
+        // Cinematic Backgrounds
+        "Arcadium.jpg",
+        "Armory.jpeg",
+        "Aurum-Veritas.jpg",
+        "Porta-Imperii.jpg",
+        "Tributum.jpg",
+        "Vestry.jpg",
+        "apotheosis-chamber.jpg",
+        "gladiator-forum.jpg",
+        "strategy-chamber.jpg"
       ]);
     })
   );
