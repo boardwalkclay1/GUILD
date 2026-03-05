@@ -1,10 +1,19 @@
 // ================================
-// GUILD ENGINE — CINEMATIC SYSTEM
-// Controls fog, pillars, scrolls,
-// lightning, transitions, and CSS
+// GUILD ENGINE — COLOSSEUM SYSTEM
+// Fog, pillars, scroll, lightning,
+// transitions, per-page backgrounds
 // ================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  // 0. Per-page background from data attribute
+  const body = document.body;
+  const bgImage = body.getAttribute("data-bg"); // e.g. data-bg="Arcadium.jpg"
+  if (bgImage) {
+    document.documentElement.style.setProperty(
+      "--page-bg-url",
+      `url("image/${bgImage}")`
+    );
+  }
 
   // 1. Inject Fog Layers
   const fogBack = document.createElement("div");
@@ -46,13 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => flash.remove(), 400);
   }, 6000 + Math.random() * 4000);
 
-  // 5. Page Transitions
+  // 5. Page Transitions for .page-link
   document.querySelectorAll(".page-link").forEach(link => {
     link.addEventListener("click", e => {
       if (link.target === "_blank") return;
       e.preventDefault();
       document.body.classList.add("fade-out");
-      setTimeout(() => window.location.href = link.href, 600);
+      setTimeout(() => (window.location.href = link.href), 600);
     });
   });
 
@@ -72,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // 7. Admin Access Control (added)
+  // 7. Admin Access Control
   window.GuildAuth = {
     admins: [
       "boardwalkclay1@gmail.com",
@@ -83,4 +92,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // 8. Coliseum Fast-Walk Transition (global go())
+  window.go = function (nextPage) {
+    const overlay = document.createElement("div");
+    overlay.className = "colosseum-transition";
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+      window.location.href = nextPage;
+    }, 650);
+  };
 });
