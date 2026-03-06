@@ -1,203 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Guild Hall</title>
+  <meta charset="UTF-8" />
+  <title>THE GUILD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" type="image/png" href="the-guild.png" />
+  <link rel="apple-touch-icon" href="the-guild.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="guild-style.css">
 
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    .guild-shell {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 80px 16px 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* TOP BAR */
-    .top-bar {
+    /* ADD TO HOME SCREEN BUTTON */
+    #a2hs-btn {
       position: fixed;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 5;
-    }
-
-    .gf-btn {
-      padding: 10px 18px;
-      border-radius: 999px;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 18px;
+      background: rgba(0,0,0,0.75);
       border: 2px solid #D4AF37;
-      background: radial-gradient(circle at 20% 0%, #fff7c2 0, #D4AF37 40%, #5b3b10 100%);
-      color: #1b1206;
-      font-weight: 800;
-      font-family: var(--guild-font, "Cinzel", serif);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      font-size: 0.75rem;
-      box-shadow: 0 0 12px rgba(0,0,0,0.8);
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .gf-btn:hover {
-      filter: brightness(1.08);
-    }
-
-    .top-dropdowns {
-      display: flex;
-      gap: 8px;
-    }
-
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-toggle {
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid #D4AF37;
-      background: rgba(0,0,0,0.7);
-      color: #D4AF37;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      font-family: var(--guild-font, "Cinzel", serif);
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      right: 0;
-      top: 110%;
-      background: rgba(10, 6, 2, 0.96);
-      border: 1px solid #D4AF37;
-      border-radius: 10px;
-      min-width: 180px;
-      padding: 6px 0;
-      display: none;
-      z-index: 10;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 8px 12px;
-      color: #D4AF37;
-      font-size: 0.8rem;
-      text-decoration: none;
-      font-family: var(--guild-font, "Cinzel", serif);
-    }
-
-    .dropdown-menu a:hover {
-      background: rgba(212,175,55,0.15);
-    }
-
-    .dropdown.open .dropdown-menu {
-      display: block;
-    }
-
-    /* SCROLL + CONTENT */
-    .gold-scroll {
-      max-width: 700px;
-      margin-top: 40px;
-      margin-bottom: 24px;
-    }
-
-    .scroll-title {
-      text-align: center;
-      letter-spacing: 0.18em;
-    }
-
-    .page-content {
-      text-align: center;
-      font-size: 0.95rem;
-    }
-
-    /* VERTICAL BUTTON STACK */
-    .guild-buttons {
-      width: 100%;
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .guild-btn-main {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 2px solid #D4AF37;
-      background: radial-gradient(circle at 10% 0%, #fff7c2 0, #D4AF37 35%, #3a250a 100%);
-      color: #1b1206;
-      text-decoration: none;
-      font-family: var(--guild-font, "Cinzel", serif);
-      box-shadow: 0 0 16px rgba(0,0,0,0.85);
-    }
-
-    .guild-btn-main span.label {
-      font-size: 0.9rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 800;
-    }
-
-    .guild-btn-main span.desc {
-      font-size: 0.8rem;
-      margin-top: 4px;
-      opacity: 0.9;
-    }
-
-    .guild-btn-main:hover {
-      filter: brightness(1.06);
-      transform: translateY(-1px);
-    }
-
-    /* SIDE TEXT (MOBILE-FRIENDLY) */
-    .side-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      width: 100%;
-      max-width: 420px;
-      margin-top: 18px;
-      font-size: 0.8rem;
-      color: var(--gold-soft, #e0c98a);
-    }
-
-    .side-block {
-      flex: 1;
-      background: rgba(0,0,0,0.7);
       border-radius: 12px;
-      border: 1px solid rgba(212,175,55,0.5);
-      padding: 10px;
+      color: #D4AF37;
+      font-family: "Marcellus SC", serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      z-index: 9999;
+      display: none;
     }
-
-    .side-block a {
-      color: var(--gold, #D4AF37);
-      text-decoration: underline;
-      font-size: 0.8rem;
-    }
-
-    @media (max-width: 600px) {
-      .guild-shell {
-        padding-top: 90px;
-      }
-      .side-row {
-        flex-direction: column;
-      }
+    #a2hs-btn:hover {
+      background: rgba(212,175,55,0.2);
     }
   </style>
 </head>
@@ -209,114 +42,60 @@
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
-  <!-- TOP BAR: GOLDEN FORMULA + DROPDOWNS -->
-  <div class="top-bar">
-    <a class="gf-btn" href="guild-goldenformula.html">
-      GOLDEN FORMULA
-    </a>
+  <!-- GOLDEN FORMULA TOP BAR -->
+  <div class="gf-topbar">
+    <button class="gf-btn gold-bar">☰ Golden Formula</button>
 
-    <div class="top-dropdowns">
-      <!-- Chambers Dropdown -->
-      <div class="dropdown" id="dd-chambers">
-        <button class="dropdown-toggle" onclick="toggleDropdown('dd-chambers')">
-          Chambers
-        </button>
-        <div class="dropdown-menu">
-          <a href="guild.html">Guild Hall</a>
-          <a href="the-colosseum.html">The Colosseum</a>
-          <a href="inside-the-guild.html">Inner Hall</a>
-          <a href="training-hall.html">Ars‑Trainingum</a>
-        </div>
-      </div>
-
-      <!-- Lore Dropdown -->
-      <div class="dropdown" id="dd-lore">
-        <button class="dropdown-toggle" onclick="toggleDropdown('dd-lore')">
-          Lore
-        </button>
-        <div class="dropdown-menu">
-          <a href="glossary.html">Grand Glossary</a>
-          <a href="guild-entry.html">Guild Entry</a>
-        </div>
-      </div>
+    <div class="gf-dropdown">
+      <div class="gf-title">The Golden Formula Engine</div>
+      <p>
+        Upload any chart screenshot and the Guildmaster reveals the path.
+      </p>
+      <button class="enter-btn" onclick="openGF()">ENTER</button>
     </div>
   </div>
 
-  <!-- MAIN SHELL -->
-  <div class="guild-shell">
-
-    <!-- SCROLL INTRO -->
-    <div class="gold-scroll open">
-      <h1 class="scroll-title title-animate">THE GUILD HALL</h1>
-
-      <div class="page-content">
-        <p>
-          You stand within the sacred heart of The Guild — a fortress of mastery, discipline, and ancient craft.
-          Each chamber around you serves a purpose in your ascent. Choose your path with intention.
-        </p>
-
-        <br>
-
-        <a href="glossary.html" style="color: var(--gold-soft); text-decoration: underline;">
-          View the Grand Glossary
-        </a>
-      </div>
-    </div>
-
-    <!-- SIDE LORE BLOCKS -->
-    <div class="side-row">
-      <div class="side-block">
-        <strong>The Inner Hall</strong><br>
-        The chamber of oaths, ranks, and sacred scrolls.<br>
-        <a href="inside-the-guild.html">Enter</a>
-      </div>
-
-      <div class="side-block">
-        <strong>Ars‑Trainingum</strong><br>
-        The Hall of Skill‑Forging — drills, rites, and mastery.<br>
-        <a href="training-hall.html">Begin</a>
-      </div>
-    </div>
-
-    <!-- VERTICAL MEDIEVAL BUTTON STACK -->
-    <div class="guild-buttons">
-
-      <a class="guild-btn-main" href="the-colosseum.html">
-        <span class="label">THE COLOSSEUM</span>
-        <span class="desc">Trials of mind, will, and simulation.</span>
-      </a>
-
-      <a class="guild-btn-main" href="inside-the-guild.html">
-        <span class="label">INNER HALL</span>
-        <span class="desc">Oaths, ranks, and sacred knowledge.</span>
-      </a>
-
-      <a class="guild-btn-main" href="training-hall.html">
-        <span class="label">ARS‑TRAININGUM</span>
-        <span class="desc">The medieval Training Hall of mastery.</span>
-      </a>
-
-      <a class="guild-btn-main" href="glossary.html">
-        <span class="label">THE GRAND GLOSSARY</span>
-        <span class="desc">Definitions of every chamber and rite.</span>
-      </a>
-
-    </div>
-
+  <!-- PAGE TITLE -->
+  <div class="gold-scroll">
+    <h1 class="scroll-title" id="page-title">PAGE TITLE HERE</h1>
   </div>
+
+  <!-- MAIN CONTENT SECTIONS -->
+  <div class="content" id="guild-content">
+    <!-- PAGE-SPECIFIC CONTENT GOES HERE -->
+  </div>
+
+  <!-- ADD TO HOME SCREEN -->
+  <button id="a2hs-btn">Add to Home Screen</button>
 
   <script>
-    function toggleDropdown(id) {
-      const dd = document.getElementById(id);
-      const isOpen = dd.classList.contains('open');
-      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-      if (!isOpen) dd.classList.add('open');
+    function go(page) { window.location.href = page; }
+
+    function openGF() {
+      if (localStorage.getItem("gf_subscriber") === "paid") {
+        window.location.href = "guild-goldenformula.html";
+      } else {
+        window.location.href = "gf-paywall.html";
+      }
     }
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.dropdown')) {
-        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-      }
+    document.querySelector('.gf-btn').addEventListener('click', () => {
+      document.querySelector('.gf-dropdown').classList.toggle('open');
+    });
+
+    let deferredPrompt;
+    const a2hsBtn = document.getElementById("a2hs-btn");
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      a2hsBtn.style.display = "block";
+    });
+
+    a2hsBtn.addEventListener("click", () => {
+      a2hsBtn.style.display = "none";
+      deferredPrompt.prompt();
+      deferredPrompt = null;
     });
   </script>
 
