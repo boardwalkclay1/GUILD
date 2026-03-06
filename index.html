@@ -15,34 +15,33 @@
 <body data-bg="the-guild.png">
 
   <!-- ============================
-       TOP NAV WITH GOLDEN FORMULA
+       GOLDEN FORMULA — TOP GOLD BAR
+       ============================ -->
+  <div class="gf-topbar">
+    <button class="gf-btn gold-bar">
+      ☰ Golden Formula
+    </button>
+
+    <div class="gf-dropdown">
+      <div class="gf-title">The Golden Formula Engine</div>
+      <p>
+        A one‑of‑a‑kind engine found only in The Guild.  
+        Upload any chart screenshot and the Guildmaster reveals the path.
+      </p>
+      <button class="enter-btn"
+        onclick="go('https://boardwalkclay1.github.io/goldenformula/simulator.html')">
+        ENTER
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================
+       NORMAL NAV UNDER GOLD BAR
        ============================ -->
   <div class="top-nav">
-
-    <!-- GOLDEN FORMULA — GOLD BAR HAMBURGER -->
-    <div class="gf-wrapper">
-      <button class="gf-btn gold-bar">
-        ☰ Golden Formula
-      </button>
-
-      <div class="gf-dropdown">
-        <div class="gf-title">The Golden Formula Engine</div>
-        <p>
-          A one‑of‑a‑kind engine found only in The Guild.  
-          Upload any chart screenshot and the Guildmaster reveals the path.
-        </p>
-        <button class="enter-btn"
-          onclick="go('https://boardwalkclay1.github.io/goldenformula/simulator.html')">
-          ENTER
-        </button>
-      </div>
-    </div>
-
-    <!-- NORMAL NAV ITEMS -->
     <a onclick="go('death-strike.html')">Death Strike</a>
     <a onclick="go('colosseum.html')">The Colosseum</a>
     <a onclick="go('guild-entry.html')">Inner Hall</a>
-
   </div>
 
   <!-- MAIN TITLE -->
