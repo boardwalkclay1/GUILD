@@ -1,5 +1,5 @@
 /* ============================================
-   GUILD GLOBAL CINEMATIC STYLES — MEDIEVAL REBUILD
+   GUILD GLOBAL CINEMATIC STYLES — IMAGE-FREE VERSION
    ============================================ */
 
 /* RESET */
@@ -16,10 +16,9 @@
   --gold-glow: rgba(212,175,55,0.45);
   --bg-opacity: 0.22;
   --bg-blur: 0px;
-  --fog-opacity: 0.25;
-  --fog-speed: 30s;
-  --pillar-opacity: 0.55;
-  --page-bg-url: url("image/guild-background-gold.png");
+  --fog-opacity: 0.22;
+  --fog-speed: 38s;
+  --pillar-opacity: 0.45;
 }
 
 /* BASE */
@@ -35,22 +34,26 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* BACKGROUND IMAGE */
+/* BACKGROUND (NO IMAGE) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: var(--page-bg-url) center/cover no-repeat;
+  background:
+    radial-gradient(circle at center, rgba(212,175,55,0.15), transparent 70%),
+    linear-gradient(135deg, rgba(60,40,10,0.6), rgba(0,0,0,0.9));
   opacity: var(--bg-opacity);
-  filter: grayscale(40%) blur(var(--bg-blur));
+  filter: blur(var(--bg-blur));
   z-index: -3;
 }
 
-/* FOG */
+/* FOG (NO IMAGE) */
 .fog-layer {
   position: fixed;
   inset: 0;
-  background: url("image/fog.png") repeat;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06), transparent 60%);
   opacity: var(--fog-opacity);
   pointer-events: none;
   z-index: -2;
@@ -62,13 +65,20 @@ body::before {
   to { transform: translateX(-600px); }
 }
 
-/* PILLARS */
+/* PILLARS (NO IMAGE) */
 .pillar {
   position: fixed;
   top: 0;
   width: 160px;
   height: 100vh;
-  background: url("image/guild-pillar.png") center/contain no-repeat;
+  background:
+    linear-gradient(to bottom,
+      rgba(212,175,55,0.25),
+      rgba(80,60,20,0.8),
+      rgba(212,175,55,0.25)
+    );
+  border-left: 3px solid rgba(212,175,55,0.4);
+  border-right: 3px solid rgba(212,175,55,0.4);
   opacity: var(--pillar-opacity);
   filter: drop-shadow(0 0 12px var(--gold-glow));
   animation: pillarFloat 6s ease-in-out infinite alternate;
@@ -76,7 +86,7 @@ body::before {
 }
 
 .pillar-left { left: 0; }
-.pillar-right { right: 0; transform: scaleX(-1); }
+.pillar-right { right: 0; }
 
 @keyframes pillarFloat {
   0% { transform: translateY(0); opacity: 0.45; }
@@ -101,13 +111,12 @@ body::before {
   box-shadow: 0 0 25px var(--gold-glow);
 }
 
-/* OPEN ANIMATION */
 .gold-scroll.open {
   top: 40px;
   opacity: 1;
 }
 
-/* MAIN TITLE — CURSIVE, BOLD, SHIELD STYLE */
+/* MAIN TITLE */
 .scroll-title {
   text-align: center;
   font-size: 2.8rem;
@@ -206,83 +215,4 @@ body::before {
   font-weight: 700;
   opacity: 0.9;
   line-height: 1.4;
-}
-
-/* MOBILE RESPONSIVE SYSTEM */
-@media (max-width: 768px) {
-  body {
-    padding-top: 80px;
-  }
-
-  .pillar {
-    width: 80px;
-    opacity: 0.25;
-  }
-
-  .gold-scroll {
-    width: 92%;
-    top: -260px;
-    padding: 18px;
-  }
-
-  .gold-scroll.open {
-    top: 20px;
-  }
-
-  .scroll-title {
-    font-size: 2rem;
-    -webkit-text-stroke: 0.7px rgba(255,215,0,0.7);
-  }
-
-  .side-text {
-    position: relative;
-    width: 90%;
-    margin: 12px auto;
-    top: auto;
-    left: auto;
-    right: auto;
-    font-size: 1rem;
-  }
-
-  .top-nav {
-    gap: 18px;
-    padding: 12px 0;
-    flex-wrap: wrap;
-  }
-
-  .top-nav a {
-    font-size: 0.9rem;
-  }
-
-  .nav-btn {
-    max-width: 90%;
-    padding: 16px;
-    font-size: 1.2rem;
-  }
-
-  .desc {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .pillar {
-    display: none;
-  }
-
-  .gold-scroll {
-    width: 95%;
-  }
-
-  .top-nav {
-    gap: 12px;
-  }
-
-  .top-nav a {
-    font-size: 0.75rem;
-  }
-
-  .nav-btn {
-    font-size: 1rem;
-  }
 }
