@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Golden Formula Access – $100/month</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="guild-style.css">
+
+  <style>
+    .paywall-box {
+      max-width: 600px;
+      margin: 140px auto 80px;
+      background: rgba(0,0,0,0.75);
+      border: 2px solid #D4AF37;
+      border-radius: 14px;
+      padding: 30px;
+      text-align: center;
+      color: #D4AF37;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+    }
+
+    .qr {
+      width: 220px;
+      height: 220px;
+      margin: 20px auto;
+      border-radius: 12px;
+      background: #fff;
+      padding: 10px;
+    }
+
+    .btn {
+      display: block;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid #D4AF37;
+      padding: 14px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 300px;
+      border-radius: 10px;
+      color: #D4AF37;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: rgba(212,175,55,0.3);
+    }
+
+    input {
+      width: 90%;
+      max-width: 300px;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 8px;
+      border: 1px solid #D4AF37;
+      background: rgba(0,0,0,0.6);
+      color: #D4AF37;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body data-bg="Aurum-Veritas.jpg">
+
+<!-- CINEMATIC LAYERS -->
+<div class="fog-layer"></div>
+<div class="pillar pillar-left"></div>
+<div class="pillar pillar-right"></div>
+
+<h1 style="text-align:center;">Golden Formula Access</h1>
+
+<div class="paywall-box">
+  <p>Unlock the Golden Formula Engine on this device.</p>
+  <p><strong>Subscription: $100/month</strong></p>
+
+  <!-- QR CODE IMAGE -->
+  <img class="qr" src="gf qr.png" alt="Golden Formula QR">
+
+  <!-- PAYPAL BUTTON -->
+  <a id="paypalBtn" class="btn" target="_blank">Pay with PayPal</a>
+
+  <p>After payment, enter your email below to unlock:</p>
+
+  <input id="email" type="email" placeholder="Enter your email">
+
+  <button class="btn" onclick="unlock()">Unlock Golden Formula</button>
+</div>
+
+<script>
+  // Your PayPal subscription link
+  const PAYPAL_LINK = "https://www.paypal.com/ncp/payment/DU2H4MSW2YXWC";
+
+  // Set PayPal button link
+  document.getElementById("paypalBtn").href = PAYPAL_LINK;
+
+  // Auto-unlock if PayPal returned with ?paid=true
+  if (window.location.search.includes("paid=true")) {
+    localStorage.setItem("gf_subscriber", "paid");
+    window.location.href = "guild-goldenformula.html";
+  }
+
+  // Manual unlock after payment
+  function unlock() {
+    const email = document.getElementById("email").value.trim();
+    if (!email) {
+      alert("Enter your email to unlock.");
+      return;
+    }
+
+    // Save subscription status + email
+    localStorage.setItem("gf_email", email);
+    localStorage.setItem("gf_subscriber", "paid");
+
+    // Redirect to Golden Formula chamber
+    window.location.href = "guild-goldenformula.html";
+  }
+</script>
+
+</body>
+</html>
