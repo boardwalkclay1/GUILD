@@ -1,8 +1,8 @@
 // ===============================
-// GUILD SERVICE WORKER — FINAL FIXED VERSION
+// GUILD SERVICE WORKER — CLEAN + CORRECT
 // ===============================
 
-const CACHE_NAME = "guild-cache-v4";  // bump version to force refresh
+const CACHE_NAME = "guild-cache-v6";  // bump version to force refresh
 
 const ASSETS = [
   "index.html",
@@ -10,11 +10,11 @@ const ASSETS = [
   "guild-engine.js",
   "manifest.json",
 
-  // Icons
-  "the-guild.png",   // <-- NEW main icon for PWA + Home Screen
+  // Main icon (not in any folder)
+  "the-guild.png",
   "favicon.ico",
 
-  // Cinematic Backgrounds (correct folder path)
+  // Backgrounds that DO exist in /image/
   "image/Arcadium.jpg",
   "image/Armory.jpeg",
   "image/Aurum-Veritas.jpg",
@@ -23,12 +23,7 @@ const ASSETS = [
   "image/Vestry.jpg",
   "image/apotheosis-chamber.jpg",
   "image/gladiator-forum.jpg",
-  "image/strategy-chamber.jpg",
-
-  // Guild Seals / Fog / Pillars
-  "image/guild-seal.png",
-  "image/fog.png",
-  "image/guild-pillar.png"
+  "image/strategy-chamber.jpg"
 ];
 
 // INSTALL — cache everything fresh
@@ -36,7 +31,7 @@ self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
-  self.skipWaiting(); // activate immediately
+  self.skipWaiting();
 });
 
 // ACTIVATE — delete old caches
@@ -44,13 +39,11 @@ self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
-        keys
-          .filter(key => key !== CACHE_NAME)
-          .map(key => caches.delete(key))
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
       )
     )
   );
-  self.clients.claim(); // take control of all pages
+  self.clients.claim();
 });
 
 // FETCH — network first, fallback to cache
