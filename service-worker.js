@@ -1,16 +1,17 @@
 // ===============================
-// GUILD SERVICE WORKER — CLEAN + CORRECT
+// GUILD SERVICE WORKER — CLEAN + VERIFIED
 // ===============================
 
-const CACHE_NAME = "guild-cache-v6";  // bump version to force refresh
+const CACHE_NAME = "guild-cache-v7";  // bump version to force refresh
 
 const ASSETS = [
   "index.html",
   "guild-style.css",
-  "guild-engine.js",
-  "manifest.json",
 
-  // Main icon (not in any folder)
+  // Only include this if it actually exists
+  // "guild-engine.js",
+
+  // Icons
   "the-guild.png",
   "favicon.ico",
 
@@ -29,7 +30,18 @@ const ASSETS = [
 // INSTALL — cache everything fresh
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then(cache =>
+      Promise.all(
+        ASSETS.map(asset =>
+          fetch(asset)
+            .then(response => {
+              if (!response.ok) throw new Error("Missing: " + asset);
+              return cache.put(asset, response);
+            })
+            .catch(err => console.warn("[SW] Skipped:", asset))
+        )
+      )
+    )
   );
   self.skipWaiting();
 });
