@@ -19,9 +19,11 @@
        ============================ -->
   <div class="top-nav">
 
-    <!-- GOLDEN FORMULA HAMBURGER (LEFT OF DEATH STRIKE) -->
+    <!-- GOLDEN FORMULA — GOLD BAR HAMBURGER -->
     <div class="gf-wrapper">
-      <button class="gf-btn">☰ Golden Formula</button>
+      <button class="gf-btn gold-bar">
+        ☰ Golden Formula
+      </button>
 
       <div class="gf-dropdown">
         <div class="gf-title">The Golden Formula Engine</div>
@@ -131,7 +133,7 @@
       window.location.href = page;
     }
 
-    // Dropdowns
+    // Section dropdowns
     document.querySelectorAll('.dropdown-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
         btn.nextElementSibling.classList.toggle('open');
