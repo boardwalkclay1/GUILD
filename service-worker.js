@@ -1,44 +1,52 @@
 // ===============================
-// GUILD SERVICE WORKER — CLEAN + VERIFIED
+// GUILD MASTER SERVICE WORKER — WRAPS ALL REPOS
 // ===============================
 
-const CACHE_NAME = "guild-cache-v7";  // bump version to force refresh
+const CACHE_NAME = "guild-master-cache-v1";
 
+// Assets from ALL repos (Guild, Trade_Alive, GoldenFormula)
 const ASSETS = [
-  "index.html",
-  "guild-style.css",
 
-  // Only include this if it actually exists
-  // "guild-engine.js",
+  // --- GUILD ROOT ---
+  "/GUILD/index.html",
+  "/GUILD/guild-style.css",
+  "/GUILD/the-guild.png",
+  "/GUILD/favicon.ico",
 
-  // Icons
-  "the-guild.png",
-  "favicon.ico",
+  // --- GUILD BACKGROUNDS ---
+  "/GUILD/image/Arcadium.jpg",
+  "/GUILD/image/Armory.jpeg",
+  "/GUILD/image/Aurum-Veritas.jpg",
+  "/GUILD/image/Porta-Imperii.jpg",
+  "/GUILD/image/Tributum.jpg",
+  "/GUILD/image/Vestry.jpg",
+  "/GUILD/image/apotheosis-chamber.jpg",
+  "/GUILD/image/gladiator-forum.jpg",
+  "/GUILD/image/strategy-chamber.jpg",
 
-  // Backgrounds that DO exist in /image/
-  "image/Arcadium.jpg",
-  "image/Armory.jpeg",
-  "image/Aurum-Veritas.jpg",
-  "image/Porta-Imperii.jpg",
-  "image/Tributum.jpg",
-  "image/Vestry.jpg",
-  "image/apotheosis-chamber.jpg",
-  "image/gladiator-forum.jpg",
-  "image/strategy-chamber.jpg"
+  // --- TRADE_ALIVE (embed support) ---
+  "/Trade_Alive/index.html",
+  "/Trade_Alive/style.css",
+  "/Trade_Alive/app.js",
+
+  // --- GOLDEN FORMULA (embed support) ---
+  "/goldenformula/simulator.html",
+  "/goldenformula/style.css",
+  "/goldenformula/app.js"
 ];
 
-// INSTALL — cache everything fresh
+// INSTALL — safe caching (skips missing files)
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache =>
       Promise.all(
         ASSETS.map(asset =>
           fetch(asset)
-            .then(response => {
-              if (!response.ok) throw new Error("Missing: " + asset);
-              return cache.put(asset, response);
+            .then(res => {
+              if (!res.ok) throw new Error("Missing: " + asset);
+              return cache.put(asset, res);
             })
-            .catch(err => console.warn("[SW] Skipped:", asset))
+            .catch(() => console.warn("[SW] Skipped:", asset))
         )
       )
     )
@@ -46,12 +54,12 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 });
 
-// ACTIVATE — delete old caches
+// ACTIVATE — clean old caches
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
-        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
       )
     )
   );
@@ -62,7 +70,7 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   event.respondWith(
     fetch(event.request)
-      .then(response => response)
+      .then(res => res)
       .catch(() => caches.match(event.request))
   );
 });
