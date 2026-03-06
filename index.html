@@ -5,20 +5,22 @@
   <title>The Guild</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- ICONS -->
   <link rel="icon" type="image/png" href="the-guild.png" />
   <link rel="apple-touch-icon" href="the-guild.png" />
 
+  <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+
+  <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="guild-style.css">
 </head>
 
 <body data-bg="the-guild.png">
 
-  <!-- GOLDEN FORMULA SPECIAL BUTTON -->
-  <div class="golden-formula-menu">
-    <button class="gf-btn">
-      ☰ Golden Formula
-    </button>
+  <!-- GOLDEN FORMULA — TOP LEFT HAMBURGER -->
+  <div class="gf-wrapper">
+    <button class="gf-btn">☰ Golden Formula</button>
 
     <div class="gf-dropdown">
       <div class="gf-title">The Golden Formula Engine</div>
@@ -26,7 +28,7 @@
         A one‑of‑a‑kind engine found only in The Guild.  
         Upload any chart screenshot and the Guildmaster reveals the path.
       </p>
-      <button class="enter-btn" onclick="go('GUILD/golden-simulator.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('golden-simulator.html')">ENTER</button>
     </div>
   </div>
 
@@ -37,9 +39,9 @@
 
   <!-- TOP NAV -->
   <div class="top-nav">
-    <a onclick="go('GUILD/death-strike.html')">Death Strike</a>
-    <a onclick="go('GUILD/colosseum.html')">The Colosseum</a>
-    <a onclick="go('GUILD/guild-entry.html')">Inner Hall</a>
+    <a onclick="go('death-strike.html')">Death Strike</a>
+    <a onclick="go('colosseum.html')">The Colosseum</a>
+    <a onclick="go('guild-entry.html')">Inner Hall</a>
   </div>
 
   <!-- MAIN CONTENT -->
@@ -58,13 +60,11 @@
           Here you learn the truths of the Arena — where discipline is forged,
           clarity is earned, and real money is made in the hidden corners of the market.
         </p>
-        <button class="enter-btn" onclick="go('GUILD/guild-entry.html')">ENTER</button>
+        <button class="enter-btn" onclick="go('guild-entry.html')">ENTER</button>
       </div>
     </div>
 
-    <!-- SECTION 2 — GOLDEN FORMULA REMOVED FROM HERE -->
-
-    <!-- SECTION 3 -->
+    <!-- SECTION 2 — INNER HALL -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         🏛️ The Inner Hall
@@ -77,11 +77,11 @@
           The Guild is not a group — it is a blood‑bond of discipline and clarity.
           Inside these walls, you rise into the version of yourself your family can depend on.
         </p>
-        <button class="enter-btn" onclick="go('GUILD/guild-entry.html')">ENTER</button>
+        <button class="enter-btn" onclick="go('guild-entry.html')">ENTER</button>
       </div>
     </div>
 
-    <!-- SECTION 4 — DEATH STRIKE -->
+    <!-- SECTION 3 — DEATH STRIKE -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         💀 Death Strike
@@ -95,11 +95,11 @@
           Real logic.  
           Life‑changing clarity.
         </p>
-        <button class="enter-btn" onclick="go('GUILD/death-strike.html')">ENTER</button>
+        <button class="enter-btn" onclick="go('death-strike.html')">ENTER</button>
       </div>
     </div>
 
-    <!-- SECTION 5 -->
+    <!-- SECTION 4 — COLOSSEUM -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         🏟️ The Colosseum
@@ -111,21 +111,22 @@
         <p>
           Step into the story that mirrors your journey in the market.
         </p>
-        <button class="enter-btn" onclick="go('GUILD/colosseum.html')">ENTER</button>
+        <button class="enter-btn" onclick="go('colosseum.html')">ENTER</button>
       </div>
     </div>
 
   </div>
 
+  <!-- JS -->
   <script>
     function go(page) {
       window.location.href = page;
     }
 
+    // Dropdowns
     document.querySelectorAll('.dropdown-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
-        const panel = btn.nextElementSibling;
-        panel.classList.toggle('open');
+        btn.nextElementSibling.classList.toggle('open');
       });
     });
 
