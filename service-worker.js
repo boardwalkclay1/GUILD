@@ -1,41 +1,40 @@
 // ===============================
-// GUILD MASTER SERVICE WORKER — WRAPS ALL REPOS
+// GUILD MASTER SERVICE WORKER — FIXED PATHS
 // ===============================
 
-const CACHE_NAME = "guild-master-cache-v1";
+const CACHE_NAME = "guild-master-cache-v2";
 
-// Assets from ALL repos (Guild, Trade_Alive, GoldenFormula)
 const ASSETS = [
 
   // --- GUILD ROOT ---
-  "/GUILD/index.html",
-  "/GUILD/guild-style.css",
-  "/GUILD/the-guild.png",
-  "/GUILD/favicon.ico",
+  "index.html",
+  "guild-style.css",
+  "the-guild.png",
+  "favicon.ico",
 
   // --- GUILD BACKGROUNDS ---
-  "/GUILD/image/Arcadium.jpg",
-  "/GUILD/image/Armory.jpeg",
-  "/GUILD/image/Aurum-Veritas.jpg",
-  "/GUILD/image/Porta-Imperii.jpg",
-  "/GUILD/image/Tributum.jpg",
-  "/GUILD/image/Vestry.jpg",
-  "/GUILD/image/apotheosis-chamber.jpg",
-  "/GUILD/image/gladiator-forum.jpg",
-  "/GUILD/image/strategy-chamber.jpg",
+  "image/Arcadium.jpg",
+  "image/Armory.jpeg",
+  "image/Aurum-Veritas.jpg",
+  "image/Porta-Imperii.jpg",
+  "image/Tributum.jpg",
+  "image/Vestry.jpg",
+  "image/apotheosis-chamber.jpg",
+  "image/gladiator-forum.jpg",
+  "image/strategy-chamber.jpg",
 
-  // --- TRADE_ALIVE (embed support) ---
-  "/Trade_Alive/index.html",
-  "/Trade_Alive/style.css",
-  "/Trade_Alive/app.js",
+  // --- TRADE_ALIVE ---
+  "Trade_Alive/index.html",
+  "Trade_Alive/style.css",
+  "Trade_Alive/app.js",
 
-  // --- GOLDEN FORMULA (embed support) ---
-  "/goldenformula/simulator.html",
-  "/goldenformula/style.css",
-  "/goldenformula/app.js"
+  // --- GOLDEN FORMULA ---
+  "goldenformula/simulator.html",
+  "goldenformula/style.css",
+  "goldenformula/app.js"
 ];
 
-// INSTALL — safe caching (skips missing files)
+// INSTALL — safe caching
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache =>
