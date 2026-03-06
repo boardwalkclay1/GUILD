@@ -4,17 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Guild Hall</title>
+
+  <!-- GLOBAL GUILD STYLE -->
   <link rel="stylesheet" href="guild-style.css">
+
+  <!-- GUILD ENGINE (handles background loading) -->
+  <script src="guild-engine.js" defer></script>
 </head>
 
+<!-- CALL THE VESTRY BACKGROUND -->
 <body data-bg="Vestry.jpg">
 
   <!-- GOLDEN FORMULA BUTTON (TOP LEFT) -->
-  <a class="gf-btn" href="https://boardwalkclay1.github.io/goldenformula/simulator.html">
+  <a class="gf-btn" href="guild-goldenformula.html">
     GOLDEN FORMULA
   </a>
 
-  <!-- TOP NAVIGATION (Training Hall removed) -->
+  <!-- TOP NAVIGATION -->
   <nav class="top-nav">
     <a href="guild.html">Guild Hall</a>
     <a href="the-colosseum.html">The Colosseum</a>
@@ -22,7 +28,7 @@
     <a href="glossary.html">Glossary</a>
   </nav>
 
-  <!-- CINEMATIC SCROLL INTRO -->
+  <!-- CINEMATIC GOLD SCROLL -->
   <div class="gold-scroll open">
     <h1 class="scroll-title title-animate">THE GUILD HALL</h1>
 
@@ -54,7 +60,7 @@
     <a href="training-hall.html" style="color: var(--gold);">Begin</a>
   </div>
 
-  <!-- MAIN BUTTONS (Training Hall stays here) -->
+  <!-- MAIN BUTTONS -->
   <a class="nav-btn" href="the-colosseum.html">
     THE COLOSSEUM  
     <span class="desc">Trials of mind, will, and simulation.</span>
@@ -75,7 +81,7 @@
     <span class="desc">Definitions of every chamber and rite.</span>
   </a>
 
-  <!-- FOG + PILLARS -->
+  <!-- CINEMATIC FOG + PILLARS -->
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
