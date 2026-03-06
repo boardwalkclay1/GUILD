@@ -1,185 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>The Guild – Inner Hall</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- GLOBAL CINEMATIC CSS -->
-<link rel="stylesheet" href="guild-style.css">
-
-<!-- GUILD ENGINE -->
-<script src="guild-engine.js" defer></script>
-
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Cinzel', serif;
-  color: #e6c37f;
-  overflow-x: hidden;
-}
-
-/* Top Nav */
-.top-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  padding: 15px;
-  background: rgba(0,0,0,0.6);
-}
-
-.top-nav a {
-  color: #e6c37f;
-  text-decoration: none;
-  font-size: 15px;
-  padding: 8px 14px;
-  border: 1px solid #e6c37f;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
-/* Content */
-.content {
-  width: 92%;
-  max-width: 650px;
-  margin: 0 auto;
-  padding-bottom: 80px;
-  margin-top: 140px; /* FIXED SPACING BELOW TITLE */
-}
-
-.nav-btn {
-  display: block;
-  background: rgba(20,20,20,0.8);
-  border: 1px solid #e6c37f;
-  border-radius: 18px;
-  padding: 18px;
-  margin: 22px 0;
-  text-decoration: none;
-  color: #e6c37f;
-  font-size: 18px;
-}
-
-.nav-btn .desc {
-  display: block;
-  font-size: 13px;
-  opacity: 0.8;
-  margin-top: 6px;
-}
-
-.divider {
-  height: 2px;
-  background: linear-gradient(to right, transparent, #e6c37f, transparent);
-  margin: 40px 0;
-}
-
-/* Gold Scroll Animation */
-.gold-scroll {
-  width: 100%;
-  text-align: center;
-  padding: 40px 0;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: 1s ease;
-  margin-top: 40px;
-}
-
-.gold-scroll.open {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-title {
-  font-size: 42px;
-  letter-spacing: 3px;
-}
-
-/* Fog + Pillars */
-.fog-layer, .pillar {
-  position: fixed;
-  pointer-events: none;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Guild Hall</title>
+  <link rel="stylesheet" href="guild-style.css">
 </head>
 
-<!-- CORRECT BACKGROUND IMAGE -->
-<body data-bg="Porta-Imperii.jpg">
+<body>
 
-<!-- Cinematic Layers -->
-<div class="fog-layer"></div>
-<div class="pillar pillar-left"></div>
-<div class="pillar pillar-right"></div>
-
-<!-- Gold Scroll Title -->
-<div class="gold-scroll" id="scroll">
-  <h1 class="scroll-title">The Inner Hall</h1>
-</div>
-
-<!-- Top Navigation -->
-<div class="top-nav">
-  <a onclick="go('million-dollar-move.html')">Million Dollar Move</a>
-  <a onclick="go('the-maze.html')">The Maze</a>
-  <a onclick="go('guild-practice.html')">Practice Arena</a>
-</div>
-
-<div class="content">
-
-  <!-- ROOM 1 -->
-  <a onclick="go('accessing-options.html')" class="nav-btn">
-    The Gate of Access
-    <span class="desc">Unlock the path to options trading across every major broker.</span>
+  <!-- GOLDEN FORMULA BUTTON -->
+  <a class="gf-btn" href="https://boardwalkclay1.github.io/goldenformula/simulator.html">
+    GOLDEN FORMULA
   </a>
 
-  <!-- ROOM 2 -->
-  <a onclick="go('inside-the-guild.html')" class="nav-btn">
-    The Chamber of Lore
-    <span class="desc">Discover the Guild’s structure, purpose, and the journey ahead.</span>
+  <!-- TOP NAVIGATION -->
+  <nav class="top-nav">
+    <a href="guild.html">Guild Hall</a>
+    <a href="the-colosseum.html">The Colosseum</a>
+    <a href="inside-the-guild.html">Inner Hall</a>
+    <a href="training-hall.html">Ars‑Trainingum</a>
+    <a href="glossary.html">Glossary</a>
+  </nav>
+
+  <!-- CINEMATIC SCROLL INTRO -->
+  <div class="gold-scroll open">
+    <h1 class="scroll-title">WELCOME TO THE GUILD HALL</h1>
+    <p style="margin-top: 12px;">
+      You stand within the heart of the Guild — a sanctuary of mastery, discipline, and ancient craft.
+      Each chamber around you serves a sacred purpose. Explore them freely, and let the Codex guide your ascent.
+    </p>
+  </div>
+
+  <!-- SIDE TEXT LEFT -->
+  <div class="side-text side-left">
+    <strong>The Inner Hall</strong><br>
+    The chamber of oaths, ranks, and sacred knowledge.  
+    <a href="inside-the-guild.html" style="color: var(--gold);">Enter</a>
+  </div>
+
+  <!-- SIDE TEXT RIGHT -->
+  <div class="side-text side-right">
+    <strong>Ars‑Trainingum</strong><br>
+    The Hall of Skill‑Forging — drills, rites, and mastery.  
+    <a href="training-hall.html" style="color: var(--gold);">Begin</a>
+  </div>
+
+  <!-- MAIN BUTTONS -->
+  <a class="nav-btn" href="the-colosseum.html">
+    THE COLOSSEUM  
+    <span class="desc">Trials of mind, will, and simulation.</span>
   </a>
 
-  <!-- ROOM 3 -->
-  <a onclick="go('mon-fri.html')" class="nav-btn">
-    The Hall of Weekly Decay
-    <span class="desc">Understand the sacred Friday window and the rhythm of the market.</span>
+  <a class="nav-btn" href="inside-the-guild.html">
+    INNER HALL  
+    <span class="desc">Oaths, ranks, and sacred scrolls.</span>
   </a>
 
-  <!-- ROOM 4 -->
-  <a onclick="go('options-chain.html')" class="nav-btn">
-    The Observatory of Chains
-    <span class="desc">Study the options chain with clarity and Guild‑level precision.</span>
+  <a class="nav-btn" href="training-hall.html">
+    ARS‑TRAININGUM  
+    <span class="desc">The medieval Training Hall of mastery.</span>
   </a>
 
-  <div class="divider"></div>
-
-  <!-- ROOM 5 -->
-  <a onclick="go('guild-practice.html')" class="nav-btn">
-    The Practice Arena
-    <span class="desc">Train your execution, approvals, and broker mastery.</span>
+  <a class="nav-btn" href="glossary.html">
+    THE GRAND GLOSSARY  
+    <span class="desc">Definitions of every chamber and rite.</span>
   </a>
 
-  <!-- ROOM 6 -->
-  <a href="https://boardwalkclay1.github.io/Trade_Alive/" class="nav-btn" target="_blank">
-    The Engine Room
-    <span class="desc">Watch contracts move in real time — the heartbeat of the market.</span>
-  </a>
-
-  <!-- ROOM 7 -->
-  <a href="https://boardwalkclay1.github.io/formula1/" class="nav-btn" target="_blank">
-    The Formula Chamber
-    <span class="desc">Upload a chart and see the Guild’s logic applied instantly.</span>
-  </a>
-
-  <div class="divider"></div>
-
-</div>
-
-<script>
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("scroll").classList.add("open");
-  }, 300);
-});
-</script>
+  <!-- FOG + PILLARS -->
+  <div class="fog-layer"></div>
+  <div class="pillar pillar-left"></div>
+  <div class="pillar pillar-right"></div>
 
 </body>
 </html>
