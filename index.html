@@ -5,137 +5,118 @@
   <title>The Guild</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- FAVICON + BOOKMARK ICON -->
+  <link rel="icon" type="image/png" href="image/the-guild.png" />
+  <link rel="apple-touch-icon" href="image/the-guild.png" />
+
   <!-- MEDIEVAL FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
-  <!-- GLOBAL CINEMATIC CSS -->
+  <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="guild-style.css">
-
-  <!-- GUILD ENGINE -->
-  <script src="guild-engine.js" defer></script>
 </head>
 
-<body data-bg="Arcadium.jpg">
+<body data-bg="the-guild.png">
 
-  <!-- FLOATING IMAGES -->
-  <img src="image/guild-seal.png" class="float-img float-left" />
-  <img src="image/guild-seal.png" class="float-img float-right" />
-
-  <!-- RUNES -->
-  <div class="rune" style="left: 10%; top: 90%;">✦</div>
-  <div class="rune" style="left: 80%; top: 95%;">✧</div>
-  <div class="rune" style="left: 50%; top: 100%;">✦</div>
-
-  <!-- FOG + PILLARS -->
-  <div class="fog-layer"></div>
-  <div class="pillar pillar-left"></div>
-  <div class="pillar pillar-right"></div>
-
-  <!-- MAIN TITLE (Cursive + Bold + Medieval) -->
+  <!-- MAIN TITLE -->
   <div class="gold-scroll" id="scroll">
     <h1 class="scroll-title">The Guild Gates</h1>
-  </div>
-
-  <script>
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("scroll").classList.add("open");
-      }, 300);
-    });
-  </script>
-
-  <!-- SIDE TEXT LEFT -->
-  <div class="side-text side-left">
-    ⚔️ <strong>The Guild is a Way of Life.</strong><br><br>
-    Forged in pressure.  
-    Sharpened in discipline.  
-    Built to rebuild you into someone your family can depend on.
-  </div>
-
-  <!-- SIDE TEXT RIGHT -->
-  <div class="side-text side-right">
-    💰 <strong>Fortunes rise every dawn.</strong><br><br>
-    Not because others are wiser—  
-    but because they walk with knowledge you have not yet been shown.
   </div>
 
   <!-- TOP NAV -->
   <div class="top-nav">
     <a onclick="go('million-dollar-move.html')">Million Dollar Move</a>
     <a onclick="go('colosseum.html')">The Colosseum</a>
-    <a onclick="go('guild-entry.html')">Enter the Inner Hall</a>
+    <a onclick="go('guild-entry.html')">Inner Hall</a>
   </div>
 
   <!-- MAIN CONTENT -->
   <div class="content">
 
-    <div class="divider"></div>
+    <!-- SECTION TEMPLATE -->
+    <div class="guild-section">
+      <div class="section-header">
+        ⚔️ The Guild is a Brotherhood of the Market
+        <div class="section-slogan">Where traders rise, fall, and are reborn.</div>
+      </div>
 
-    <!-- SECTION 1 -->
-    <div class="nav-btn" style="cursor: default;">
-      <span class="desc">
-        <strong>⚔️ The Guild is a Brotherhood of the Market.</strong><br><br>
-        Here you learn the truths of the Arena—  
-        where traders rise, fall, and are reborn.<br><br>
-        You will learn the hidden corner of the market  
-        where real money is made — the place that changes lives.
-      </span>
+      <details class="section-dropdown">
+        <summary>Learn More</summary>
+        <p>
+          Here you learn the truths of the Arena — where discipline is forged,
+          clarity is earned, and real money is made in the hidden corners of the market.
+        </p>
+      </details>
     </div>
 
-    <div class="divider"></div>
+    <div class="guild-section">
+      <div class="section-header">
+        🜂 The Golden Formula Engine
+        <div class="section-slogan">A one‑of‑a‑kind engine found only in The Guild.</div>
+      </div>
 
-    <!-- SECTION 2 -->
-    <a onclick="go('golden-simulator.html')" class="nav-btn">
-      The Golden Formula Engine
-      <span class="desc">
-        🜂 <strong>A one‑of‑a‑kind engine found only within The Guild.</strong><br><br>
-        Take a screenshot of any chart.<br>
-        The engine reveals the logic, the reasoning, and the path —  
-        as if the guidance came directly from the Guildmaster himself.
-      </span>
-    </a>
+      <details class="section-dropdown">
+        <summary>Learn More</summary>
+        <p>
+          Upload any chart screenshot.  
+          The engine reveals the logic, the reasoning, and the path —  
+          as if the guidance came directly from the Guildmaster himself.
+        </p>
+      </details>
 
-    <div class="divider"></div>
-
-    <!-- SECTION 3 -->
-    <a onclick="go('guild-entry.html')" class="nav-btn">
-      Enter the Inner Hall
-      <span class="desc">
-        Behind these walls, your family awaits you.  
-        The Guild is not a group — it is a blood‑bond of discipline and clarity.
-      </span>
-    </a>
-
-    <!-- SECTION 4 -->
-    <a onclick="go('million-dollar-move.html')" class="nav-btn">
-      The Million Dollar Move
-      <span class="desc">
-        Learn how small contracts become massive moves.  
-        Simple explanations. Real logic. Life‑changing clarity.
-      </span>
-    </a>
-
-    <!-- SECTION 5 -->
-    <a onclick="go('colosseum.html')" class="nav-btn">
-      The Colosseum
-      <span class="desc">
-        Step into the story of discipline, scars, and transformation.  
-        A tale that mirrors your journey in the market.
-      </span>
-    </a>
-
-    <div class="divider"></div>
-
-    <!-- SECTION 6 -->
-    <div class="nav-btn" style="cursor: default;">
-      <span class="desc">
-        🔥 <strong>The Golden Formula App</strong> is coming soon.<br><br>
-        🤖 <strong>The Guild Trading Bot</strong> will follow.<br><br>
-        All of it will live inside the Guild ecosystem.
-      </span>
+      <a onclick="go('golden-simulator.html')" class="section-button">Enter Engine</a>
     </div>
 
-    <div class="divider"></div>
+    <div class="guild-section">
+      <div class="section-header">
+        🏛️ Enter the Inner Hall
+        <div class="section-slogan">Where your family awaits you.</div>
+      </div>
+
+      <details class="section-dropdown">
+        <summary>Learn More</summary>
+        <p>
+          The Guild is not a group — it is a blood‑bond of discipline and clarity.
+          Inside these walls, you rise into the version of yourself your family can depend on.
+        </p>
+      </details>
+
+      <a onclick="go('guild-entry.html')" class="section-button">Enter Hall</a>
+    </div>
+
+    <div class="guild-section">
+      <div class="section-header">
+        💹 The Million Dollar Move
+        <div class="section-slogan">Where small contracts become massive moves.</div>
+      </div>
+
+      <details class="section-dropdown">
+        <summary>Learn More</summary>
+        <p>
+          Simple explanations.  
+          Real logic.  
+          Life‑changing clarity.
+        </p>
+      </details>
+
+      <a onclick="go('million-dollar-move.html')" class="section-button">Learn the Move</a>
+    </div>
+
+    <div class="guild-section">
+      <div class="section-header">
+        🏟️ The Colosseum
+        <div class="section-slogan">A tale of discipline, scars, and transformation.</div>
+      </div>
+
+      <details class="section-dropdown">
+        <summary>Learn More</summary>
+        <p>
+          Step into the story that mirrors your journey in the market.
+        </p>
+      </details>
+
+      <a onclick="go('colosseum.html')" class="section-button">Enter Arena</a>
+    </div>
 
   </div>
 
