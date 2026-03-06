@@ -10,12 +10,37 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="guild-style.css">
+
+  <style>
+    /* ADD TO HOME SCREEN BUTTON */
+    #a2hs-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 18px;
+      background: rgba(0,0,0,0.75);
+      border: 2px solid #D4AF37;
+      border-radius: 12px;
+      color: #D4AF37;
+      font-family: "Marcellus SC", serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      z-index: 9999;
+      display: none;
+    }
+    #a2hs-btn:hover {
+      background: rgba(212,175,55,0.2);
+    }
+  </style>
 </head>
 
-<body data-bg="the-guild.png">
+<!-- FORCE VESTRY BACKGROUND -->
+<body data-bg="Vestry.jpg">
 
   <!-- ============================
        GOLDEN FORMULA — TOP GOLD BAR
+       (NOW ROUTES TO PAYWALL)
        ============================ -->
   <div class="gf-topbar">
     <button class="gf-btn gold-bar">
@@ -28,8 +53,9 @@
         A one‑of‑a‑kind engine found only in The Guild.  
         Upload any chart screenshot and the Guildmaster reveals the path.
       </p>
-      <button class="enter-btn"
-        onclick="go('https://boardwalkclay1.github.io/goldenformula/simulator.html')">
+
+      <!-- PAYWALL LOGIC -->
+      <button class="enter-btn" onclick="openGF()">
         ENTER
       </button>
     </div>
@@ -125,6 +151,11 @@
   </div>
 
   <!-- ============================
+       ADD TO HOME SCREEN BUTTON
+       ============================ -->
+  <button id="a2hs-btn">Add to Home Screen</button>
+
+  <!-- ============================
        JS
        ============================ -->
   <script>
@@ -132,16 +163,41 @@
       window.location.href = page;
     }
 
-    // Section dropdowns
+    // GOLDEN FORMULA PAYWALL LOGIC
+    function openGF() {
+      if (localStorage.getItem("gf_subscriber") === "paid") {
+        window.location.href = "guild-goldenformula.html";
+      } else {
+        window.location.href = "gf-paywall.html";
+      }
+    }
+
+    // SECTION DROPDOWNS
     document.querySelectorAll('.dropdown-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
         btn.nextElementSibling.classList.toggle('open');
       });
     });
 
-    // Golden Formula dropdown
+    // GOLDEN FORMULA DROPDOWN
     document.querySelector('.gf-btn').addEventListener('click', () => {
       document.querySelector('.gf-dropdown').classList.toggle('open');
+    });
+
+    // ADD TO HOME SCREEN
+    let deferredPrompt;
+    const a2hsBtn = document.getElementById("a2hs-btn");
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      a2hsBtn.style.display = "block";
+    });
+
+    a2hsBtn.addEventListener("click", () => {
+      a2hsBtn.style.display = "none";
+      deferredPrompt.prompt();
+      deferredPrompt = null;
     });
   </script>
 
