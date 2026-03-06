@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Golden Formula Chamber</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="guild-style.css">
+
+  <style>
+    .chamber-frame {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .chamber-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+
+<body data-bg="Aurum-Veritas.jpg">
+
+<script>
+  if (localStorage.getItem("gf_subscriber") !== "paid") {
+    window.location.href = "gf-paywall.html";
+  }
+</script>
+
+<div class="fog-layer"></div>
+<div class="pillar pillar-left"></div>
+<div class="pillar pillar-right"></div>
+
+<div class="chamber-frame">
+  <iframe 
+    src="https://boardwalkclay1.github.io/goldenformula/simulator.html"
+    class="chamber-iframe">
+  </iframe>
+</div>
+
+</body>
+</html>
