@@ -5,31 +5,42 @@
   <title>The Guild</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- ICONS -->
   <link rel="icon" type="image/png" href="the-guild.png" />
   <link rel="apple-touch-icon" href="the-guild.png" />
 
-  <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
-
-  <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="guild-style.css">
 </head>
 
 <body data-bg="the-guild.png">
 
-  <!-- GOLDEN FORMULA — TOP LEFT HAMBURGER -->
-  <div class="gf-wrapper">
-    <button class="gf-btn">☰ Golden Formula</button>
+  <!-- ============================
+       TOP NAV WITH GOLDEN FORMULA
+       ============================ -->
+  <div class="top-nav">
 
-    <div class="gf-dropdown">
-      <div class="gf-title">The Golden Formula Engine</div>
-      <p>
-        A one‑of‑a‑kind engine found only in The Guild.  
-        Upload any chart screenshot and the Guildmaster reveals the path.
-      </p>
-      <button class="enter-btn" onclick="go('golden-simulator.html')">ENTER</button>
+    <!-- GOLDEN FORMULA HAMBURGER (LEFT OF DEATH STRIKE) -->
+    <div class="gf-wrapper">
+      <button class="gf-btn">☰ Golden Formula</button>
+
+      <div class="gf-dropdown">
+        <div class="gf-title">The Golden Formula Engine</div>
+        <p>
+          A one‑of‑a‑kind engine found only in The Guild.  
+          Upload any chart screenshot and the Guildmaster reveals the path.
+        </p>
+        <button class="enter-btn"
+          onclick="go('https://boardwalkclay1.github.io/goldenformula/simulator.html')">
+          ENTER
+        </button>
+      </div>
     </div>
+
+    <!-- NORMAL NAV ITEMS -->
+    <a onclick="go('death-strike.html')">Death Strike</a>
+    <a onclick="go('colosseum.html')">The Colosseum</a>
+    <a onclick="go('guild-entry.html')">Inner Hall</a>
+
   </div>
 
   <!-- MAIN TITLE -->
@@ -37,14 +48,9 @@
     <h1 class="scroll-title">The Guild Gates</h1>
   </div>
 
-  <!-- TOP NAV -->
-  <div class="top-nav">
-    <a onclick="go('death-strike.html')">Death Strike</a>
-    <a onclick="go('colosseum.html')">The Colosseum</a>
-    <a onclick="go('guild-entry.html')">Inner Hall</a>
-  </div>
-
-  <!-- MAIN CONTENT -->
+  <!-- ============================
+       MAIN CONTENT SECTIONS
+       ============================ -->
   <div class="content">
 
     <!-- SECTION 1 -->
@@ -64,7 +70,7 @@
       </div>
     </div>
 
-    <!-- SECTION 2 — INNER HALL -->
+    <!-- SECTION 2 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         🏛️ The Inner Hall
@@ -99,7 +105,7 @@
       </div>
     </div>
 
-    <!-- SECTION 4 — COLOSSEUM -->
+    <!-- SECTION 4 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         🏟️ The Colosseum
@@ -117,7 +123,9 @@
 
   </div>
 
-  <!-- JS -->
+  <!-- ============================
+       JS
+       ============================ -->
   <script>
     function go(page) {
       window.location.href = page;
