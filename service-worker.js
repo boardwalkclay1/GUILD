@@ -1,16 +1,28 @@
 // ===============================
-// GUILD MASTER SERVICE WORKER — FIXED PATHS
+// GUILD MASTER SERVICE WORKER — FINAL CLEAN VERSION
 // ===============================
 
-const CACHE_NAME = "guild-master-cache-v2";
+const CACHE_NAME = "guild-master-cache-v3";
 
 const ASSETS = [
 
-  // --- GUILD ROOT ---
+  // --- ROOT FILES ---
   "index.html",
   "guild-style.css",
+  "guild-engine.js",
   "the-guild.png",
   "favicon.ico",
+
+  // --- GUILD PAGES ---
+  "guild.html",
+  "glossary.html",
+  "golden-rules.html",
+  "guild-discipline.html",
+  "inside-the-guild.html",
+  "guild-family.html",
+  "training-hall.html",
+  "gf-paywall.html",
+  "guild-goldenformula.html",
 
   // --- GUILD BACKGROUNDS ---
   "image/Arcadium.jpg",
@@ -21,39 +33,20 @@ const ASSETS = [
   "image/Vestry.jpg",
   "image/apotheosis-chamber.jpg",
   "image/gladiator-forum.jpg",
-  "image/strategy-chamber.jpg",
-
-  // --- TRADE_ALIVE ---
-  "Trade_Alive/index.html",
-  "Trade_Alive/style.css",
-  "Trade_Alive/app.js",
-
-  // --- GOLDEN FORMULA ---
-  "goldenformula/simulator.html",
-  "goldenformula/style.css",
-  "goldenformula/app.js"
+  "image/strategy-chamber.jpg"
 ];
 
-// INSTALL — safe caching
+// INSTALL — cache only files inside THIS repo
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache =>
-      Promise.all(
-        ASSETS.map(asset =>
-          fetch(asset)
-            .then(res => {
-              if (!res.ok) throw new Error("Missing: " + asset);
-              return cache.put(asset, res);
-            })
-            .catch(() => console.warn("[SW] Skipped:", asset))
-        )
-      )
+      cache.addAll(ASSETS)
     )
   );
   self.skipWaiting();
 });
 
-// ACTIVATE — clean old caches
+// ACTIVATE — remove old caches
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
