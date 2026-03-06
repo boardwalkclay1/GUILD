@@ -14,78 +14,104 @@
 
 <body data-bg="the-guild.png">
 
+  <!-- GOLDEN FORMULA SPECIAL BUTTON -->
+  <div class="golden-formula-menu">
+    <button class="gf-btn">
+      ☰ Golden Formula
+    </button>
+
+    <div class="gf-dropdown">
+      <div class="gf-title">The Golden Formula Engine</div>
+      <p>
+        A one‑of‑a‑kind engine found only in The Guild.  
+        Upload any chart screenshot and the Guildmaster reveals the path.
+      </p>
+      <button class="enter-btn" onclick="go('GUILD/golden-simulator.html')">ENTER</button>
+    </div>
+  </div>
+
+  <!-- MAIN TITLE -->
   <div class="gold-scroll" id="scroll">
     <h1 class="scroll-title">The Guild Gates</h1>
   </div>
 
+  <!-- TOP NAV -->
   <div class="top-nav">
-    <a onclick="go('million-dollar-move.html')">Million Dollar Move</a>
-    <a onclick="go('colosseum.html')">The Colosseum</a>
-    <a onclick="go('guild-entry.html')">Inner Hall</a>
+    <a onclick="go('GUILD/death-strike.html')">Death Strike</a>
+    <a onclick="go('GUILD/colosseum.html')">The Colosseum</a>
+    <a onclick="go('GUILD/guild-entry.html')">Inner Hall</a>
   </div>
 
+  <!-- MAIN CONTENT -->
   <div class="content">
 
+    <!-- SECTION 1 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         ⚔️ The Guild Brotherhood
         <span class="arrow">▼</span>
       </button>
+
       <div class="dropdown-panel">
         <div class="slogan">Where traders rise, fall, and are reborn.</div>
-        <p>Here you learn the truths of the Arena — where discipline is forged,
-        clarity is earned, and real money is made in the hidden corners of the market.</p>
-        <button class="enter-btn" onclick="go('guild-entry.html')">ENTER</button>
+        <p>
+          Here you learn the truths of the Arena — where discipline is forged,
+          clarity is earned, and real money is made in the hidden corners of the market.
+        </p>
+        <button class="enter-btn" onclick="go('GUILD/guild-entry.html')">ENTER</button>
       </div>
     </div>
 
-    <div class="guild-section">
-      <button class="guild-btn dropdown-toggle">
-        🜂 The Golden Formula Engine
-        <span class="arrow">▼</span>
-      </button>
-      <div class="dropdown-panel">
-        <div class="slogan">A one‑of‑a‑kind engine found only in The Guild.</div>
-        <p>Upload any chart screenshot. The engine reveals the logic, the reasoning,
-        and the path — as if the guidance came directly from the Guildmaster himself.</p>
-        <button class="enter-btn" onclick="go('golden-simulator.html')">ENTER</button>
-      </div>
-    </div>
+    <!-- SECTION 2 — GOLDEN FORMULA REMOVED FROM HERE -->
 
+    <!-- SECTION 3 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         🏛️ The Inner Hall
         <span class="arrow">▼</span>
       </button>
+
       <div class="dropdown-panel">
         <div class="slogan">Where your family awaits you.</div>
-        <p>The Guild is not a group — it is a blood‑bond of discipline and clarity.
-        Inside these walls, you rise into the version of yourself your family can depend on.</p>
-        <button class="enter-btn" onclick="go('guild-entry.html')">ENTER</button>
+        <p>
+          The Guild is not a group — it is a blood‑bond of discipline and clarity.
+          Inside these walls, you rise into the version of yourself your family can depend on.
+        </p>
+        <button class="enter-btn" onclick="go('GUILD/guild-entry.html')">ENTER</button>
       </div>
     </div>
 
+    <!-- SECTION 4 — DEATH STRIKE -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
-        💹 The Million Dollar Move
+        💀 Death Strike
         <span class="arrow">▼</span>
       </button>
+
       <div class="dropdown-panel">
         <div class="slogan">Where small contracts become massive moves.</div>
-        <p>Simple explanations. Real logic. Life‑changing clarity.</p>
-        <button class="enter-btn" onclick="go('million-dollar-move.html')">ENTER</button>
+        <p>
+          Simple explanations.  
+          Real logic.  
+          Life‑changing clarity.
+        </p>
+        <button class="enter-btn" onclick="go('GUILD/death-strike.html')">ENTER</button>
       </div>
     </div>
 
+    <!-- SECTION 5 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         🏟️ The Colosseum
         <span class="arrow">▼</span>
       </button>
+
       <div class="dropdown-panel">
         <div class="slogan">A tale of discipline, scars, and transformation.</div>
-        <p>Step into the story that mirrors your journey in the market.</p>
-        <button class="enter-btn" onclick="go('colosseum.html')">ENTER</button>
+        <p>
+          Step into the story that mirrors your journey in the market.
+        </p>
+        <button class="enter-btn" onclick="go('GUILD/colosseum.html')">ENTER</button>
       </div>
     </div>
 
@@ -101,6 +127,11 @@
         const panel = btn.nextElementSibling;
         panel.classList.toggle('open');
       });
+    });
+
+    // Golden Formula dropdown
+    document.querySelector('.gf-btn').addEventListener('click', () => {
+      document.querySelector('.gf-dropdown').classList.toggle('open');
     });
   </script>
 
