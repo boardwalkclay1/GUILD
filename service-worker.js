@@ -1,16 +1,18 @@
 // ===============================
-// GUILD SERVICE WORKER — FIXED
+// GUILD SERVICE WORKER — FINAL FIXED VERSION
 // ===============================
 
-const CACHE_NAME = "guild-cache-v2";  // <-- version bump forces refresh
+const CACHE_NAME = "guild-cache-v3";  // bump version to force refresh
 
 const ASSETS = [
   "index.html",
   "guild-style.css",
+  "guild-engine.js",
   "guild-logo.png",
   "manifest.json",
+  "favicon.ico",
 
-  // Backgrounds (correct folder path)
+  // Cinematic Backgrounds (correct folder path)
   "image/Arcadium.jpg",
   "image/Armory.jpeg",
   "image/Aurum-Veritas.jpg",
@@ -21,7 +23,7 @@ const ASSETS = [
   "image/gladiator-forum.jpg",
   "image/strategy-chamber.jpg",
 
-  // Guild Seals / Icons (add these if used)
+  // Guild Seals / Fog / Pillars
   "image/guild-seal.png",
   "image/fog.png",
   "image/guild-pillar.png"
@@ -30,34 +32,30 @@ const ASSETS = [
 // INSTALL — cache everything fresh
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(ASSETS);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
-  self.skipWaiting(); // <-- forces immediate activation
+  self.skipWaiting(); // activate immediately
 });
 
 // ACTIVATE — delete old caches
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then(keys => {
-      return Promise.all(
+    caches.keys().then(keys =>
+      Promise.all(
         keys
           .filter(key => key !== CACHE_NAME)
           .map(key => caches.delete(key))
-      );
-    })
+      )
+    )
   );
-  self.clients.claim(); // <-- ensures new SW controls all pages
+  self.clients.claim(); // take control of all pages
 });
 
 // FETCH — network first, fallback to cache
 self.addEventListener("fetch", event => {
   event.respondWith(
     fetch(event.request)
-      .then(response => {
-        return response;
-      })
+      .then(response => response)
       .catch(() => caches.match(event.request))
   );
 });
