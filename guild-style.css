@@ -371,3 +371,22 @@ body {
   box-shadow: 0 0 20px var(--gold-glow);
   transform: translateY(-2px);
 }
+/* ============================
+   FORCE ALL DROPDOWNS CLOSED
+   ============================ */
+
+.dropdown-panel,
+.gf-dropdown {
+  display: none;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* When opened */
+.dropdown-panel.open,
+.gf-dropdown.open {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
