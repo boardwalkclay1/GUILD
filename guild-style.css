@@ -1,5 +1,5 @@
 /* ============================================
-   GUILD GLOBAL CINEMATIC STYLES — IMAGE-FREE VERSION
+   GUILD GLOBAL CINEMATIC STYLES — FINAL VERSION
    ============================================ */
 
 /* RESET */
@@ -24,6 +24,11 @@
 /* BASE */
 body {
   background: #000;
+  background-image: url("the-guild.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
   color: var(--gold);
   font-family: 'Uncial Antiqua', serif;
   overflow-x: hidden;
@@ -32,19 +37,6 @@ body {
   transition: opacity 0.6s ease;
   font-weight: 700;
   letter-spacing: 0.5px;
-}
-
-/* BACKGROUND (NO IMAGE) */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at center, rgba(212,175,55,0.15), transparent 70%),
-    linear-gradient(135deg, rgba(60,40,10,0.6), rgba(0,0,0,0.9));
-  opacity: var(--bg-opacity);
-  filter: blur(var(--bg-blur));
-  z-index: -3;
 }
 
 /* FOG (PURE CSS) */
@@ -131,24 +123,8 @@ body::before {
   -webkit-text-stroke: 1px rgba(255,215,0,0.7);
 }
 
-/* SIDE TEXT */
-.side-text {
-  position: fixed;
-  top: 200px;
-  width: 260px;
-  padding: 20px;
-  background: rgba(0,0,0,0.65);
-  border: 2px solid var(--gold);
-  border-radius: 12px;
-  font-size: 1.1rem;
-  line-height: 1.4;
-  font-family: 'Uncial Antiqua', serif;
-  font-weight: 700;
-  text-shadow: 0 0 6px rgba(0,0,0,0.6);
-}
-
-.side-left { left: 20px; }
-.side-right { right: 20px; }
+/* REMOVE SIDE TEXT COMPLETELY */
+.side-text { display: none !important; }
 
 /* TOP NAV */
 .top-nav {
@@ -181,38 +157,103 @@ body::before {
   text-shadow: 0 0 12px var(--gold);
 }
 
-/* NAV BUTTONS */
-.nav-btn {
-  display: block;
-  background: rgba(0,0,0,0.75);
-  border: 2px solid var(--gold);
-  padding: 20px;
-  border-radius: 14px;
-  margin: 18px auto;
+/* ============================================
+   GUILD OVAL BUTTONS (STYLE A)
+   ============================================ */
+
+.guild-btn {
+  width: 90%;
   max-width: 600px;
-  text-decoration: none;
+  margin: 20px auto;
+  padding: 18px 22px;
+
+  background: rgba(0,0,0,0.75);
+  border: 3px solid var(--gold);
+  border-radius: 40px;
+
   color: var(--gold);
-  text-align: center;
   font-family: 'Uncial Antiqua', serif;
-  font-weight: 800;
   font-size: 1.4rem;
+  font-weight: 900;
   letter-spacing: 0.08em;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
   transition: 0.3s ease;
-  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+  box-shadow: 0 0 12px var(--gold-glow);
 }
 
-.nav-btn:hover {
-  background: rgba(212,175,55,0.2);
+.guild-btn:hover {
+  background: rgba(212,175,55,0.18);
   transform: translateY(-3px);
   box-shadow: 0 0 20px var(--gold-glow);
 }
 
-/* DESCRIPTION TEXT */
-.desc {
+.arrow {
+  font-size: 1.4rem;
+  color: var(--gold);
+}
+
+/* DROPDOWN PANEL */
+.dropdown-panel {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+
+  background: rgba(0,0,0,0.75);
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+
+  padding: 18px;
+  display: none;
+
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+.dropdown-panel.open {
   display: block;
-  margin-top: 8px;
-  font-size: 1rem;
+}
+
+.slogan {
+  font-size: 1.1rem;
+  color: var(--gold-soft);
+  margin-bottom: 10px;
   font-weight: 700;
-  opacity: 0.9;
-  line-height: 1.4;
+}
+
+/* ENTER BUTTON */
+.enter-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 14px;
+
+  background: rgba(0,0,0,0.85);
+  border: 3px solid var(--gold);
+  border-radius: 30px;
+
+  color: var(--gold);
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.enter-btn:hover {
+  background: rgba(212,175,55,0.2);
+  box-shadow: 0 0 18px var(--gold-glow);
+  transform: translateY(-2px);
+}
+
+/* MOBILE FIXES */
+@media (max-width: 600px) {
+  .scroll-title { font-size: 2.2rem; }
+  .guild-btn { font-size: 1.2rem; padding: 16px 20px; }
+  .arrow { font-size: 1.2rem; }
+  .enter-btn { font-size: 1.1rem; }
 }
