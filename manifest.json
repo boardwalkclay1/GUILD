@@ -9,12 +9,12 @@
 
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "48x48 72x72 96x96 144x144 192x192",
-      "type": "image/x-icon"
+      "src": "the-guild.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "guild-logo.png",
+      "src": "the-guild.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
