@@ -2,14 +2,16 @@
 // GUILD SERVICE WORKER — FINAL FIXED VERSION
 // ===============================
 
-const CACHE_NAME = "guild-cache-v3";  // bump version to force refresh
+const CACHE_NAME = "guild-cache-v4";  // bump version to force refresh
 
 const ASSETS = [
   "index.html",
   "guild-style.css",
   "guild-engine.js",
-  "guild-logo.png",
   "manifest.json",
+
+  // Icons
+  "the-guild.png",   // <-- NEW main icon for PWA + Home Screen
   "favicon.ico",
 
   // Cinematic Backgrounds (correct folder path)
