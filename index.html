@@ -5,116 +5,86 @@
   <title>The Guild</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- FAVICON + BOOKMARK ICON -->
   <link rel="icon" type="image/png" href="the-guild.png" />
   <link rel="apple-touch-icon" href="the-guild.png" />
 
-  <!-- MEDIEVAL FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
-
-  <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="guild-style.css">
 </head>
 
 <body data-bg="the-guild.png">
 
-  <!-- MAIN TITLE -->
   <div class="gold-scroll" id="scroll">
     <h1 class="scroll-title">The Guild Gates</h1>
   </div>
 
-  <!-- TOP NAV -->
   <div class="top-nav">
     <a onclick="go('million-dollar-move.html')">Million Dollar Move</a>
     <a onclick="go('colosseum.html')">The Colosseum</a>
     <a onclick="go('guild-entry.html')">Inner Hall</a>
   </div>
 
-  <!-- MAIN CONTENT -->
   <div class="content">
 
-    <!-- SECTION 1 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         ⚔️ The Guild Brotherhood
         <span class="arrow">▼</span>
       </button>
-
       <div class="dropdown-panel">
         <div class="slogan">Where traders rise, fall, and are reborn.</div>
-        <p>
-          Here you learn the truths of the Arena — where discipline is forged,
-          clarity is earned, and real money is made in the hidden corners of the market.
-        </p>
+        <p>Here you learn the truths of the Arena — where discipline is forged,
+        clarity is earned, and real money is made in the hidden corners of the market.</p>
         <button class="enter-btn" onclick="go('guild-entry.html')">ENTER</button>
       </div>
     </div>
 
-    <!-- SECTION 2 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         🜂 The Golden Formula Engine
         <span class="arrow">▼</span>
       </button>
-
       <div class="dropdown-panel">
         <div class="slogan">A one‑of‑a‑kind engine found only in The Guild.</div>
-        <p>
-          Upload any chart screenshot.  
-          The engine reveals the logic, the reasoning, and the path —  
-          as if the guidance came directly from the Guildmaster himself.
-        </p>
+        <p>Upload any chart screenshot. The engine reveals the logic, the reasoning,
+        and the path — as if the guidance came directly from the Guildmaster himself.</p>
         <button class="enter-btn" onclick="go('golden-simulator.html')">ENTER</button>
       </div>
     </div>
 
-    <!-- SECTION 3 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         🏛️ The Inner Hall
         <span class="arrow">▼</span>
       </button>
-
       <div class="dropdown-panel">
         <div class="slogan">Where your family awaits you.</div>
-        <p>
-          The Guild is not a group — it is a blood‑bond of discipline and clarity.
-          Inside these walls, you rise into the version of yourself your family can depend on.
-        </p>
+        <p>The Guild is not a group — it is a blood‑bond of discipline and clarity.
+        Inside these walls, you rise into the version of yourself your family can depend on.</p>
         <button class="enter-btn" onclick="go('guild-entry.html')">ENTER</button>
       </div>
     </div>
 
-    <!-- SECTION 4 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         💹 The Million Dollar Move
         <span class="arrow">▼</span>
       </button>
-
       <div class="dropdown-panel">
         <div class="slogan">Where small contracts become massive moves.</div>
-        <p>
-          Simple explanations.  
-          Real logic.  
-          Life‑changing clarity.
-        </p>
+        <p>Simple explanations. Real logic. Life‑changing clarity.</p>
         <button class="enter-btn" onclick="go('million-dollar-move.html')">ENTER</button>
       </div>
     </div>
 
-    <!-- SECTION 5 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         🏟️ The Colosseum
         <span class="arrow">▼</span>
       </button>
-
       <div class="dropdown-panel">
         <div class="slogan">A tale of discipline, scars, and transformation.</div>
-        <p>
-          Step into the story that mirrors your journey in the market.
-        </p>
+        <p>Step into the story that mirrors your journey in the market.</p>
         <button class="enter-btn" onclick="go('colosseum.html')">ENTER</button>
       </div>
     </div>
@@ -122,7 +92,10 @@
   </div>
 
   <script>
-    // Dropdown logic
+    function go(page) {
+      window.location.href = page;
+    }
+
     document.querySelectorAll('.dropdown-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
         const panel = btn.nextElementSibling;
