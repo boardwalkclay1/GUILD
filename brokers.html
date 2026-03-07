@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Brokers – Guild Setup</title>
+  <title>Brokers & Banking – Guild Setup</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Guild Stylesheet -->
   <link rel="stylesheet" href="guild-style.css" />
 
-  <!-- FORCE GOLD BACKGROUND -->
   <style>
     body {
       background: #000;
       font-family: system-ui, sans-serif;
-      padding: 40px 20px;
+      padding: 40px 20px 80px;
       line-height: 1.65;
-      text-align: center;
       color: #D4AF37;
     }
 
@@ -34,6 +31,7 @@
       letter-spacing: 0.15em;
       margin-bottom: 20px;
       color: #D4AF37;
+      text-align: center;
     }
 
     p {
@@ -43,21 +41,48 @@
       color: #D4AF37;
     }
 
-    .broker-box {
-      max-width: 750px;
-      margin: 25px auto;
-      padding: 20px;
+    .section {
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+
+    .dropdown-header {
+      max-width: 800px;
+      margin: 18px auto 0;
+      padding: 14px 16px;
       border-radius: 12px;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.8);
       border: 1px solid #8B6B2C;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .dropdown-header span.label {
       text-align: left;
     }
 
-    .broker-box h3 {
-      margin-top: 0;
-      color: #D4AF37;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+    .dropdown-header span.arrow {
+      font-size: 1.4rem;
+    }
+
+    .dropdown-panel {
+      max-width: 800px;
+      margin: 0 auto 10px;
+      padding: 14px 16px 18px;
+      border-radius: 0 0 12px 12px;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid #8B6B2C;
+      border-top: none;
+      display: none;
+    }
+
+    .dropdown-panel.open {
+      display: block;
     }
 
     a.btn {
@@ -87,83 +112,264 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       font-weight: 600;
+      text-align: center;
     }
 
     a.back:hover {
       color: #fff;
+    }
+
+    /* Burger menu */
+    .burger {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      font-size: 2rem;
+      color: #D4AF37;
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    .burger-menu {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 260px;
+      height: 100vh;
+      background: rgba(0,0,0,0.95);
+      border-right: 2px solid #D4AF37;
+      padding: 20px;
+      transition: 0.3s ease;
+      z-index: 9998;
+      overflow-y: auto;
+    }
+
+    .burger-menu.open {
+      left: 0;
+    }
+
+    .burger-menu h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.9rem;
+      color: #D4AF37;
+    }
+
+    .burger-menu a {
+      display: block;
+      padding: 8px 0;
+      color: #D4AF37;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(212,175,55,0.3);
+    }
+
+    .burger-menu a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding-top: 70px;
+      }
     }
   </style>
 </head>
 
 <body class="fade-in">
 
-  <h1>The Brokers You Need</h1>
+  <!-- Burger -->
+  <div class="burger" onclick="toggleMenu()">☰</div>
 
-  <p>
-    To execute the Million Dollar Move, you need brokers that give you **speed**, **funding**, and **execution power**.
-    No single broker does everything — that’s why the Guild uses more than one.
-  </p>
+  <!-- Burger Menu: Banking options -->
+  <div id="menu" class="burger-menu">
+    <h3>Banking Options</h3>
+    <a href="#chase">🏦 Chase Bank</a>
+    <a href="#boa">🏦 Bank of America</a>
+    <a href="#tda-bank">🏦 TD Ameritrade (Bank + Broker)</a>
+    <a href="#wells">🏦 Wells Fargo</a>
+    <a href="#capone">🏦 Capital One</a>
+  </div>
 
-  <p>
-    Download these now.  
-    Not later.  
-    Not tomorrow.  
-    **Now.**  
-    These apps are the tools you will use to multiply your money for the rest of your life.
-  </p>
+  <h1>Brokers & Banking Setup</h1>
 
-  <h2>Primary Banking Engine</h2>
-
-  <!-- CHASE BANK -->
-  <div class="broker-box">
-    <h3>Chase Online Banking</h3>
+  <div class="section">
     <p>
-      Chase is the **funding engine** of the Guild.
-      The reason we use Chase is simple:
-      <strong>You can deposit money and use it the same day.</strong>
+      To beat the arena, you will need a <strong>banker</strong> and a <strong>broker</strong>.  
+      And you can have more than one.
     </p>
     <p>
-      No waiting. No delays. No excuses.  
-      When you need to reload fast, Chase is the most reliable banking partner for traders.
+      If you don’t already have a bank account, this is your first step.  
+      You will connect your bank account to your broker so you can move money in and out.
+    </p>
+    <p>
+      This is a <strong>small step</strong> and it is <strongmuch easier than it feels</strong>.  
+      Do not get intimidated. You’ve signed up for apps before — this is the same thing, just more powerful.
+    </p>
+  </div>
+
+  <!-- BANKING OPTIONS (DROPDOWNS) -->
+
+  <!-- CHASE -->
+  <div id="chase" class="dropdown-header" onclick="toggleDrop('bank1')">
+    <span class="label">🏦 Chase Bank (Bank + Broker‑Ready)</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank1" class="dropdown-panel">
+    <p>
+      Chase is the Guild’s preferred <strong>funding engine</strong>.  
+      You can deposit money and often use it the same day — fast, simple, reliable.
+    </p>
+    <p>
+      Chase is also powerful because it pairs well with multiple brokers,  
+      and in some cases can act as both your <strong>banker and gateway to brokerage</strong>.  
+      That means fewer moving parts and more convenience.
+    </p>
+    <p>
+      This is a small, easy signup. Don’t overthink it — follow the prompts,  
+      create your account, and you’re done.
     </p>
     <a class="btn" href="https://www.chase.com" target="_blank">Open Chase Account</a>
   </div>
 
+  <!-- BANK OF AMERICA -->
+  <div id="boa" class="dropdown-header" onclick="toggleDrop('bank2')">
+    <span class="label">🏦 Bank of America</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank2" class="dropdown-panel">
+    <p>
+      Bank of America is a large, stable bank with wide coverage and solid mobile tools.  
+      It connects easily to most major brokers.
+    </p>
+    <p>
+      If you already bank here, you’re in a good position — you just need to link it to your broker.  
+      If not, signing up is straightforward and familiar.
+    </p>
+    <p>
+      Remember: this is just a tool. A few minutes of setup now gives you  
+      a lifetime of funding power for your trading.
+    </p>
+    <a class="btn" href="https://www.bankofamerica.com" target="_blank">Open Bank of America Account</a>
+  </div>
+
+  <!-- TD AMERITRADE AS BANK + BROKER -->
+  <div id="tda-bank" class="dropdown-header" onclick="toggleDrop('bank3')">
+    <span class="label">🏦 TD Ameritrade (Bank + Broker)</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank3" class="dropdown-panel">
+    <p>
+      TD Ameritrade is powerful because it can function as both your <strong>banker and broker</strong>.  
+      That means your money, your trading, and your tools can live under one roof.
+    </p>
+    <p>
+      It’s extremely stable, respected, and built for serious traders.  
+      Funding may take a bit longer than instant apps, but once you’re set up,  
+      the experience is smooth and professional.
+    </p>
+    <p>
+      Again — this is a small step. Don’t let the “big name” intimidate you.  
+      It’s just an online form and a login.
+    </p>
+    <a class="btn" href="https://www.tdameritrade.com" target="_blank">Open TD Ameritrade Account</a>
+  </div>
+
+  <!-- WELLS FARGO -->
+  <div id="wells" class="dropdown-header" onclick="toggleDrop('bank4')">
+    <span class="label">🏦 Wells Fargo</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank4" class="dropdown-panel">
+    <p>
+      Wells Fargo is another large, widely available bank that connects easily to most brokers.  
+      If you see a branch in your city, you can use it as your funding base.
+    </p>
+    <p>
+      The online signup is simple. Once created, you can link it to Robinhood, Webull,  
+      or any other broker you choose.
+    </p>
+    <a class="btn" href="https://www.wellsfargo.com" target="_blank">Open Wells Fargo Account</a>
+  </div>
+
+  <!-- CAPITAL ONE -->
+  <div id="capone" class="dropdown-header" onclick="toggleDrop('bank5')">
+    <span class="label">🏦 Capital One</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank5" class="dropdown-panel">
+    <p>
+      Capital One offers strong online banking with easy app‑based control.  
+      It’s a good option if you prefer a fully digital experience.
+    </p>
+    <p>
+      Once your account is open, you can connect it to your broker and move money in and out  
+      with just a few taps.
+    </p>
+    <a class="btn" href="https://www.capitalone.com" target="_blank">Open Capital One Account</a>
+  </div>
+
+  <div class="section">
+    <p>
+      You only need <strong>one</strong> bank to start — but having more than one gives you flexibility.  
+      The important thing is: <strong>do not stall here</strong>. This is a quick, simple setup.
+    </p>
+  </div>
+
+  <!-- BROKERS SECTION (KEPT, WITH UPDATED LANGUAGE) -->
+
   <h2>Primary Trading Brokers</h2>
 
-  <!-- ROBINHOOD -->
-  <div class="broker-box">
-    <h3>Robinhood</h3>
+  <div class="section">
     <p>
-      Robinhood gives you an instant **$2,000 margin loan** the moment you open the account.
+      Once your bank is ready, you connect it to your broker.  
+      The broker is the arena where your orders are executed.
+    </p>
+  </div>
+
+  <!-- ROBINHOOD -->
+  <div class="dropdown-header" onclick="toggleDrop('broker1')">
+    <span class="label">📈 Robinhood</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker1" class="dropdown-panel">
+    <p>
+      Robinhood gives you an instant <strong>$2,000 margin loan</strong> the moment you open the account.  
       This means you can trade immediately — even before your deposit clears.
     </p>
     <p>
-      It also offers **same‑day access** when you deposit with a debit card.
+      It also offers same‑day access when you deposit with a debit card.  
+      Fast, simple, and beginner‑friendly.
     </p>
     <a class="btn" href="https://robinhood.com" target="_blank">Open Robinhood</a>
   </div>
 
   <!-- WEBULL -->
-  <div class="broker-box">
-    <h3>Webull</h3>
+  <div class="dropdown-header" onclick="toggleDrop('broker2')">
+    <span class="label">📊 Webull</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker2" class="dropdown-panel">
     <p>
-      Webull gives you **instant buying power** when you deposit with a debit card.
+      Webull gives you <strong>instant buying power</strong> when you deposit with a debit card.  
       It mirrors Robinhood’s speed but with more advanced charting tools.
     </p>
     <p>
-      ACH deposits take 4 days — but debit card deposits are instant.
+      ACH deposits take a few days — but debit card deposits are instant.
     </p>
     <a class="btn" href="https://www.webull.com" target="_blank">Open Webull</a>
   </div>
 
-  <h2>Secondary Brokers (Strong, Reliable)</h2>
-
   <!-- TRADIER -->
-  <div class="broker-box">
-    <h3>Tradier</h3>
+  <div class="dropdown-header" onclick="toggleDrop('broker3')">
+    <span class="label">⚙️ Tradier</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker3" class="dropdown-panel">
     <p>
-      Tradier is a professional‑grade broker used by serious options traders.
+      Tradier is a professional‑grade broker used by serious options traders.  
       It has fast fills, clean executions, and strong API support.
     </p>
     <p>
@@ -172,57 +378,81 @@
     <a class="btn" href="https://brokerage.tradier.com" target="_blank">Open Tradier</a>
   </div>
 
-  <!-- TD AMERITRADE -->
-  <div class="broker-box">
-    <h3>TD Ameritrade</h3>
+  <!-- TD AMERITRADE (BROKER VIEW) -->
+  <div class="dropdown-header" onclick="toggleDrop('broker4')">
+    <span class="label">🏛️ TD Ameritrade (Broker)</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker4" class="dropdown-panel">
     <p>
-      TD Ameritrade is one of the most respected brokers in the world.
+      TD Ameritrade is one of the most respected brokers in the world.  
       It has powerful tools, fast executions, and deep options data.
     </p>
     <p>
-      Funding takes a few days, but once active, it is extremely stable.
+      Funding takes a few days, but once active, it is extremely stable —  
+      especially strong when paired with its banking side.
     </p>
     <a class="btn" href="https://www.tdameritrade.com" target="_blank">Open TD Ameritrade</a>
   </div>
 
   <!-- FIDELITY -->
-  <div class="broker-box">
-    <h3>Fidelity</h3>
+  <div class="dropdown-header" onclick="toggleDrop('broker5')">
+    <span class="label">🏛️ Fidelity</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker5" class="dropdown-panel">
     <p>
-      Fidelity is a long‑standing, trusted broker with excellent customer service.
+      Fidelity is a long‑standing, trusted broker with excellent customer service.  
       It is slower to fund, but extremely reliable for long‑term trading.
     </p>
     <p>
-      You can use Fidelity to execute the Million Dollar Move — it just isn’t as fast as Robinhood or Webull.
+      You can use Fidelity to beat the arena — it just isn’t as fast as Robinhood or Webull.
     </p>
     <a class="btn" href="https://www.fidelity.com" target="_blank">Open Fidelity</a>
   </div>
 
-  <h2>Why You Need More Than One</h2>
+  <div class="section">
+    <p>
+      You can have more than one broker.  
+      One might give you instant buying power, another better tools, another more stability.  
+      The Guild uses multiple — you can too.
+    </p>
+  </div>
 
-  <p>
-    Every broker has strengths and weaknesses.  
-    The Guild uses multiple brokers because:
-  </p>
+  <!-- ACCESSING OPTIONS LINK AT BOTTOM -->
 
-  <p>
-    • One gives you instant buying power  
-    • One gives you better fills  
-    • One gives you faster deposits  
-    • One gives you better charting  
-    • One gives you more stable executions  
-  </p>
+  <h2>Next Step: Accessing Options</h2>
 
-  <p>
-    <strong>You should download at least two of these right now.</strong>  
-    The faster you can fund, trade, and execute, the faster you can complete the Million Dollar Move.
-  </p>
+  <div class="dropdown-header" onclick="toggleDrop('accessing')">
+    <span class="label">🔐 Accessing Options</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="accessing" class="dropdown-panel">
+    <p>
+      Once your bank and broker are set up and connected,  
+      your next move is to <strong>unlock options trading</strong> inside your broker.
+    </p>
+    <p>
+      This chamber shows you exactly where to tap, what to enable,  
+      and how to make sure options are turned on and ready.
+    </p>
+    <a class="btn" href="accessing-options.html">Go to Accessing Options</a>
+  </div>
 
-  <a class="back" href="index.html">← Back to Hall</a>
+  <a class="back" href="inside-the-guild.html">← Back to Inside the Guild</a>
 
-  <!-- GOLD COIN BURST SCRIPT -->
   <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("open");
+    }
+
+    function toggleDrop(id) {
+      document.getElementById(id).classList.toggle("open");
+    }
+
+    // Gold coin burst (kept)
     document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("btn")) return; // still allow, but avoid spam if you want
       for (let i = 0; i < 12; i++) {
         const coin = document.createElement("div");
         coin.className = "coin";
