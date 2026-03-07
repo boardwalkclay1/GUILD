@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>THE GUILD — VESTRY</title>
+  <title>INNER HALL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link rel="icon" type="image/png" href="the-guild.png" />
@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="guild-style.css">
 </head>
 
-<!-- THIS IS THE IMPORTANT PART -->
 <body data-bg="Vestry.jpg">
 
   <!-- FOG + PILLARS -->
@@ -31,30 +30,59 @@
     </div>
   </div>
 
-  <!-- TOP NAVIGATION -->
+  <!-- TOP NAV — ONLY RULES + DISCIPLINE -->
   <div class="top-nav">
-    <a onclick="go('guild.html')">Guild Hall</a>
-    <a onclick="go('training-hall.html')">Training Hall</a>
-    <a onclick="go('inside-the-guild.html')">Inside the Guild</a>
-    <a onclick="go('guild-family.html')">Guild Family</a>
-    <a onclick="go('glossary.html')">Glossary</a>
     <a onclick="go('golden-rules.html')">Golden Rules</a>
     <a onclick="go('guild-discipline.html')">Guild Discipline</a>
   </div>
 
   <!-- PAGE TITLE -->
   <div class="gold-scroll open">
-    <h1 class="scroll-title">VESTRY CHAMBER</h1>
+    <h1 class="scroll-title">INNER HALL</h1>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="content" id="guild-content">
-    <p style="text-align:center; margin-top:200px; font-size:1.4rem;">
-      This is the Vestry chamber. Your background is now working.
-    </p>
+  <!-- VERTICAL BUTTONS (EVEN + PHONE-FIRST) -->
+  <div style="margin-top: 200px; display: flex; flex-direction: column; gap: 20px;">
+
+    <!-- INSIDE THE GUILD -->
+    <div class="guild-btn" onclick="go('inside-the-guild.html')">
+      Inside the Guild
+      <span class="arrow">›</span>
+    </div>
+
+    <!-- COLOSSEUM -->
+    <div class="guild-btn" onclick="go('colosseum.html')">
+      Colosseum
+      <span class="arrow">›</span>
+    </div>
+
+    <!-- TRAINING HALL -->
+    <div class="guild-btn" onclick="go('training-hall.html')">
+      Training Hall
+      <span class="arrow">›</span>
+    </div>
+
+    <!-- GUILD FAMILY -->
+    <div class="guild-btn" onclick="go('guild-family.html')">
+      Guild Family
+      <span class="arrow">›</span>
+    </div>
+
+    <!-- GLOSSARY -->
+    <div class="guild-btn" onclick="go('glossary.html')">
+      Glossary
+      <span class="arrow">›</span>
+    </div>
+
+    <!-- GUILD HALL -->
+    <div class="guild-btn" onclick="go('guild.html')">
+      Guild Hall
+      <span class="arrow">›</span>
+    </div>
+
   </div>
 
-  <!-- BACKGROUND OVERRIDE SCRIPT (THE FIX) -->
+  <!-- BACKGROUND FIX -->
   <script>
     const bg = document.body.getAttribute("data-bg");
     if (bg) {
