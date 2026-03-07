@@ -1,19 +1,21 @@
 // ===============================
-// GUILD MASTER SERVICE WORKER — FINAL CLEAN VERSION
+// GUILD SERVICE WORKER — CLEAN + CORRECT
 // ===============================
 
-const CACHE_NAME = "guild-master-cache-v3";
+const CACHE_NAME = "guild-cache-v4";
 
+// Cache ONLY files that exist inside THIS repo
 const ASSETS = [
 
-  // --- ROOT FILES ---
+  // ROOT
   "index.html",
   "guild-style.css",
   "guild-engine.js",
   "the-guild.png",
   "favicon.ico",
+  "manifest.json",
 
-  // --- GUILD PAGES ---
+  // GUILD PAGES
   "guild.html",
   "glossary.html",
   "golden-rules.html",
@@ -24,7 +26,7 @@ const ASSETS = [
   "gf-paywall.html",
   "guild-goldenformula.html",
 
-  // --- GUILD BACKGROUNDS ---
+  // BACKGROUNDS
   "image/Arcadium.jpg",
   "image/Armory.jpeg",
   "image/Aurum-Veritas.jpg",
@@ -36,12 +38,10 @@ const ASSETS = [
   "image/strategy-chamber.jpg"
 ];
 
-// INSTALL — cache only files inside THIS repo
+// INSTALL — cache everything that exists in THIS repo
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache =>
-      cache.addAll(ASSETS)
-    )
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
   self.skipWaiting();
 });
