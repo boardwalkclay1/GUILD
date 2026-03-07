@@ -10,6 +10,28 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="guild-style.css">
+
+  <style>
+    /* PHONE FIXES */
+    @media (max-width: 600px) {
+
+      .gf-topbar {
+        margin-top: 80px !important;   /* LOWER THE FORMULA BUTTON */
+      }
+
+      .gold-scroll {
+        margin-top: 40px !important;   /* LOWER THE TITLE */
+      }
+
+      .scroll-title {
+        font-size: 1.8rem !important;  /* FITS BETTER ON PHONE */
+      }
+
+      .vertical-stack {
+        margin-top: 160px !important;  /* EVEN SPACING FOR BUTTONS */
+      }
+    }
+  </style>
 </head>
 
 <body data-bg="Vestry.jpg">
@@ -19,8 +41,8 @@
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
-  <!-- GOLDEN FORMULA TOP BAR (LOWERED) -->
-  <div class="gf-topbar" style="margin-top: 40px;">
+  <!-- GOLDEN FORMULA TOP BAR (LOWERED ON PHONE) -->
+  <div class="gf-topbar">
     <button class="gf-btn gold-bar">☰ Golden Formula</button>
 
     <div class="gf-dropdown">
@@ -33,7 +55,7 @@
     </div>
   </div>
 
-  <!-- TOP NAV — RULES + DISCIPLINE + GLOSSARY -->
+  <!-- TOP NAV -->
   <div class="top-nav">
     <a onclick="go('golden-rules.html')">📜 Golden Rules</a>
     <a onclick="go('guild-discipline.html')">⚔️ Discipline</a>
@@ -45,8 +67,8 @@
     <h1 class="scroll-title">INNER HALL</h1>
   </div>
 
-  <!-- VERTICAL BUTTONS WITH EMOJIS + DROPDOWNS -->
-  <div style="margin-top: 200px; display: flex; flex-direction: column; gap: 20px;">
+  <!-- VERTICAL BUTTONS -->
+  <div class="vertical-stack" style="margin-top: 200px; display: flex; flex-direction: column; gap: 20px;">
 
     <!-- INSIDE THE GUILD -->
     <div class="guild-btn" onclick="toggleDrop('drop1')">
@@ -59,7 +81,7 @@
       <button class="enter-btn" onclick="go('inside-the-guild.html')">ENTER</button>
     </div>
 
-    <!-- COLOSSEUM (MOVED ABOVE FAMILY) -->
+    <!-- COLOSSEUM -->
     <div class="guild-btn" onclick="toggleDrop('drop2')">
       🏛️ Colosseum
       <span class="arrow">›</span>
@@ -81,7 +103,7 @@
       <button class="enter-btn" onclick="go('training-hall.html')">ENTER</button>
     </div>
 
-    <!-- GUILD FAMILY (BOTTOM) -->
+    <!-- GUILD FAMILY -->
     <div class="guild-btn" onclick="toggleDrop('drop4')">
       🤝 Guild Family
       <span class="arrow">›</span>
