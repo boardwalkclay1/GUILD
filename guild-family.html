@@ -12,6 +12,30 @@
   <script src="guild-engine.js" defer></script>
 
   <style>
+    /* Fade the background image */
+    body {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    /* Black overlay for readability */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55); /* 55% black overlay */
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Darkened pillars ONLY for this page */
+    .pillar-left,
+    .pillar-right {
+      filter: brightness(0.35) contrast(1.1);
+    }
+
     .family-container {
       max-width: 700px;
       margin: 0 auto;
@@ -19,6 +43,8 @@
       color: #D4AF37;
       text-align: center;
       line-height: 1.6;
+      position: relative;
+      z-index: 5;
     }
 
     h1 {
@@ -26,6 +52,7 @@
       letter-spacing: 0.15em;
       margin-bottom: 25px;
       font-size: 2rem;
+      text-shadow: 0 0 12px rgba(0,0,0,0.8);
     }
 
     p {
@@ -35,6 +62,7 @@
       opacity: 0.88;
       font-size: 1.15rem;
       font-weight: 600;
+      text-shadow: 0 0 8px rgba(0,0,0,0.7);
     }
 
     .back-link {
@@ -107,7 +135,8 @@
       Together, we conquer the Dragon.
     </p>
 
-    <a class="back-link" onclick="go('guild.html')">← Back to Hall</a>
+    <!-- UPDATED LINK -->
+    <a class="back-link" onclick="go('index.html')">← Back to Hall</a>
 
   </div>
 
