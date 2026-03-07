@@ -16,19 +16,31 @@
     @media (max-width: 600px) {
 
       .gf-topbar {
-        margin-top: 80px !important;   /* LOWER THE FORMULA BUTTON */
+        margin-top: 80px !important;
       }
 
       .gold-scroll {
-        margin-top: 40px !important;   /* LOWER THE TITLE */
+        margin-top: 40px !important;
       }
 
       .scroll-title {
-        font-size: 1.8rem !important;  /* FITS BETTER ON PHONE */
+        font-size: 1.8rem !important;
       }
 
       .vertical-stack {
-        margin-top: 160px !important;  /* EVEN SPACING FOR BUTTONS */
+        margin-top: 160px !important;
+      }
+
+      /* NEW FIX — CENTER TOP NAV BETTER */
+      .top-nav {
+        padding: 0 22px !important;   /* adds breathing room left + right */
+        justify-content: center !important;
+        gap: 18px !important;         /* even spacing between links */
+      }
+
+      .top-nav a {
+        text-align: center !important;
+        flex-shrink: 0 !important;    /* prevents clipping */
       }
     }
   </style>
@@ -41,7 +53,7 @@
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
-  <!-- GOLDEN FORMULA TOP BAR (LOWERED ON PHONE) -->
+  <!-- GOLDEN FORMULA TOP BAR -->
   <div class="gf-topbar">
     <button class="gf-btn gold-bar">☰ Golden Formula</button>
 
