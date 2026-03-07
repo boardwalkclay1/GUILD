@@ -32,6 +32,27 @@
     #a2hs-btn:hover {
       background: rgba(212,175,55,0.2);
     }
+
+    /* TOP NAVIGATION */
+    .top-nav {
+      margin-top: 70px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-family: "Marcellus SC", serif;
+    }
+
+    .top-nav a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+    }
+
+    .top-nav a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -55,6 +76,17 @@
     </div>
   </div>
 
+  <!-- TOP NAVIGATION (CORRECT ORDER) -->
+  <div class="top-nav">
+    <a onclick="go('guild.html')">Guild Hall</a>
+    <a onclick="go('training-hall.html')">Training Hall</a>
+    <a onclick="go('inside-the-guild.html')">Inside the Guild</a>
+    <a onclick="go('guild-family.html')">Guild Family</a>
+    <a onclick="go('glossary.html')">Glossary</a>
+    <a onclick="go('golden-rules.html')">Golden Rules</a>
+    <a onclick="go('guild-discipline.html')">Guild Discipline</a>
+  </div>
+
   <!-- PAGE TITLE -->
   <div class="gold-scroll">
     <h1 class="scroll-title" id="page-title">PAGE TITLE HERE</h1>
@@ -71,9 +103,10 @@
   <script>
     function go(page) { window.location.href = page; }
 
+    // NEW: Golden Formula now loads the local simulator
     function openGF() {
       if (localStorage.getItem("gf_subscriber") === "paid") {
-        window.location.href = "guild-goldenformula.html";
+        window.location.href = "Gf/simulator.html";
       } else {
         window.location.href = "gf-paywall.html";
       }
