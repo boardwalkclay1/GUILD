@@ -32,8 +32,9 @@
       max-width: 650px;
       margin: 0 auto 20px;
       color: #D4AF37;
-      opacity: 0.85;
-      font-size: 1.05rem;
+      opacity: 0.88;
+      font-size: 1.15rem;
+      font-weight: 600;
     }
 
     .back-link {
@@ -53,7 +54,6 @@
   </style>
 </head>
 
-<!-- CORRECT BACKGROUND IMAGE -->
 <body data-bg="Vestry.jpg">
 
   <!-- CINEMATIC LAYERS -->
@@ -66,20 +66,40 @@
     <h1>The Guild Family</h1>
 
     <p>
-      The Guild is a family.  
-      We lift each other up.  
-      If one of us falls, we all reach down and pull them back up.
+      This is the place where we are connected — not by chance,  
+      but by purpose, discipline, and the fire that brought you here.
     </p>
 
     <p>
-      You may stumble during this learning process.  
-      That is normal.  
-      We are here together — and I will be with you the whole way.
+      The Guild is a family.  
+      A circle of gladiators sharpening each other,  
+      preparing to enter the arena with clarity and courage.
     </p>
 
-    <a class="back-link" onclick="go('index.html')">← Back to Hall</a>
+    <p>
+      Here you will receive resources, guidance, and support  
+      unlike anything you have experienced before.  
+      You are not walking this path alone —  
+      you are surrounded by warriors just like you.
+    </p>
+
+    <p>
+      Together, we rise.  
+      Together, we learn.  
+      Together, we step into the arena.
+    </p>
+
+    <a class="back-link" onclick="go('guild.html')">← Back to Hall</a>
 
   </div>
+
+  <!-- BACKGROUND FIX -->
+  <script>
+    const bg = document.body.getAttribute("data-bg");
+    if (bg) {
+      document.body.style.backgroundImage = `url("image/${bg}")`;
+    }
+  </script>
 
 </body>
 </html>
