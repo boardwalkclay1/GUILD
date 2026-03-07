@@ -14,26 +14,29 @@
 
 <body data-bg="Vestry.jpg">
 
-  <!-- FOG + PILLARS -->
+  <!-- CINEMATIC LAYERS -->
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
-  <!-- GOLDEN FORMULA TOP BAR -->
-  <div class="gf-topbar">
+  <!-- GOLDEN FORMULA TOP BAR (LOWERED) -->
+  <div class="gf-topbar" style="margin-top: 40px;">
     <button class="gf-btn gold-bar">☰ Golden Formula</button>
 
     <div class="gf-dropdown">
-      <div class="gf-title">The Golden Formula Engine</div>
-      <p>Upload any chart screenshot and the Guildmaster reveals the path.</p>
+      <div class="gf-title">⚡ The Golden Formula Engine</div>
+      <p>
+        The Guild’s most powerful tool.  
+        Upload any chart screenshot and the engine reveals the next move.
+      </p>
       <button class="enter-btn" onclick="openGF()">ENTER</button>
     </div>
   </div>
 
-  <!-- TOP NAV — ONLY RULES + DISCIPLINE -->
+  <!-- TOP NAV — RULES + DISCIPLINE ONLY -->
   <div class="top-nav">
-    <a onclick="go('golden-rules.html')">Golden Rules</a>
-    <a onclick="go('guild-discipline.html')">Guild Discipline</a>
+    <a onclick="go('golden-rules.html')">📜 Golden Rules</a>
+    <a onclick="go('guild-discipline.html')">⚔️ Discipline</a>
   </div>
 
   <!-- PAGE TITLE -->
@@ -41,43 +44,73 @@
     <h1 class="scroll-title">INNER HALL</h1>
   </div>
 
-  <!-- VERTICAL BUTTONS (EVEN + PHONE-FIRST) -->
+  <!-- VERTICAL BUTTONS WITH EMOJIS + DROPDOWNS -->
   <div style="margin-top: 200px; display: flex; flex-direction: column; gap: 20px;">
 
     <!-- INSIDE THE GUILD -->
-    <div class="guild-btn" onclick="go('inside-the-guild.html')">
-      Inside the Guild
+    <div class="guild-btn" onclick="toggleDrop('drop1')">
+      🛡️ Inside the Guild
       <span class="arrow">›</span>
+    </div>
+    <div id="drop1" class="dropdown-panel">
+      <p>The chamber where your identity is forged.  
+      Learn the structure, the ranks, and your path forward.</p>
+      <button class="enter-btn" onclick="go('inside-the-guild.html')">ENTER</button>
     </div>
 
     <!-- COLOSSEUM -->
-    <div class="guild-btn" onclick="go('colosseum.html')">
-      Colosseum
+    <div class="guild-btn" onclick="toggleDrop('drop2')">
+      🏛️ Colosseum
       <span class="arrow">›</span>
+    </div>
+    <div id="drop2" class="dropdown-panel">
+      <p>The arena where gladiators sharpen their skills  
+      and prepare for real combat.</p>
+      <button class="enter-btn" onclick="go('colosseum.html')">ENTER</button>
     </div>
 
     <!-- TRAINING HALL -->
-    <div class="guild-btn" onclick="go('training-hall.html')">
-      Training Hall
+    <div class="guild-btn" onclick="toggleDrop('drop3')">
+      ⚒️ Training Hall
       <span class="arrow">›</span>
+    </div>
+    <div id="drop3" class="dropdown-panel">
+      <p>Your drills, lessons, and mastery path.  
+      This is where discipline becomes skill.</p>
+      <button class="enter-btn" onclick="go('training-hall.html')">ENTER</button>
     </div>
 
     <!-- GUILD FAMILY -->
-    <div class="guild-btn" onclick="go('guild-family.html')">
-      Guild Family
+    <div class="guild-btn" onclick="toggleDrop('drop4')">
+      🤝 Guild Family
       <span class="arrow">›</span>
+    </div>
+    <div id="drop4" class="dropdown-panel">
+      <p>The place where we connect, support, and grow together  
+      as gladiators preparing for the arena.</p>
+      <button class="enter-btn" onclick="go('guild-family.html')">ENTER</button>
     </div>
 
     <!-- GLOSSARY -->
-    <div class="guild-btn" onclick="go('glossary.html')">
-      Glossary
+    <div class="guild-btn" onclick="toggleDrop('drop5')">
+      📚 Glossary
       <span class="arrow">›</span>
+    </div>
+    <div id="drop5" class="dropdown-panel">
+      <p>Every term, every concept, every definition  
+      you need to speak the language of the Guild.</p>
+      <button class="enter-btn" onclick="go('glossary.html')">ENTER</button>
     </div>
 
     <!-- GUILD HALL -->
-    <div class="guild-btn" onclick="go('guild.html')">
-      Guild Hall
+    <div class="guild-btn" onclick="toggleDrop('drop6')">
+      🏰 Guild Hall
       <span class="arrow">›</span>
+    </div>
+    <div id="drop6" class="dropdown-panel">
+      <p>The central chamber.  
+      Your home base inside the Guild.</p>
+      <button class="enter-btn" onclick="go('guild.html')">ENTER</button>
     </div>
 
   </div>
@@ -90,8 +123,12 @@
     }
   </script>
 
-  <!-- NAV + GF LOGIC -->
+  <!-- DROPDOWN + NAV LOGIC -->
   <script>
+    function toggleDrop(id) {
+      document.getElementById(id).classList.toggle("open");
+    }
+
     function go(page) { window.location.href = page; }
 
     function openGF() {
