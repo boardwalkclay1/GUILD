@@ -1,91 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Guild — Glossary</title>
+  <meta charset="UTF-8" />
+  <title>THE GRAND GLOSSARY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <link rel="stylesheet" href="guild-style.css">
+
+  <style>
+    /* BURGER MENU */
+    .burger {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      font-size: 2rem;
+      color: var(--gold);
+      cursor: pointer;
+      z-index: 99999;
+    }
+
+    .burger-menu {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 260px;
+      height: 100vh;
+      background: rgba(0,0,0,0.92);
+      border-right: 3px solid var(--gold);
+      padding: 20px;
+      transition: 0.35s ease;
+      z-index: 99998;
+      overflow-y: auto;
+    }
+
+    .burger-menu.open {
+      left: 0;
+    }
+
+    .burger-menu a {
+      display: block;
+      padding: 12px 0;
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Uncial Antiqua', serif;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(212,175,55,0.3);
+    }
+
+    /* GLOSSARY ITEMS */
+    .glossary-item {
+      background: rgba(0,0,0,0.75);
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    .glossary-item h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+
+    .glossary-definition {
+      display: none;
+      margin-top: 12px;
+      color: var(--gold-soft);
+      line-height: 1.45;
+      font-size: 1.05rem;
+    }
+
+    .glossary-definition.open {
+      display: block;
+    }
+
+    /* SEARCH BAR */
+    #glossarySearch {
+      width: 100%;
+      padding: 14px;
+      border: 3px solid var(--gold);
+      border-radius: 12px;
+      background: rgba(0,0,0,0.75);
+      color: var(--gold);
+      font-family: 'Uncial Antiqua', serif;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+  </style>
 </head>
 
-<body>
+<body data-bg="Vestry.jpg">
 
+  <!-- FOG + PILLARS -->
+  <div class="fog-layer"></div>
+  <div class="pillar pillar-left"></div>
+  <div class="pillar pillar-right"></div>
+
+  <!-- BURGER ICON -->
+  <div class="burger" onclick="toggleMenu()">☰</div>
+
+  <!-- BURGER MENU -->
+  <div id="menu" class="burger-menu">
+    <a onclick="go('guild.html')">🏰 Guild Hall</a>
+    <a onclick="go('inside-the-guild.html')">🛡️ Inside the Guild</a>
+    <a onclick="go('the-colosseum.html')">🏛️ Colosseum</a>
+    <a onclick="go('training-hall.html')">⚒️ Training Hall</a>
+    <a onclick="go('guild-family.html')">🤝 Guild Family</a>
+    <a onclick="go('golden-rules.html')">📜 Golden Rules</a>
+    <a onclick="go('guild-discipline.html')">⚔️ Discipline</a>
+    <a onclick="go('options-chain.html')">🧩 Options Chain</a>
+    <a onclick="go('brokers.html')">🏦 Brokers</a>
+    <a onclick="go('accessing-options.html')">🔐 Accessing Options</a>
+    <a onclick="go('options-approval-module.html')">📝 Options Approval</a>
+    <a onclick="go('death-strike.html')">💀 Death Strike</a>
+    <a onclick="go('moving-averages.html')">📊 Moving Averages</a>
+    <a onclick="go('chart-patterns.html')">📈 Chart Patterns</a>
+    <a onclick="go('support-resistance.html')">🧱 Support & Resistance</a>
+    <a onclick="go('look-left.html')">👁️ Look Left</a>
+    <a onclick="go('even-numbers.html')">🔢 Even Numbers</a>
+    <a onclick="go('mon-fri.html')">📅 Mon–Fri Behavior</a>
+    <a onclick="go('not-guessing.html')">🎯 Not Guessing</a>
+  </div>
+
+  <!-- TITLE SCROLL -->
   <div class="gold-scroll open">
     <h1 class="scroll-title">THE GRAND GLOSSARY</h1>
     <p style="text-align:center; margin-top:10px;">
-      A compendium of every sacred term, chamber, and rite within The Guild.
+      Every chamber. Every rite. Every concept.  
+      The complete Codex of The Guild.
     </p>
 
-    <!-- SEARCH BAR -->
-    <input id="glossarySearch" type="text" placeholder="Search the Codex..." 
-      style="
-        width: 100%;
-        padding: 12px;
-        margin-top: 20px;
-        border: 2px solid var(--gold);
-        border-radius: 10px;
-        background: rgba(0,0,0,0.7);
-        color: var(--gold);
-        font-family: 'Uncial Antiqua', serif;
-        font-size: 1.2rem;
-      ">
+    <input id="glossarySearch" type="text" placeholder="Search the Codex...">
   </div>
 
   <!-- GLOSSARY LIST -->
   <div id="glossaryList" style="margin: 40px auto; width: 90%; max-width: 800px;">
 
-    <div class="glossary-item" data-term="colosseum">
-      <h2>The Colosseum</h2>
-      <p>The grand arena where members face trials, simulations, and combat of mind and will.</p>
+    <!-- A -->
+    <div class="glossary-item" data-term="accessing options options trading unlock">
+      <h2>Accessing Options</h2>
+      <div class="glossary-definition">
+        The chamber that shows you exactly how to enable options trading inside your broker.
+      </div>
     </div>
 
-    <div class="glossary-item" data-term="ars-trainingum training room">
+    <div class="glossary-item" data-term="ars trainingum training hall">
       <h2>Ars‑Trainingum</h2>
-      <p>The Hall of Skill‑Forging — where drills, lessons, and mastery rites are performed.</p>
+      <div class="glossary-definition">
+        The ancient name for the Training Hall — the forge where discipline becomes mastery.
+      </div>
     </div>
 
-    <div class="glossary-item" data-term="inner hall guild hall">
-      <h2>The Inner Hall</h2>
-      <p>The sacred chamber where Guild members gather, learn the oaths, and ascend in rank.</p>
+    <!-- B -->
+    <div class="glossary-item" data-term="brokers brokerages trading accounts">
+      <h2>Brokers</h2>
+      <div class="glossary-definition">
+        The chamber where you choose the correct broker for Guild‑level execution.
+      </div>
     </div>
 
-    <div class="glossary-item" data-term="divination engine simulator">
-      <h2>The Divination Engine</h2>
-      <p>The Golden Formula simulator — a device that reveals possible futures.</p>
+    <!-- C -->
+    <div class="glossary-item" data-term="colosseum arena trials combat">
+      <h2>The Colosseum</h2>
+      <div class="glossary-definition">
+        The arena where gladiators sharpen their skills through trials and simulations.
+      </div>
     </div>
 
-    <div class="glossary-item" data-term="codex paths categories">
-      <h2>The Codex of Paths</h2>
-      <p>A collection of scrolls describing each discipline and its purpose.</p>
+    <div class="glossary-item" data-term="chart patterns flags wedges triangles">
+      <h2>Chart Patterns</h2>
+      <div class="glossary-definition">
+        The visual formations that reveal momentum, reversals, and continuation setups.
+      </div>
     </div>
 
-    <div class="glossary-item" data-term="scribe ledger notes">
-      <h2>The Scribe’s Ledger</h2>
-      <p>The place where members record insights, revelations, and personal discoveries.</p>
+    <!-- D -->
+    <div class="glossary-item" data-term="death strike million dollar move">
+      <h2>Death Strike</h2>
+      <div class="glossary-definition">
+        The advanced strike technique formerly known as the Million Dollar Move.
+      </div>
     </div>
 
-    <div class="glossary-item" data-term="trial wits quiz">
-      <h2>The Trial of Wits</h2>
-      <p>A mental arena where members test their knowledge and sharpen their minds.</p>
+    <div class="glossary-item" data-term="discipline guild discipline rules">
+      <h2>Guild Discipline</h2>
+      <div class="glossary-definition">
+        The rules and rituals that keep members sharp and consistent.
+      </div>
     </div>
 
-    <div class="glossary-item" data-term="merchant arena pitchflow">
-      <h2>The Merchant’s Arena</h2>
-      <p>The chamber where persuasion, tradecraft, and influence are forged.</p>
+    <!-- G -->
+    <div class="glossary-item" data-term="golden formula divination engine simulator">
+      <h2>The Golden Formula</h2>
+      <div class="glossary-definition">
+        The Guild’s predictive engine — upload a chart and reveal the path.
+      </div>
     </div>
 
-    <div class="glossary-item" data-term="whispering chambers chatrooms">
-      <h2>The Whispering Chambers</h2>
-      <p>Private rooms where members speak freely and share counsel.</p>
+    <div class="glossary-item" data-term="guild family community support">
+      <h2>Guild Family</h2>
+      <div class="glossary-definition">
+        The chamber where members connect, support each other, and grow together.
+      </div>
     </div>
 
-    <div class="glossary-item" data-term="cartographer table map spots">
-      <h2>The Cartographer’s Table</h2>
-      <p>A map of important locations, opportunities, and hidden places.</p>
+    <!-- I -->
+    <div class="glossary-item" data-term="inside the guild roadmap onboarding">
+      <h2>Inside the Guild</h2>
+      <div class="glossary-definition">
+        The onboarding chamber — your immediate roadmap to get fully prepared to trade.
+      </div>
+    </div>
+
+    <!-- L -->
+    <div class="glossary-item" data-term="look left history levels">
+      <h2>Look Left</h2>
+      <div class="glossary-definition">
+        The ancient rule of chart reading — the past reveals the future.
+      </div>
+    </div>
+
+    <!-- M -->
+    <div class="glossary-item" data-term="moving averages ma9 ma20 ma50 ma200">
+      <h2>Moving Averages</h2>
+      <div class="glossary-definition">
+        The backbone of trend reading — the 9, 20, 50, and 200.
+      </div>
+    </div>
+
+    <!-- O -->
+    <div class="glossary-item" data-term="options chain contracts greeks">
+      <h2>Options Chain</h2>
+      <div class="glossary-definition">
+        The chamber where you learn to read the chain with clarity.
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="options approval module">
+      <h2>Options Approval Module</h2>
+      <div class="glossary-definition">
+        The module that prepares you to pass your broker’s approval process.
+      </div>
+    </div>
+
+    <!-- S -->
+    <div class="glossary-item" data-term="support resistance levels zones">
+      <h2>Support & Resistance</h2>
+      <div class="glossary-definition">
+        The levels where battles are won and lost.
+      </div>
     </div>
 
   </div>
 
+  <!-- BACKGROUND FIX -->
   <script>
+    const bg = document.body.getAttribute("data-bg");
+    if (bg) {
+      document.body.style.backgroundImage = `url("image/${bg}")`;
+    }
+  </script>
+
+  <!-- SEARCH + DROPDOWN LOGIC -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("open");
+    }
+
     const search = document.getElementById("glossarySearch");
     const items = document.querySelectorAll(".glossary-item");
 
@@ -95,6 +280,17 @@
         item.style.display = item.dataset.term.includes(q) ? "block" : "none";
       });
     });
+
+    items.forEach(item => {
+      item.addEventListener("click", () => {
+        const def = item.querySelector(".glossary-definition");
+        def.classList.toggle("open");
+      });
+    });
+
+    function go(page) {
+      window.location.href = page;
+    }
   </script>
 
 </body>
