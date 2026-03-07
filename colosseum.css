@@ -1,0 +1,57 @@
+/* Fullscreen background image */
+#scene-bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  z-index: -2;
+}
+
+/* Black overlay */
+#scene-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  z-index: -1;
+}
+
+/* Text container */
+#scene-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 900px;
+  color: #D4AF37;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  text-shadow: 0 0 12px rgba(0,0,0,0.9);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+/* Continue button */
+#scene-next {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 28px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid #D4AF37;
+  color: #D4AF37;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 1.4s ease, background 0.3s ease;
+}
+
+#scene-next:hover {
+  background: rgba(212,175,55,0.2);
+}
