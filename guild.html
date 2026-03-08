@@ -5,31 +5,11 @@
   <title>INNER HALL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="icon" type="image/png" href="the-guild.png" />
-  <link rel="apple-touch-icon" href="the-guild.png" />
+  <link rel="icon" type="image/png" href="../the-guild.png" />
+  <link rel="apple-touch-icon" href="../the-guild.png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="guild-style.css">
-
-  <style>
-    @media (max-width: 600px) {
-      .gf-topbar { margin-top: 80px !important; }
-      .gold-scroll { margin-top: 40px !important; }
-      .scroll-title { font-size: 1.8rem !important; }
-      .vertical-stack { margin-top: 160px !important; }
-
-      .top-nav {
-        padding: 0 22px !important;
-        justify-content: center !important;
-        gap: 18px !important;
-      }
-
-      .top-nav a {
-        text-align: center !important;
-        flex-shrink: 0 !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="../guild-style.css">
 </head>
 
 <body data-bg="Vestry.jpg">
@@ -39,28 +19,7 @@
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
-  <!-- GOLDEN FORMULA TOP BAR -->
-  <div class="gf-topbar">
-    <button class="gf-btn gold-bar">☰ Golden Formula</button>
-
-    <div class="gf-dropdown">
-      <div class="gf-title">⚡ The Golden Formula Engine</div>
-      <p>
-        The Guild’s most powerful tool.  
-        Upload any chart screenshot and the engine reveals the next move.
-      </p>
-      <button class="enter-btn" onclick="openGF()">ENTER</button>
-    </div>
-  </div>
-
-  <!-- TOP NAV -->
-  <div class="top-nav">
-    <a onclick="go('golden-rules.html')">📜 Golden Rules</a>
-    <a onclick="go('guild-discipline.html')">⚔️ Discipline</a>
-    <a onclick="go('glossary.html')">📚 Glossary</a>
-  </div>
-
-  <!-- PAGE TITLE -->
+  <!-- TITLE -->
   <div class="gold-scroll open">
     <h1 class="scroll-title">INNER HALL</h1>
   </div>
@@ -73,107 +32,79 @@
       <span class="arrow">›</span>
     </div>
     <div id="drop1" class="dropdown-panel">
-      <p>The chamber where your identity is forged.  
-      Learn the structure, the ranks, and your path forward.</p>
-      <button class="enter-btn" onclick="go('inside-the-guild.html')">ENTER</button>
+      <p>The chamber where your identity is forged.</p>
+      <button class="enter-btn" onclick="go('../inside-the-guild.html')">ENTER</button>
     </div>
 
     <div class="guild-btn" onclick="toggleDrop('drop2')">
-      🏛️ Colosseum
+      🧿 Already Have an Account?
       <span class="arrow">›</span>
     </div>
     <div id="drop2" class="dropdown-panel">
-      <p>The arena where gladiators sharpen their skills  
-      and prepare for real combat.</p>
-      <button class="enter-btn" onclick="go('the-colosseum.html')">ENTER</button>
+      <p>Return to the Guild through the Brotherhood & Sisterhood Gate.</p>
+      <button class="enter-btn" onclick="go('login.html')">LOGIN</button>
     </div>
 
     <div class="guild-btn" onclick="toggleDrop('drop3')">
-      ⚒️ Training Hall
+      🔱 New to the Guild?
       <span class="arrow">›</span>
     </div>
     <div id="drop3" class="dropdown-panel">
-      <p>Your drills, lessons, and mastery path.  
-      This is where discipline becomes skill.</p>
-      <button class="enter-btn" onclick="go('training-hall.html')">ENTER</button>
-    </div>
-
-    <div class="guild-btn" onclick="toggleDrop('drop4')">
-      🤝 Guild Family
-      <span class="arrow">›</span>
-    </div>
-    <div id="drop4" class="dropdown-panel">
-      <p>The place where we connect, support, and grow together  
-      as gladiators preparing for the arena.</p>
-      <button class="enter-btn" onclick="go('guild-family.html')">ENTER</button>
+      <p>Your initiation begins here.  
+      This path leads to the Guild Entry ritual and the PayPal contribution.</p>
+      <button class="enter-btn" onclick="go('../guild-entry.html')">BEGIN INITIATION</button>
     </div>
 
   </div>
 
-  <div style="text-align:center; margin: 60px 0 40px; color: var(--gold); opacity: 0.7; font-size: 0.9rem;">
-    © The Guild — All Rights Reserved
-  </div>
-
-  <!-- BACKGROUND FIX -->
+  <!-- =============================== -->
+  <!-- ⚡ PAYPAL RETURN WORKFLOW TRIGGER -->
+  <!-- =============================== -->
   <script>
-    const bg = document.body.getAttribute("data-bg");
-    if (bg) {
-      document.body.style.backgroundImage = `url("image/${bg}")`;
+    // Read stored username/password from Entry page
+    const username = localStorage.getItem("pending_username");
+    const password = localStorage.getItem("pending_password");
+
+    if (username && password) {
+      const unlockUntil = Date.now() + (30 * 24 * 60 * 60 * 1000);
+
+      // Save permanent unlock locally
+      localStorage.setItem("guild_member", "paid");
+      localStorage.setItem("guild_username", username);
+      localStorage.setItem("guild_unlock_until", unlockUntil.toString());
+
+      // Trigger GitHub workflow
+      fetch("https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/actions/workflows/unlock.yml/dispatches", {
+        method: "POST",
+        headers: {
+          "Accept": "application/vnd.github+json",
+          "Authorization": "Bearer YOUR_GITHUB_PAT"
+        },
+        body: JSON.stringify({
+          ref: "main",
+          inputs: {
+            username: username,
+            password: password,
+            unlockUntil: unlockUntil.toString()
+          }
+        })
+      });
+
+      // Clear temp storage
+      localStorage.removeItem("pending_username");
+      localStorage.removeItem("pending_password");
     }
   </script>
 
-  <!-- DROPDOWN + NAV LOGIC -->
+  <!-- DROPDOWN LOGIC -->
   <script>
     function toggleDrop(id) {
       document.getElementById(id).classList.toggle("open");
     }
 
-    function go(page) { window.location.href = page; }
-
-    function openGF() {
-      if (localStorage.getItem("gf_subscriber") === "paid") {
-        window.location.href = "Gf/simulator.html";
-      } else {
-        window.location.href = "gf-paywall.html";
-      }
+    function go(page) {
+      window.location.href = page;
     }
-
-    document.querySelector('.gf-btn').addEventListener('click', () => {
-      document.querySelector('.gf-dropdown').classList.toggle('open');
-    });
-  </script>
-
-  <!-- =============================== -->
-  <!-- ⚡ GUILD UNLOCK WORKFLOW TRIGGER -->
-  <!-- =============================== -->
-  <script>
-    // Create or load device ID
-    let deviceId = localStorage.getItem("guild_device_id");
-    if (!deviceId) {
-      deviceId = crypto.randomUUID();
-      localStorage.setItem("guild_device_id", deviceId);
-    }
-
-    // 30 days from now
-    const unlockUntil = Date.now() + (30 * 24 * 60 * 60 * 1000);
-
-    // Trigger GitHub workflow
-    fetch("https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/actions/workflows/unlock.yml/dispatches", {
-      method: "POST",
-      headers: {
-        "Accept": "application/vnd.github+json",
-        "Authorization": "Bearer YOUR_GITHUB_PAT"
-      },
-      body: JSON.stringify({
-        ref: "main",
-        inputs: {
-          deviceId,
-          unlockUntil: unlockUntil.toString()
-        }
-      })
-    })
-    .then(() => console.log("Guild unlock workflow triggered"))
-    .catch(err => console.error("Workflow trigger failed:", err));
   </script>
 
 </body>
