@@ -1,0 +1,38 @@
+name: Family Wall Post
+
+on:
+  workflow_dispatch:
+    inputs:
+      from:
+        description: "User posting"
+        required: true
+      text:
+        description: "Wall message"
+        required: true
+      timestamp:
+        description: "Timestamp"
+        required: true
+
+jobs:
+  append-wall:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Append wall entry
+        run: |
+          jq --arg from "${{ github.event.inputs.from }}" \
+             --arg text "${{ github.event.inputs.text }}" \
+             --arg ts "${{ github.event.inputs.timestamp }}" \
+             '.entries += [{"from": $from, "text": $text, "timestamp": ($ts | tonumber), "glow": true}]' \
+             data/family-wall.json > data/tmp.json
+          mv data/tmp.json data/family-wall.json
+
+      - name: Commit changes
+        run: |
+          git config user.name "Guild Workflow"
+          git config user.email "actions@github.com"
+          git add data/family-wall.json
+          git commit -m "New Family Wall entry from ${{ github.event.inputs.from }}"
+          git push
