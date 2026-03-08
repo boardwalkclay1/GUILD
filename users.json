@@ -1,12 +1,7 @@
 {
-  "clayvonte": {
-    "password": "hashed-or-plain",
-    "unlockUntil": 1743980000000,
-    "created": 1741378000000
-  },
-  "anotherUser": {
-    "password": "1234",
-    "unlockUntil": 1743980000000,
+  "Guild Master": {
+    "password": "Always/6",
+    "unlockUntil": 9999999999999,
     "created": 1741378000000
   }
 }
