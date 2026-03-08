@@ -1,0 +1,42 @@
+name: Message Guild Master
+
+on:
+  workflow_dispatch:
+    inputs:
+      from:
+        description: "Sender username"
+        required: true
+      subject:
+        description: "Message subject"
+        required: true
+      body:
+        description: "Message body"
+        required: true
+      timestamp:
+        description: "Timestamp"
+        required: true
+
+jobs:
+  append-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Append message
+        run: |
+          jq --arg from "${{ github.event.inputs.from }}" \
+             --arg subject "${{ github.event.inputs.subject }}" \
+             --arg body "${{ github.event.inputs.body }}" \
+             --arg ts "${{ github.event.inputs.timestamp }}" \
+             '.messages += [{"from": $from, "subject": $subject, "body": $body, "timestamp": ($ts | tonumber)}]' \
+             data/messages.json > data/tmp.json
+          mv data/tmp.json data/messages.json
+
+      - name: Commit changes
+        run: |
+          git config user.name "Guild Workflow"
+          git config user.email "actions@github.com"
+          git add data/messages.json
+          git commit -m "New message from ${{ github.event.inputs.from }}"
+          git push
