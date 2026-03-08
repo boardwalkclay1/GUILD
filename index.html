@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>The Guild</title>
+  <title>The Guild Gates</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link rel="icon" type="image/png" href="the-guild.png" />
@@ -12,40 +12,73 @@
   <link rel="stylesheet" href="guild-style.css">
 
   <style>
-    /* ADD TO HOME SCREEN BUTTON */
-    #a2hs-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 12px 18px;
+    /* LOGIN PANEL */
+    .login-panel {
+      max-width: 420px;
+      margin: 40px auto 60px;
+      padding: 25px;
       background: rgba(0,0,0,0.75);
       border: 2px solid #D4AF37;
-      border-radius: 12px;
+      border-radius: 14px;
+      text-align: center;
       color: #D4AF37;
-      font-family: "Marcellus SC", serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      z-index: 9999;
-      display: none;
     }
-    #a2hs-btn:hover {
-      background: rgba(212,175,55,0.2);
+
+    .login-panel h2 {
+      font-family: "Uncial Antiqua", serif;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    .login-panel input {
+      width: 90%;
+      padding: 12px;
+      margin-top: 12px;
+      border-radius: 8px;
+      border: 1px solid #D4AF37;
+      background: rgba(0,0,0,0.6);
+      color: #D4AF37;
+      text-align: center;
+    }
+
+    .login-btn {
+      margin-top: 18px;
+      padding: 12px;
+      width: 90%;
+      border-radius: 10px;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid #D4AF37;
+      color: #D4AF37;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .login-btn:hover {
+      background: rgba(212,175,55,0.3);
+    }
+
+    .new-here {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .new-here a {
+      color: #D4AF37;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: underline;
     }
   </style>
 </head>
 
-<!-- FORCE VESTRY BACKGROUND -->
 <body data-bg="Vestry.jpg">
 
-  <!-- ============================
-       GOLDEN FORMULA — TOP GOLD BAR
-       (NOW ROUTES TO PAYWALL)
-       ============================ -->
+  <!-- GOLDEN FORMULA TOP BAR -->
   <div class="gf-topbar">
-    <button class="gf-btn gold-bar">
-      ☰ Golden Formula
-    </button>
+    <button class="gf-btn gold-bar">☰ Golden Formula</button>
 
     <div class="gf-dropdown">
       <div class="gf-title">The Golden Formula Engine</div>
@@ -53,17 +86,11 @@
         A one‑of‑a‑kind engine found only in The Guild.  
         Upload any chart screenshot and the Guildmaster reveals the path.
       </p>
-
-      <!-- PAYWALL LOGIC -->
-      <button class="enter-btn" onclick="openGF()">
-        ENTER
-      </button>
+      <button class="enter-btn" onclick="openGF()">ENTER</button>
     </div>
   </div>
 
-  <!-- ============================
-       NORMAL NAV UNDER GOLD BAR
-       ============================ -->
+  <!-- TOP NAV -->
   <div class="top-nav">
     <a onclick="go('death-strike.html')">Death Strike</a>
     <a onclick="go('colosseum.html')">The Colosseum</a>
@@ -72,26 +99,39 @@
 
   <!-- MAIN TITLE -->
   <div class="gold-scroll" id="scroll">
-    <h1 class="scroll-title">The Guild Gates</h1>
+    <h1 class="scroll-title">The Guild Brotherhood & Sisterhood</h1>
   </div>
 
-  <!-- ============================
-       MAIN CONTENT SECTIONS
-       ============================ -->
+  <!-- LOGIN PANEL -->
+  <div class="login-panel">
+    <h2>Member Login</h2>
+    <input id="loginUser" type="text" placeholder="Username">
+    <input id="loginPass" type="password" placeholder="Password">
+    <button class="login-btn" onclick="login()">Enter the Guild</button>
+
+    <div class="new-here">
+      New to the Guild?  
+      <br>
+      <a onclick="go('guild-entry.html')">Enter the Inner Hall</a>  
+      to begin your initiation.
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT SECTIONS -->
   <div class="content">
 
     <!-- SECTION 1 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
-        ⚔️ The Guild Brotherhood
+        ⚔️ The Brotherhood & Sisterhood
         <span class="arrow">▼</span>
       </button>
 
       <div class="dropdown-panel">
         <div class="slogan">Where traders rise, fall, and are reborn.</div>
         <p>
-          Here you learn the truths of the Arena — where discipline is forged,
-          clarity is earned, and real money is made in the hidden corners of the market.
+          The Guild is a blood‑bond of discipline and clarity.  
+          Inside these walls, you rise into the version of yourself your family can depend on.
         </p>
         <button class="enter-btn" onclick="go('guild-family.html')">ENTER</button>
       </div>
@@ -105,16 +145,17 @@
       </button>
 
       <div class="dropdown-panel">
-        <div class="slogan">Where your family awaits you.</div>
+        <div class="slogan">Your initiation begins here.</div>
         <p>
-          The Guild is not a group — it is a blood‑bond of discipline and clarity.
-          Inside these walls, you rise into the version of yourself your family can depend on.
+          If you do not yet have an account,  
+          the Inner Hall will guide you through your first steps  
+          and lead you to the Guild Entry ritual.
         </p>
         <button class="enter-btn" onclick="go('guild-entry.html')">ENTER</button>
       </div>
     </div>
 
-    <!-- SECTION 3 — DEATH STRIKE -->
+    <!-- SECTION 3 -->
     <div class="guild-section">
       <button class="guild-btn dropdown-toggle">
         💀 Death Strike
@@ -123,11 +164,7 @@
 
       <div class="dropdown-panel">
         <div class="slogan">Where small contracts become massive moves.</div>
-        <p>
-          Simple explanations.  
-          Real logic.  
-          Life‑changing clarity.
-        </p>
+        <p>Simple explanations. Real logic. Life‑changing clarity.</p>
         <button class="enter-btn" onclick="go('death-strike.html')">ENTER</button>
       </div>
     </div>
@@ -141,29 +178,55 @@
 
       <div class="dropdown-panel">
         <div class="slogan">A tale of discipline, scars, and transformation.</div>
-        <p>
-          Step into the story that mirrors your journey in the market.
-        </p>
+        <p>Step into the story that mirrors your journey in the market.</p>
         <button class="enter-btn" onclick="go('colosseum.html')">ENTER</button>
       </div>
     </div>
 
   </div>
 
-  <!-- ============================
-       ADD TO HOME SCREEN BUTTON
-       ============================ -->
-  <button id="a2hs-btn">Add to Home Screen</button>
-
-  <!-- ============================
-       JS
-       ============================ -->
+  <!-- JS -->
   <script>
     function go(page) {
       window.location.href = page;
     }
 
-    // GOLDEN FORMULA PAYWALL LOGIC
+    // LOGIN LOGIC
+    async function login() {
+      const user = document.getElementById("loginUser").value.trim();
+      const pass = document.getElementById("loginPass").value.trim();
+
+      if (!user || !pass) {
+        alert("Enter username and password.");
+        return;
+      }
+
+      // Load users.json
+      const res = await fetch("data/users.json");
+      const users = await res.json();
+
+      if (!users[user]) {
+        alert("User not found.");
+        return;
+      }
+
+      if (users[user].password !== pass) {
+        alert("Incorrect password.");
+        return;
+      }
+
+      if (Date.now() > users[user].unlockUntil) {
+        alert("Your access has expired. Renew in the Inner Hall.");
+        return;
+      }
+
+      // Success
+      localStorage.setItem("guild_member", "paid");
+      localStorage.setItem("guild_username", user);
+      go("guild.html");
+    }
+
+    // GOLDEN FORMULA PAYWALL
     function openGF() {
       if (localStorage.getItem("gf_subscriber") === "paid") {
         window.location.href = "guild-goldenformula.html";
@@ -172,32 +235,15 @@
       }
     }
 
-    // SECTION DROPDOWNS
+    // DROPDOWNS
     document.querySelectorAll('.dropdown-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
         btn.nextElementSibling.classList.toggle('open');
       });
     });
 
-    // GOLDEN FORMULA DROPDOWN
     document.querySelector('.gf-btn').addEventListener('click', () => {
       document.querySelector('.gf-dropdown').classList.toggle('open');
-    });
-
-    // ADD TO HOME SCREEN
-    let deferredPrompt;
-    const a2hsBtn = document.getElementById("a2hs-btn");
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      a2hsBtn.style.display = "block";
-    });
-
-    a2hsBtn.addEventListener("click", () => {
-      a2hsBtn.style.display = "none";
-      deferredPrompt.prompt();
-      deferredPrompt = null;
     });
   </script>
 
