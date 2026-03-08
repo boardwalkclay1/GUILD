@@ -29,15 +29,6 @@
       filter: grayscale(40%);
     }
 
-    /* Matrix Canvas */
-    #matrixCanvas {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      opacity: 0.55;
-      pointer-events: none;
-    }
-
     /* Fog Layer */
     body::after {
       content: "";
@@ -115,6 +106,36 @@
       opacity: 0.7;
     }
 
+    /* MODULE BUTTONS */
+    .module-grid {
+      max-width: 800px;
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .module-btn {
+      padding: 18px;
+      border-radius: 14px;
+      border: 2px solid #D4AF37;
+      background: rgba(0,0,0,0.75);
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      transition: 0.25s ease;
+      display: block;
+    }
+
+    .module-btn:hover {
+      background: rgba(212,175,55,0.25);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(212,175,55,0.4);
+    }
+
     .disclaimer {
       margin-top: 30px;
       font-size: 0.85rem;
@@ -140,8 +161,6 @@
 
 <body class="fade-in">
 
-  <canvas id="matrixCanvas"></canvas>
-
   <div class="hero">
     <div class="rune">Ω</div>
     <h1>Chart Patterns</h1>
@@ -166,53 +185,19 @@
     and when it is breaking out of its trend.
   </p>
 
+  <!-- MODULE ACCESS -->
+  <div class="module-grid">
+    <a class="module-btn" href="pattern-level1.html">Level 1 – Foundations</a>
+    <a class="module-btn" href="pattern-level2.html">Level 2 – Recognition</a>
+    <a class="module-btn" href="pattern-level3.html">Level 3 – Speed</a>
+    <a class="module-btn" href="pattern-level4.html">Level 4 – Mastery</a>
+  </div>
+
   <p class="disclaimer">
-    This rule is still under construction.  
-    A full pattern library will be added here.
+    More advanced pattern modules will be added soon.
   </p>
 
   <a class="back" href="golden-rules.html">← Back to Golden Rules</a>
-
-  <script>
-    /* MATRIX */
-    const canvas = document.getElementById("matrixCanvas");
-    const ctx = canvas.getContext("2d");
-
-    let w, h, cols, drops;
-    const chars = "0123456789ΩΛΞ∑$#/*";
-
-    function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      const fontSize = 16;
-      cols = Math.floor(w / fontSize);
-      drops = Array(cols).fill(0);
-    }
-    resize();
-    window.addEventListener("resize", resize);
-
-    function draw() {
-      ctx.fillStyle = "rgba(0,0,0,0.15)";
-      ctx.fillRect(0, 0, w, h);
-
-      ctx.fillStyle = "#D4AF37";
-      ctx.font = "16px monospace";
-
-      for (let i = 0; i < cols; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * 16;
-        const y = drops[i] * 16;
-
-        ctx.fillText(char, x, y);
-
-        if (y > h && Math.random() > 0.95) drops[i] = 0;
-        drops[i]++;
-      }
-
-      requestAnimationFrame(draw);
-    }
-    draw();
-  </script>
 
 </body>
 </html>
