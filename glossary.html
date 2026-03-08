@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="guild-style.css">
 
   <style>
-    /* BURGER MENU */
     .burger {
       position: fixed;
       top: 18px;
@@ -39,15 +38,14 @@
 
     .burger-menu a {
       display: block;
-      padding: 12px 0;
+      padding: 10px 0;
       color: var(--gold);
       text-decoration: none;
       font-family: 'Uncial Antiqua', serif;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       border-bottom: 1px solid rgba(212,175,55,0.3);
     }
 
-    /* TITLE SCROLL */
     .gold-scroll {
       width: 92%;
       max-width: 900px;
@@ -82,7 +80,6 @@
       opacity: 0.9;
     }
 
-    /* SEARCH BAR */
     #glossarySearch {
       width: 100%;
       padding: 14px;
@@ -96,7 +93,6 @@
       box-shadow: 0 0 12px var(--gold-glow);
     }
 
-    /* SECTION HEADERS */
     .section-header {
       width: 92%;
       max-width: 900px;
@@ -110,7 +106,6 @@
       padding-bottom: 6px;
     }
 
-    /* GLOSSARY ITEMS */
     .glossary-item {
       background: rgba(0,0,0,0.78);
       border: 2px solid var(--gold);
@@ -123,7 +118,7 @@
 
     .glossary-item h2 {
       margin: 0;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       letter-spacing: 0.08em;
       color: var(--gold);
       text-transform: uppercase;
@@ -162,14 +157,12 @@
       text-decoration: underline;
     }
 
-    /* LIST WRAPPER */
     #glossaryList {
       margin: 30px auto 40px;
       width: 92%;
       max-width: 900px;
     }
 
-    /* BACKGROUND FIX */
     body {
       background-color: #000;
       color: var(--gold);
@@ -179,15 +172,12 @@
 
 <body data-bg="Vestry.jpg">
 
-  <!-- FOG + PILLARS -->
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
-  <!-- BURGER ICON -->
   <div class="burger" onclick="toggleMenu()">☰</div>
 
-  <!-- BURGER MENU -->
   <div id="menu" class="burger-menu">
     <a onclick="go('guild.html')">🏰 Guild Hall</a>
     <a onclick="go('inside-the-guild.html')">🛡️ Inside the Guild</a>
@@ -212,647 +202,631 @@
     <a onclick="go('guild-goldenformula.html')">✨ Golden Formula</a>
   </div>
 
-  <!-- TITLE SCROLL -->
   <div class="gold-scroll">
     <h1 class="scroll-title">THE GRAND GLOSSARY</h1>
     <p class="scroll-sub">
-      Every chamber. Every rite. Every rule. Every system.  
-      This is the complete Codex of The Guild — trading, lore, and architecture in one place.
+      A complete Codex of the market and the Guild.  
+      Real stock language first. Metaphors and myth last.
     </p>
     <p class="scroll-nav-note">
-      Use the search bar to filter by name, origin, or symbolism.  
-      Tap any entry to reveal its meaning and jump directly into its chamber.
+      Use the search bar to filter by word, origin, or symbolism.  
+      Tap any entry to reveal its meaning and jump into its chamber.
     </p>
-    <input id="glossarySearch" type="text" placeholder="Search the Codex by word, origin, or symbolism...">
+    <input id="glossarySearch" type="text" placeholder="Search by term, concept, or metaphor...">
   </div>
 
-  <!-- GLOSSARY LIST -->
   <div id="glossaryList">
 
-    <!-- ARENA & COLOSSEUM LORE -->
-    <div class="section-header">ARENA & COLOSSEUM LORE</div>
+    <!-- CORE MARKET FOUNDATIONS (A–Z) -->
+    <div class="section-header">CORE MARKET FOUNDATIONS (A–Z)</div>
 
-    <div class="glossary-item" data-term="door threshold fear opportunity colosseum story icon">
-      <h2>The Door</h2>
+    <div class="glossary-item" data-term="ask price seller wants">
+      <h2>Ask</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Colosseum Story</span>
-        <span><strong>Symbolizes:</strong> Threshold between small life and chosen battle</span>
+        <span><strong>Origin:</strong> Market Basics</span>
+        <span><strong>Symbolizes:</strong> What sellers are asking for</span>
       </div>
       <div class="glossary-definition">
-        The Door is the first choice — stay outside in a small, predictable life, or step into the Arena and
-        accept the weight of risk, discipline, and reward. It appears as a tall, ancient gate in the Colosseum
-        story and as the Door icon in the UI.  
-        <br><br>
-        <a href="the-colosseum.html">Enter the Colosseum</a>
+        The ask is the price sellers are currently willing to accept for a stock or option.  
+        It’s the “offer” side of the market.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="dragon enemy fear reward colosseum story icon">
-      <h2>The Dragon</h2>
+    <div class="glossary-item" data-term="bank funding account cash">
+      <h2>Bank</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Colosseum Story</span>
-        <span><strong>Symbolizes:</strong> Fear, risk, and the reward behind it</span>
+        <span><strong>Origin:</strong> Accessing Options</span>
+        <span><strong>Symbolizes:</strong> Where your trading money starts</span>
       </div>
       <div class="glossary-definition">
-        The Dragon is the embodiment of fear and opportunity. It represents the trades that scare you,
-        the volatility that can hurt you, and the exact same volatility that can free you when handled with
-        discipline. It appears as a Dragon icon in the Colosseum scenes.  
+        Your bank is where your cash lives before it reaches your broker.  
+        You move money from your bank into your brokerage account to trade.  
         <br><br>
-        <a href="the-colosseum.html">Face the Dragon</a>
+        <a href="training/accessing-options/banks.html">See Banks Module</a>
       </div>
     </div>
 
-    <div class="glossary-item" data-term="arena colosseum battleground scars victories">
-      <h2>The Arena</h2>
+    <div class="glossary-item" data-term="bid price buyer wants">
+      <h2>Bid</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Colosseum Story</span>
-        <span><strong>Symbolizes:</strong> The battleground where skill is proven</span>
+        <span><strong>Origin:</strong> Market Basics</span>
+        <span><strong>Symbolizes:</strong> What buyers are willing to pay</span>
       </div>
       <div class="glossary-definition">
-        The Arena is where you actually fight — the live market, the real trades, the scars and the wins.
-        It is the world inside the Door, where theory becomes execution.  
-        <br><br>
-        <a href="the-colosseum.html">Return to the Arena</a>
+        The bid is the price buyers are currently willing to pay for a stock or option.  
+        It’s the “demand” side of the market.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="forge training discipline rebuilding preparation">
-      <h2>The Forge</h2>
+    <div class="glossary-item" data-term="broker brokerage trading account execution">
+      <h2>Broker</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Colosseum Story</span>
-        <span><strong>Symbolizes:</strong> Training, rebuilding, and preparation</span>
+        <span><strong>Origin:</strong> Accessing Options</span>
+        <span><strong>Symbolizes:</strong> Your weapon of execution</span>
       </div>
       <div class="glossary-definition">
-        The Forge is where you go after losses, confusion, or gaps in skill. It is the training phase —
-        reviewing charts, studying patterns, refining your rules, and reforging your confidence.  
+        A broker is the platform that connects you to the market and lets you place trades.  
+        It holds your trading account, routes your orders, and shows you quotes and charts.  
         <br><br>
-        <a href="training-hall.html">Return to the Forge (Training Hall)</a>
+        <a href="brokers.html">Visit Brokers Chamber</a>
       </div>
     </div>
 
-    <div class="glossary-item" data-term="purse reward riches freedom battle">
-      <h2>The Purse</h2>
+    <div class="glossary-item" data-term="candlestick candle chart open high low close">
+      <h2>Candlestick</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Colosseum Story</span>
-        <span><strong>Symbolizes:</strong> The reward and freedom earned through discipline</span>
+        <span><strong>Origin:</strong> Chart Basics</span>
+        <span><strong>Symbolizes:</strong> One unit of price story</span>
       </div>
       <div class="glossary-definition">
-        The Purse is the payout — the money, the freedom, the options that come from trading with discipline.
-        It reminds you that the goal is not just to win a trade, but to build a life with those wins.  
-        <br><br>
-        <a href="golden-rules.html">Study the Golden Rules</a>
+        A candlestick shows how price moved during a specific time period: open, high, low, and close.  
+        The body and wicks tell you who was in control — buyers or sellers.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="trials path ritual heartbeat transition ember layer black overlay">
-      <h2>The Trials & Rituals</h2>
+    <div class="glossary-item" data-term="chart visual price history">
+      <h2>Chart</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Colosseum Module</span>
-        <span><strong>Symbolizes:</strong> Structured progression through fear and mastery</span>
+        <span><strong>Origin:</strong> Chart Patterns</span>
+        <span><strong>Symbolizes:</strong> The battlefield map</span>
       </div>
       <div class="glossary-definition">
-        The Trials are the scenes you move through in the Colosseum — each one a specific emotional and
-        technical lesson. The Rituals are the way those scenes unfold: black overlays, heartbeat‑like transitions,
-        ember layers, and full‑screen moments that slow you down and make you feel the weight of each choice.  
-        <br><br>
-        <a href="the-colosseum.html">Walk the Trials</a>
+        A chart is a visual record of price over time.  
+        It’s where you read trends, levels, patterns, and behavior.  
       </div>
     </div>
 
-    <!-- GOLDEN RULES & TRADING DISCIPLINE -->
-    <div class="section-header">GOLDEN RULES & TRADING DISCIPLINE</div>
-
-    <div class="glossary-item" data-term="study night before preparation setups next day golden rule 1">
-      <h2>Study the Night Before</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Golden Rules</span>
-        <span><strong>Symbolizes:</strong> Preparation before battle</span>
-      </div>
-      <div class="glossary-definition">
-        The market is constantly moving. When you study the night before, you see the setups forming that
-        should play out the next day. The market will always do what the market does — your job is to be
-        prepared before the opening bell.  
-        <br><br>
-        <a href="golden-rules.html">View Golden Rules</a>
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="stick to your game plan indecision planning golden rule 2">
-      <h2>Stick to Your Game Plan</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Golden Rules</span>
-        <span><strong>Symbolizes:</strong> Commitment to your own logic</span>
-      </div>
-      <div class="glossary-definition">
-        You build your plan from your studying the night before — entries, exits, levels, risk. The next day,
-        your job is to follow that plan, not your emotions. Planning is what removes hesitation and panic.  
-        <br><br>
-        <a href="golden-rules.html">Review Your Plan Ritual</a>
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="be patient patience timing golden rule 3">
-      <h2>Be Patient</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Golden Rules</span>
-        <span><strong>Symbolizes:</strong> Waiting for your moment</span>
-      </div>
-      <div class="glossary-definition">
-        The market will move fast and try to make you chase or exit early. Patience keeps you from reacting
-        to noise and lets you wait for your exact setup, your exact level, your exact moment.  
-        <br><br>
-        <a href="golden-rules.html">Study Patience</a>
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="setups even numbers reactions golden rule 4">
-      <h2>Setups Come With Even Numbers</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Golden Rules</span>
-        <span><strong>Symbolizes:</strong> Collective attention and reaction zones</span>
-      </div>
-      <div class="glossary-definition">
-        Traders love even numbers. When everyone is watching the same even level, reactions become bigger
-        and cleaner. Setups often form around these levels — they are magnets for volume and emotion.  
-        <br><br>
-        <a href="even-numbers.html">Learn Even Numbers</a>
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="in the money itm contracts golden rule 5">
-      <h2>In The Money</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Golden Rules</span>
-        <span><strong>Symbolizes:</strong> Clean, responsive contracts</span>
-      </div>
-      <div class="glossary-definition">
-        You want your contracts in the money — or very close to it. In‑the‑money contracts move cleaner,
-        faster, and more predictably with the stock. If a contract is far out of the money and unlikely to
-        reach your strike soon, it is usually not worth taking.  
-        <br><br>
-        <a href="options-chain.html">Study the Options Chain</a>
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="quantity quality contracts risk golden rule 6 death strike">
-      <h2>Quantity & Quality</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Golden Rules</span>
-        <span><strong>Symbolizes:</strong> Balancing power and risk</span>
-      </div>
-      <div class="glossary-definition">
-        More contracts means more money — but only if the contracts are good. Quality contracts with
-        solid strikes, expirations, and volume are your foundation. Quantity amplifies both profit and risk.
-        Your job is to balance both.  
-        <br><br>
-        Reference: <a href="death-strike.html">Death Strike</a> — the advanced strike technique that shows
-        you how to size and strike with intention.
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="never marry a trade exit process golden rule 7">
-      <h2>Never Marry a Trade</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Golden Rules</span>
-        <span><strong>Symbolizes:</strong> Detachment and exit discipline</span>
-      </div>
-      <div class="glossary-definition">
-        A trade is not a relationship. A part of your process is exiting — taking profit or cutting loss.
-        You can always reposition the same way you got in. Staying in a trade out of emotion is how
-        accounts die.  
-        <br><br>
-        <a href="guild-discipline.html">Study Discipline</a>
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="not guessing gambling logic confirmation rule discipline">
-      <h2>Not Guessing</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Training Hall / Golden Rules</span>
-        <span><strong>Symbolizes:</strong> Logic over hope</span>
-      </div>
-      <div class="glossary-definition">
-        Never guess. Never gamble. Every trade must be based on logic, structure, and confirmation — not hope.
-        This rule is the foundation of Guild discipline.  
-        <br><br>
-        <a href="not-guessing.html">Read the Full Rule</a>
-      </div>
-    </div>
-
-    <!-- CORE TRADING CONCEPTS -->
-    <div class="section-header">CORE TRADING CONCEPTS & CHAMBERS</div>
-
-    <div class="glossary-item" data-term="moving averages ma9 ma20 ma50 ma200 trend">
-      <h2>Moving Averages</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Training Hall</span>
-        <span><strong>Symbolizes:</strong> The backbone of trend reading</span>
-      </div>
-      <div class="glossary-definition">
-        The 9, 20, 50, and 200 moving averages show you the direction and strength of the trend. Crosses,
-        bounces, and rejections around these lines reveal momentum shifts and continuation.  
-        <br><br>
-        <a href="moving-averages.html">Enter Moving Averages Module</a>
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="chart patterns flags wedges triangles double bottom double top">
-      <h2>Chart Patterns</h2>
+    <div class="glossary-item" data-term="chart pattern formation flag wedge double bottom double top">
+      <h2>Chart Pattern</h2>
       <div class="glossary-meta">
         <span><strong>Origin:</strong> Pattern Modules</span>
-        <span><strong>Symbolizes:</strong> The language of price action</span>
+        <span><strong>Symbolizes:</strong> The language of price</span>
       </div>
       <div class="glossary-definition">
-        Rounding bottoms, double bottoms, double tops, flags, wedges, and trend breaks — these patterns
-        tell you what the stock is preparing to do. They are the visual language of accumulation, distribution,
-        continuation, and reversal.  
+        A chart pattern is a repeated shape in price action that hints at what might happen next  
+        — continuation, reversal, or indecision.  
         <br><br>
-        <a href="chart-patterns.html">View Pattern Levels</a>
+        <a href="chart-patterns.html">View Pattern Training</a>
       </div>
     </div>
 
-    <div class="glossary-item" data-term="support resistance levels zones backbone price movement">
-      <h2>Support & Resistance</h2>
+    <div class="glossary-item" data-term="contract options contract">
+      <h2>Contract</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Training Hall</span>
-        <span><strong>Symbolizes:</strong> Battle lines of price</span>
+        <span><strong>Origin:</strong> Options Chain</span>
+        <span><strong>Symbolizes:</strong> One options position</span>
       </div>
       <div class="glossary-definition">
-        Support and resistance are the backbone of price movement. These levels show you where the stock
-        is likely to bounce, reverse, or break. They are the lines where buyers and sellers fight.  
+        An options contract is an agreement that gives you the right, but not the obligation,  
+        to buy or sell 100 shares of a stock at a specific price before a specific date.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="equity stock share ownership">
+      <h2>Equity</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Market Basics</span>
+        <span><strong>Symbolizes:</strong> Ownership value</span>
+      </div>
+      <div class="glossary-definition">
+        Equity is ownership value — either in a company (stock) or in your account (account equity).  
+        It’s what you actually own after gains and losses.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="expiration date options contract">
+      <h2>Expiration</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Options Chain</span>
+        <span><strong>Symbolizes:</strong> The deadline</span>
+      </div>
+      <div class="glossary-definition">
+        Expiration is the last day an options contract is valid.  
+        After this date, the contract either expires worthless or is exercised/assigned.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="in the money itm options intrinsic value">
+      <h2>In The Money (ITM)</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Golden Rules / Options</span>
+        <span><strong>Symbolizes:</strong> Contracts with real value</span>
+      </div>
+      <div class="glossary-definition">
+        An option is in the money when the stock price is already beyond the strike in your favor.  
+        ITM contracts have intrinsic value and usually move cleaner with the stock.  
+        <br><br>
+        <a href="options-chain.html">Study ITM vs OTM</a>
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="limit order specific price">
+      <h2>Limit Order</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Order Types</span>
+        <span><strong>Symbolizes:</strong> Precision entry or exit</span>
+      </div>
+      <div class="glossary-definition">
+        A limit order tells your broker to buy or sell only at a specific price or better.  
+        It gives you control over price, but not a guarantee of execution.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="liquidity ease of entering exiting">
+      <h2>Liquidity</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Market Mechanics</span>
+        <span><strong>Symbolizes:</strong> How easily you can get in and out</span>
+      </div>
+      <div class="glossary-definition">
+        Liquidity is how easily you can buy or sell without moving the price too much.  
+        High liquidity = tighter spreads and smoother fills.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="margin account borrowing leverage">
+      <h2>Margin Account</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Account Types</span>
+        <span><strong>Symbolizes:</strong> Borrowed firepower</span>
+      </div>
+      <div class="glossary-definition">
+        A margin account lets you borrow money from your broker to trade larger size.  
+        It increases both your potential gains and your potential losses.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="market order buy sell now">
+      <h2>Market Order</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Order Types</span>
+        <span><strong>Symbolizes:</strong> Speed over precision</span>
+      </div>
+      <div class="glossary-definition">
+        A market order tells your broker to buy or sell immediately at the best available price.  
+        You get speed, but not exact control over the fill price.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="open interest options activity">
+      <h2>Open Interest</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Options Chain</span>
+        <span><strong>Symbolizes:</strong> How many contracts exist</span>
+      </div>
+      <div class="glossary-definition">
+        Open interest is the number of active options contracts that exist for a specific strike and expiration.  
+        Higher open interest usually means better liquidity.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="option derivative call put">
+      <h2>Option</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Options Training</span>
+        <span><strong>Symbolizes:</strong> Leverage on a stock</span>
+      </div>
+      <div class="glossary-definition">
+        An option is a contract that derives its value from an underlying stock.  
+        It gives you the right, but not the obligation, to buy or sell that stock at a set price before a set date.  
+        <br><br>
+        <a href="accessing-options.html">Access Options Path</a>
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="premium price of option">
+      <h2>Premium</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Options Chain</span>
+        <span><strong>Symbolizes:</strong> The cost of the contract</span>
+      </div>
+      <div class="glossary-definition">
+        Premium is the price you pay (or receive) for an options contract.  
+        It reflects time, volatility, and how far the strike is from the current stock price.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="share stock unit ownership">
+      <h2>Share</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Market Basics</span>
+        <span><strong>Symbolizes:</strong> One unit of ownership</span>
+      </div>
+      <div class="glossary-definition">
+        A share is one unit of ownership in a company.  
+        When you buy shares, you own a piece of that business.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="spread difference bid ask">
+      <h2>Spread</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Market Mechanics</span>
+        <span><strong>Symbolizes:</strong> The cost of entering</span>
+      </div>
+      <div class="glossary-definition">
+        The spread is the difference between the bid and the ask.  
+        Wider spreads usually mean lower liquidity and higher friction.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="stock equity company ownership">
+      <h2>Stock</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Market Basics</span>
+        <span><strong>Symbolizes:</strong> Ownership in a company</span>
+      </div>
+      <div class="glossary-definition">
+        A stock is a piece of ownership in a company.  
+        When you buy stock, you’re buying a slice of that company’s future.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="ticker symbol letters">
+      <h2>Ticker</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Market Basics</span>
+        <span><strong>Symbolizes:</strong> The stock’s name in code</span>
+      </div>
+      <div class="glossary-definition">
+        A ticker is the short symbol used to identify a stock (like AAPL, TSLA, SPY).  
+        It’s how you find and trade a specific company or ETF.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="volume number of shares traded">
+      <h2>Volume</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Market Mechanics</span>
+        <span><strong>Symbolizes:</strong> How loud the market is speaking</span>
+      </div>
+      <div class="glossary-definition">
+        Volume is the number of shares traded during a specific period.  
+        High volume means strong participation and conviction.  
+      </div>
+    </div>
+
+    <!-- TECHNICAL ANALYSIS: LEVELS & PATTERNS -->
+    <div class="section-header">TECHNICAL ANALYSIS: LEVELS & PATTERNS</div>
+
+    <div class="glossary-item" data-term="support level floor buyers">
+      <h2>Support</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Support & Resistance</span>
+        <span><strong>Symbolizes:</strong> The floor</span>
+      </div>
+      <div class="glossary-definition">
+        Support is a price level where buyers have stepped in before and may step in again.  
+        It acts like a floor where price often bounces.  
         <br><br>
         <a href="support-resistance.html">Study Support & Resistance</a>
       </div>
     </div>
 
-    <div class="glossary-item" data-term="look left history levels past reveals future">
+    <div class="glossary-item" data-term="resistance level ceiling sellers">
+      <h2>Resistance</h2>
+      <div class="glossary-meta">
+        <span><strong>Origin:</strong> Support & Resistance</span>
+        <span><strong>Symbolizes:</strong> The ceiling</span>
+      </div>
+      <div class="glossary-definition">
+        Resistance is a price level where sellers have stepped in before and may step in again.  
+        It acts like a ceiling where price often stalls or reverses.  
+      </div>
+    </div>
+
+    <div class="glossary-item" data-term="look left history levels">
       <h2>Look Left</h2>
       <div class="glossary-meta">
         <span><strong>Origin:</strong> Training Hall</span>
         <span><strong>Symbolizes:</strong> Respect for history</span>
       </div>
       <div class="glossary-definition">
-        The history of the stock is always recorded. To know where price is likely to react, you must look
-        left — back into the past to see where support and resistance were hit the most.  
+        “Look left” means scroll back on the chart to see where price has reacted before.  
+        The past reveals the levels that still matter today.  
         <br><br>
         <a href="look-left.html">Learn the Look Left Rule</a>
       </div>
     </div>
 
-    <div class="glossary-item" data-term="even numbers whole numbers reactions traders love even">
+    <div class="glossary-item" data-term="even numbers whole numbers reactions">
       <h2>Even Numbers</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Training Hall / Golden Rules</span>
+        <span><strong>Origin:</strong> Golden Rules / Training Hall</span>
         <span><strong>Symbolizes:</strong> Collective focus points</span>
       </div>
       <div class="glossary-definition">
-        Traders love even numbers. When everyone is watching the same whole number, reactions become
-        sharper. These levels often act as magnets and turning points.  
+        Even numbers (like 100, 150, 200) attract attention.  
+        Many traders watch them, so reactions there are often bigger and cleaner.  
         <br><br>
         <a href="even-numbers.html">Study Even Numbers</a>
       </div>
     </div>
 
-    <div class="glossary-item" data-term="options chain contracts greeks strikes expirations">
-      <h2>Options Chain</h2>
+    <!-- MOVING AVERAGES CATALOG -->
+    <div class="section-header">MOVING AVERAGES CATALOG</div>
+
+    <div class="glossary-item" data-term="moving average ma trend smoothing">
+      <h2>Moving Average (MA)</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Options Training</span>
-        <span><strong>Symbolizes:</strong> The battlefield of contracts</span>
+        <span><strong>Origin:</strong> Moving Averages Module</span>
+        <span><strong>Symbolizes:</strong> Smoothed trend</span>
       </div>
       <div class="glossary-definition">
-        The options chain is where you choose your contracts — strikes, expirations, and quantities.
-        Reading it clearly is how you align your contracts with your thesis.  
+        A moving average is the average price over a set number of periods.  
+        It smooths out noise and shows the underlying trend.  
         <br><br>
-        <a href="options-chain.html">Enter Options Chain Module</a>
+        <a href="moving-averages.html">Enter Moving Averages Module</a>
       </div>
     </div>
 
-    <div class="glossary-item" data-term="accessing options enable options trading broker">
-      <h2>Accessing Options</h2>
+    <div class="glossary-item" data-term="9 ma fast moving average">
+      <h2>9 MA</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Accessing Options Module</span>
-        <span><strong>Symbolizes:</strong> Unlocking the options chamber</span>
+        <span><strong>Origin:</strong> Moving Averages</span>
+        <span><strong>Symbolizes:</strong> Very short-term momentum</span>
       </div>
       <div class="glossary-definition">
-        Accessing Options is the process of enabling options trading inside your broker — from bank setup,
-        to broker selection, to simulator practice.  
-        <br><br>
-        <a href="accessing-options.html">Open Accessing Options</a>
+        The 9-period moving average tracks very short-term momentum.  
+        It’s often used for quick scalps and intraday direction.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="brokers brokerages trading accounts execution">
-      <h2>Brokers</h2>
+    <div class="glossary-item" data-term="20 ma short term trend">
+      <h2>20 MA</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Accessing Options / Training Hall</span>
-        <span><strong>Symbolizes:</strong> Your weapon of execution</span>
+        <span><strong>Origin:</strong> Moving Averages</span>
+        <span><strong>Symbolizes:</strong> Short-term trend</span>
       </div>
       <div class="glossary-definition">
-        Brokers are the platforms you use to execute trades. The right broker gives you speed, clarity,
-        and reliability — the wrong one adds friction and confusion.  
-        <br><br>
-        <a href="brokers.html">Visit Brokers Chamber</a>
+        The 20-period moving average shows the short-term trend.  
+        Many traders watch it for pullbacks and bounces.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="options approval module questionnaire levels">
-      <h2>Options Approval Module</h2>
+    <div class="glossary-item" data-term="50 ma intermediate trend">
+      <h2>50 MA</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Accessing Options Path</span>
-        <span><strong>Symbolizes:</strong> Passing the gatekeeper</span>
+        <span><strong>Origin:</strong> Moving Averages</span>
+        <span><strong>Symbolizes:</strong> Intermediate trend</span>
       </div>
       <div class="glossary-definition">
-        The Options Approval Module prepares you to answer your broker’s approval questions with clarity
-        and honesty, so you can unlock the correct level of options access.  
-        <br><br>
-        <a href="options-approval-module.html">Open Approval Module</a>
+        The 50-period moving average tracks the intermediate trend.  
+        It’s a key line for swing traders and bigger moves.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="death strike million dollar move advanced strike technique">
-      <h2>Death Strike</h2>
+    <div class="glossary-item" data-term="100 ma longer trend">
+      <h2>100 MA</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Advanced Options Training</span>
-        <span><strong>Symbolizes:</strong> Precision, timing, and size</span>
+        <span><strong>Origin:</strong> Moving Averages</span>
+        <span><strong>Symbolizes:</strong> Longer-term structure</span>
       </div>
       <div class="glossary-definition">
-        Death Strike is the advanced strike technique formerly known as the Million Dollar Move. It teaches
-        you how to combine timing, strike selection, and contract quantity into one decisive move.  
-        <br><br>
-        <a href="death-strike.html">Enter Death Strike</a>
+        The 100-period moving average shows a deeper trend.  
+        It often acts as a strong support or resistance on higher timeframes.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="golden formula divination engine simulator">
-      <h2>The Golden Formula</h2>
+    <div class="glossary-item" data-term="200 ma major trend">
+      <h2>200 MA</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Guild Engine / Simulator</span>
-        <span><strong>Symbolizes:</strong> Predictive clarity</span>
+        <span><strong>Origin:</strong> Moving Averages</span>
+        <span><strong>Symbolizes:</strong> Major trend line</span>
       </div>
       <div class="glossary-definition">
-        The Golden Formula is the Guild’s predictive engine — upload a chart, follow the prompts, and
-        reveal the likely path. It turns raw price action into structured insight.  
-        <br><br>
-        <a href="guild-goldenformula.html">Open Golden Formula</a>
+        The 200-period moving average is a major line watched by institutions and long-term traders.  
+        Above it often means long-term strength; below it often means long-term weakness.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="mon fri behavior weekly rhythm">
-      <h2>Mon–Fri Behavior</h2>
+    <!-- CHART PATTERNS CATALOG -->
+    <div class="section-header">CHART PATTERNS CATALOG</div>
+
+    <div class="glossary-item" data-term="double bottom reversal pattern">
+      <h2>Double Bottom</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Training Hall</span>
-        <span><strong>Symbolizes:</strong> Weekly rhythm of the market</span>
+        <span><strong>Origin:</strong> Chart Patterns</span>
+        <span><strong>Symbolizes:</strong> Potential bottoming</span>
       </div>
       <div class="glossary-definition">
-        Each day of the week has its own personality — from Monday’s uncertainty to Friday’s profit‑taking.
-        Understanding this rhythm helps you choose when to be aggressive and when to be cautious.  
-        <br><br>
-        <a href="mon-fri.html">Study Mon–Fri Behavior</a>
+        A double bottom is a pattern where price tests a low twice and holds.  
+        It often signals that sellers are exhausted and buyers are stepping in.  
       </div>
     </div>
 
-    <!-- TRAINING CHAMBERS & MODULES -->
-    <div class="section-header">TRAINING CHAMBERS & MODULES</div>
-
-    <div class="glossary-item" data-term="training hall ars trainingum forge discipline">
-      <h2>Training Hall (Ars‑Trainingum)</h2>
+    <div class="glossary-item" data-term="double top reversal pattern">
+      <h2>Double Top</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Core Guild Architecture</span>
-        <span><strong>Symbolizes:</strong> The forge of skill</span>
+        <span><strong>Origin:</strong> Chart Patterns</span>
+        <span><strong>Symbolizes:</strong> Potential topping</span>
       </div>
       <div class="glossary-definition">
-        The Training Hall — Ars‑Trainingum — is where you drill the fundamentals: patterns, levels, rules,
-        and discipline. It is the Forge in architectural form.  
-        <br><br>
-        <a href="training-hall.html">Enter Training Hall</a>
+        A double top is a pattern where price tests a high twice and fails.  
+        It often signals that buyers are exhausted and sellers are taking control.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="pattern level 1 basics chart patterns">
-      <h2>Pattern Level 1</h2>
+    <div class="glossary-item" data-term="rounding bottom accumulation">
+      <h2>Rounding Bottom</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Pattern Modules</span>
-        <span><strong>Symbolizes:</strong> First contact with patterns</span>
+        <span><strong>Origin:</strong> Chart Patterns</span>
+        <span><strong>Symbolizes:</strong> Slow accumulation</span>
       </div>
       <div class="glossary-definition">
-        Pattern Level 1 introduces the simplest, most common patterns and how to recognize them quickly.  
-        <br><br>
-        <a href="training/patterns/pattern-level1.html">Open Pattern Level 1</a>
+        A rounding bottom is a smooth, curved bottom that forms over time.  
+        It often signals a slow shift from selling to buying.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="pattern level 2 intermediate chart patterns">
-      <h2>Pattern Level 2</h2>
+    <div class="glossary-item" data-term="flag continuation pattern">
+      <h2>Flag</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Pattern Modules</span>
-        <span><strong>Symbolizes:</strong> Deeper pattern recognition</span>
+        <span><strong>Origin:</strong> Chart Patterns</span>
+        <span><strong>Symbolizes:</strong> Pause before continuation</span>
       </div>
       <div class="glossary-definition">
-        Pattern Level 2 builds on the basics with more complex structures and confirmations.  
-        <br><br>
-        <a href="training/patterns/pattern-level2.html">Open Pattern Level 2</a>
+        A flag is a small consolidation after a strong move.  
+        It often breaks in the direction of the original move.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="pattern level 3 advanced chart patterns">
-      <h2>Pattern Level 3</h2>
+    <div class="glossary-item" data-term="trend break break of structure">
+      <h2>Trend Break</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Pattern Modules</span>
-        <span><strong>Symbolizes:</strong> Advanced pattern mastery</span>
+        <span><strong>Origin:</strong> Chart Patterns</span>
+        <span><strong>Symbolizes:</strong> Shift in control</span>
       </div>
       <div class="glossary-definition">
-        Pattern Level 3 focuses on advanced patterns, fakeouts, and complex structures.  
-        <br><br>
-        <a href="training/patterns/pattern-level3.html">Open Pattern Level 3</a>
+        A trend break happens when price breaks out of a trendline or channel.  
+        It often signals a change in direction or a pause in the current trend.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="pattern level 4 mastery chart patterns">
-      <h2>Pattern Level 4</h2>
+    <!-- OPTIONS LANGUAGE -->
+    <div class="section-header">OPTIONS LANGUAGE</div>
+
+    <div class="glossary-item" data-term="call option right to buy">
+      <h2>Call Option</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Pattern Modules</span>
-        <span><strong>Symbolizes:</strong> Pattern mastery under pressure</span>
+        <span><strong>Origin:</strong> Options Basics</span>
+        <span><strong>Symbolizes:</strong> Bullish leverage</span>
       </div>
       <div class="glossary-definition">
-        Pattern Level 4 is where you test your pattern knowledge under time and emotional pressure.  
-        <br><br>
-        <a href="training/patterns/pattern-level4.html">Open Pattern Level 4</a>
+        A call option gives you the right, but not the obligation, to buy 100 shares of a stock  
+        at a specific price (strike) before expiration.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="banks funding accounts accessing options">
-      <h2>Banks</h2>
+    <div class="glossary-item" data-term="put option right to sell">
+      <h2>Put Option</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Accessing Options Path</span>
-        <span><strong>Symbolizes:</strong> Funding the war chest</span>
+        <span><strong>Origin:</strong> Options Basics</span>
+        <span><strong>Symbolizes:</strong> Bearish leverage or protection</span>
       </div>
       <div class="glossary-definition">
-        Banks are where your capital lives before it reaches your broker. Understanding transfer times,
-        limits, and connections keeps your trading account ready.  
-        <br><br>
-        <a href="training/accessing-options/banks.html">Visit Banks Module</a>
+        A put option gives you the right, but not the obligation, to sell 100 shares of a stock  
+        at a specific price (strike) before expiration.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="simulator paper trading practice">
-      <h2>Simulator</h2>
+    <div class="glossary-item" data-term="strike price options">
+      <h2>Strike Price</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Accessing Options Path</span>
-        <span><strong>Symbolizes:</strong> Practice without blood</span>
+        <span><strong>Origin:</strong> Options Chain</span>
+        <span><strong>Symbolizes:</strong> The line in the sand</span>
       </div>
       <div class="glossary-definition">
-        The simulator lets you practice execution, timing, and discipline without risking real money.
-        It is the safest place to make mistakes and learn from them.  
-        <br><br>
-        <a href="training/accessing-options/simulator.html">Open Simulator</a>
+        The strike price is the price at which you can buy (call) or sell (put) the stock  
+        if you exercise the option.  
       </div>
     </div>
 
-    <!-- GUILD SYSTEMS & ARCHITECTURE -->
-    <div class="section-header">GUILD SYSTEMS & ARCHITECTURE</div>
+    <!-- GUILD METAPHORS & LORE (LAST) -->
+    <div class="section-header">GUILD METAPHORS & LORE</div>
 
-    <div class="glossary-item" data-term="guild engine core logic navigation unlocks">
-      <h2>Guild Engine</h2>
+    <div class="glossary-item" data-term="door threshold fear opportunity colosseum story icon metaphor">
+      <h2>The Door</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Core Architecture</span>
-        <span><strong>Symbolizes:</strong> The brain of the Guild</span>
+        <span><strong>Origin:</strong> Colosseum Story</span>
+        <span><strong>Symbolizes:</strong> Threshold between small life and chosen battle</span>
       </div>
       <div class="glossary-definition">
-        The Guild Engine is the central logic that powers navigation, unlocks, and interactions across
-        the Guild. It is the invisible system that makes the world feel alive and connected.  
+        The Door is the first choice — stay outside in a small, predictable life,  
+        or step into the Arena and accept the weight of risk, discipline, and reward.  
         <br><br>
-        <a href="guild.html">Return to Guild Hall</a>
+        <a href="the-colosseum.html">Enter the Colosseum</a>
       </div>
     </div>
 
-    <div class="glossary-item" data-term="guild identity engine device unlock json 30 day access">
-      <h2>Guild Identity Engine</h2>
+    <div class="glossary-item" data-term="dragon enemy fear reward colosseum story icon metaphor">
+      <h2>The Dragon</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Unlock System</span>
-        <span><strong>Symbolizes:</strong> Who is allowed inside, and for how long</span>
+        <span><strong>Origin:</strong> Colosseum Story</span>
+        <span><strong>Symbolizes:</strong> Fear, risk, and the reward behind it</span>
       </div>
       <div class="glossary-definition">
-        The Guild Identity Engine is the static, JSON‑driven system that tracks device unlocks and
-        30‑day access windows — without a traditional backend. It lets users earn and keep access
-        through pure GitHub workflows.  
-        <br><br>
-        <a href="gf-paywall.html">View Paywall & Access Logic</a>
+        The Dragon is the embodiment of fear and opportunity — the trades that scare you  
+        and the same trades that can free you when handled with discipline.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="workflow unlock system github actions json automation">
-      <h2>Workflow Unlock System</h2>
+    <div class="glossary-item" data-term="arena battleground scars victories metaphor">
+      <h2>The Arena</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> GitHub Architecture</span>
-        <span><strong>Symbolizes:</strong> Automation as a gatekeeper</span>
+        <span><strong>Origin:</strong> Colosseum Story</span>
+        <span><strong>Symbolizes:</strong> The live market</span>
       </div>
       <div class="glossary-definition">
-        The Workflow Unlock System uses GitHub Actions to write unlocks to JSON, granting time‑bound
-        access to modules and chambers. It replaces traditional backends with transparent automation.  
-        <br><br>
-        <a href="gf-paywall.html">See Unlock Flow</a>
+        The Arena is the live market — where you actually fight, win, lose, and learn.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="service worker offline cache pwa">
-      <h2>Guild Service Worker</h2>
+    <div class="glossary-item" data-term="forge training discipline rebuilding metaphor">
+      <h2>The Forge</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> PWA Layer</span>
-        <span><strong>Symbolizes:</strong> Offline resilience</span>
+        <span><strong>Origin:</strong> Colosseum Story / Training Hall</span>
+        <span><strong>Symbolizes:</strong> Training and rebuilding</span>
       </div>
       <div class="glossary-definition">
-        The Guild Service Worker caches key pages, images, and modules so the Guild remains accessible
-        even when the network is unstable. It is the offline shield of the Guild.  
+        The Forge is where you go after losses or confusion — back to study, drills, and refinement.  
         <br><br>
-        <a href="guild.html">Return to Guild Hall</a>
+        <a href="training-hall.html">Return to the Forge</a>
       </div>
     </div>
 
-    <div class="glossary-item" data-term="guild paywall access control golden formula">
-      <h2>Guild Paywall</h2>
+    <div class="glossary-item" data-term="purse reward riches freedom metaphor">
+      <h2>The Purse</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Access Control</span>
-        <span><strong>Symbolizes:</strong> The gate to deeper chambers</span>
+        <span><strong>Origin:</strong> Colosseum Story</span>
+        <span><strong>Symbolizes:</strong> The reward of discipline</span>
       </div>
       <div class="glossary-definition">
-        The Guild Paywall controls access to advanced modules like the Golden Formula, using static
-        unlock logic instead of third‑party backends.  
-        <br><br>
-        <a href="gf-paywall.html">View Paywall</a>
+        The Purse is the payout — the money and freedom earned through disciplined trading.  
       </div>
     </div>
 
-    <!-- GUILD REALMS & CHAMBERS -->
-    <div class="section-header">GUILD REALMS & CHAMBERS</div>
-
-    <div class="glossary-item" data-term="guild hall main hub inner hall">
-      <h2>Guild Hall</h2>
+    <div class="glossary-item" data-term="trials rituals heartbeat transition ember layer black overlay metaphor">
+      <h2>Trials & Rituals</h2>
       <div class="glossary-meta">
-        <span><strong>Origin:</strong> Core Guild Map</span>
-        <span><strong>Symbolizes:</strong> Central hub of the Guild</span>
+        <span><strong>Origin:</strong> Colosseum Module</span>
+        <span><strong>Symbolizes:</strong> Structured progression through fear</span>
       </div>
       <div class="glossary-definition">
-        The Guild Hall is your main hub — the place where all chambers connect and your journey begins.  
-        <br><br>
-        <a href="guild.html">Return to Guild Hall</a>
+        Trials are the scenes you move through; rituals are how they unfold — black overlays,  
+        heartbeat transitions, ember layers — all designed to slow you down and make you feel each choice.  
       </div>
     </div>
 
-    <div class="glossary-item" data-term="inside the guild onboarding roadmap">
-      <h2>Inside the Guild</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Onboarding Flow</span>
-        <span><strong>Symbolizes:</strong> Your first roadmap</span>
-      </div>
-      <div class="glossary-definition">
-        Inside the Guild is the onboarding chamber — it shows you exactly what to do first, second, and
-        third to become fully prepared to trade.  
-        <br><br>
-        <a href="inside-the-guild.html">Enter Inside the Guild</a>
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="guild family community support connection">
-      <h2>Guild Family</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Community Layer</span>
-        <span><strong>Symbolizes:</strong> Brotherhood and support</span>
-      </div>
-      <div class="glossary-definition">
-        Guild Family is where members connect, share wins and losses, and grow together. It is the
-        emotional backbone of the Guild.  
-        <br><br>
-        <a href="guild-family.html">Visit Guild Family</a>
-      </div>
-    </div>
-
-    <div class="glossary-item" data-term="arena secrets hidden lessons advanced tactics">
-      <h2>Arena Secrets</h2>
-      <div class="glossary-meta">
-        <span><strong>Origin:</strong> Colosseum Expansion</span>
-        <span><strong>Symbolizes:</strong> Hidden lessons from the Arena</span>
-      </div>
-      <div class="glossary-definition">
-        Arena Secrets is the chamber where deeper tactics, patterns, and psychological lessons from the
-        Arena are revealed — the things you only learn after many battles.  
-        <br><br>
-        <a href="arena-secrets.html">Enter Arena Secrets</a>
-      </div>
-    </div>
-
-    <!-- ICONS & VISUAL RELICS -->
-    <div class="section-header">ICONS & VISUAL RELICS</div>
-
-    <div class="glossary-item" data-term="door icon dragon icon arena icon forge icon purse icon colosseum icons">
+    <div class="glossary-item" data-term="colosseum icons door dragon arena forge purse metaphor">
       <h2>Colosseum Icons</h2>
       <div class="glossary-meta">
         <span><strong>Origin:</strong> Colosseum UI</span>
         <span><strong>Symbolizes:</strong> Visual anchors for story beats</span>
       </div>
       <div class="glossary-definition">
-        The Door, Dragon, Arena, Forge, and Purse icons are visual artifacts that mark key emotional and
-        technical beats in the Colosseum story. They appear above scenes to remind you what each moment
-        truly represents.  
+        The Door, Dragon, Arena, Forge, and Purse icons are visual relics that mark key emotional  
+        and technical beats in the Colosseum story.  
         <br><br>
         <a href="the-colosseum.html">See Icons in Motion</a>
       </div>
@@ -860,7 +834,6 @@
 
   </div>
 
-  <!-- BACKGROUND FIX -->
   <script>
     const bg = document.body.getAttribute("data-bg");
     if (bg) {
@@ -868,10 +841,7 @@
       document.body.style.backgroundSize = "cover";
       document.body.style.backgroundPosition = "center";
     }
-  </script>
 
-  <!-- SEARCH + DROPDOWN LOGIC -->
-  <script>
     function toggleMenu() {
       document.getElementById("menu").classList.toggle("open");
     }
