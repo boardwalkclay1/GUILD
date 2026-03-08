@@ -1,0 +1,47 @@
+name: Unlock Device
+
+on:
+  workflow_dispatch:
+    inputs:
+      deviceId:
+        description: "Unique device ID"
+        required: true
+      unlockUntil:
+        description: "Timestamp when unlock expires"
+        required: true
+
+jobs:
+  write_unlock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Ensure unlocks.json exists
+        run: |
+          mkdir -p data
+          if [ ! -f data/unlocks.json ]; then
+            echo "{}" > data/unlocks.json
+          fi
+
+      - name: Write unlock data
+        run: |
+          node -e "
+            const fs = require('fs');
+            const file = 'data/unlocks.json';
+            const data = JSON.parse(fs.readFileSync(file));
+            data['${{ github.event.inputs.deviceId }}'] = {
+              unlockUntil: Number('${{ github.event.inputs.unlockUntil }}'),
+              updated: Date.now()
+            };
+            fs.writeFileSync(file, JSON.stringify(data, null, 2));
+          "
+
+      - name: Commit unlock update
+        run: |
+          git config user.name 'Guild Bot'
+          git config user.email 'bot@guild.com'
+          git add data/unlocks.json
+          git commit -m "Unlock device ${{ github.event.inputs.deviceId }}"
+          git push
