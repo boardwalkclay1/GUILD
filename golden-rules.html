@@ -51,15 +51,6 @@
       font-size: 1.8rem;
     }
 
-    .section-title {
-      margin-top: 60px;
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #ffdd7a;
-      text-shadow: 0 0 12px rgba(255,221,122,0.8);
-    }
-
     /* Dropdown container */
     .rule {
       width: 90%;
@@ -104,24 +95,18 @@
       opacity: 0.7;
     }
 
-    .disclaimer {
-      margin-top: 30px;
-      font-size: 0.85rem;
-      opacity: 0.8;
-      text-align: center;
-    }
-
-    a.back {
+    .footer-link {
       display: block;
-      margin-top: 40px;
+      margin: 20px auto;
       color: #D4AF37;
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       font-weight: 600;
+      font-size: 0.95rem;
     }
 
-    a.back:hover {
+    .footer-link:hover {
       color: #fff;
     }
   </style>
@@ -138,74 +123,20 @@
 
   <h1>The Golden Rules</h1>
 
-  <p>These are the rules you follow inside the market.  
-     These rules remove fear.  
-     These rules create confidence.  
-     These rules produce good trades.</p>
+  <p>
+    These are the rules you follow inside the market.  
+    These rules remove fear.  
+    These rules create confidence.  
+    These rules produce good trades.
+  </p>
 
   <div class="divider"></div>
 
-  <!-- GOLDEN RULES WITH DROPDOWNS -->
+  <!-- GOLDEN RULES 1–7 -->
 
   <div class="rule">
-    <div class="rule-header" onclick="toggleRule('r1')">1. Not Guessing, Not Gambling</div>
+    <div class="rule-header" onclick="toggleRule('r1')">1. Study the Night Before</div>
     <div class="rule-content" id="r1">
-      Never guess. Never gamble.  
-      Every trade must be based on logic, structure, and confirmation — not hope.
-    </div>
-  </div>
-
-  <div class="rule">
-    <div class="rule-header" onclick="toggleRule('r2')">2. Moving Averages</div>
-    <div class="rule-content" id="r2">
-      Moving averages show you the direction of the market.  
-      When they cross, they form the <strong>Golden Cross</strong> — one of the strongest signals in trading.
-    </div>
-  </div>
-
-  <div class="rule">
-    <div class="rule-header" onclick="toggleRule('r3')">3. Even Numbers</div>
-    <div class="rule-content" id="r3">
-      Traders love even numbers.  
-      When everyone waits for the same even number, the stock often reacts there.  
-      We love even numbers because the market loves even numbers.
-    </div>
-  </div>
-
-  <div class="rule">
-    <div class="rule-header" onclick="toggleRule('r4')">4. Chart Patterns</div>
-    <div class="rule-content" id="r4">
-      A rounding bottom, a double bottom, a double top, a flag, a trend break —  
-      these patterns tell you exactly what the stock is preparing to do.
-    </div>
-  </div>
-
-  <div class="rule">
-    <div class="rule-header" onclick="toggleRule('r5')">5. Support & Resistance</div>
-    <div class="rule-content" id="r5">
-      Support and resistance are the backbone of price movement.  
-      These levels show you where the stock is likely to bounce, reverse, or break.
-    </div>
-  </div>
-
-  <div class="rule">
-    <div class="rule-header" onclick="toggleRule('r6')">6. Look Left</div>
-    <div class="rule-content" id="r6">
-      The history of the stock is always recorded.  
-      To know where the price is going, you must look left —  
-      back into the past to see where support and resistance were hit the most.
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- NEW STUDY SECTION -->
-
-  <h2 class="section-title">Study The Night Before</h2>
-
-  <div class="rule">
-    <div class="rule-header" onclick="toggleRule('s1')">1. Study the Night Before</div>
-    <div class="rule-content" id="s1">
       The market is constantly moving.  
       When you study the night before, you will see setups forming that should take place the next day.  
       The market will always do what the market does — your job is to be prepared.
@@ -213,8 +144,8 @@
   </div>
 
   <div class="rule">
-    <div class="rule-header" onclick="toggleRule('s2')">2. Stick to Your Game Plan</div>
-    <div class="rule-content" id="s2">
+    <div class="rule-header" onclick="toggleRule('r2')">2. Stick to Your Game Plan</div>
+    <div class="rule-content" id="r2">
       Come up with a plan from your studying the night before — and stick to it.  
       Don’t be indecisive.  
       Planning is what removes hesitation.
@@ -222,8 +153,8 @@
   </div>
 
   <div class="rule">
-    <div class="rule-header" onclick="toggleRule('s3')">3. Be Patient</div>
-    <div class="rule-content" id="s3">
+    <div class="rule-header" onclick="toggleRule('r3')">3. Be Patient</div>
+    <div class="rule-content" id="r3">
       The market will move fast and try to make you jump in or get out prematurely.  
       Be patient.  
       Your moment will come — and patience is what makes it clear.
@@ -231,8 +162,8 @@
   </div>
 
   <div class="rule">
-    <div class="rule-header" onclick="toggleRule('s4')">4. Setups Come With Even Numbers</div>
-    <div class="rule-content" id="s4">
+    <div class="rule-header" onclick="toggleRule('r4')">4. Setups Come With Even Numbers</div>
+    <div class="rule-content" id="r4">
       Watch for even numbers.  
       They cause big reactions — and big reactions create opportunity.  
       Even numbers are where setups reveal themselves.
@@ -240,8 +171,8 @@
   </div>
 
   <div class="rule">
-    <div class="rule-header" onclick="toggleRule('s5')">5. In The Money</div>
-    <div class="rule-content" id="s5">
+    <div class="rule-header" onclick="toggleRule('r5')">5. In The Money</div>
+    <div class="rule-content" id="r5">
       You want your contracts in the money.  
       If they aren’t — or won’t be soon — don’t take them.  
       In‑the‑money contracts move cleaner, faster, and more predictably.
@@ -249,8 +180,8 @@
   </div>
 
   <div class="rule">
-    <div class="rule-header" onclick="toggleRule('s6')">6. Quantity & Quality</div>
-    <div class="rule-content" id="s6">
+    <div class="rule-header" onclick="toggleRule('r6')">6. Quantity & Quality</div>
+    <div class="rule-content" id="r6">
       More contracts = more money.  
       But quality matters.  
       The tradeoff is risk — and you must balance both.  
@@ -259,8 +190,8 @@
   </div>
 
   <div class="rule">
-    <div class="rule-header" onclick="toggleRule('s7')">7. Never Marry a Trade</div>
-    <div class="rule-content" id="s7">
+    <div class="rule-header" onclick="toggleRule('r7')">7. Never Marry a Trade</div>
+    <div class="rule-content" id="r7">
       A part of your process is exiting the trade.  
       Get out.  
       You can always reposition the same way you got in.  
@@ -270,12 +201,13 @@
 
   <div class="divider"></div>
 
-  <p class="disclaimer">
-    These Golden Rules are still under construction.  
-    More will be added as the Guild grows.
-  </p>
+  <!-- FOOTER LINKS -->
 
-  <a class="back" href="guild.html">← Back to Inner Hall</a>
+  <a class="footer-link" href="training-hall.html">Training Hall</a>
+
+  <a class="footer-link" href="arena-secrets.html">Arena Secrets</a>
+
+  <a class="footer-link" href="guild.html">← Back to Inner Hall</a>
 
 </body>
 </html>
