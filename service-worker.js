@@ -1,13 +1,13 @@
 // ===============================
-// GUILD SERVICE WORKER — CLEAN + CORRECT
+// GUILD SERVICE WORKER — v5 (UPDATED + CLEAN)
 // ===============================
 
-const CACHE_NAME = "guild-cache-v4";
+const CACHE_NAME = "guild-cache-v5";
 
 // Cache ONLY files that exist inside THIS repo
 const ASSETS = [
 
-  // ROOT
+  // ROOT FILES
   "index.html",
   "guild-style.css",
   "guild-engine.js",
@@ -15,7 +15,7 @@ const ASSETS = [
   "favicon.ico",
   "manifest.json",
 
-  // GUILD PAGES
+  // CORE GUILD PAGES
   "guild.html",
   "glossary.html",
   "golden-rules.html",
@@ -26,6 +26,25 @@ const ASSETS = [
   "gf-paywall.html",
   "guild-goldenformula.html",
 
+  // TRAINING MODULES (PATTERNS, OPTIONS, ETC.)
+  "chart-patterns.html",
+  "training/patterns/pattern-level1.html",
+  "training/patterns/pattern-level2.html",
+  "training/patterns/pattern-level3.html",
+  "training/patterns/pattern-level4.html",
+
+  "training/accessing-options.html",
+  "training/accessing-options/banks.html",
+  "training/accessing-options/brokers.html",
+  "training/accessing-options/simulator.html",
+
+  // TRAINING JS
+  "training/js/patterns-level1.js",
+  "training/js/patterns-level2.js",
+  "training/js/patterns-level3.js",
+  "training/js/patterns-level4.js",
+  "training/js/accessing-options.js",
+
   // BACKGROUNDS
   "image/Arcadium.jpg",
   "image/Armory.jpeg",
@@ -35,7 +54,8 @@ const ASSETS = [
   "image/Vestry.jpg",
   "image/apotheosis-chamber.jpg",
   "image/gladiator-forum.jpg",
-  "image/strategy-chamber.jpg"
+  "image/strategy-chamber.jpg",
+  "guild-background-gold.png"
 ];
 
 // INSTALL — cache everything that exists in THIS repo
