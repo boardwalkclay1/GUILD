@@ -1,13 +1,15 @@
 // ================================
 // GUILD ENGINE — COLOSSEUM SYSTEM
 // Fog, pillars, scroll, lightning,
-// transitions, per-page backgrounds
+// transitions, per-page backgrounds,
+// access control, Guild Master logic
 // ================================
 
 document.addEventListener("DOMContentLoaded", () => {
+
   // 0. Per-page background from data attribute
   const body = document.body;
-  const bgImage = body.getAttribute("data-bg"); // e.g. data-bg="Arcadium.jpg"
+  const bgImage = body.getAttribute("data-bg"); 
   if (bgImage) {
     document.documentElement.style.setProperty(
       "--page-bg-url",
@@ -81,16 +83,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // 7. Admin Access Control
+  // 7. Guild Authentication System
   window.GuildAuth = {
-    admins: [
-      "boardwalkclay1@gmail.com",
-      "Missporter90@gmail.com"
-    ],
-    isAdmin(email) {
-      return this.admins.includes(email);
+    master: "Guild Master",
+
+    isLoggedIn() {
+      return localStorage.getItem("guild_member") === "paid";
+    },
+
+    currentUser() {
+      return localStorage.getItem("guild_username");
+    },
+
+    isMaster() {
+      return this.currentUser() === this.master;
+    },
+
+    enforceProtection() {
+      // Only enforce on pages inside /guild/
+      const path = window.location.pathname;
+
+      const isProtected =
+        path.includes("/guild/") &&
+        !path.includes("login.html") &&
+        !path.includes("inner-hall.html");
+
+      if (!isProtected) return;
+
+      if (!this.isLoggedIn()) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      // Check expiration
+      const unlockUntil = Number(localStorage.getItem("guild_unlock_until"));
+      if (Date.now() > unlockUntil) {
+        alert("Your access has expired. Renew in the Inner Hall.");
+        window.location.href = "../guild-entry.html";
+      }
     }
   };
+
+  // Enforce protection immediately
+  window.GuildAuth.enforceProtection();
 
   // 8. Coliseum Fast-Walk Transition (global go())
   window.go = function (nextPage) {
