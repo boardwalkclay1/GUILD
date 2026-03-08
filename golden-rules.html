@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>The Golden Rules</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="guild-style.css" />
 
   <style>
     body {
@@ -18,6 +17,7 @@
       overflow-x: hidden;
     }
 
+    /* Background */
     body::before {
       content: "";
       position: fixed;
@@ -51,38 +51,48 @@
       font-size: 1.8rem;
     }
 
-    h2 {
+    .section-title {
+      margin-top: 60px;
+      font-size: 1.5rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-top: 40px;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
+      letter-spacing: 0.15em;
+      color: #ffdd7a;
+      text-shadow: 0 0 12px rgba(255,221,122,0.8);
     }
 
-    p {
+    /* Dropdown container */
+    .rule {
+      width: 90%;
       max-width: 750px;
-      margin: 0 auto 20px;
+      margin: 25px auto;
       text-align: left;
-      font-size: 1rem;
+      border: 1px solid #D4AF37;
+      border-radius: 10px;
+      padding: 0;
+      overflow: hidden;
+      background: rgba(0,0,0,0.55);
+      box-shadow: 0 0 12px rgba(212,175,55,0.25);
     }
 
-    .rule-link {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 14px;
-      background: #D4AF37;
-      color: #000;
-      border-radius: 8px;
+    .rule-header {
+      padding: 16px;
+      font-size: 1.1rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      background: rgba(212,175,55,0.12);
     }
 
-    .rule-link:hover {
-      background: #8B6B2C;
-      color: #fff;
+    .rule-header:hover {
+      background: rgba(212,175,55,0.22);
+    }
+
+    .rule-content {
+      display: none;
+      padding: 16px;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
 
     .divider {
@@ -115,101 +125,148 @@
       color: #fff;
     }
   </style>
+
+  <script>
+    function toggleRule(id) {
+      const content = document.getElementById(id);
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+  </script>
 </head>
 
-<body class="fade-in">
+<body>
 
   <h1>The Golden Rules</h1>
 
-  <p>
-    These are the rules you follow inside the market.  
-    These rules remove fear.  
-    These rules create confidence.  
-    These rules produce good trades.
-  </p>
+  <p>These are the rules you follow inside the market.  
+     These rules remove fear.  
+     These rules create confidence.  
+     These rules produce good trades.</p>
 
   <div class="divider"></div>
 
-  <h2>1. Not Guessing, Not Gambling</h2>
+  <!-- GOLDEN RULES WITH DROPDOWNS -->
 
-  <p>
-    Never guess.  
-    Never gamble.  
-    Every trade must be based on logic, structure, and confirmation — not hope.
-  </p>
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('r1')">1. Not Guessing, Not Gambling</div>
+    <div class="rule-content" id="r1">
+      Never guess. Never gamble.  
+      Every trade must be based on logic, structure, and confirmation — not hope.
+    </div>
+  </div>
 
-  <a class="rule-link" href="not-guessing.html">View Full Rule</a>
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('r2')">2. Moving Averages</div>
+    <div class="rule-content" id="r2">
+      Moving averages show you the direction of the market.  
+      When they cross, they form the <strong>Golden Cross</strong> — one of the strongest signals in trading.
+    </div>
+  </div>
 
-  <div class="divider"></div>
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('r3')">3. Even Numbers</div>
+    <div class="rule-content" id="r3">
+      Traders love even numbers.  
+      When everyone waits for the same even number, the stock often reacts there.  
+      We love even numbers because the market loves even numbers.
+    </div>
+  </div>
 
-  <h2>2. Moving Averages</h2>
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('r4')">4. Chart Patterns</div>
+    <div class="rule-content" id="r4">
+      A rounding bottom, a double bottom, a double top, a flag, a trend break —  
+      these patterns tell you exactly what the stock is preparing to do.
+    </div>
+  </div>
 
-  <p>
-    Moving averages show you the direction of the market.  
-    When they cross, they form the <strong>Golden Cross</strong> — one of the strongest signals in trading.
-  </p>
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('r5')">5. Support & Resistance</div>
+    <div class="rule-content" id="r5">
+      Support and resistance are the backbone of price movement.  
+      These levels show you where the stock is likely to bounce, reverse, or break.
+    </div>
+  </div>
 
-  <a class="rule-link" href="moving-averages.html">Learn More</a>
-
-  <div class="divider"></div>
-
-  <h2>3. Even Numbers</h2>
-
-  <p>
-    Traders love even numbers.  
-    The world of traders moves together — and when everyone is waiting for the same even number,  
-    the stock often reacts there.
-  </p>
-
-  <p>
-    We love even numbers because the market loves even numbers.
-  </p>
-
-  <a class="rule-link" href="even-numbers.html">Learn More</a>
-
-  <div class="divider"></div>
-
-  <h2>4. Chart Patterns</h2>
-
-  <p>
-    Knowing chart patterns is one of the most valuable skills you can have.  
-    A rounding bottom, a double bottom, a double top, a flag, a trend break —  
-    these patterns tell you exactly what the stock is preparing to do.
-  </p>
-
-  <a class="rule-link" href="chart-patterns.html">View Patterns</a>
-
-  <div class="divider"></div>
-
-  <h2>5. Support & Resistance</h2>
-
-  <p>
-    Support and resistance are the backbone of price movement.  
-    These levels show you where the stock is likely to bounce, reverse, or break.
-  </p>
-
-  <p>
-    Mastering these levels is one of the most important skills in trading.
-  </p>
-
-  <a class="rule-link" href="support-resistance.html">Learn More</a>
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('r6')">6. Look Left</div>
+    <div class="rule-content" id="r6">
+      The history of the stock is always recorded.  
+      To know where the price is going, you must look left —  
+      back into the past to see where support and resistance were hit the most.
+    </div>
+  </div>
 
   <div class="divider"></div>
 
-  <h2>6. Look Left</h2>
+  <!-- NEW STUDY SECTION -->
 
-  <p>
-    The history of the stock is always recorded.  
-    To know where the price is going, you must look left —  
-    back into the past to see where support and resistance were hit the most.
-  </p>
+  <h2 class="section-title">Study The Night Before</h2>
 
-  <p>
-    The answers are always to the left.  
-    Not anywhere else.
-  </p>
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('s1')">1. Study the Night Before</div>
+    <div class="rule-content" id="s1">
+      The market is constantly moving.  
+      When you study the night before, you will see setups forming that should take place the next day.  
+      The market will always do what the market does — your job is to be prepared.
+    </div>
+  </div>
 
-  <a class="rule-link" href="look-left.html">Learn More</a>
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('s2')">2. Stick to Your Game Plan</div>
+    <div class="rule-content" id="s2">
+      Come up with a plan from your studying the night before — and stick to it.  
+      Don’t be indecisive.  
+      Planning is what removes hesitation.
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('s3')">3. Be Patient</div>
+    <div class="rule-content" id="s3">
+      The market will move fast and try to make you jump in or get out prematurely.  
+      Be patient.  
+      Your moment will come — and patience is what makes it clear.
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('s4')">4. Setups Come With Even Numbers</div>
+    <div class="rule-content" id="s4">
+      Watch for even numbers.  
+      They cause big reactions — and big reactions create opportunity.  
+      Even numbers are where setups reveal themselves.
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('s5')">5. In The Money</div>
+    <div class="rule-content" id="s5">
+      You want your contracts in the money.  
+      If they aren’t — or won’t be soon — don’t take them.  
+      In‑the‑money contracts move cleaner, faster, and more predictably.
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('s6')">6. Quantity & Quality</div>
+    <div class="rule-content" id="s6">
+      More contracts = more money.  
+      But quality matters.  
+      The tradeoff is risk — and you must balance both.  
+      Reference: <a href="death-strike.html" style="color:#ffdd7a;">Death Strike</a>
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-header" onclick="toggleRule('s7')">7. Never Marry a Trade</div>
+    <div class="rule-content" id="s7">
+      A part of your process is exiting the trade.  
+      Get out.  
+      You can always reposition the same way you got in.  
+      Never stay in a trade out of emotion.
+    </div>
+  </div>
 
   <div class="divider"></div>
 
