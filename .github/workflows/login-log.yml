@@ -1,0 +1,34 @@
+name: Log Login
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: "User who logged in"
+        required: true
+      timestamp:
+        description: "Login timestamp"
+        required: true
+
+jobs:
+  append-login:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Append login entry
+        run: |
+          jq --arg user "${{ github.event.inputs.username }}" \
+             --arg ts "${{ github.event.inputs.timestamp }}" \
+             '.entries += [{"username": $user, "timestamp": ($ts | tonumber)}]' \
+             data/login-log.json > data/tmp.json
+          mv data/tmp.json data/login-log.json
+
+      - name: Commit changes
+        run: |
+          git config user.name "Guild Workflow"
+          git config user.email "actions@github.com"
+          git add data/login-log.json
+          git commit -m "Login logged for ${{ github.event.inputs.username }}"
+          git push
