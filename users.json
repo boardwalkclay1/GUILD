@@ -1,0 +1,12 @@
+{
+  "clayvonte": {
+    "password": "hashed-or-plain",
+    "unlockUntil": 1743980000000,
+    "created": 1741378000000
+  },
+  "anotherUser": {
+    "password": "1234",
+    "unlockUntil": 1743980000000,
+    "created": 1741378000000
+  }
+}
