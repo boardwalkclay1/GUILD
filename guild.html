@@ -12,35 +12,21 @@
   <link rel="stylesheet" href="guild-style.css">
 
   <style>
-    /* PHONE FIXES */
     @media (max-width: 600px) {
+      .gf-topbar { margin-top: 80px !important; }
+      .gold-scroll { margin-top: 40px !important; }
+      .scroll-title { font-size: 1.8rem !important; }
+      .vertical-stack { margin-top: 160px !important; }
 
-      .gf-topbar {
-        margin-top: 80px !important;
-      }
-
-      .gold-scroll {
-        margin-top: 40px !important;
-      }
-
-      .scroll-title {
-        font-size: 1.8rem !important;
-      }
-
-      .vertical-stack {
-        margin-top: 160px !important;
-      }
-
-      /* NEW FIX — CENTER TOP NAV BETTER */
       .top-nav {
-        padding: 0 22px !important;   /* adds breathing room left + right */
+        padding: 0 22px !important;
         justify-content: center !important;
-        gap: 18px !important;         /* even spacing between links */
+        gap: 18px !important;
       }
 
       .top-nav a {
         text-align: center !important;
-        flex-shrink: 0 !important;    /* prevents clipping */
+        flex-shrink: 0 !important;
       }
     }
   </style>
@@ -82,7 +68,6 @@
   <!-- VERTICAL BUTTONS -->
   <div class="vertical-stack" style="margin-top: 200px; display: flex; flex-direction: column; gap: 20px;">
 
-    <!-- INSIDE THE GUILD -->
     <div class="guild-btn" onclick="toggleDrop('drop1')">
       🛡️ Inside the Guild
       <span class="arrow">›</span>
@@ -93,7 +78,6 @@
       <button class="enter-btn" onclick="go('inside-the-guild.html')">ENTER</button>
     </div>
 
-    <!-- COLOSSEUM -->
     <div class="guild-btn" onclick="toggleDrop('drop2')">
       🏛️ Colosseum
       <span class="arrow">›</span>
@@ -104,7 +88,6 @@
       <button class="enter-btn" onclick="go('the-colosseum.html')">ENTER</button>
     </div>
 
-    <!-- TRAINING HALL -->
     <div class="guild-btn" onclick="toggleDrop('drop3')">
       ⚒️ Training Hall
       <span class="arrow">›</span>
@@ -115,7 +98,6 @@
       <button class="enter-btn" onclick="go('training-hall.html')">ENTER</button>
     </div>
 
-    <!-- GUILD FAMILY -->
     <div class="guild-btn" onclick="toggleDrop('drop4')">
       🤝 Guild Family
       <span class="arrow">›</span>
@@ -128,7 +110,6 @@
 
   </div>
 
-  <!-- COPYRIGHT -->
   <div style="text-align:center; margin: 60px 0 40px; color: var(--gold); opacity: 0.7; font-size: 0.9rem;">
     © The Guild — All Rights Reserved
   </div>
@@ -160,6 +141,39 @@
     document.querySelector('.gf-btn').addEventListener('click', () => {
       document.querySelector('.gf-dropdown').classList.toggle('open');
     });
+  </script>
+
+  <!-- =============================== -->
+  <!-- ⚡ GUILD UNLOCK WORKFLOW TRIGGER -->
+  <!-- =============================== -->
+  <script>
+    // Create or load device ID
+    let deviceId = localStorage.getItem("guild_device_id");
+    if (!deviceId) {
+      deviceId = crypto.randomUUID();
+      localStorage.setItem("guild_device_id", deviceId);
+    }
+
+    // 30 days from now
+    const unlockUntil = Date.now() + (30 * 24 * 60 * 60 * 1000);
+
+    // Trigger GitHub workflow
+    fetch("https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/actions/workflows/unlock.yml/dispatches", {
+      method: "POST",
+      headers: {
+        "Accept": "application/vnd.github+json",
+        "Authorization": "Bearer YOUR_GITHUB_PAT"
+      },
+      body: JSON.stringify({
+        ref: "main",
+        inputs: {
+          deviceId,
+          unlockUntil: unlockUntil.toString()
+        }
+      })
+    })
+    .then(() => console.log("Guild unlock workflow triggered"))
+    .catch(err => console.error("Workflow trigger failed:", err));
   </script>
 
 </body>
