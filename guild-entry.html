@@ -5,10 +5,7 @@
 <title>Guild Entry – $50 Contribution</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- GLOBAL CINEMATIC CSS -->
 <link rel="stylesheet" href="guild-style.css">
-
-<!-- GUILD ENGINE -->
 <script src="guild-engine.js" defer></script>
 
 <style>
@@ -74,7 +71,6 @@
 
 <body data-bg="Tributum.jpg">
 
-<!-- CINEMATIC LAYERS -->
 <div class="fog-layer"></div>
 <div class="pillar pillar-left"></div>
 <div class="pillar pillar-right"></div>
@@ -82,38 +78,66 @@
 <h1>Guild Entry</h1>
 
 <div class="entry-container">
-  <p>Your contribution unlocks the Guild on this device forever.</p>
+  <p>Your contribution unlocks the Guild on this device for 30 days.</p>
   <p><strong>Amount: $50</strong></p>
 
-  <!-- STATIC QR IMAGE -->
   <img class="qr" src="Entry-qrcode.png" alt="Guild Entry QR Code">
 
-  <!-- PAYPAL BUTTON -->
   <a id="paypalBtn" class="btn" target="_blank">Pay with PayPal</a>
 
-  <p>After payment, enter your email below to unlock:</p>
+  <p>Create your Guild login:</p>
 
-  <input id="email" type="email" placeholder="Enter your email">
+  <input id="username" type="text" placeholder="Create username">
+  <input id="password" type="password" placeholder="Create password">
 
   <button class="btn" onclick="unlock()">Unlock Guild</button>
 </div>
 
 <script>
   const PAYPAL_LINK = "https://www.paypal.com/ncp/payment/WT7W6ADE5WZKY";
-
-  // Set PayPal button link
   document.getElementById("paypalBtn").href = PAYPAL_LINK;
 
-  // Unlock logic
-  function unlock() {
-    const email = document.getElementById("email").value.trim();
-    if (!email) {
-      alert("Enter your email to unlock.");
+  async function unlock() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!username || !password) {
+      alert("Enter a username and password.");
       return;
     }
 
-    localStorage.setItem("guild_email", email);
+    // ADMIN BYPASS
+    if (username.toLowerCase() === "boardwalk") {
+      localStorage.setItem("guild_member", "paid");
+      localStorage.setItem("guild_username", username);
+      go("guild.html");
+      return;
+    }
+
+    // 30 days
+    const unlockUntil = Date.now() + (30 * 24 * 60 * 60 * 1000);
+
+    // Save locally
     localStorage.setItem("guild_member", "paid");
+    localStorage.setItem("guild_username", username);
+    localStorage.setItem("guild_unlock_until", unlockUntil.toString());
+
+    // Trigger GitHub workflow to write JSON
+    await fetch("https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/actions/workflows/unlock.yml/dispatches", {
+      method: "POST",
+      headers: {
+        "Accept": "application/vnd.github+json",
+        "Authorization": "Bearer YOUR_GITHUB_PAT"
+      },
+      body: JSON.stringify({
+        ref: "main",
+        inputs: {
+          username: username,
+          password: password,
+          unlockUntil: unlockUntil.toString()
+        }
+      })
+    });
 
     go("guild.html");
   }
