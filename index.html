@@ -10,12 +10,11 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
-  <!-- FIXED: Guild assets live inside /guild/ -->
+  <!-- Guild assets live inside /guild/ -->
   <link rel="stylesheet" href="guild/guild-style.css">
   <script src="guild/guild-engine.js" defer></script>
 
   <style>
-    /* LOGIN PANEL */
     .login-panel {
       max-width: 420px;
       margin: 40px auto 60px;
@@ -77,7 +76,6 @@
   </style>
 </head>
 
-<!-- FIXED: Background image is inside /guild/ -->
 <body data-bg="guild/Vestry.jpg">
 
   <!-- GOLDEN FORMULA TOP BAR -->
@@ -116,8 +114,7 @@
     <div class="new-here">
       New to the Guild?  
       <br>
-      <a onclick="go('guild/guild-entry.html')">Enter the Inner Hall</a>  
-      to begin your initiation.
+      <a onclick="go('guild/guild-entry.html')">Enter the Inner Hall</a>
     </div>
   </div>
 
@@ -152,8 +149,7 @@
         <div class="slogan">Your initiation begins here.</div>
         <p>
           If you do not yet have an account,  
-          the Inner Hall will guide you through your first steps  
-          and lead you to the Guild Entry ritual.
+          the Inner Hall will guide you through your first steps.
         </p>
         <button class="enter-btn" onclick="go('guild/guild-entry.html')">ENTER</button>
       </div>
@@ -195,7 +191,6 @@
       window.location.href = page;
     }
 
-    // LOGIN LOGIC
     async function login() {
       const user = document.getElementById("loginUser").value.trim();
       const pass = document.getElementById("loginPass").value.trim();
@@ -205,7 +200,6 @@
         return;
       }
 
-      // Load users.json (root → data/users.json)
       const res = await fetch("data/users.json");
       const users = await res.json();
 
@@ -224,24 +218,20 @@
         return;
       }
 
-      // Success
       localStorage.setItem("guild_member", "paid");
       localStorage.setItem("guild_username", user);
 
-      // FIXED: Guild lives inside /guild/
       go("guild/guild.html");
     }
 
-    // GOLDEN FORMULA PAYWALL
     function openGF() {
       if (localStorage.getItem("gf_subscriber") === "paid") {
-        window.location.href = "guild/guild-goldenformula.html";
+        go("guild/guild-goldenformula.html");
       } else {
-        window.location.href = "guild/gf-paywall.html";
+        go("guild/gf-paywall.html");
       }
     }
 
-    // DROPDOWNS
     document.querySelectorAll('.dropdown-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
         btn.nextElementSibling.classList.toggle('open');
