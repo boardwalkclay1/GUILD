@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Master Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="../guild-style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #D4AF37;
+      font-family: system-ui, sans-serif;
+      padding: 30px 16px 60px;
+    }
+
+    .gold-scroll {
+      max-width: 1000px;
+      margin: 0 auto 30px;
+      padding: 24px;
+      background: rgba(0,0,0,0.8);
+      border: 2px solid #8B6B2C;
+      border-radius: 18px;
+      box-shadow: 0 0 20px rgba(212,175,55,0.4);
+      text-align: center;
+    }
+
+    .scroll-title {
+      font-family: "Uncial Antiqua", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 18px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid #D4AF37;
+      border-radius: 12px;
+    }
+
+    .section h2 {
+      font-family: "Uncial Antiqua", serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      margin-top: 0;
+      text-transform: uppercase;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      border-bottom: 1px solid rgba(212,175,55,0.3);
+      padding: 6px 4px;
+      text-align: left;
+    }
+
+    th {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #D4AF37;
+      font-size: 0.75rem;
+    }
+
+    .glow-text {
+      color: #FFD966;
+      text-shadow: 0 0 8px rgba(255,217,102,0.9);
+    }
+
+    .message-body {
+      white-space: pre-wrap;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .small {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <div class="gold-scroll">
+    <h1 class="scroll-title">Guild Master’s Watchtower</h1>
+    <p class="small">Only visible when logged in as <strong>Guild Master</strong>.</p>
+  </div>
+
+  <!-- USERS OVERVIEW -->
+  <div class="section" id="users-section">
+    <h2>Members & Access</h2>
+    <table id="users-table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Expires</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- LOGIN LOG -->
+  <div class="section" id="logins-section">
+    <h2>Recent Logins</h2>
+    <table id="logins-table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- DIRECT MESSAGES -->
+  <div class="section" id="messages-section">
+    <h2>Message Center</h2>
+    <div id="messages-list"></div>
+  </div>
+
+  <!-- FAMILY WALL -->
+  <div class="section" id="family-wall-section">
+    <h2>Guild Family Wall</h2>
+    <div id="wall-list"></div>
+  </div>
+
+  <script>
+    // Only allow Guild Master
+    const currentUser = localStorage.getItem("guild_username");
+    if (currentUser !== "Guild Master") {
+      alert("Access denied. This chamber is for the Guild Master only.");
+      window.location.href = "../guild.html";
+    }
+
+    function formatTime(ts) {
+      const d = new Date(Number(ts));
+      return d.toLocaleString();
+    }
+
+    function statusFromUnlock(until) {
+      const now = Date.now();
+      return now > until ? "Expired" : "Active";
+    }
+
+    async function loadData() {
+      // USERS
+      try {
+        const usersRes = await fetch("../data/users.json");
+        const users = await usersRes.json();
+        const tbody = document.querySelector("#users-table tbody");
+        tbody.innerHTML = "";
+        Object.keys(users).forEach(u => {
+          const row = document.createElement("tr");
+          const unlock = users[u].unlockUntil || 0;
+          const status = statusFromUnlock(unlock);
+          row.innerHTML = `
+            <td>${u}</td>
+            <td>${unlock ? formatTime(unlock) : "—"}</td>
+            <td><span class="pill">${status}</span></td>
+          `;
+          tbody.appendChild(row);
+        });
+      } catch (e) {
+        console.error("Failed to load users.json", e);
+      }
+
+      // LOGIN LOG
+      try {
+        const logRes = await fetch("../data/login-log.json");
+        const logData = await logRes.json();
+        const tbody = document.querySelector("#logins-table tbody");
+        tbody.innerHTML = "";
+        (logData.entries || []).slice().reverse().forEach(entry => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${entry.username}</td>
+            <td>${formatTime(entry.timestamp)}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      } catch (e) {
+        console.error("Failed to load login-log.json", e);
+      }
+
+      // DIRECT MESSAGES
+      try {
+        const msgRes = await fetch("../data/messages.json");
+        const msgData = await msgRes.json();
+        const container = document.getElementById("messages-list");
+        container.innerHTML = "";
+        (msgData.messages || []).slice().reverse().forEach(m => {
+          const block = document.createElement("div");
+          block.style.borderBottom = "1px solid rgba(212,175,55,0.3)";
+          block.style.padding = "8px 0";
+          block.innerHTML = `
+            <div><strong>${m.from}</strong> <span class="small">(${formatTime(m.timestamp)})</span></div>
+            <div class="small"><em>${m.subject || ""}</em></div>
+            <div class="message-body">${m.body || ""}</div>
+          `;
+          container.appendChild(block);
+        });
+      } catch (e) {
+        console.error("Failed to load messages.json", e);
+      }
+
+      // FAMILY WALL
+      try {
+        const wallRes = await fetch("../data/family-wall.json");
+        const wallData = await wallRes.json();
+        const container = document.getElementById("wall-list");
+        container.innerHTML = "";
+        (wallData.entries || []).slice().reverse().forEach(w => {
+          const block = document.createElement("div");
+          block.style.borderBottom = "1px solid rgba(212,175,55,0.3)";
+          block.style.padding = "8px 0";
+          block.innerHTML = `
+            <div><strong>${w.from}</strong> <span class="small">(${formatTime(w.timestamp)})</span></div>
+            <div class="glow-text">${w.text}</div>
+          `;
+          container.appendChild(block);
+        });
+      } catch (e) {
+        console.error("Failed to load family-wall.json", e);
+      }
+    }
+
+    loadData();
+  </script>
+
+</body>
+</html>
