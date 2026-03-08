@@ -5,8 +5,9 @@
 <title>Guild Entry – $50 Contribution</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="guild-style.css">
-<script src="guild-engine.js" defer></script>
+<!-- From root, reach into /guild/ -->
+<link rel="stylesheet" href="guild/guild-style.css">
+<script src="guild/guild-engine.js" defer></script>
 
 <style>
   .entry-container {
@@ -24,6 +25,7 @@
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin-bottom: 20px;
+    font-family: "Uncial Antiqua", serif;
   }
 
   .qr {
@@ -69,11 +71,8 @@
 </style>
 </head>
 
-<body data-bg="Tributum.jpg">
-
-<div class="fog-layer"></div>
-<div class="pillar pillar-left"></div>
-<div class="pillar pillar-right"></div>
+<!-- Background image also inside /guild/ -->
+<body data-bg="guild/Tributum.jpg">
 
 <h1>Guild Entry</h1>
 
@@ -81,7 +80,8 @@
   <p>Your contribution unlocks the Guild for 30 days.</p>
   <p><strong>Amount: $50</strong></p>
 
-  <img class="qr" src="Entry-qrcode.png" alt="Guild Entry QR Code">
+  <!-- QR image inside /guild/ -->
+  <img class="qr" src="guild/Entry-qrcode.png" alt="Guild Entry QR Code">
 
   <a id="paypalBtn" class="btn" target="_blank">Pay with PayPal</a>
 
@@ -106,19 +106,11 @@
       return;
     }
 
-    // ADMIN BYPASS
-    if (username.toLowerCase() === "boardwalk") {
-      localStorage.setItem("guild_member", "paid");
-      localStorage.setItem("guild_username", username);
-      go("guild.html");
-      return;
-    }
-
-    // TEMP STORE ONLY — DO NOT UNLOCK HERE
+    // Store temporarily — workflow will finalize after PayPal
     localStorage.setItem("pending_username", username);
     localStorage.setItem("pending_password", password);
 
-    // Send user to PayPal
+    // Redirect to PayPal
     window.location.href = PAYPAL_LINK;
   }
 </script>
