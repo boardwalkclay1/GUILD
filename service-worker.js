@@ -1,72 +1,74 @@
 // ===============================
-// GUILD SERVICE WORKER — v6 (FINAL + CLEAN)
+// GUILD SERVICE WORKER — v6 (FINAL + CLEAN + CORRECT PATHS)
 // ===============================
 
 const CACHE_NAME = "guild-cache-v6";
 
-// Cache ONLY files that exist inside THIS repo
 const ASSETS = [
 
   // ROOT FILES
   "index.html",
-  "guild-style.css",
-  "guild-engine.js",
   "the-guild.png",
   "favicon.ico",
   "manifest.json",
 
+  // GUILD CORE FILES (INSIDE /guild/)
+  "guild/guild-style.css",
+  "guild/guild-engine.js",
+
   // CORE GUILD PAGES
-  "guild.html",
-  "glossary.html",
-  "golden-rules.html",
-  "guild-discipline.html",
-  "inside-the-guild.html",
-  "guild-family.html",
-  "training-hall.html",
-  "gf-paywall.html",
-  "guild-goldenformula.html",
-  "arena-secrets.html",
+  "guild/guild.html",
+  "guild/glossary.html",
+  "guild/golden-rules.html",
+  "guild/guild-discipline.html",
+  "guild/inside-the-guild.html",
+  "guild/guild-family.html",
+  "guild/training-hall.html",
+  "guild/gf-paywall.html",
+  "guild/guild-goldenformula.html",
+  "guild/arena-secrets.html",
+  "guild/guild-entry.html",
 
-  // TRAINING MODULES (PATTERNS, OPTIONS, ETC.)
-  "chart-patterns.html",
-  "training/patterns/pattern-level1.html",
-  "training/patterns/pattern-level2.html",
-  "training/patterns/pattern-level3.html",
-  "training/patterns/pattern-level4.html",
+  // TRAINING MODULES
+  "guild/chart-patterns.html",
+  "guild/training/patterns/pattern-level1.html",
+  "guild/training/patterns/pattern-level2.html",
+  "guild/training/patterns/pattern-level3.html",
+  "guild/training/patterns/pattern-level4.html",
 
-  "training/accessing-options.html",
-  "training/accessing-options/banks.html",
-  "training/accessing-options/brokers.html",
-  "training/accessing-options/simulator.html",
+  "guild/training/accessing-options.html",
+  "guild/training/accessing-options/banks.html",
+  "guild/training/accessing-options/brokers.html",
+  "guild/training/accessing-options/simulator.html",
 
   // TRAINING JS
-  "training/js/patterns-level1.js",
-  "training/js/patterns-level2.js",
-  "training/js/patterns-level3.js",
-  "training/js/patterns-level4.js",
-  "training/js/accessing-options.js",
+  "guild/training/js/patterns-level1.js",
+  "guild/training/js/patterns-level2.js",
+  "guild/training/js/patterns-level3.js",
+  "guild/training/js/patterns-level4.js",
+  "guild/training/js/accessing-options.js",
 
   // ICONS
-  "icons/icon-door.svg",
-  "icons/icon-dragon.svg",
-  "icons/icon-arena.svg",
-  "icons/icon-forge.svg",
-  "icons/icon-purse.svg",
+  "guild/icons/icon-door.svg",
+  "guild/icons/icon-dragon.svg",
+  "guild/icons/icon-arena.svg",
+  "guild/icons/icon-forge.svg",
+  "guild/icons/icon-purse.svg",
 
   // BACKGROUNDS
-  "image/Arcadium.jpg",
-  "image/Armory.jpeg",
-  "image/Aurum-Veritas.jpg",
-  "image/Porta-Imperii.jpg",
-  "image/Tributum.jpg",
-  "image/Vestry.jpg",
-  "image/apotheosis-chamber.jpg",
-  "image/gladiator-forum.jpg",
-  "image/strategy-chamber.jpg",
-  "guild-background-gold.png"
+  "guild/image/Arcadium.jpg",
+  "guild/image/Armory.jpeg",
+  "guild/image/Aurum-Veritas.jpg",
+  "guild/image/Porta-Imperii.jpg",
+  "guild/image/Tributum.jpg",
+  "guild/image/Vestry.jpg",
+  "guild/image/apotheosis-chamber.jpg",
+  "guild/image/gladiator-forum.jpg",
+  "guild/image/strategy-chamber.jpg",
+  "guild/guild-background-gold.png"
 ];
 
-// INSTALL — cache everything that exists in THIS repo
+// INSTALL — cache everything
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
