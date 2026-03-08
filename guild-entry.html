@@ -36,6 +36,7 @@
     border-radius: 12px;
     background: #fff;
     padding: 10px;
+    object-fit: contain;
   }
 
   .btn {
@@ -71,7 +72,6 @@
 </style>
 </head>
 
-<!-- CORRECT BACKGROUND IMAGE -->
 <body data-bg="Tributum.jpg">
 
 <!-- CINEMATIC LAYERS -->
@@ -85,8 +85,10 @@
   <p>Your contribution unlocks the Guild on this device forever.</p>
   <p><strong>Amount: $50</strong></p>
 
-  <img class="qr" id="qrImage" alt="QR Code">
+  <!-- STATIC QR IMAGE -->
+  <img class="qr" src="Entry-qrcode.png" alt="Guild Entry QR Code">
 
+  <!-- PAYPAL BUTTON -->
   <a id="paypalBtn" class="btn" target="_blank">Pay with PayPal</a>
 
   <p>After payment, enter your email below to unlock:</p>
@@ -97,17 +99,10 @@
 </div>
 
 <script>
-  const PAYPAL_LINK =
-    "https://www.paypal.com/ncp/payment/WT7W6ADE5WZKY";
+  const PAYPAL_LINK = "https://www.paypal.com/ncp/payment/WT7W6ADE5WZKY";
 
   // Set PayPal button link
   document.getElementById("paypalBtn").href = PAYPAL_LINK;
-
-  // Generate QR code
-  const qrURL =
-    "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
-    encodeURIComponent(PAYPAL_LINK);
-  document.getElementById("qrImage").src = qrURL;
 
   // Unlock logic
   function unlock() {
