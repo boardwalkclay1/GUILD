@@ -1,8 +1,8 @@
 // ===============================
-// GUILD SERVICE WORKER — v5 (UPDATED + CLEAN)
+// GUILD SERVICE WORKER — v6 (FINAL + CLEAN)
 // ===============================
 
-const CACHE_NAME = "guild-cache-v5";
+const CACHE_NAME = "guild-cache-v6";
 
 // Cache ONLY files that exist inside THIS repo
 const ASSETS = [
@@ -25,6 +25,7 @@ const ASSETS = [
   "training-hall.html",
   "gf-paywall.html",
   "guild-goldenformula.html",
+  "arena-secrets.html",
 
   // TRAINING MODULES (PATTERNS, OPTIONS, ETC.)
   "chart-patterns.html",
@@ -44,6 +45,13 @@ const ASSETS = [
   "training/js/patterns-level3.js",
   "training/js/patterns-level4.js",
   "training/js/accessing-options.js",
+
+  // ICONS
+  "icons/icon-door.svg",
+  "icons/icon-dragon.svg",
+  "icons/icon-arena.svg",
+  "icons/icon-forge.svg",
+  "icons/icon-purse.svg",
 
   // BACKGROUNDS
   "image/Arcadium.jpg",
