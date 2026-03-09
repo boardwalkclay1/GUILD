@@ -1,18 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>INNER HALL</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>THE GUILD HALL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" type="image/png" href="../the-guild.png" />
-  <link rel="apple-touch-icon" href="../the-guild.png" />
+  <link rel="icon" type="image/png" href="../the-guild.png">
+  <link rel="apple-touch-icon" href="../the-guild.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../guild/guild-style.css">
+
+  <!-- Correct Cloudflare Pages paths -->
+  <link rel="stylesheet" href="guild-style.css">
+  <script src="guild-engine.js" defer></script>
 </head>
 
-<body data-bg="Vestry.jpg">
+<body data-bg="Hall.jpg">
+
+  <!-- =============================== -->
+  <!-- ⭐ TOP NAV BAR (RESTORED) ⭐ -->
+  <!-- =============================== -->
+  <header class="guild-top-bar">
+
+    <div class="guild-logo-title">
+      <span class="guild-mark">⛨</span>
+      <span class="guild-title">THE GUILD</span>
+    </div>
+
+    <nav class="guild-nav-links">
+
+      <!-- Golden Rules -->
+      <button class="nav-btn" onclick="go('golden-rules.html')">Golden Rules</button>
+
+      <!-- Guild Discipline -->
+      <button class="nav-btn" onclick="go('guild-discipline.html')">Guild Discipline</button>
+
+      <!-- Glossary -->
+      <button class="nav-btn" onclick="go('glossary.html')">Glossary</button>
+
+      <!-- Golden Formula dropdown -->
+      <div class="nav-dropdown">
+        <button class="nav-btn formula-btn">Golden Formula ▾</button>
+        <div class="nav-dropdown-content">
+          <button onclick="go('golden-formula.html')">View Formula</button>
+          <button onclick="go('training-hall.html')">Formula Training</button>
+        </div>
+      </div>
+
+    </nav>
+  </header>
 
   <!-- CINEMATIC LAYERS -->
   <div class="fog-layer"></div>
@@ -21,82 +57,47 @@
 
   <!-- TITLE -->
   <div class="gold-scroll open">
-    <h1 class="scroll-title">INNER HALL</h1>
+    <h1 class="scroll-title">THE GUILD HALL</h1>
   </div>
 
-  <!-- VERTICAL BUTTONS -->
+  <!-- =============================== -->
+  <!-- ⭐ MAIN BUTTON STACK ⭐ -->
+  <!-- =============================== -->
   <div class="vertical-stack" style="margin-top: 200px; display: flex; flex-direction: column; gap: 20px;">
 
+    <!-- Inside the Guild (FIRST) -->
     <div class="guild-btn" onclick="toggleDrop('drop1')">
       🛡️ Inside the Guild
       <span class="arrow">›</span>
     </div>
     <div id="drop1" class="dropdown-panel">
       <p>The chamber where your identity is forged.</p>
-      <button class="enter-btn" onclick="go('../inside-the-guild.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('inside-the-guild.html')">ENTER</button>
     </div>
 
+    <!-- Training Hall -->
     <div class="guild-btn" onclick="toggleDrop('drop2')">
-      🧿 Already Have an Account?
+      ⚔️ Training Hall
       <span class="arrow">›</span>
     </div>
     <div id="drop2" class="dropdown-panel">
-      <p>Return to the Guild through the Brotherhood & Sisterhood Gate.</p>
-      <button class="enter-btn" onclick="go('login.html')">LOGIN</button>
+      <p>Your path of mastery begins here.</p>
+      <button class="enter-btn" onclick="go('training-hall.html')">ENTER</button>
     </div>
 
+    <!-- Guild Family -->
     <div class="guild-btn" onclick="toggleDrop('drop3')">
-      🔱 New to the Guild?
+      🏛️ Guild Family
       <span class="arrow">›</span>
     </div>
     <div id="drop3" class="dropdown-panel">
-      <p>Your initiation begins here.  
-      This path leads to the Guild Entry ritual and the PayPal contribution.</p>
-      <button class="enter-btn" onclick="go('../guild-entry.html')">BEGIN INITIATION</button>
+      <p>The shared hall of all members — your brothers and sisters.</p>
+      <button class="enter-btn" onclick="go('guild-family.html')">ENTER</button>
     </div>
 
   </div>
 
-  <!-- =============================== -->
-  <!-- ⚡ PAYPAL RETURN WORKFLOW TRIGGER -->
-  <!-- =============================== -->
-  <script>
-    // Read stored username/password from Entry page
-    const username = localStorage.getItem("pending_username");
-    const password = localStorage.getItem("pending_password");
-
-    if (username && password) {
-      const unlockUntil = Date.now() + (30 * 24 * 60 * 60 * 1000);
-
-      // Save permanent unlock locally
-      localStorage.setItem("guild_member", "paid");
-      localStorage.setItem("guild_username", username);
-      localStorage.setItem("guild_unlock_until", unlockUntil.toString());
-
-      // Trigger GitHub workflow
-      fetch("https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/actions/workflows/unlock.yml/dispatches", {
-        method: "POST",
-        headers: {
-          "Accept": "application/vnd.github+json",
-          "Authorization": "Bearer YOUR_GITHUB_PAT"
-        },
-        body: JSON.stringify({
-          ref: "main",
-          inputs: {
-            username: username,
-            password: password,
-            unlockUntil: unlockUntil.toString()
-          }
-        })
-      });
-
-      // Clear temp storage
-      localStorage.removeItem("pending_username");
-      localStorage.removeItem("pending_password");
-    }
-  </script>
-
-  <!-- DROPDOWN LOGIC -->
+  <!-- LOGIC -->
   <script>
     function toggleDrop(id) {
       document.getElementById(id).classList.toggle("open");
