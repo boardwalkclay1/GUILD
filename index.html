@@ -10,7 +10,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
-  <!-- Guild assets live inside /guild/ -->
+  <!-- Guild assets -->
   <link rel="stylesheet" href="guild/guild-style.css">
   <script src="guild/guild-engine.js" defer></script>
 
@@ -118,73 +118,6 @@
     </div>
   </div>
 
-  <!-- MAIN CONTENT SECTIONS -->
-  <div class="content">
-
-    <!-- SECTION 1 -->
-    <div class="guild-section">
-      <button class="guild-btn dropdown-toggle">
-        ⚔️ The Brotherhood & Sisterhood
-        <span class="arrow">▼</span>
-      </button>
-
-      <div class="dropdown-panel">
-        <div class="slogan">Where traders rise, fall, and are reborn.</div>
-        <p>
-          The Guild is a blood‑bond of discipline and clarity.  
-          Inside these walls, you rise into the version of yourself your family can depend on.
-        </p>
-        <button class="enter-btn" onclick="go('guild/guild-family.html')">ENTER</button>
-      </div>
-    </div>
-
-    <!-- SECTION 2 -->
-    <div class="guild-section">
-      <button class="guild-btn dropdown-toggle">
-        🏛️ The Inner Hall
-        <span class="arrow">▼</span>
-      </button>
-
-      <div class="dropdown-panel">
-        <div class="slogan">Your initiation begins here.</div>
-        <p>
-          If you do not yet have an account,  
-          the Inner Hall will guide you through your first steps.
-        </p>
-        <button class="enter-btn" onclick="go('guild/guild-entry.html')">ENTER</button>
-      </div>
-    </div>
-
-    <!-- SECTION 3 -->
-    <div class="guild-section">
-      <button class="guild-btn dropdown-toggle">
-        💀 Death Strike
-        <span class="arrow">▼</span>
-      </button>
-
-      <div class="dropdown-panel">
-        <div class="slogan">Where small contracts become massive moves.</div>
-        <p>Simple explanations. Real logic. Life‑changing clarity.</p>
-        <button class="enter-btn" onclick="go('guild/death-strike.html')">ENTER</button>
-      </div>
-    </div>
-
-    <!-- SECTION 4 -->
-    <div class="guild-section">
-      <button class="guild-btn dropdown-toggle">
-        🏟️ The Colosseum
-        <span class="arrow">▼</span>
-      </button>
-
-      <div class="dropdown-panel">
-        <div class="slogan">A tale of discipline, scars, and transformation.</div>
-        <p>Step into the story that mirrors your journey in the market.</p>
-        <button class="enter-btn" onclick="go('guild/colosseum.html')">ENTER</button>
-      </div>
-    </div>
-
-  </div>
-
   <!-- JS -->
   <script>
     function go(page) {
@@ -192,34 +125,38 @@
     }
 
     async function login() {
-      const user = document.getElementById("loginUser").value.trim();
-      const pass = document.getElementById("loginPass").value.trim();
+      const username = document.getElementById("loginUser").value.trim();
+      const password = document.getElementById("loginPass").value.trim();
 
-      if (!user || !pass) {
+      if (!username || !password) {
         alert("Enter username and password.");
         return;
       }
 
-      const res = await fetch("data/users.json");
-      const users = await res.json();
+      // NEW: Cloudflare Worker login endpoint
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
 
-      if (!users[user]) {
-        alert("User not found.");
+      const data = await res.json();
+
+      if (!data.ok) {
+        alert("Invalid username or password.");
         return;
       }
 
-      if (users[user].password !== pass) {
-        alert("Incorrect password.");
-        return;
-      }
-
-      if (Date.now() > users[user].unlockUntil) {
+      // Check membership
+      if (Date.now() > data.unlock_until) {
         alert("Your access has expired. Renew in the Inner Hall.");
         return;
       }
 
+      // Save session
       localStorage.setItem("guild_member", "paid");
-      localStorage.setItem("guild_username", user);
+      localStorage.setItem("guild_username", username);
+      localStorage.setItem("guild_unlock_until", data.unlock_until);
 
       go("guild/guild.html");
     }
