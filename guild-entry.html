@@ -68,10 +68,22 @@
     color: #D4AF37;
     text-align: center;
   }
+
+  .doubt-link {
+    margin-top: 25px;
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+
+  .doubt-link a {
+    color: #D4AF37;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 </style>
 </head>
 
-<!-- Background image also inside /guild/ -->
 <body data-bg="guild/Tributum.jpg">
 
 <h1>Guild Entry</h1>
@@ -80,7 +92,6 @@
   <p>Your contribution unlocks the Guild for 30 days.</p>
   <p><strong>Amount: $50</strong></p>
 
-  <!-- QR image inside /guild/ -->
   <img class="qr" src="guild/Entry-qrcode.png" alt="Guild Entry QR Code">
 
   <a id="paypalBtn" class="btn" target="_blank">Pay with PayPal</a>
@@ -91,6 +102,12 @@
   <input id="password" type="password" placeholder="Create password">
 
   <button class="btn" onclick="beginEntry()">Continue</button>
+
+  <div class="doubt-link">
+    Having second thoughts?  
+    <br>
+    <a href="having-second-thoughts.html">See why the Guild changes lives</a>
+  </div>
 </div>
 
 <script>
