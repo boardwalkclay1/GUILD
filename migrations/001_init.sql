@@ -1,9 +1,11 @@
--- USERS TABLE
+-- USERS TABLE (UPDATED)
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
-  unlock_until INTEGER NOT NULL
+  unlock_until INTEGER NOT NULL,
+  role TEXT DEFAULT 'member',        -- NEW
+  created_at INTEGER DEFAULT (strftime('%s','now'))  -- NEW
 );
 
 -- LOGIN LOGS
