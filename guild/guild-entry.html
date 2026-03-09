@@ -5,11 +5,16 @@
 <title>Guild Entry – $50 Contribution</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- From root, reach into /guild/ -->
-<link rel="stylesheet" href="guild/guild-style.css">
-<script src="guild/guild-engine.js" defer></script>
+<link rel="stylesheet" href="guild-style.css">
+<script src="guild-engine.js" defer></script>
 
 <style>
+  body {
+    background: #000;
+    color: #D4AF37;
+    font-family: "Cinzel", serif;
+  }
+
   .entry-container {
     max-width: 600px;
     margin: 140px auto 80px;
@@ -18,7 +23,6 @@
     border-radius: 14px;
     padding: 30px;
     text-align: center;
-    color: #D4AF37;
   }
 
   h1 {
@@ -79,12 +83,11 @@
     color: #D4AF37;
     font-weight: bold;
     text-decoration: underline;
-    cursor: pointer;
   }
 </style>
 </head>
 
-<body data-bg="guild/Tributum.jpg">
+<body data-bg="Tributum.jpg">
 
 <h1>Guild Entry</h1>
 
@@ -92,7 +95,7 @@
   <p>Your contribution unlocks the Guild for 30 days.</p>
   <p><strong>Amount: $50</strong></p>
 
-  <img class="qr" src="guild/Entry-qrcode.png" alt="Guild Entry QR Code">
+  <img class="qr" src="Entry-qrcode.png" alt="Guild Entry QR Code">
 
   <a id="paypalBtn" class="btn" target="_blank">Pay with PayPal</a>
 
@@ -123,7 +126,7 @@
       return;
     }
 
-    // Store temporarily — workflow will finalize after PayPal
+    // Store temporarily — Worker will finalize after PayPal
     localStorage.setItem("pending_username", username);
     localStorage.setItem("pending_password", password);
 
