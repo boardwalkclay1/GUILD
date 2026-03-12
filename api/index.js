@@ -12,6 +12,19 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
+    // ============================
+    // 1. CORS + OPTIONS SUPPORT
+    // ============================
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        status: 204,
+        headers: corsHeaders()
+      });
+    }
+
+    // ============================
+    // 2. ROUTING
+    // ============================
     if (path === "/api/login") return login(request, env);
     if (path === "/api/register") return register(request, env);
     if (path === "/api/unlock") return unlock(request, env);
@@ -21,6 +34,24 @@ export default {
     if (path === "/api/payments") return payments(request, env);
     if (path === "/api/logs") return logs(request, env);
 
-    return new Response("Not found", { status: 404 });
+    // ============================
+    // 3. FALLBACK
+    // ============================
+    return new Response(JSON.stringify({ ok: false, error: "not_found" }), {
+      status: 404,
+      headers: corsHeaders()
+    });
   }
 };
+
+// ============================
+// GLOBAL CORS HEADERS
+// ============================
+function corsHeaders() {
+  return {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json"
+  };
+}
