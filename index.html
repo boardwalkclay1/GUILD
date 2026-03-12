@@ -178,15 +178,27 @@
         return;
       }
 
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-      });
+      let res;
+      try {
+        res = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+      } catch (err) {
+        alert("Network error. Try again.");
+        return;
+      }
 
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        alert("Server error. Try again.");
+        return;
+      }
 
-      if (!data.ok) {
+      if (!data || !data.ok) {
         alert("Invalid username or password.");
         return;
       }
