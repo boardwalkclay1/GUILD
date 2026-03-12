@@ -1,7 +1,31 @@
 export default async function payments(request, env) {
-  const list = await env.DB.prepare(`
-    SELECT * FROM payments ORDER BY timestamp DESC
-  `).all();
+  try {
+    const list = await env.DB.prepare(
+      "SELECT * FROM payments ORDER BY timestamp DESC"
+    ).all();
 
-  return new Response(JSON.stringify(list.results));
+    return json({
+      ok: true,
+      payments: list.results
+    });
+
+  } catch (err) {
+    return json({
+      ok: false,
+      error: "server_error",
+      details: err.message
+    });
+  }
+}
+
+// Shared JSON + CORS helper
+function json(obj) {
+  return new Response(JSON.stringify(obj), {
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
+    }
+  });
 }
