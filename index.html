@@ -5,14 +5,15 @@
   <title>The Guild Gates</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="icon" type="image/png" href="/the-guild.png" />
-  <link rel="apple-touch-icon" href="/the-guild.png" />
+  <!-- Correct absolute paths for GitHub Pages -->
+  <link rel="icon" type="image/png" href="/GUILD/the-guild.png" />
+  <link rel="apple-touch-icon" href="/GUILD/the-guild.png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
-  <!-- Guild assets -->
-  <link rel="stylesheet" href="/guild/guild-style.css">
-  <script src="/guild/guild-engine.js" defer></script>
+  <!-- Guild assets (fixed paths) -->
+  <link rel="stylesheet" href="/GUILD/guild/guild-style.css">
+  <script src="/GUILD/guild/guild-engine.js" defer></script>
 
   <style>
     body {
@@ -22,7 +23,6 @@
       font-family: "Marcellus SC", serif;
     }
 
-    /* TOP NAV */
     .top-nav {
       display: flex;
       justify-content: center;
@@ -42,7 +42,6 @@
       text-decoration: underline;
     }
 
-    /* MAIN TITLE */
     .gold-scroll {
       margin-top: 40px;
       text-align: center;
@@ -55,7 +54,6 @@
       margin-bottom: 10px;
     }
 
-    /* LOGIN PANEL */
     .login-panel {
       max-width: 420px;
       margin: 40px auto 20px;
@@ -64,12 +62,6 @@
       border: 2px solid #D4AF37;
       border-radius: 14px;
       text-align: center;
-    }
-
-    .login-panel h2 {
-      font-family: "Uncial Antiqua", serif;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
     }
 
     .login-panel input {
@@ -115,7 +107,6 @@
       text-decoration: underline;
     }
 
-    /* QUICK LINKS */
     .quick-links {
       max-width: 420px;
       margin: 10px auto 80px;
@@ -127,14 +118,14 @@
   </style>
 </head>
 
-<body data-bg="/guild/Vestry.jpg">
+<body data-bg="/GUILD/guild/Vestry.jpg">
 
   <!-- TOP NAV -->
   <div class="top-nav">
-    <a onclick="go('/guild/death-strike.html')">Death Strike</a>
-    <a onclick="go('/guild/colosseum.html')">The Colosseum</a>
-    <a onclick="go('/guild/guild-entry.html')">Inner Hall</a>
-    <a onclick="go('/guild/why-join.html')">Why Join the Guild</a>
+    <a onclick="go('/GUILD/guild/death-strike.html')">Death Strike</a>
+    <a onclick="go('/GUILD/guild/colosseum.html')">The Colosseum</a>
+    <a onclick="go('/GUILD/guild/guild-entry.html')">Inner Hall</a>
+    <a onclick="go('/GUILD/guild/why-join.html')">Why Join the Guild</a>
   </div>
 
   <!-- MAIN TITLE -->
@@ -151,19 +142,18 @@
 
     <div class="new-here">
       New to the Guild?<br>
-      <a onclick="go('/guild/guild-entry.html')">Enter the Inner Hall</a>
+      <a onclick="go('/GUILD/guild/guild-entry.html')">Enter the Inner Hall</a>
     </div>
   </div>
 
   <!-- QUICK ACCESS BUTTONS -->
   <div class="quick-links">
-    <button class="login-btn" onclick="go('/guild/death-strike.html')">⚔️ Death Strike</button>
-    <button class="login-btn" onclick="go('/guild/colosseum.html')">🏛️ The Colosseum</button>
-    <button class="login-btn" onclick="go('/guild/guild-entry.html')">🜁 Inner Hall</button>
-    <button class="login-btn" onclick="go('/guild/why-join.html')">✨ Why Join the Guild</button>
+    <button class="login-btn" onclick="go('/GUILD/guild/death-strike.html')">⚔️ Death Strike</button>
+    <button class="login-btn" onclick="go('/GUILD/guild/colosseum.html')">🏛️ The Colosseum</button>
+    <button class="login-btn" onclick="go('/GUILD/guild/guild-entry.html')">🜁 Inner Hall</button>
+    <button class="login-btn" onclick="go('/GUILD/guild/why-join.html')">✨ Why Join the Guild</button>
   </div>
 
-  <!-- JS -->
   <script>
     function go(page) {
       window.location.href = page;
@@ -212,7 +202,8 @@
       localStorage.setItem("guild_username", username);
       localStorage.setItem("guild_unlock_until", data.unlock_until);
 
-      go("/guild/guild.html");
+      // ⭐ FIXED REDIRECT ⭐
+      go("/GUILD/guild/guild.html");
     }
   </script>
 
