@@ -1,5 +1,5 @@
 // ================================
-// GUILD ENGINE — CLEAN REBUILD
+// GUILD ENGINE — WORKER READY
 // ================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -76,7 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // 7. Authentication System
+  // ============================================
+  // 7. AUTH SYSTEM — FULLY UPDATED FOR WORKER
+  // ============================================
+
+  const WORKER_URL = "https://guild-work.boardwalkclay1.workers.dev";
+
   window.GuildAuth = {
     master: "Guild Master",
 
@@ -92,31 +97,66 @@ document.addEventListener("DOMContentLoaded", () => {
       return this.currentUser() === this.master;
     },
 
-    enforceProtection() {
+    async verifyWithWorker() {
+      const username = this.currentUser();
+      if (!username) return false;
+
+      try {
+        const res = await fetch(`${WORKER_URL}/api/check`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username })
+        });
+
+        const data = await res.json();
+        if (!data.ok) return false;
+
+        // Update local cache
+        localStorage.setItem("guild_unlock_until", data.unlock_until);
+        return true;
+
+      } catch (err) {
+        console.error("Worker check failed:", err);
+        return false;
+      }
+    },
+
+    async enforceProtection() {
       const path = window.location.pathname;
 
-      // Only protect pages inside /guild/
+      // Only protect /guild/ pages
       const insideGuild = path.includes("/guild/");
       if (!insideGuild) return;
 
-      // Allow these pages without login
+      // Pages allowed without login
       const safePages = [
-        "/guild/guild-entry.html"
+        "/guild/guild-entry.html",
+        "/guild/after-payment.html"
       ];
 
       if (safePages.some(p => path.endsWith(p))) return;
 
-      // If not logged in → send to Gates (index.html)
+      // Not logged in → send to Gates
       if (!this.isLoggedIn()) {
-        window.location.href = "../index.html";
+        window.location.href = "/index.html";
         return;
       }
 
-      // Expiration check
+      // Check expiration
       const unlockUntil = Number(localStorage.getItem("guild_unlock_until"));
       if (Date.now() > unlockUntil) {
         alert("Your access has expired. Renew in the Inner Hall.");
-        window.location.href = "guild-entry.html";
+        localStorage.clear();
+        window.location.href = "/guild/guild-entry.html";
+        return;
+      }
+
+      // Verify with Worker (final authority)
+      const ok = await this.verifyWithWorker();
+      if (!ok) {
+        alert("Session invalid. Please log in again.");
+        localStorage.clear();
+        window.location.href = "/guild/guild-entry.html";
       }
     }
   };
