@@ -1,0 +1,23 @@
+name = "guild-work"
+main = "api/index.js"
+compatibility_date = "2024-11-01"
+
+# ============================
+# D1 DATABASE BINDING
+# ============================
+[[d1_databases]]
+binding = "DB"                     # This is what your Worker uses: env.DB
+database_name = "guild"            # Your Cloudflare D1 database name
+database_id = "bb65b62c-7a5b-486e-aa17-652c16714faf"
+
+# ============================
+# ROUTING (YOUR WORKER URL)
+# ============================
+routes = [
+  { pattern = "guild-work.boardwalkclay1.workers.dev/*", zone_name = "" }
+]
+
+# ============================
+# NODE COMPAT (if needed)
+# ============================
+node_compat = true
