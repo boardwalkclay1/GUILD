@@ -1,23 +1,26 @@
 // ===============================
-// GUILD SERVICE WORKER — v7 (CLEAN + CORRECT PATHS)
+// GUILD SERVICE WORKER — v8
+// CLEAN • SAFE • CORRECT • WORKER-COMPATIBLE
 // ===============================
 
-const CACHE_NAME = "guild-cache-v7";
+const CACHE_NAME = "guild-cache-v8";
 
+// Only cache static assets that NEVER change.
+// Do NOT cache API routes or dynamic pages.
 const ASSETS = [
-  // ROOT
   "/index.html",
   "/the-guild.png",
   "/favicon.ico",
   "/manifest.json",
 
-  // CORE GUILD
   "/guild/guild-style.css",
   "/guild/guild-engine.js",
 
-  // PAGES
+  // Core Guild pages
   "/guild/guild.html",
-  "/guild/glossary.html",
+  "/guild/guild-entry.html",
+  "/guild/why-join.html",
+  "/guild/having-second-thoughts.html",
   "/guild/golden-rules.html",
   "/guild/guild-discipline.html",
   "/guild/inside-the-guild.html",
@@ -26,11 +29,8 @@ const ASSETS = [
   "/guild/gf-paywall.html",
   "/guild/guild-goldenformula.html",
   "/guild/arena-secrets.html",
-  "/guild/guild-entry.html",
-  "/guild/why-join.html",
-  "/guild/having-second-thoughts.html",
 
-  // TRAINING MODULES
+  // Training modules
   "/guild/chart-patterns.html",
   "/guild/training/patterns/pattern-level1.html",
   "/guild/training/patterns/pattern-level2.html",
@@ -42,21 +42,21 @@ const ASSETS = [
   "/guild/training/accessing-options/brokers.html",
   "/guild/training/accessing-options/simulator.html",
 
-  // TRAINING JS
+  // Training JS
   "/guild/training/js/patterns-level1.js",
   "/guild/training/js/patterns-level2.js",
   "/guild/training/js/patterns-level3.js",
   "/guild/training/js/patterns-level4.js",
   "/guild/training/js/accessing-options.js",
 
-  // ICONS
+  // Icons
   "/guild/icons/icon-door.svg",
   "/guild/icons/icon-dragon.svg",
   "/guild/icons/icon-arena.svg",
   "/guild/icons/icon-forge.svg",
   "/guild/icons/icon-purse.svg",
 
-  // BACKGROUNDS
+  // Backgrounds
   "/guild/image/Arcadium.jpg",
   "/guild/image/Armory.jpeg",
   "/guild/image/Aurum-Veritas.jpg",
@@ -69,7 +69,7 @@ const ASSETS = [
   "/guild/guild-background-gold.png"
 ];
 
-// INSTALL — cache everything
+// INSTALL — cache static assets
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
@@ -87,9 +87,26 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-// FETCH — network first, fallback to cache
+// FETCH — smarter strategy
 self.addEventListener("fetch", event => {
+  const req = event.request;
+  const url = new URL(req.url);
+
+  // Never cache API calls
+  if (url.pathname.startsWith("/api/")) {
+    return;
+  }
+
+  // For static assets → cache-first
+  if (ASSETS.includes(url.pathname)) {
+    event.respondWith(
+      caches.match(req).then(cached => cached || fetch(req))
+    );
+    return;
+  }
+
+  // For everything else → network-first with fallback
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    fetch(req).catch(() => caches.match(req))
   );
 });
