@@ -1,5 +1,5 @@
 // ================================
-// GUILD ENGINE — WORKER READY
+// GUILD ENGINE — CLEAN + CORRECT
 // ================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // ============================================
-  // 7. AUTH SYSTEM — FULLY UPDATED FOR WORKER
+  // 7. AUTH SYSTEM — WORKER READY
   // ============================================
 
   const WORKER_URL = "https://guild-work.boardwalkclay1.workers.dev";
@@ -111,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json();
         if (!data.ok) return false;
 
-        // Update local cache
         localStorage.setItem("guild_unlock_until", data.unlock_until);
         return true;
 
@@ -125,24 +124,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const path = window.location.pathname;
 
       // Only protect /guild/ pages
-      const insideGuild = path.includes("/guild/");
-      if (!insideGuild) return;
+      if (!path.startsWith("/guild/")) return;
 
-      // Pages allowed without login
+      // Allowed without login
       const safePages = [
         "/guild/guild-entry.html",
-        "/guild/after-payment.html"
+        "/guild/after-payment.html",
+        "/guild/having-second-thoughts.html"
       ];
 
-      if (safePages.some(p => path.endsWith(p))) return;
+      if (safePages.includes(path)) return;
 
-      // Not logged in → send to Gates
+      // Not logged in
       if (!this.isLoggedIn()) {
         window.location.href = "/index.html";
         return;
       }
 
-      // Check expiration
+      // Expired
       const unlockUntil = Number(localStorage.getItem("guild_unlock_until"));
       if (Date.now() > unlockUntil) {
         alert("Your access has expired. Renew in the Inner Hall.");
@@ -151,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Verify with Worker (final authority)
+      // Worker verification
       const ok = await this.verifyWithWorker();
       if (!ok) {
         alert("Session invalid. Please log in again.");
@@ -164,14 +163,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Enforce protection
   window.GuildAuth.enforceProtection();
 
-  // 8. Global go() transition
+  // 8. Global go() — NO OVERRIDES, NO REWRITES
   window.go = function (nextPage) {
     const overlay = document.createElement("div");
     overlay.className = "colosseum-transition";
     document.body.appendChild(overlay);
 
     setTimeout(() => {
-      window.location.href = nextPage;
+      window.location.href = nextPage; // respects caller EXACTLY
     }, 650);
   };
 });
