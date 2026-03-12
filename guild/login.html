@@ -5,9 +5,7 @@
   <title>Guild Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Correct relative path (this file is inside /guild/) -->
   <link rel="stylesheet" href="../guild-style.css">
-
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
   <style>
@@ -124,6 +122,15 @@
   </div>
 
   <script>
+    // ⭐ UNIVERSAL REDIRECT FIX ⭐
+    // This calculates the correct path based on where the file actually lives.
+    function goGuildPage() {
+      const current = window.location.pathname; 
+      const base = current.substring(0, current.lastIndexOf("/")); 
+      const target = base + "/guild.html"; 
+      window.location.href = target;
+    }
+
     function go(page) {
       window.location.href = page;
     }
@@ -137,7 +144,6 @@
         return;
       }
 
-      // Load users.json (correct relative path)
       const res = await fetch("../data/users.json");
       const users = await res.json();
 
@@ -156,13 +162,11 @@
         return;
       }
 
-      // Save session
       localStorage.setItem("guild_member", "paid");
       localStorage.setItem("guild_username", user);
 
-      // ⭐ FIXED REDIRECT ⭐
-      // This file is inside /guild/, so we go UP one folder, then into guild/
-      go("../guild/guild.html");
+      // ⭐ ALWAYS CORRECT, NO MATTER THE FOLDER ⭐
+      goGuildPage();
     }
   </script>
 
