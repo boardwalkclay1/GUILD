@@ -5,31 +5,37 @@
 <title>Guild Entry – $50 Contribution</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="guild-style.css">
-<script src="guild-engine.js" defer></script>
+<link rel="stylesheet" href="/guild/guild-style.css">
+<script src="/guild/guild-engine.js" defer></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Uncial+Antiqua&display=swap" rel="stylesheet">
 
 <style>
   body {
     background: #000;
     color: #D4AF37;
     font-family: "Cinzel", serif;
-  }
-
-  .entry-container {
-    max-width: 600px;
-    margin: 140px auto 80px;
-    background: rgba(0,0,0,0.75);
-    border: 2px solid #D4AF37;
-    border-radius: 14px;
-    padding: 30px;
-    text-align: center;
+    margin: 0;
+    padding: 0;
   }
 
   h1 {
     text-transform: uppercase;
     letter-spacing: 0.15em;
+    margin-top: 120px;
     margin-bottom: 20px;
+    text-align: center;
     font-family: "Uncial Antiqua", serif;
+  }
+
+  .entry-container {
+    max-width: 600px;
+    margin: 40px auto 80px;
+    background: rgba(0,0,0,0.75);
+    border: 2px solid #D4AF37;
+    border-radius: 14px;
+    padding: 30px;
+    text-align: center;
   }
 
   .qr {
@@ -55,6 +61,8 @@
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   .btn:hover {
@@ -77,17 +85,19 @@
     margin-top: 25px;
     font-size: 0.95rem;
     opacity: 0.85;
+    line-height: 1.4em;
   }
 
   .doubt-link a {
     color: #D4AF37;
     font-weight: bold;
     text-decoration: underline;
+    cursor: pointer;
   }
 </style>
 </head>
 
-<body data-bg="Tributum.jpg">
+<body data-bg="/guild/Tributum.jpg">
 
 <h1>Guild Entry</h1>
 
@@ -95,7 +105,7 @@
   <p>Your contribution unlocks the Guild for 30 days.</p>
   <p><strong>Amount: $50</strong></p>
 
-  <img class="qr" src="Entry-qrcode.png" alt="Guild Entry QR Code">
+  <img class="qr" src="/guild/Entry-qrcode.png" alt="Guild Entry QR Code">
 
   <a id="paypalBtn" class="btn" target="_blank">Pay with PayPal</a>
 
@@ -107,15 +117,18 @@
   <button class="btn" onclick="beginEntry()">Continue</button>
 
   <div class="doubt-link">
-    Having second thoughts?  
-    <br>
-    <a href="having-second-thoughts.html">See why the Guild changes lives</a>
+    Having second thoughts?<br>
+    <a onclick="go('/guild/having-second-thoughts.html')">See why the Guild changes lives</a>
   </div>
 </div>
 
 <script>
   const PAYPAL_LINK = "https://www.paypal.com/ncp/payment/WT7W6ADE5WZKY";
   document.getElementById("paypalBtn").href = PAYPAL_LINK;
+
+  function go(page) {
+    window.location.href = page;
+  }
 
   function beginEntry() {
     const username = document.getElementById("username").value.trim();
@@ -126,7 +139,7 @@
       return;
     }
 
-    // Store temporarily — Worker will finalize after PayPal
+    // Store temporarily — Worker finalizes after PayPal
     localStorage.setItem("pending_username", username);
     localStorage.setItem("pending_password", password);
 
