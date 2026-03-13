@@ -2,34 +2,38 @@ export async function onRequest(context) {
   const { request, env } = context;
 
   try {
-    const { username, password } = await request.json();
+    const { username } = await request.json();
 
-    if (!username || !password) {
-      return json({ ok: false, error: "missing_fields" });
+    if (!username) {
+      return json({ ok: false, error: "missing_username" });
     }
 
-    const isGuildMaster = username === "Guild Master";
+    const row = await env.DB.prepare(
+      "SELECT unlock_until, role FROM users WHERE username = ?"
+    ).bind(username).first();
 
-    // Guild Master = 100 years
-    const unlock_until = isGuildMaster
-      ? Date.now() + (100 * 365 * 24 * 60 * 60 * 1000)
-      : Date.now() + (30 * 24 * 60 * 60 * 1000);
+    if (!row) {
+      return json({ ok: false, error: "not_found" });
+    }
 
-    const role = isGuildMaster ? "guild_master" : "member";
+    // ⭐ Guild Master bypass — ALWAYS OK
+    if (username === "Guild Master") {
+      return json({
+        ok: true,
+        unlock_until: row.unlock_until,
+        role: "guild_master"
+      });
+    }
 
-    await env.DB.prepare(`
-      INSERT INTO users (username, password, unlock_until, role)
-      VALUES (?, ?, ?, ?)
-      ON CONFLICT(username) DO UPDATE SET
-        password = excluded.password,
-        unlock_until = excluded.unlock_until,
-        role = excluded.role
-    `).bind(username, password, unlock_until, role).run();
+    // ⭐ Normal member expiration check
+    if (Date.now() > row.unlock_until) {
+      return json({ ok: false, error: "expired" });
+    }
 
     return json({
       ok: true,
-      unlock_until,
-      role
+      unlock_until: row.unlock_until,
+      role: row.role
     });
 
   } catch (err) {
