@@ -1,4 +1,6 @@
-export default async function unlock(request, env) {
+export async function onRequest(context) {
+  const { request, env } = context;
+
   try {
     const { username, password } = await request.json();
 
@@ -6,27 +8,33 @@ export default async function unlock(request, env) {
       return json({ ok: false, error: "missing_fields" });
     }
 
-    // 30 days from now
-    const unlock_until = Date.now() + (30 * 24 * 60 * 60 * 1000);
+    const isGuildMaster = username.toLowerCase() === "guildmaster";
 
-    // Insert or update user
+    // If Guild Master → effectively never expires (e.g., 100 years)
+    const unlock_until = isGuildMaster
+      ? Date.now() + (100 * 365 * 24 * 60 * 60 * 1000)
+      : Date.now() + (30 * 24 * 60 * 60 * 1000);
+
+    const role = isGuildMaster ? "guild_master" : "member";
+
     await env.DB.prepare(`
       INSERT INTO users (username, password, unlock_until, role)
-      VALUES (?, ?, ?, 'member')
+      VALUES (?, ?, ?, ?)
       ON CONFLICT(username) DO UPDATE SET
         password = excluded.password,
-        unlock_until = excluded.unlock_until
-    `).bind(username, password, unlock_until).run();
+        unlock_until = excluded.unlock_until,
+        role = excluded.role
+    `).bind(username, password, unlock_until, role).run();
 
-    // Log payment
     await env.DB.prepare(`
       INSERT INTO payments (username, amount, timestamp, method)
-      VALUES (?, 50, ?, 'paypal')
-    `).bind(username, Date.now()).run();
+      VALUES (?, ?, ?, ?)
+    `).bind(username, isGuildMaster ? 0 : 50, Date.now(), isGuildMaster ? "system" : "paypal").run();
 
     return json({
       ok: true,
-      unlock_until
+      unlock_until,
+      role
     });
 
   } catch (err) {
@@ -38,7 +46,6 @@ export default async function unlock(request, env) {
   }
 }
 
-// Shared JSON + CORS helper
 function json(obj) {
   return new Response(JSON.stringify(obj), {
     headers: {
