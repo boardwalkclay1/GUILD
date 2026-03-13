@@ -7,30 +7,47 @@ import messages from "./messages.js";
 import notifications from "./notifications.js";
 import payments from "./payments.js";
 
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
+export async function onRequest(context) {
+  const { request, env } = context;
+  const url = new URL(request.url);
 
-    // CORS preflight
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "Content-Type",
-          "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
-        }
-      });
-    }
-
-    if (url.pathname === "/api/login") return login(request, env);
-    if (url.pathname === "/api/register") return register(request, env);
-    if (url.pathname === "/api/unlock") return unlock(request, env);
-    if (url.pathname === "/api/check") return check(request, env);
-    if (url.pathname === "/api/logs") return logs(request, env);
-    if (url.pathname === "/api/messages") return messages(request, env);
-    if (url.pathname === "/api/notifications") return notifications(request, env);
-    if (url.pathname === "/api/payments") return payments(request, env);
-
-    return new Response("Not found", { status: 404 });
+  // CORS preflight
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
+      }
+    });
   }
-};
+
+  switch (url.pathname) {
+    case "/api/login":
+      return login(context);
+
+    case "/api/register":
+      return register(context);
+
+    case "/api/unlock":
+      return unlock(context);
+
+    case "/api/check":
+      return check(context);
+
+    case "/api/logs":
+      return logs(context);
+
+    case "/api/messages":
+      return messages(context);
+
+    case "/api/notifications":
+      return notifications(context);
+
+    case "/api/payments":
+      return payments(context);
+
+    default:
+      return new Response("Not found", { status: 404 });
+  }
+}
