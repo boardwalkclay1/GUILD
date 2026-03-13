@@ -1,12 +1,12 @@
 // ===============================
-// GUILD SERVICE WORKER — v8
-// CLEAN • SAFE • CORRECT • WORKER-COMPATIBLE
+// GUILD SERVICE WORKER — v9
+// Cloudflare Pages Safe • Static-Only Caching
 // ===============================
 
-const CACHE_NAME = "guild-cache-v8";
+const CACHE_NAME = "guild-cache-v9";
 
-// Only cache static assets that NEVER change.
-// Do NOT cache API routes or dynamic pages.
+// Only cache STATIC assets.
+// Never cache API, HTML that changes, or dynamic content.
 const ASSETS = [
   "/index.html",
   "/the-guild.png",
@@ -87,17 +87,17 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-// FETCH — smarter strategy
+// FETCH — Cloudflare Pages Safe Strategy
 self.addEventListener("fetch", event => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // Never cache API calls
+  // NEVER touch API routes — Pages Functions must handle them
   if (url.pathname.startsWith("/api/")) {
     return;
   }
 
-  // For static assets → cache-first
+  // Cache-first for static assets
   if (ASSETS.includes(url.pathname)) {
     event.respondWith(
       caches.match(req).then(cached => cached || fetch(req))
@@ -105,7 +105,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  // For everything else → network-first with fallback
+  // Network-first for everything else
   event.respondWith(
     fetch(req).catch(() => caches.match(req))
   );
