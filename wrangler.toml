@@ -1,5 +1,5 @@
 name = "guild-work"
-main = "api/index.js"
+main = "functions/router.js"
 compatibility_date = "2024-11-01"
 
 # ============================
