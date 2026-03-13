@@ -1,31 +1,46 @@
-export default async function check(request, env) {
+export async function onRequest(context) {
+  const { request, env } = context;
+
   try {
-    const { username } = await request.json();
+    const { username, password } = await request.json();
 
-    if (!username) {
-      return json({ ok: false, error: "missing_username" });
+    if (!username || !password) {
+      return json({ ok: false, error: "missing_fields" });
     }
 
-    const row = await env.DB.prepare(
-      "SELECT unlock_until, role FROM users WHERE username = ?"
-    ).bind(username).first();
+    const isGuildMaster = username === "Guild Master";
 
-    if (!row) {
-      return json({ ok: false, error: "not_found" });
-    }
+    // Guild Master = 100 years
+    const unlock_until = isGuildMaster
+      ? Date.now() + (100 * 365 * 24 * 60 * 60 * 1000)
+      : Date.now() + (30 * 24 * 60 * 60 * 1000);
+
+    const role = isGuildMaster ? "guild_master" : "member";
+
+    await env.DB.prepare(`
+      INSERT INTO users (username, password, unlock_until, role)
+      VALUES (?, ?, ?, ?)
+      ON CONFLICT(username) DO UPDATE SET
+        password = excluded.password,
+        unlock_until = excluded.unlock_until,
+        role = excluded.role
+    `).bind(username, password, unlock_until, role).run();
 
     return json({
       ok: true,
-      unlock_until: row.unlock_until,
-      role: row.role
+      unlock_until,
+      role
     });
 
   } catch (err) {
-    return json({ ok: false, error: "server_error", details: err.message });
+    return json({
+      ok: false,
+      error: "server_error",
+      details: err.message
+    });
   }
 }
 
-// Shared JSON + CORS helper
 function json(obj) {
   return new Response(JSON.stringify(obj), {
     headers: {
