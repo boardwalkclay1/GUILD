@@ -1,5 +1,5 @@
 // ================================
-// GUILD ENGINE — CLEAN + CORRECT
+// GUILD ENGINE — CLEAN + CLOUDFLARE CORRECT
 // ================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // ============================================
-  // 7. AUTH SYSTEM — WORKER READY
+  // 7. AUTH SYSTEM — CLOUDFLARE READY
   // ============================================
 
   const WORKER_URL = "https://guild-work.boardwalkclay1.workers.dev";
@@ -123,21 +123,22 @@ document.addEventListener("DOMContentLoaded", () => {
     async enforceProtection() {
       const path = window.location.pathname;
 
-      // Only protect /guild/ pages
+      // Only protect Cloudflare Pages guild folder
       if (!path.startsWith("/guild/")) return;
 
       // Allowed without login
       const safePages = [
         "/guild/guild-entry.html",
         "/guild/after-payment.html",
-        "/guild/having-second-thoughts.html"
+        "/guild/having-second-thoughts.html",
+        "/guild/login.html"
       ];
 
       if (safePages.includes(path)) return;
 
       // Not logged in
       if (!this.isLoggedIn()) {
-        window.location.href = "/index.html";
+        window.location.href = "/guild/login.html";
         return;
       }
 
@@ -155,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!ok) {
         alert("Session invalid. Please log in again.");
         localStorage.clear();
-        window.location.href = "/guild/guild-entry.html";
+        window.location.href = "/guild/login.html";
       }
     }
   };
@@ -163,14 +164,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Enforce protection
   window.GuildAuth.enforceProtection();
 
-  // 8. Global go() — NO OVERRIDES, NO REWRITES
+  // 8. Global go() — Cloudflare-safe
   window.go = function (nextPage) {
     const overlay = document.createElement("div");
     overlay.className = "colosseum-transition";
     document.body.appendChild(overlay);
 
     setTimeout(() => {
-      window.location.href = nextPage; // respects caller EXACTLY
+      window.location.href = nextPage;
     }, 650);
   };
 });
