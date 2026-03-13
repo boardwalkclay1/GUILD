@@ -5,154 +5,54 @@
   <title>The Guild Gates</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Cloudflare: root is the repo, no /GUILD prefix -->
   <link rel="icon" type="image/png" href="/the-guild.png" />
   <link rel="apple-touch-icon" href="/the-guild.png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
-  <!-- Guild assets (Cloudflare paths) -->
   <link rel="stylesheet" href="/guild/guild-style.css">
   <script src="/guild/guild-engine.js" defer></script>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      color: #D4AF37;
-      font-family: "Marcellus SC", serif;
-    }
-
-    .top-nav {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 25px;
-      font-size: 1.1rem;
-    }
-
-    .top-nav a {
-      color: #D4AF37;
-      cursor: pointer;
-      text-decoration: none;
-      letter-spacing: 0.05em;
-    }
-
-    .top-nav a:hover {
-      text-decoration: underline;
-    }
-
-    .gold-scroll {
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    .scroll-title {
-      font-family: "Uncial Antiqua", serif;
-      font-size: 2rem;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
-    }
-
-    .login-panel {
-      max-width: 420px;
-      margin: 40px auto 20px;
-      padding: 25px;
-      background: rgba(0,0,0,0.75);
-      border: 2px solid #D4AF37;
-      border-radius: 14px;
-      text-align: center;
-    }
-
-    .login-panel input {
-      width: 90%;
-      padding: 12px;
-      margin-top: 12px;
-      border-radius: 8px;
-      border: 1px solid #D4AF37;
-      background: rgba(0,0,0,0.6);
-      color: #D4AF37;
-      text-align: center;
-    }
-
-    .login-btn {
-      margin-top: 18px;
-      padding: 12px;
-      width: 90%;
-      border-radius: 10px;
-      background: rgba(212,175,55,0.15);
-      border: 1px solid #D4AF37;
-      color: #D4AF37;
-      font-weight: 700;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .login-btn:hover {
-      background: rgba(212,175,55,0.3);
-    }
-
-    .new-here {
-      margin-top: 20px;
-      font-size: 0.95rem;
-      opacity: 0.85;
-      line-height: 1.4em;
-    }
-
-    .new-here a {
-      color: #D4AF37;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    .quick-links {
-      max-width: 420px;
-      margin: 10px auto 80px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-  </style>
+  <link rel="stylesheet" href="/guild/guild-login.css">
 </head>
 
 <body data-bg="/guild/Vestry.jpg">
 
   <!-- TOP NAV -->
-  <div class="top-nav">
+  <nav class="top-nav">
     <a onclick="go('/guild/death-strike.html')">Death Strike</a>
     <a onclick="go('/guild/colosseum.html')">The Colosseum</a>
     <a onclick="go('/guild/guild-entry.html')">Inner Hall</a>
     <a onclick="go('/guild/why-join.html')">Why Join the Guild</a>
-  </div>
+  </nav>
 
   <!-- MAIN TITLE -->
-  <div class="gold-scroll">
-    <h1 class="scroll-title">The Guild Brotherhood & Sisterhood</h1>
-  </div>
+  <header class="guild-header">
+    <h1 class="guild-title">The Guild Brotherhood & Sisterhood</h1>
+  </header>
 
   <!-- LOGIN PANEL -->
-  <div class="login-panel">
-    <h2>Member Login</h2>
+  <section class="login-panel">
+    <h2 class="panel-title">Member Login</h2>
+
     <input id="loginUser" type="text" placeholder="Username">
     <input id="loginPass" type="password" placeholder="Password">
+
     <button class="login-btn" onclick="login()">Enter the Guild</button>
 
-    <div class="new-here">
+    <p class="new-here">
       New to the Guild?<br>
       <a onclick="go('/guild/guild-entry.html')">Enter the Inner Hall</a>
-    </div>
-  </div>
+    </p>
+  </section>
 
   <!-- QUICK ACCESS BUTTONS -->
-  <div class="quick-links">
+  <section class="quick-links">
     <button class="login-btn" onclick="go('/guild/death-strike.html')">⚔️ Death Strike</button>
     <button class="login-btn" onclick="go('/guild/colosseum.html')">🏛️ The Colosseum</button>
     <button class="login-btn" onclick="go('/guild/guild-entry.html')">🜁 Inner Hall</button>
     <button class="login-btn" onclick="go('/guild/why-join.html')">✨ Why Join the Guild</button>
-  </div>
+  </section>
 
   <script>
     function go(page) {
@@ -170,8 +70,7 @@
 
       let res;
       try {
-        // Cloudflare Pages Functions default: /functions/login.js if file is /functions/login.js
-        res = await fetch("/functions/login.js", {
+        res = await fetch("/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password })
@@ -194,7 +93,7 @@
         return;
       }
 
-      if (Date.now() > data.unlock_until) {
+      if (Date.now() > data.unlock_until && data.role !== "guild_master") {
         alert("Your access has expired. Renew in the Inner Hall.");
         return;
       }
@@ -202,6 +101,7 @@
       localStorage.setItem("guild_member", "paid");
       localStorage.setItem("guild_username", username);
       localStorage.setItem("guild_unlock_until", data.unlock_until);
+      localStorage.setItem("guild_role", data.role);
 
       window.location.href = "/guild/guild.html";
     }
