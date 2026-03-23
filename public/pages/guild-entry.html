@@ -1,3 +1,4 @@
+<!-- /public/pages/guild-entry.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,110 +6,21 @@
 <title>Guild Entry – $50 Contribution</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Correct Cloudflare paths -->
-<link rel="stylesheet" href="/guild/guild-style.css">
-<script src="/guild/guild-engine.js" defer></script>
+<link rel="stylesheet" href="/public/pages/guild-entry.css">
+<script src="/public/pages/guild-entry.js" defer></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Uncial+Antiqua&display=swap" rel="stylesheet">
-
-<style>
-  body {
-    background: #000;
-    color: #D4AF37;
-    font-family: "Cinzel", serif;
-    margin: 0;
-    padding: 0;
-  }
-
-  h1 {
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-top: 120px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: "Uncial Antiqua", serif;
-  }
-
-  .entry-container {
-    max-width: 600px;
-    margin: 40px auto 80px;
-    background: rgba(0,0,0,0.75);
-    border: 2px solid #D4AF37;
-    border-radius: 14px;
-    padding: 30px;
-    text-align: center;
-  }
-
-  .qr {
-    width: 220px;
-    height: 220px;
-    margin: 20px auto;
-    border-radius: 12px;
-    background: #fff;
-    padding: 10px;
-    object-fit: contain;
-  }
-
-  .btn {
-    display: block;
-    background: rgba(212,175,55,0.15);
-    border: 1px solid #D4AF37;
-    padding: 14px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 300px;
-    border-radius: 10px;
-    color: #D4AF37;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .btn:hover {
-    background: rgba(212,175,55,0.3);
-  }
-
-  input {
-    width: 90%;
-    max-width: 300px;
-    padding: 12px;
-    margin-top: 15px;
-    border-radius: 8px;
-    border: 1px solid #D4AF37;
-    background: rgba(0,0,0,0.6);
-    color: #D4AF37;
-    text-align: center;
-  }
-
-  .doubt-link {
-    margin-top: 25px;
-    font-size: 0.95rem;
-    opacity: 0.85;
-    line-height: 1.4em;
-  }
-
-  .doubt-link a {
-    color: #D4AF37;
-    font-weight: bold;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-</style>
 </head>
 
-<!-- Correct Cloudflare background path -->
-<body data-bg="/guild/Tributum.jpg">
+<body data-bg="/public/image/Tributum.jpg">
 
-<h1>Guild Entry</h1>
+<h1 class="guild-title">Guild Entry</h1>
 
 <div class="entry-container">
   <p>Your contribution unlocks the Guild for 30 days.</p>
   <p><strong>Amount: $50</strong></p>
 
-  <!-- Correct Cloudflare QR path -->
-  <img class="qr" src="/guild/Entry-qrcode.png" alt="Guild Entry QR Code">
+  <img class="qr" src="/public/image/Entry-qrcode.png" alt="Guild Entry QR Code">
 
   <a id="paypalBtn" class="btn" target="_blank">Pay with PayPal</a>
 
@@ -121,35 +33,9 @@
 
   <div class="doubt-link">
     Having second thoughts?<br>
-    <a onclick="go('/guild/having-second-thoughts.html')">See why the Guild changes lives</a>
+    <a onclick="go('/public/pages/having-second-thoughts.html')">See why the Guild changes lives</a>
   </div>
 </div>
-
-<script>
-  const PAYPAL_LINK = "https://www.paypal.com/ncp/payment/WT7W6ADE5WZKY";
-  document.getElementById("paypalBtn").href = PAYPAL_LINK;
-
-  function go(page) {
-    window.location.href = page;
-  }
-
-  function beginEntry() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    if (!username || !password) {
-      alert("Enter a username and password.");
-      return;
-    }
-
-    // Store temporarily — Worker finalizes after PayPal
-    localStorage.setItem("pending_username", username);
-    localStorage.setItem("pending_password", password);
-
-    // Redirect to PayPal
-    window.location.href = PAYPAL_LINK;
-  }
-</script>
 
 </body>
 </html>
