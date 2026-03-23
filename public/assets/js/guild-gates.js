@@ -46,5 +46,6 @@ async function login() {
   localStorage.setItem("guild_unlock_until", data.unlock_until);
   localStorage.setItem("guild_role", data.role);
 
-  window.location.href = "/public/guild/pages/guild.html";
+  // ⭐ CORRECT REDIRECT — NO PUBLIC PREFIX ⭐
+  window.location.href = "/guild/pages/guild.html";
 }
